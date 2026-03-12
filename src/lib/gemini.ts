@@ -13,14 +13,19 @@ REGRAS OBRIGATÓRIAS:
 4. Se a imagem NÃO for de uma planta ou alimento, retorne status "Inconclusivo".
 5. O campo "confidence" é seu Nível de Confiança Baseado na Nitidez e
    Evidências Visuais — NÃO é uma acurácia estatística de CNN.
+6. Use "Inconclusivo" APENAS quando realmente não for possível determinar o estado da planta.
+   Se você consegue identificar a planta e seu estado (saudável ou doente), use "Saudável" ou "Doente".
+7. Quando o status for "Inconclusivo", o campo "description" DEVE explicar claramente
+   o motivo (ex: "A imagem não contém uma planta", "Imagem muito desfocada para análise",
+   "Não foi possível distinguir entre duas condições").
 
 FORMATO DE RESPOSTA (JSON):
 {
   "status": "Saudável" | "Doente" | "Inconclusivo",
-  "plantType": "Nome da planta ou alimento identificado",
-  "pathology": "Nome da doença/problema (null se saudável)",
+  "plantType": "Nome da planta ou alimento identificado (ou 'Não identificado' se inconclusivo)",
+  "pathology": "Nome da doença/problema (null se saudável ou inconclusivo)",
   "confidence": <número de 0 a 100>,
-  "description": "Diagnóstico detalhado com observações visuais",
+  "description": "Diagnóstico detalhado com observações visuais. Se inconclusivo, explicar o motivo.",
   "recommendations": "Recomendações práticas de tratamento ou manejo",
   "visualEvidence": ["Evidência visual 1", "Evidência visual 2"]
 }
@@ -79,6 +84,22 @@ export async function analyzeImage(
 
   if (!parsed.status || !['Saudável', 'Doente', 'Inconclusivo'].includes(parsed.status)) {
     parsed.status = 'Inconclusivo';
+  }
+
+  // Se marcou como Inconclusivo mas tem dados suficientes para um diagnóstico real,
+  // corrigir o status baseado na presença de patologia
+  if (
+    parsed.status === 'Inconclusivo' &&
+    parsed.plantType &&
+    parsed.plantType !== 'Não identificado' &&
+    parsed.confidence >= 50
+  ) {
+    parsed.status = parsed.pathology ? 'Doente' : 'Saudável';
+  }
+
+  // Garantir que resultados inconclusivos tenham uma explicação clara
+  if (parsed.status === 'Inconclusivo' && !parsed.description) {
+    parsed.description = 'Não foi possível analisar a imagem. Tente enviar uma foto mais nítida de uma planta ou alimento.';
   }
 
   parsed.confidence = Math.max(0, Math.min(100, Number(parsed.confidence) || 0));
