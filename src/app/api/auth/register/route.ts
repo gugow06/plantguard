@@ -52,7 +52,8 @@ export async function POST(request: Request) {
       { message: 'Conta criada com sucesso!', userId: user.id },
       { status: 201 },
     );
-  } catch {
+  } catch (error) {
+    console.error('[register] Error:', error);
     return NextResponse.json(
       { error: 'Erro interno do servidor.' },
       { status: 500 },
