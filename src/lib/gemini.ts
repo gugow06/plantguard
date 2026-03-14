@@ -37,6 +37,34 @@ CRITÉRIOS DE CONFIANÇA:
 - 30-49%: Baixa qualidade ou sintomas atípicos
 - 0-29%: Imagem inadequada ou sem evidências claras`;
 
+function extractField(text: string, field: string): string | null {
+  const regex = new RegExp(`"${field}"\\s*:\\s*"((?:[^"\\\\]|\\\\.)*)"`, 's');
+  const match = text.match(regex);
+  return match ? match[1] : null;
+}
+
+function extractNumberField(text: string, field: string): number | null {
+  const regex = new RegExp(`"${field}"\\s*:\\s*(\\d+(?:\\.\\d+)?)`);
+  const match = text.match(regex);
+  return match ? Number(match[1]) : null;
+}
+
+function extractFromTruncatedJson(text: string): GeminiAnalysisResponse {
+  return {
+    status: (extractField(text, 'status') as GeminiAnalysisResponse['status']) ?? 'Inconclusivo',
+    plantType: extractField(text, 'plantType') ?? 'Não identificado',
+    pathology: extractField(text, 'pathology'),
+    confidence: extractNumberField(text, 'confidence') ?? 0,
+    description:
+      extractField(text, 'description') ??
+      'Não foi possível processar a resposta da IA.',
+    recommendations:
+      extractField(text, 'recommendations') ??
+      'Tente enviar uma nova imagem com melhor qualidade.',
+    visualEvidence: [],
+  };
+}
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 export async function analyzeImage(
@@ -48,7 +76,7 @@ export async function analyzeImage(
     generationConfig: {
       temperature: 0.2,
       responseMimeType: 'application/json',
-      maxOutputTokens: 1024,
+      maxOutputTokens: 2048,
     },
     systemInstruction: SYSTEM_PROMPT,
   });
@@ -109,15 +137,8 @@ export async function analyzeImage(
       }
     }
   } catch {
-    parsed = {
-      status: 'Inconclusivo',
-      plantType: 'Não identificado',
-      pathology: null,
-      confidence: 0,
-      description: text || 'Não foi possível processar a resposta da IA.',
-      recommendations: 'Tente enviar uma nova imagem com melhor qualidade.',
-      visualEvidence: [],
-    };
+    // JSON truncado — tentar extrair campos individualmente
+    parsed = extractFromTruncatedJson(text);
   }
 
   if (!parsed.status || !['Saudável', 'Doente', 'Inconclusivo'].includes(parsed.status)) {
