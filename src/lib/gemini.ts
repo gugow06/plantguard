@@ -68,9 +68,47 @@ export async function analyzeImage(
 
   let parsed: GeminiAnalysisResponse;
   try {
-    parsed = JSON.parse(text);
+    const raw = JSON.parse(text);
+
+    // Se o Gemini retornou o JSON correto dentro de um campo string (ex: description contém JSON),
+    // extrair os dados do JSON aninhado
+    if (typeof raw.description === 'string') {
+      try {
+        const nested = JSON.parse(raw.description);
+        if (nested && typeof nested === 'object' && nested.status) {
+          // O JSON real estava dentro de description — usar os dados extraídos
+          parsed = nested;
+        } else {
+          parsed = raw;
+        }
+      } catch {
+        parsed = raw;
+      }
+    } else {
+      parsed = raw;
+    }
+
+    // Sanitizar campos que podem conter JSON em vez de texto
+    for (const field of ['description', 'recommendations'] as const) {
+      if (typeof parsed[field] === 'string' && parsed[field].trim().startsWith('{')) {
+        try {
+          const embedded = JSON.parse(parsed[field]);
+          if (embedded && typeof embedded === 'object') {
+            // Extrair dados do JSON embutido e sobrescrever campos
+            if (embedded.description) parsed.description = embedded.description;
+            if (embedded.recommendations) parsed.recommendations = embedded.recommendations;
+            if (embedded.status) parsed.status = embedded.status;
+            if (embedded.plantType) parsed.plantType = embedded.plantType;
+            if (embedded.pathology !== undefined) parsed.pathology = embedded.pathology;
+            if (embedded.confidence !== undefined) parsed.confidence = embedded.confidence;
+            if (embedded.visualEvidence) parsed.visualEvidence = embedded.visualEvidence;
+          }
+        } catch {
+          // Não é JSON, manter o valor original
+        }
+      }
+    }
   } catch {
-    // If Gemini returns non-JSON, create a fallback response
     parsed = {
       status: 'Inconclusivo',
       plantType: 'Não identificado',
@@ -99,7 +137,8 @@ export async function analyzeImage(
 
   // Garantir que resultados inconclusivos tenham uma explicação clara
   if (parsed.status === 'Inconclusivo' && !parsed.description) {
-    parsed.description = 'Não foi possível analisar a imagem. Tente enviar uma foto mais nítida de uma planta ou alimento.';
+    parsed.description =
+      'Não foi possível analisar a imagem. Tente enviar uma foto mais nítida de uma planta ou alimento.';
   }
 
   parsed.confidence = Math.max(0, Math.min(100, Number(parsed.confidence) || 0));
