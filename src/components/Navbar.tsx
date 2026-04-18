@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
-import { Leaf, LayoutDashboard, History, LogOut, Menu, X, User } from 'lucide-react';
+import { Leaf, LayoutDashboard, History, BarChart3, LogOut, Menu, X, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -19,6 +19,7 @@ import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3 },
   { href: '/history', label: 'Histórico', icon: History },
 ];
 
@@ -50,7 +51,10 @@ export function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+            const isActive =
+              link.href === '/dashboard'
+                ? pathname === '/dashboard'
+                : pathname.startsWith(link.href);
             return (
               <Link
                 key={link.href}
@@ -123,7 +127,10 @@ export function Navbar() {
 
               <nav className="flex flex-col gap-1">
                 {navLinks.map((link) => {
-                  const isActive = pathname === link.href;
+                  const isActive =
+                    link.href === '/dashboard'
+                      ? pathname === '/dashboard'
+                      : pathname.startsWith(link.href);
                   return (
                     <Link
                       key={link.href}
