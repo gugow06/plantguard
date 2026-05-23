@@ -6,8 +6,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { computeAnalytics } from '@/lib/compute-analytics';
+import { computeAlerts } from '@/lib/compute-alerts';
 import type { RawAnalysisRecord } from '@/lib/compute-analytics';
 import type { AnalyticsResponse } from '@/types/analytics';
+import type { AlertRecord } from '@/lib/decision-rules';
 import { KpiCards } from './KpiCards';
 import { StatusPieChart } from './StatusPieChart';
 import { PathologyBarChart } from './PathologyBarChart';
@@ -17,21 +19,30 @@ import { ConfidenceHistogram } from './ConfidenceHistogram';
 import { PlantHealthChart } from './PlantHealthChart';
 import { AnalyticsFilters } from './AnalyticsFilters';
 import { ImportModal } from './ImportModal';
+import { SendReportButton } from '@/components/SendReportButton';
+import { AlertsSummary } from './AlertsSummary';
 
 export function AnalyticsDashboard() {
   const { data, isLoading, filters, updateFilters, clearFilters } = useAnalytics();
   const [importOpen, setImportOpen] = useState(false);
   const [importedData, setImportedData] = useState<AnalyticsResponse | null>(null);
   const [importedFileName, setImportedFileName] = useState<string>('');
+  const [importedAlerts, setImportedAlerts] = useState<AlertRecord[] | null>(null);
+  const [importedRecords, setImportedRecords] = useState<RawAnalysisRecord[] | null>(null);
 
   const handleImport = useCallback((records: RawAnalysisRecord[], fileName: string) => {
     const computed = computeAnalytics(records);
+    const alerts = computeAlerts(records);
     setImportedData(computed);
+    setImportedAlerts(alerts);
+    setImportedRecords(records);
     setImportedFileName(fileName);
   }, []);
 
   const clearImport = useCallback(() => {
     setImportedData(null);
+    setImportedAlerts(null);
+    setImportedRecords(null);
     setImportedFileName('');
   }, []);
 
@@ -128,13 +139,28 @@ export function AnalyticsDashboard() {
         </div>
       )}
 
-      {/* Import button */}
-      <div className="flex justify-end">
+      {/* Import + Report buttons */}
+      <div className="flex items-center justify-end gap-2">
+        {isViewingImport && importedRecords ? (
+          <SendReportButton
+            importedAnalyses={importedRecords}
+            importedFileName={importedFileName}
+          />
+        ) : (
+          <SendReportButton />
+        )}
         <Button variant="outline" size="sm" onClick={() => setImportOpen(true)}>
           <FileUp className="mr-1.5 h-3.5 w-3.5" />
-          {isViewingImport ? 'Importar Dados' : 'Importar Dados'}
+          Importar Dados
         </Button>
       </div>
+
+      {/* Alerts Summary */}
+      {isViewingImport ? (
+        importedAlerts && <AlertsSummary importedAlerts={importedAlerts} />
+      ) : (
+        <AlertsSummary />
+      )}
 
       {/* KPI Cards */}
       <KpiCards summary={activeData.summary} />

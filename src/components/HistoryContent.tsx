@@ -5,6 +5,7 @@ import { ClipboardList, Loader2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { HistoryTable } from '@/components/HistoryTable';
 import { ExportButton } from '@/components/ExportButton';
+import { SendReportButton } from '@/components/SendReportButton';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
@@ -122,7 +123,10 @@ export function HistoryContent() {
             </Button>
           ))}
         </div>
-        <ExportButton fetchAllData={fetchAllForExport} />
+        <div className="flex gap-2">
+          <ExportButton fetchAllData={fetchAllForExport} />
+          <SendReportButton />
+        </div>
       </div>
 
       {/* Results count */}

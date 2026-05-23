@@ -4,6 +4,71 @@ import { prisma } from '@/lib/prisma';
 import { analyzeImage } from '@/lib/gemini';
 import { analyzeSchema } from '@/lib/validations/analyze';
 import { rateLimit } from '@/lib/rate-limit';
+import { sendDiseaseAlertEmail } from '@/lib/email';
+
+async function createDiseaseNotification(
+  userId: string,
+  analysisId: string,
+  imageName: string,
+  geminiResult: {
+    plantType: string | null;
+    pathology: string | null;
+    confidence: number;
+    description: string;
+    recommendations: string;
+  },
+  createdAt: string,
+) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { email: true, name: true },
+    });
+
+    const notifTitle = `Planta doente detectada${geminiResult.plantType ? `: ${geminiResult.plantType}` : ''}`;
+    const notifMessage = geminiResult.pathology
+      ? `${geminiResult.pathology} — ${geminiResult.confidence}% de confiança`
+      : `Confiança: ${geminiResult.confidence}%`;
+
+    const notifData = JSON.stringify({
+      analysisId,
+      imageName,
+      plantType: geminiResult.plantType,
+      pathology: geminiResult.pathology,
+      confidence: geminiResult.confidence,
+      description: geminiResult.description,
+      recommendations: geminiResult.recommendations,
+      createdAt,
+    });
+
+    await prisma.notification.create({
+      data: {
+        userId,
+        type: 'disease_alert',
+        title: notifTitle,
+        message: notifMessage,
+        data: notifData,
+        analysisId,
+      },
+    });
+
+    if (user?.email) {
+      await sendDiseaseAlertEmail(user.email, {
+        userName: user.name ?? 'Usuário',
+        analysisId,
+        imageName,
+        plantType: geminiResult.plantType,
+        pathology: geminiResult.pathology,
+        confidence: geminiResult.confidence,
+        description: geminiResult.description,
+        recommendations: geminiResult.recommendations,
+        createdAt,
+      });
+    }
+  } catch (e) {
+    console.error('[disease-notification]', e);
+  }
+}
 
 export async function POST(request: Request) {
   try {
@@ -51,6 +116,17 @@ export async function POST(request: Request) {
         rawResponse: JSON.stringify(geminiResult),
       },
     });
+
+    // Fire-and-forget after response is committed — never blocks or fails the main response
+    if (geminiResult.status === 'Doente') {
+      createDiseaseNotification(
+        session.user.id,
+        analysis.id,
+        imageName,
+        geminiResult,
+        analysis.createdAt.toISOString(),
+      );
+    }
 
     return NextResponse.json({
       id: analysis.id,

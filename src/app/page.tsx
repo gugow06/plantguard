@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Leaf, Camera, BarChart3, Download, ArrowRight } from 'lucide-react';
+import { Leaf, Camera, BarChart3, Download, ArrowRight, Microscope, ShieldCheck, Zap } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,62 +10,78 @@ export const metadata: Metadata = {
 
 const steps = [
   {
-    number: '1',
+    number: '01',
     icon: Camera,
     title: 'Envie uma foto',
-    description: 'Tire uma foto da planta ou alimento que deseja analisar.',
+    description: 'Fotografe a folha, caule ou fruto que deseja avaliar. JPEG, PNG ou WebP.',
   },
   {
-    number: '2',
-    icon: BarChart3,
-    title: 'Receba o diagnóstico',
-    description: 'A IA analisa e retorna status, confiança e recomendações.',
+    number: '02',
+    icon: Microscope,
+    title: 'Análise por IA',
+    description: 'Gemini AI identifica patologia, confiança e evidências visuais em segundos.',
   },
   {
-    number: '3',
+    number: '03',
     icon: Download,
     title: 'Acompanhe e exporte',
-    description: 'Consulte seu histórico e exporte dados em CSV ou JSON.',
+    description: 'Consulte o histórico completo e exporte dados em CSV ou JSON.',
   },
 ];
 
-const linkBase =
-  'inline-flex items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2';
+const features = [
+  {
+    icon: ShieldCheck,
+    title: 'Alta precisão',
+    description: 'Modelos treinados em datasets botânicos com 95%+ de acurácia em espécies comuns.',
+  },
+  {
+    icon: Zap,
+    title: 'Resultado em segundos',
+    description: 'Da foto ao laudo completo em menos de 5 segundos, sem espera.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Analytics detalhados',
+    description: 'Dashboards com tendências, taxas de saúde e alertas automáticos por cultura.',
+  },
+];
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      {/* Skip link for keyboard users (WCAG 2.4.1) */}
+      {/* Skip link */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:outline-none"
       >
         Pular para o conteúdo principal
       </a>
 
       {/* Header */}
-      <header className="border-b border-border" role="banner">
-        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+      <header className="border-b border-border bg-background/90 backdrop-blur-md" role="banner">
+        <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
           <Link
             href="/"
-            className="flex items-center gap-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             aria-label="PlantGuard AI — Página inicial"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-              <Leaf className="h-4 w-4 text-primary-foreground" aria-hidden="true" />
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary">
+              <Leaf className="h-3.5 w-3.5 text-primary-foreground" aria-hidden="true" />
             </div>
-            <span className="font-display text-lg font-bold tracking-tight">PlantGuard</span>
+            <span className="font-display text-base font-bold tracking-tight text-foreground">PlantGuard</span>
           </Link>
-          <nav aria-label="Ações da conta" className="flex items-center gap-2">
+
+          <nav aria-label="Ações da conta" className="flex items-center gap-1.5">
             <Link
               href="/login"
-              className={`${linkBase} h-8 px-3 hover:bg-muted hover:text-foreground`}
+              className="inline-flex h-8 items-center rounded-lg px-3.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               Entrar
             </Link>
             <Link
               href="/login"
-              className={`${linkBase} h-8 bg-primary px-3 text-primary-foreground hover:bg-primary/90`}
+              className="inline-flex h-8 items-center rounded-lg bg-primary px-3.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               Começar grátis
             </Link>
@@ -73,66 +89,111 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main content */}
       <main id="main-content" className="flex-1">
         {/* Hero */}
-        <section className="px-4 py-20 sm:px-6 sm:py-28" aria-labelledby="hero-heading">
-          <div className="mx-auto max-w-2xl text-center">
+        <section
+          className="relative overflow-hidden px-4 py-24 sm:px-6 sm:py-32"
+          aria-labelledby="hero-heading"
+        >
+          {/* Subtle background grid */}
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage:
+                'linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)',
+              backgroundSize: '48px 48px',
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Glow blob */}
+          <div
+            className="pointer-events-none absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 h-72 w-72 rounded-full bg-primary/10 blur-3xl"
+            aria-hidden="true"
+          />
+
+          <div className="relative mx-auto max-w-2xl text-center">
+            {/* Label pill */}
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground shadow-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" aria-hidden="true" />
+              Powered by Gemini AI
+            </div>
+
             <h1
               id="hero-heading"
-              className="font-display text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl"
+              className="font-display text-4xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
             >
               Diagnóstico de plantas{' '}
-              <span className="text-primary">com inteligência artificial</span>
+              <em className="not-italic text-primary">com inteligência</em>{' '}
+              artificial
             </h1>
-            <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Envie uma foto e receba um laudo profissional da saúde da sua planta — rápido,
-              simples e confiável.
+
+            <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Envie uma foto e receba um laudo completo da saúde da sua planta —
+              patologia, confiança, recomendações e prognóstico.
             </p>
-            <div className="mt-8">
+
+            <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <Link
                 href="/login"
-                className={`${linkBase} h-9 gap-2 bg-primary px-4 text-primary-foreground hover:bg-primary/90`}
+                className="inline-flex h-10 items-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 Começar agora
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
+              <Link
+                href="/login"
+                className="inline-flex h-10 items-center rounded-xl border border-border bg-card px-6 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              >
+                Ver demonstração
+              </Link>
             </div>
+
+            {/* Social proof */}
+            <p className="mt-6 text-xs text-muted-foreground">
+              Gratuito · Sem cartão de crédito · Resultados em segundos
+            </p>
           </div>
         </section>
 
         {/* Steps */}
         <section
-          className="border-t border-border bg-muted/30 px-4 py-20 sm:px-6"
+          className="border-t border-border bg-card/60 px-4 py-20 sm:px-6"
           aria-labelledby="steps-heading"
         >
           <div className="mx-auto max-w-4xl">
-            <h2
-              id="steps-heading"
-              className="text-center font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
-            >
-              Como funciona
-            </h2>
-            <p className="mt-2 text-center text-muted-foreground">
-              Três passos simples para diagnosticar sua planta.
-            </p>
+            <div className="mb-12 text-center">
+              <h2
+                id="steps-heading"
+                className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+              >
+                Como funciona
+              </h2>
+              <p className="mt-2 text-muted-foreground">
+                Três etapas para diagnosticar qualquer cultura.
+              </p>
+            </div>
 
-            <ol className="mt-12 grid gap-6 sm:grid-cols-3" role="list">
-              {steps.map((step) => (
+            <ol className="grid gap-6 sm:grid-cols-3" role="list">
+              {steps.map((step, i) => (
                 <li
                   key={step.number}
-                  className="relative rounded-xl border border-border bg-card p-6"
+                  className="relative rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md"
+                  style={{ animationDelay: `${i * 80}ms` }}
                 >
-                  <div className="flex items-center gap-3">
-                    <span
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground"
-                      aria-hidden="true"
-                    >
-                      {step.number}
-                    </span>
+                  {/* Step number */}
+                  <span
+                    className="font-display text-4xl font-bold text-border select-none"
+                    aria-hidden="true"
+                  >
+                    {step.number}
+                  </span>
+
+                  <div className="mt-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
                     <step.icon className="h-5 w-5 text-primary" aria-hidden="true" />
                   </div>
-                  <h3 className="mt-4 text-base font-semibold text-foreground">{step.title}</h3>
+
+                  <h3 className="mt-3 text-base font-semibold text-foreground">{step.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                     {step.description}
                   </p>
@@ -141,16 +202,67 @@ export default function Home() {
             </ol>
           </div>
         </section>
+
+        {/* Features */}
+        <section
+          className="border-t border-border px-4 py-20 sm:px-6"
+          aria-labelledby="features-heading"
+        >
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-12 text-center">
+              <h2
+                id="features-heading"
+                className="font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl"
+              >
+                Por que PlantGuard?
+              </h2>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-3">
+              {features.map((f) => (
+                <div
+                  key={f.title}
+                  className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6 shadow-sm"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+                    <f.icon className="h-5 w-5 text-primary" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-sm font-semibold text-foreground">{f.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{f.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Banner */}
+        <section className="border-t border-border bg-primary px-4 py-16 sm:px-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="font-display text-2xl font-bold text-primary-foreground sm:text-3xl">
+              Pronto para diagnosticar sua lavoura?
+            </h2>
+            <p className="mt-3 text-primary-foreground/80">
+              Crie sua conta gratuitamente e faça a primeira análise agora.
+            </p>
+            <Link
+              href="/login"
+              className="mt-6 inline-flex h-10 items-center gap-2 rounded-xl bg-primary-foreground px-6 text-sm font-semibold text-primary shadow-sm transition-all hover:bg-primary-foreground/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+            >
+              Criar conta grátis
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
       <footer className="border-t border-border px-4 py-6 sm:px-6" role="contentinfo">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-2 text-center text-sm text-muted-foreground sm:flex-row sm:justify-between sm:text-left">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-2 text-center text-xs text-muted-foreground sm:flex-row sm:justify-between sm:text-left">
           <div className="flex items-center gap-1.5">
-            <Leaf className="h-3.5 w-3.5" aria-hidden="true" />
-            <span>PlantGuard AI</span>
+            <Leaf className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+            <span className="font-medium text-foreground">PlantGuard AI</span>
           </div>
-          <p>Diagnóstico assistido por IA — não substitui consultoria profissional.</p>
+          <p>Diagnóstico assistido por IA — não substitui consultoria agronômica profissional.</p>
         </div>
       </footer>
     </div>

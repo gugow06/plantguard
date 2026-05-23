@@ -6,7 +6,17 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 function createPrismaClient() {
-  const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
+  const dbUrl = new URL(process.env.DATABASE_URL!);
+  // pg doesn't URL-decode %40 in connection strings, so pass explicit config
+  const adapter = new PrismaPg({
+    host: dbUrl.hostname,
+    port: parseInt(dbUrl.port || '5432', 10),
+    database: dbUrl.pathname.slice(1),
+    user: decodeURIComponent(dbUrl.username),
+    password: decodeURIComponent(dbUrl.password),
+    ssl: { rejectUnauthorized: false },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } as any);
   return new PrismaClient({ adapter });
 }
 
