@@ -1,0 +1,135 @@
+# AgroSmart / PlantGuard — Fase 4
+# Sobe a solução completa: banco, Kafka (streaming), app Next.js e o pipeline
+# producer/consumer. Rode a partir da raiz do repo:
+#   docker compose -f infra/docker-compose.yml up --build
+
+name: agrosmart
+
+services:
+  # ---------- Banco de dados ----------
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-agrosmart}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-agrosmart}
+      POSTGRES_DB: ${POSTGRES_DB:-agrosmart}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-agrosmart}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ---------- Kafka (KRaft, broker único — sem Zookeeper) ----------
+  kafka:
+    image: apache/kafka:3.9.0
+    ports:
+      - "9094:9094" # acesso externo (host) opcional
+    environment:
+      KAFKA_NODE_ID: "0"
+      KAFKA_PROCESS_ROLES: "controller,broker"
+      KAFKA_CONTROLLER_QUORUM_VOTERS: "0@kafka:9093"
+      KAFKA_LISTENERS: "PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094"
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT"
+      KAFKA_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
+      KAFKA_INTER_BROKER_LISTENER_NAME: "PLAINTEXT"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: "0"
+    volumes:
+      - kafkadata:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+  # ---------- Kafka UI (visualização para prints/vídeo) ----------
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: agrosmart
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      DYNAMIC_CONFIG_ENABLED: "true"
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+  # ---------- Init: cria tabelas (prisma db push) + usuário demo ----------
+  init:
+    build:
+      context: ..
+      dockerfile: infra/streaming/Dockerfile
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql://agrosmart:agrosmart@postgres:5432/agrosmart}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      sh -c "npx prisma db push &&
+             npx tsx infra/streaming/seed-demo-user.ts"
+
+  # ---------- App Next.js ----------
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql://agrosmart:agrosmart@postgres:5432/agrosmart}
+      DATABASE_SSL: "false"
+      # NextAuth v5 em produção (next start) não confia no host por padrão.
+      AUTH_TRUST_HOST: "true"
+      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-troque-este-secret-em-producao}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      RESEND_FROM: ${RESEND_FROM:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      init:
+        condition: service_completed_successfully
+
+  # ---------- Producer: publica classificações no tópico ----------
+  producer:
+    build:
+      context: ..
+      dockerfile: infra/streaming/Dockerfile
+    environment:
+      KAFKA_BROKERS: kafka:9092
+      STREAM_INTERVAL_MS: ${STREAM_INTERVAL_MS:-60000}
+      STREAM_MAX_MESSAGES: ${STREAM_MAX_MESSAGES:-10}
+    depends_on:
+      kafka:
+        condition: service_healthy
+    command: ["npx", "tsx", "infra/streaming/producer.ts"]
+    restart: on-failure
+
+  # ---------- Consumer: grava no Postgres e gera alertas ----------
+  consumer:
+    build:
+      context: ..
+      dockerfile: infra/streaming/Dockerfile
+    environment:
+      KAFKA_BROKERS: kafka:9092
+      DATABASE_URL: ${DATABASE_URL:-postgresql://agrosmart:agrosmart@postgres:5432/agrosmart}
+    depends_on:
+      kafka:
+        condition: service_healthy
+      init:
+        condition: service_completed_successfully
+    command: ["npx", "tsx", "infra/streaming/consumer.ts"]
+    restart: on-failure
+
+volumes:
+  pgdata:
+  kafkadata:

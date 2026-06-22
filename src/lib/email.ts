@@ -1,6 +1,12 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Instanciação lazy: o módulo pode ser importado (build, ambientes sem e-mail)
+// sem exigir a RESEND_API_KEY. O client só é criado ao enviar de fato.
+let resendClient: Resend | null = null;
+function getResend(): Resend {
+  if (!resendClient) resendClient = new Resend(process.env.RESEND_API_KEY);
+  return resendClient;
+}
 const FROM = process.env.RESEND_FROM ?? 'PlantGuard AI <onboarding@resend.dev>';
 
 const brand = `
@@ -157,7 +163,7 @@ export async function sendDiseaseAlertEmail(to: string, data: DiseaseAlertData) 
     </tr>
   `);
 
-  return resend.emails.send({
+  return getResend().emails.send({
     from: FROM,
     to,
     subject: `🔴 Planta Doente: ${data.plantType ?? data.imageName} — PlantGuard AI`,
@@ -308,7 +314,7 @@ export async function sendAnalysisReportEmail(
     </tr>
   `);
 
-  return resend.emails.send({
+  return getResend().emails.send({
     from: FROM,
     to,
     subject: `📊 Relatório PlantGuard AI — ${period.from} a ${period.to}`,

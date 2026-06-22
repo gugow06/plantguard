@@ -8,13 +8,16 @@ const globalForPrisma = globalThis as unknown as {
 function createPrismaClient() {
   const dbUrl = new URL(process.env.DATABASE_URL!);
   // pg doesn't URL-decode %40 in connection strings, so pass explicit config
+  // SSL ligado por padrão (Supabase/produção). Em Postgres local (Docker) sem
+  // SSL, defina DATABASE_SSL=false para desabilitar.
+  const useSsl = process.env.DATABASE_SSL !== 'false';
   const adapter = new PrismaPg({
     host: dbUrl.hostname,
     port: parseInt(dbUrl.port || '5432', 10),
     database: dbUrl.pathname.slice(1),
     user: decodeURIComponent(dbUrl.username),
     password: decodeURIComponent(dbUrl.password),
-    ssl: { rejectUnauthorized: false },
+    ssl: useSsl ? { rejectUnauthorized: false } : false,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any);
   return new PrismaClient({ adapter });

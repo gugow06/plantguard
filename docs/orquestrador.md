@@ -1,6 +1,6 @@
 # PlantGuard AI — Orquestrador de Desenvolvimento
 
-Registro de tudo que foi implementado e corrigido nas sessões de **22 e 23 de maio de 2026** (incluindo continuação no mesmo dia 23/05).
+Registro de tudo que foi implementado e corrigido nas sessões de **22 e 23 de maio de 2026** (incluindo continuação no mesmo dia 23/05) e na **Fase 4 — 22 de junho de 2026** (pipeline de streaming, containerização e Business Model Canvas).
 
 ---
 
@@ -507,6 +507,175 @@ Usuário relatou erro `invalid_request` ao clicar em "Entrar com Google".
 
 ---
 
+## Sessão 4 — 22/06/2026 (Fase 4)
+
+Nova fase de desenvolvimento com três entregáveis acadêmicos (FIAP): pipeline de dados em streaming, containerização da solução e Business Model Canvas. A estratégia amarrou os três: **Apache Kafka** roda no mesmo `docker-compose` da aplicação e o consumer grava no **Postgres real** reusando o schema/cliente Prisma — o stream de classificações alimenta o dashboard e os alertas em tempo real, sem reescrever lógica.
+
+---
+
+### 4.1 Pipeline de Dados com Streaming (Apache Kafka)
+
+#### Objetivo
+Simular entrada contínua de imagens classificadas trafegando por um tópico Kafka até o banco do app, disparando alertas de doença em tempo real.
+
+#### Fluxo
+```
+producer (lê data/sample-plants.csv em loop)
+  → tópico Kafka "plant-classifications"
+    → consumer → grava Analysis no Postgres
+      → se status == "Doente" → cria Notification (disease_alert)
+        → dashboard/alertas do app refletem em tempo real
+  (kafka-ui exibe as mensagens trafegando)
+```
+
+#### `infra/streaming/shared.ts` *(novo)*
+- Configuração compartilhada: cliente Kafka (`kafkajs`), cliente Prisma (`PrismaPg` via `connectionString`), constantes (`TOPIC`, `BROKERS`, `DEMO_USER_EMAIL`) e a interface `ClassificationMessage`
+
+#### `infra/streaming/producer.ts` *(novo)*
+- Lê `data/sample-plants.csv` com `papaparse`, publica uma mensagem JSON por linha no tópico `plant-classifications` em loop infinito
+- Intervalo configurável (`STREAM_INTERVAL_MS`, padrão 2s), com leve variação na confiança e timestamp atual para simular fluxo real
+- Cria o tópico via `admin.createTopics` ao iniciar
+
+#### `infra/streaming/consumer.ts` *(novo)*
+- Consome o tópico e, para cada mensagem, cria um registro `Analysis` atrelado ao usuário demo
+- Quando `status === 'Doente'`, cria `Notification` (`disease_alert`) — mesma lógica de `src/app/api/analyze/route.ts`, sem o envio de e-mail
+- Reusa o `PrismaClient` gerado em `src/generated/prisma`
+
+#### `infra/streaming/seed-demo-user.ts` *(novo)*
+- Garante o usuário demo `agrosmart-stream@demo.local` (senha `stream123`) cujo `id` o consumer usa em `userId`
+
+#### `package.json`
+- Dependências adicionadas: `kafkajs` (runtime) e `tsx` (dev)
+- Scripts: `stream:seed`, `stream:producer`, `stream:consumer`
+
+---
+
+### 4.2 Containerização (Docker)
+
+#### Objetivo
+Empacotar a solução completa em um único `docker-compose.yml` funcional: banco, broker de streaming, app e pipeline.
+
+#### `Dockerfile` *(novo)*
+- Build multi-stage da app Next.js 16: `deps` → `builder` (`prisma generate` + `next build`) → `runner` enxuto
+- Usa a saída **standalone** do Next; placeholders de `DATABASE_URL`/`NEXTAUTH_SECRET` só em build-time
+
+#### `next.config.ts`
+- Adicionado `output: 'standalone'` para a imagem enxuta
+
+#### `src/lib/prisma.ts`
+- SSL tornado configurável via `DATABASE_SSL` (default ligado para Supabase/produção; `false` no Postgres local do Docker, que não tem SSL)
+
+#### `infra/streaming/Dockerfile` *(novo)*
+- Imagem única (node:22-alpine) para `init`/`producer`/`consumer`: instala deps, roda `prisma generate`, executa os scripts via `tsx`
+
+#### `infra/docker-compose.yml` *(novo)*
+- Serviços: `postgres` (16), `kafka` (apache/kafka 3.9.0 em KRaft, sem Zookeeper), `kafka-ui`, `init` (db push + seed), `app`, `producer`, `consumer`
+- Healthchecks (`pg_isready`, `kafka-topics`) e ordenação via `depends_on` (`service_healthy` / `service_completed_successfully`)
+
+#### `infra/.env.docker.example` *(novo)* e `.dockerignore` *(novo)*
+- Variáveis do compose documentadas; `.dockerignore` evita copiar `node_modules`/`.next`/`.git`/`.env`
+
+#### `docs/fase4/arquitetura.md` *(novo)*
+- Explicação da arquitetura de containers, tabela de serviços, ordem de inicialização e decisões
+
+---
+
+### 4.3 Business Model Canvas
+
+#### `docs/fase4/business-model-canvas.md` *(novo)*
+- Os 9 blocos do BMC preenchidos com conteúdo derivado do produto (diagnóstico por IA, dashboard, alertas, SaaS agro)
+
+#### `docs/fase4/business-model-canvas.png` *(novo)*
+- Versão visual em grade do Canvas (HTML renderizado para PNG)
+
+#### `docs/fase4/roteiro-video.md` *(novo)*
+- Roteiro de 2–4 min explicando modelo de negócio e proposta de valor (problema → solução → proposta de valor → segmentos/canais → receita/custos → fechamento)
+
+#### `docs/fase4/pipeline-diagram.md` *(novo)*
+- Diagrama Mermaid do pipeline + formato da mensagem do tópico + instruções de execução/captura
+
+---
+
+### 4.4 Correções durante a subida do stack
+
+| Problema | Causa raiz | Correção |
+|----------|-----------|----------|
+| `bitnami/kafka:3.7` não encontrado | Bitnami descontinuou as imagens públicas no Docker Hub | Trocado para a imagem oficial `apache/kafka:3.9.0`, ajustando as env vars do KRaft (sem prefixo `CFG`) |
+| Build da app falhava sem `RESEND_API_KEY` | `src/lib/email.ts` instanciava `new Resend(...)` no carregamento do módulo; build local passava só porque o `.env` raiz tinha a chave | Instanciação **lazy** (`getResend()`) — o client só é criado ao enviar e-mail de fato |
+| `init` saía com erro | Flag `--skip-generate` foi removida no Prisma 7 | Removida do comando `prisma db push` no compose |
+
+---
+
+### 4.5 Login com Google no ambiente Docker
+
+#### Problema
+Login com Google falhava nos containers.
+
+#### Causas e correções
+- **Credenciais vazias**: o `infra/.env` (gerado a partir do exemplo) tinha `GOOGLE_CLIENT_ID/SECRET` em branco → copiadas as credenciais reais do `.env` raiz para o `infra/.env` (gitignored)
+- **`AUTH_TRUST_HOST` ausente**: o container roda `next start` (produção) e o NextAuth v5 não confia no host fora do `next dev` → adicionado `AUTH_TRUST_HOST: "true"` ao serviço `app` no compose
+- Verificado via `/api/auth/providers` que o provider `google` ficou ativo com `callbackUrl` correto
+- ⚠️ Pré-requisito externo: o *Authorized redirect URI* no Google Cloud Console deve conter `http://localhost:3000/api/auth/callback/google`
+
+---
+
+### 4.6 Envio de e-mails (Resend) no ambiente Docker
+
+#### Problema
+A aplicação não enviava e-mails (alertas de doença e relatórios) ao rodar nos containers.
+
+#### Causa raiz
+Ao recriar o `infra/.env` a partir do exemplo, as variáveis do Resend **não** foram incluídas — nem no `docker-compose.yml`, nem no `.env.docker.example`, nem copiadas do `.env` raiz. O container da app rodava com `RESEND_API_KEY`/`RESEND_FROM` vazios, então o `getResend()` criava um client sem chave e nenhum e-mail saía.
+
+#### Correções
+- Adicionadas `RESEND_API_KEY` e `RESEND_FROM` ao serviço `app` no `infra/docker-compose.yml`
+- Documentadas no `infra/.env.docker.example` (com `RESEND_FROM` default `onboarding@resend.dev`)
+- Valores reais copiados do `.env` raiz para o `infra/.env` (gitignored); container `app` recriado
+
+#### Verificação
+- Chave presente no container e válida — tipo **envio apenas** (sending key): `GET /domains` retorna `restricted_api_key` (esperado)
+- Envio real via `POST /emails` retornou **HTTP 200** com `id` → caminho de e-mail OK
+
+#### ⚠️ Limitação do Resend (não bug)
+`RESEND_FROM` está como `onboarding@resend.dev` (remetente sandbox compartilhado), que **só entrega ao e-mail dono da conta** Resend. Para enviar a destinatários reais é preciso **verificar um domínio próprio** no painel do Resend e ajustar `RESEND_FROM` para esse domínio. (O consumer do streaming não envia e-mail por design — só o app.)
+
+---
+
+### 4.7 Verificação end-to-end
+
+Stack subido com `docker compose -f infra/docker-compose.yml up --build`. Confirmado:
+- `postgres`, `kafka` (healthy), `kafka-ui`, `app` (HTTP 200), `producer` e `consumer` no ar; `init` Exited (0)
+- Producer publicando ~1 msg/2s; consumer gravando `Analysis` e criando alertas para `Doente`
+- Postgres acumulando registros (`Analysis`/`Notification`) em tempo real
+- Kafka UI (`:8080`) e app (`:3000`) respondendo
+
+---
+
+### 4.8 Arquivos Desta Sessão
+
+| Arquivo | Ação |
+|---------|------|
+| `infra/streaming/shared.ts` | **Criado** — config compartilhada Kafka + Prisma |
+| `infra/streaming/producer.ts` | **Criado** — publica classificações no tópico |
+| `infra/streaming/consumer.ts` | **Criado** — consome e grava Analysis/Notification |
+| `infra/streaming/seed-demo-user.ts` | **Criado** — usuário demo do pipeline |
+| `infra/streaming/Dockerfile` | **Criado** — imagem dos serviços de streaming |
+| `Dockerfile` | **Criado** — imagem da app Next.js (standalone) |
+| `.dockerignore` | **Criado** |
+| `infra/docker-compose.yml` | **Criado** — stack completo (db, kafka, ui, app, pipeline) |
+| `infra/.env.docker.example` | **Criado** — variáveis do compose |
+| `next.config.ts` | Modificado — `output: 'standalone'` |
+| `src/lib/prisma.ts` | Modificado — SSL configurável via `DATABASE_SSL` |
+| `src/lib/email.ts` | Modificado — instanciação lazy do Resend (`getResend()`) |
+| `package.json` | Modificado — deps `kafkajs`/`tsx` + scripts `stream:*` |
+| `docs/fase4/pipeline-diagram.md` | **Criado** — diagrama do pipeline |
+| `docs/fase4/arquitetura.md` | **Criado** — arquitetura de containers |
+| `docs/fase4/business-model-canvas.md` | **Criado** — 9 blocos do BMC |
+| `docs/fase4/business-model-canvas.png` | **Criado** — Canvas visual |
+| `docs/fase4/roteiro-video.md` | **Criado** — roteiro do vídeo |
+
+---
+
 ## Resumo Geral de Arquivos
 
 | Arquivo | Sessão | Ação |
@@ -543,3 +712,21 @@ Usuário relatou erro `invalid_request` ao clicar em "Entrar com Google".
 | `src/components/SendReportButton.tsx` | 23/05 | **Criado** — seletor de período + envio de relatório |
 | `src/components/HistoryContent.tsx` | 23/05 | Modificado — botão de relatório adicionado |
 | `src/components/analytics/AnalyticsDashboard.tsx` | 23/05 | Modificado — botão de relatório adicionado |
+| `infra/streaming/shared.ts` | 22/06 | **Criado** — config compartilhada Kafka + Prisma |
+| `infra/streaming/producer.ts` | 22/06 | **Criado** — producer Kafka (lê CSV em loop) |
+| `infra/streaming/consumer.ts` | 22/06 | **Criado** — consumer → Analysis/Notification |
+| `infra/streaming/seed-demo-user.ts` | 22/06 | **Criado** — usuário demo do pipeline |
+| `infra/streaming/Dockerfile` | 22/06 | **Criado** — imagem dos serviços de streaming |
+| `Dockerfile` | 22/06 | **Criado** — imagem da app Next.js (standalone) |
+| `.dockerignore` | 22/06 | **Criado** |
+| `infra/docker-compose.yml` | 22/06 | **Criado** — stack completo |
+| `infra/.env.docker.example` | 22/06 | **Criado** — variáveis do compose |
+| `next.config.ts` | 22/06 | Modificado — `output: 'standalone'` |
+| `src/lib/prisma.ts` | 22/06 | Modificado — SSL configurável via `DATABASE_SSL` |
+| `src/lib/email.ts` | 22/06 | Modificado — instanciação lazy do Resend |
+| `package.json` | 22/06 | Modificado — deps `kafkajs`/`tsx` + scripts `stream:*` |
+| `docs/fase4/pipeline-diagram.md` | 22/06 | **Criado** — diagrama do pipeline |
+| `docs/fase4/arquitetura.md` | 22/06 | **Criado** — arquitetura de containers |
+| `docs/fase4/business-model-canvas.md` | 22/06 | **Criado** — 9 blocos do BMC |
+| `docs/fase4/business-model-canvas.png` | 22/06 | **Criado** — Canvas visual |
+| `docs/fase4/roteiro-video.md` | 22/06 | **Criado** — roteiro do vídeo |

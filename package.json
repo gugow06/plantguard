@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "stream:seed": "tsx infra/streaming/seed-demo-user.ts",
+    "stream:producer": "tsx infra/streaming/producer.ts",
+    "stream:consumer": "tsx infra/streaming/consumer.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
@@ -22,6 +25,7 @@
     "date-fns": "^4.1.0",
     "dotenv": "^17.3.1",
     "file-saver": "^2.0.5",
+    "kafkajs": "^2.2.4",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",
     "next-auth": "^5.0.0-beta.30",
@@ -56,6 +60,7 @@
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
+    "tsx": "^4.22.4",
     "typescript": "^5"
   }
 }
