@@ -84,6 +84,8 @@ services:
     environment:
       DATABASE_URL: ${DATABASE_URL:-postgresql://agrosmart:agrosmart@postgres:5432/agrosmart}
       DATABASE_SSL: "false"
+      # Broker Kafka para a página /monitor (métricas de offset/lag).
+      KAFKA_BROKERS: kafka:9092
       # NextAuth v5 em produção (next start) não confia no host por padrão.
       AUTH_TRUST_HOST: "true"
       NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}

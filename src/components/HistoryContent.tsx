@@ -41,26 +41,33 @@ export function HistoryContent() {
   const [page, setPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState('');
 
-  const fetchHistory = useCallback(async (p: number, status: string) => {
-    setIsLoading(true);
+  // silent = atualização em background (polling); não mostra spinner nem toast de erro
+  const fetchHistory = useCallback(async (p: number, status: string, silent = false) => {
+    if (!silent) setIsLoading(true);
     try {
       const params = new URLSearchParams({ page: String(p), limit: '10' });
       if (status) params.set('status', status);
 
-      const res = await fetch(`/api/history?${params}`);
+      const res = await fetch(`/api/history?${params}`, { cache: 'no-store' });
       if (!res.ok) throw new Error();
 
       const result: HistoryData = await res.json();
       setData(result);
     } catch {
-      toast.error('Erro ao carregar histórico.');
+      if (!silent) toast.error('Erro ao carregar histórico.');
     } finally {
-      setIsLoading(false);
+      if (!silent) setIsLoading(false);
     }
   }, []);
 
   useEffect(() => {
     fetchHistory(page, statusFilter);
+  }, [page, statusFilter, fetchHistory]);
+
+  // Atualização em tempo real (a cada 5s), sem recarregar a página
+  useEffect(() => {
+    const id = setInterval(() => fetchHistory(page, statusFilter, true), 5000);
+    return () => clearInterval(id);
   }, [page, statusFilter, fetchHistory]);
 
   const fetchAllForExport = useCallback(async () => {

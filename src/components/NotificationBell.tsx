@@ -279,10 +279,10 @@ export function NotificationBell() {
     }
   }, []);
 
-  // Poll every 60s for new notifications
+  // Atualiza em tempo real (a cada 15s), sem recarregar a página
   useEffect(() => {
     fetchNotifications();
-    const interval = setInterval(fetchNotifications, 60_000);
+    const interval = setInterval(fetchNotifications, 15_000);
     return () => clearInterval(interval);
   }, [fetchNotifications]);
 

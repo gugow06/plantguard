@@ -676,6 +676,61 @@ Stack subido com `docker compose -f infra/docker-compose.yml up --build`. Confir
 
 ---
 
+### 4.9 Página de Monitoramento do Pipeline + Atualização em Tempo Real
+
+#### Objetivo
+Acompanhar o fluxo do Kafka dentro do próprio app (sem depender só do kafka-ui) e fazer as páginas de dados se atualizarem sozinhas, sem recarregar.
+
+#### `src/app/monitor/page.tsx` *(novo)*
+- Página `/monitor` (acesso direto, sem login) que faz **polling a cada 3s** e exibe:
+  - Métricas do Kafka (mensagens no tópico, lag do consumer), análises gravadas e throughput
+  - Feed ao vivo das últimas análises (a mais nova pisca ao chegar)
+  - Distribuição por status (donut) e por planta (barras)
+  - Contadores Saudável/Doente/Inconclusivo e alertas gerados pelo consumer
+
+#### `src/app/api/stream/monitor/route.ts` *(novo)*
+- `GET` que junta dados do Postgres (feed, distribuições, throughput, alertas do usuário do stream) + métricas do Kafka
+- `dynamic = 'force-dynamic'`, sem cache
+
+#### `src/lib/kafka.ts` *(novo)*
+- Admin Kafka singleton (`getKafkaMetrics`): lê offsets do tópico e do consumer group (`agrosmart-consumer`) para calcular total de mensagens e lag; resiliente (retorna `null` se o broker cair)
+
+#### `infra/docker-compose.yml`
+- `KAFKA_BROKERS: kafka:9092` adicionado ao serviço `app` para o monitor acessar o broker
+
+#### Atualização em tempo real (sem reload)
+Polling silencioso (sem spinner/flicker) adicionado às páginas de dados:
+- `src/hooks/useAnalytics.ts` — refetch a cada **5s** (param `silent`)
+- `src/components/HistoryContent.tsx` — refetch a cada **5s** (param `silent`)
+- `src/components/analytics/AlertsSummary.tsx` — `/api/alerts` a cada **5s**
+- `src/components/NotificationBell.tsx` — intervalo reduzido de 60s para **15s**
+
+#### `src/components/Navbar.tsx`
+- Link **"Monitor"** (ícone `Radio`) adicionado ao menu (desktop + mobile)
+
+---
+
+### 4.10 Cadência do Producer (lote finito) + Investigação das Notificações
+
+#### Objetivo
+O app não precisava de um fluxo contínuo infinito — limitar o producer a um lote pequeno com intervalo maior entre as análises.
+
+#### `infra/streaming/producer.ts`
+- Loop infinito substituído por **lote finito** controlado por `STREAM_MAX_MESSAGES` (padrão **10**; `0` = ilimitado)
+- Intervalo padrão alterado para `STREAM_INTERVAL_MS` = **60000** (1 minuto entre análises)
+- Ao concluir o lote, o producer **encerra com código 0** (não reinicia, pois o serviço usa `restart: on-failure`)
+
+#### `infra/docker-compose.yml` e `infra/.env.docker.example`
+- Serviço `producer`: `STREAM_INTERVAL_MS=60000` e novo `STREAM_MAX_MESSAGES=10`
+
+#### Investigação "não estou recebendo notificações"
+- **Diagnóstico:** não era bug — o producer já havia concluído o lote de 10 análises horas antes, então nenhuma `Notification` nova era criada. Confirmado reiniciando o producer (cadeia gerou alerta novo na hora).
+- **Causa secundária (esperada):** as notificações do pipeline pertencem ao usuário `agrosmart-stream@demo.local`; logado com a conta Google, o sino não exibe os alertas do stream.
+- **Decisão do usuário:** manter as notificações no usuário demo e somente in-app (sino) — **nenhuma mudança de config**. Para visualizar: logar como `agrosmart-stream@demo.local` / `stream123`.
+- O consumer apresentou um timeout transitório do Kafka (`KafkaJSNumberOfRetriesExceeded` em fetch ocioso) e se auto-recupera (restart automático) — sem impacto no fluxo.
+
+---
+
 ## Resumo Geral de Arquivos
 
 | Arquivo | Sessão | Ação |
@@ -730,3 +785,16 @@ Stack subido com `docker compose -f infra/docker-compose.yml up --build`. Confir
 | `docs/fase4/business-model-canvas.md` | 22/06 | **Criado** — 9 blocos do BMC |
 | `docs/fase4/business-model-canvas.png` | 22/06 | **Criado** — Canvas visual |
 | `docs/fase4/roteiro-video.md` | 22/06 | **Criado** — roteiro do vídeo |
+| `src/app/monitor/page.tsx` | 22/06 | **Criado** — página de monitoramento do pipeline |
+| `src/app/api/stream/monitor/route.ts` | 22/06 | **Criado** — API do monitor (Postgres + Kafka) |
+| `src/lib/kafka.ts` | 22/06 | **Criado** — admin Kafka (offsets/lag) |
+| `src/hooks/useAnalytics.ts` | 22/06 | Modificado — polling silencioso 5s |
+| `src/components/HistoryContent.tsx` | 22/06 | Modificado — polling silencioso 5s |
+| `src/components/analytics/AlertsSummary.tsx` | 22/06 | Modificado — polling /api/alerts 5s |
+| `src/components/NotificationBell.tsx` | 22/06 | Modificado — intervalo 60s → 15s |
+| `src/components/Navbar.tsx` | 22/06 | Modificado — link "Monitor" |
+| `docs/fase4/pipeline-antes-depois.md` | 22/06 | **Criado** — comparativo antes × depois |
+| `docs/fase4/pipeline-antes-depois.png` | 22/06 | **Criado** — diagrama antes × depois |
+| `infra/streaming/producer.ts` | 22/06 | Modificado — lote finito (`STREAM_MAX_MESSAGES`) + intervalo 60s |
+| `infra/docker-compose.yml` | 22/06 | Modificado — `STREAM_MAX_MESSAGES`, `RESEND_*`, `AUTH_TRUST_HOST`, `KAFKA_BROKERS` |
+| `infra/.env.docker.example` | 22/06 | Modificado — vars de streaming/Resend |
