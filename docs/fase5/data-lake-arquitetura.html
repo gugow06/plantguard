@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Lake — AgroSmart (Fase 5)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 24px; background: #f4f1e8; color: #0e1c12; }
+    h1 { font-size: 20px; }
+    .bar { margin: 12px 0 20px; }
+    button { background: #1b4d34; color: #fff; border: 0; padding: 10px 16px; border-radius: 8px; font-size: 14px; cursor: pointer; }
+    button:hover { background: #15402b; }
+    #diagram { background: #fff; border-radius: 12px; padding: 20px; overflow: auto; }
+  </style>
+</head>
+<body>
+  <h1>Arquitetura de Data Lake — AgroSmart / PlantGuard (Fase 5)</h1>
+  <div class="bar"><button onclick="downloadPng()">⬇️ Baixar PNG</button></div>
+  <div id="diagram">
+    <pre class="mermaid">
+flowchart TB
+    subgraph SRC["Fontes de dados"]
+        direction LR
+        IMG["Imagens de plantas<br/>nao estruturado<br/>(upload do produtor)"]
+        FILE["Arquivos CSV/JSON<br/>estruturado<br/>(importacao + producer Kafka)"]
+        API["API de clima<br/>semiestruturado<br/>(umidade, temp, chuva)"]
+        RAWAI["rawResponse do Gemini<br/>semiestruturado"]
+    end
+    subgraph ING["Ingestao"]
+        direction LR
+        UP["/api/analyze<br/>(upload + Gemini)"]
+        IMP["/api/import<br/>(lote CSV/JSON)"]
+        KAF["Apache Kafka<br/>producer -> topico -> consumer"]
+        CLI["Conector de clima<br/>(coleta agendada)"]
+    end
+    subgraph RAW["Camada Bruta (Raw / Bronze)"]
+        direction LR
+        R1["Imagens originais"]
+        R2["rawResponse do Gemini"]
+        R3["CSV/JSON + payloads de clima"]
+    end
+    subgraph TRUST["Camada Confiavel (Trusted / Silver)"]
+        direction LR
+        T1[("PostgreSQL - Analysis<br/>validado e normalizado")]
+        T2[("PostgreSQL - Notification")]
+    end
+    subgraph REF["Camada Refinada (Refined / Gold)"]
+        direction LR
+        G1["computeAnalytics<br/>(KPIs, distribuicoes)"]
+        G2["computeAlerts<br/>(regras R1-R4)"]
+        G3["gemini-insights<br/>(relatorio de IA)"]
+    end
+    subgraph OUT["Analise & Consumo"]
+        direction LR
+        D1["Dashboard de analytics"]
+        D2["/api/alerts"]
+        D3["/api/insights"]
+        D4["Monitor + e-mails"]
+    end
+    IMG --> UP
+    FILE --> IMP
+    FILE --> KAF
+    API --> CLI
+    RAWAI --> UP
+    UP --> RAW
+    IMP --> RAW
+    KAF --> RAW
+    CLI --> RAW
+    RAW -->|"validacao / normalizacao"| TRUST
+    TRUST -->|"agregacao / regras / IA"| REF
+    REF --> OUT
+    </pre>
+  </div>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { primaryColor: '#e8f0e8', primaryBorderColor: '#1b4d34', lineColor: '#1b4d34' } });
+    window.downloadPng = async () => {
+      const svg = document.querySelector('#diagram svg');
+      if (!svg) return alert('Diagrama ainda carregando, tente de novo.');
+      const xml = new XMLSerializer().serializeToString(svg);
+      const svg64 = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(xml)));
+      const img = new Image();
+      img.onload = () => {
+        const scale = 2;
+        const canvas = document.createElement('canvas');
+        canvas.width = svg.viewBox.baseVal.width * scale || img.width * scale;
+        canvas.height = svg.viewBox.baseVal.height * scale || img.height * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.scale(scale, scale);
+        ctx.drawImage(img, 0, 0);
+        const a = document.createElement('a');
+        a.download = 'data-lake-arquitetura.png';
+        a.href = canvas.toDataURL('image/png');
+        a.click();
+      };
+      img.src = svg64;
+    };
+  </script>
+</body>
+</html>

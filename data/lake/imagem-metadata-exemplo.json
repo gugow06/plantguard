@@ -1,0 +1,27 @@
+{
+  "_descricao": "Exemplo de registro BRUTO de ingestão por imagem (canal /api/analyze). Reúne metadados da imagem (não estruturado) + a resposta JSON crua devolvida pelo Gemini (semiestruturado), antes de virar um registro validado na camada Confiável.",
+  "id": "ana_9f2c1a7b",
+  "canal": "upload/api-analyze",
+  "recebidoEm": "2026-09-05T13:42:11Z",
+  "imagem": {
+    "nomeArquivo": "tomate_folha_03.jpg",
+    "mimeType": "image/jpeg",
+    "tamanhoBytes": 418233,
+    "largura": 1280,
+    "altura": 960,
+    "hashSha256": "a3f5c9e1b7d24608f1c0aa93de5b2f7c9048e1a6b2c3d4e5f60718293a4b5c6d"
+  },
+  "rawResponseGemini": {
+    "status": "Doente",
+    "plantType": "Tomate",
+    "pathology": "Requeima (Phytophthora infestans)",
+    "confidence": 88,
+    "description": "Lesões necróticas irregulares de coloração marrom-escura nas bordas foliares, com halo aquoso e leve mofo esbranquiçado na face inferior — sintomas clássicos de requeima.",
+    "recommendations": "Remover folhas afetadas, evitar irrigação por aspersão, aplicar fungicida à base de cobre e monitorar as plantas vizinhas nas próximas 72h.",
+    "visualEvidence": [
+      "Manchas marrom-escuras com halo aquoso",
+      "Mofo branco na face inferior da folha",
+      "Progressão a partir das bordas foliares"
+    ]
+  }
+}

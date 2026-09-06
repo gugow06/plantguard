@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fluxo de Ingestão — AgroSmart (Fase 5)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 24px; background: #f4f1e8; color: #0e1c12; }
+    h1 { font-size: 20px; }
+    .bar { margin: 12px 0 20px; }
+    button { background: #1b4d34; color: #fff; border: 0; padding: 10px 16px; border-radius: 8px; font-size: 14px; cursor: pointer; }
+    button:hover { background: #15402b; }
+    #diagram { background: #fff; border-radius: 12px; padding: 20px; overflow: auto; }
+  </style>
+</head>
+<body>
+  <h1>Fluxo de Ingestão de Dados — AgroSmart / PlantGuard (Fase 5)</h1>
+  <div class="bar"><button onclick="downloadPng()">⬇️ Baixar PNG</button></div>
+  <div id="diagram">
+    <pre class="mermaid">
+flowchart LR
+    subgraph Canais["Canais de ingestao"]
+        A["Imagens<br/>(upload do produtor)"]
+        B["Arquivos CSV/JSON<br/>(importacao em lote)"]
+        C["Streaming Kafka<br/>(classificacoes continuas)"]
+        D["API de clima<br/>(coleta agendada)"]
+    end
+    subgraph Entrada["Portas de entrada"]
+        E["/api/analyze -> Gemini"]
+        F["/api/import"]
+        G["consumer.ts"]
+        H["conector de clima"]
+    end
+    subgraph Qualidade["Validacao & normalizacao"]
+        V["Zod / sanitize / parsing JSON<br/>tipos, faixas, deduplicacao"]
+    end
+    RAW[("Camada Bruta<br/>dado cru retido")]
+    DB[("Camada Confiavel<br/>PostgreSQL: Analysis / Notification")]
+    Q[("Quarentena<br/>dead-letter")]
+    A --> E
+    B --> F
+    C --> G
+    D --> H
+    E --> RAW
+    F --> RAW
+    G --> RAW
+    H --> RAW
+    RAW --> V
+    V -->|"aprovado"| DB
+    V -.->|"rejeitado"| Q
+    </pre>
+  </div>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { primaryColor: '#e8f0e8', primaryBorderColor: '#1b4d34', lineColor: '#1b4d34' } });
+    window.downloadPng = async () => {
+      const svg = document.querySelector('#diagram svg');
+      if (!svg) return alert('Diagrama ainda carregando, tente de novo.');
+      const xml = new XMLSerializer().serializeToString(svg);
+      const svg64 = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(xml)));
+      const img = new Image();
+      img.onload = () => {
+        const scale = 2;
+        const canvas = document.createElement('canvas');
+        canvas.width = (svg.viewBox.baseVal.width || img.width) * scale;
+        canvas.height = (svg.viewBox.baseVal.height || img.height) * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.scale(scale, scale);
+        ctx.drawImage(img, 0, 0);
+        const a = document.createElement('a');
+        a.download = 'ingestao-fluxo.png';
+        a.href = canvas.toDataURL('image/png');
+        a.click();
+      };
+      img.src = svg64;
+    };
+  </script>
+</body>
+</html>

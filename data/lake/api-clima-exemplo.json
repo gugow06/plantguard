@@ -1,0 +1,39 @@
+{
+  "_descricao": "Exemplo de payload ingerido do conector de API de clima (camada BRUTA). Enriquece o contexto de risco de doenças por correlação com umidade/temperatura/chuva.",
+  "fonte": "open-meteo",
+  "coletadoEm": "2026-09-05T09:00:00Z",
+  "local": {
+    "fazenda": "Sítio Boa Vista",
+    "cidade": "Holambra",
+    "uf": "SP",
+    "latitude": -22.6357,
+    "longitude": -47.0553
+  },
+  "leituras": [
+    {
+      "timestamp": "2026-09-05T06:00:00Z",
+      "temperaturaC": 18.4,
+      "umidadeRelativa": 92,
+      "precipitacaoMm": 3.2,
+      "ventoKmh": 6.1
+    },
+    {
+      "timestamp": "2026-09-05T09:00:00Z",
+      "temperaturaC": 21.7,
+      "umidadeRelativa": 84,
+      "precipitacaoMm": 0.0,
+      "ventoKmh": 9.4
+    },
+    {
+      "timestamp": "2026-09-05T12:00:00Z",
+      "temperaturaC": 26.9,
+      "umidadeRelativa": 61,
+      "precipitacaoMm": 0.0,
+      "ventoKmh": 12.3
+    }
+  ],
+  "indicadorRiscoFungico": {
+    "nivel": "alto",
+    "motivo": "Umidade relativa acima de 85% combinada com temperatura amena favorece esporulação de fungos (ex.: míldio, requeima)."
+  }
+}

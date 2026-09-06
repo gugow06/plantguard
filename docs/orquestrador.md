@@ -1,6 +1,6 @@
 # PlantGuard AI — Orquestrador de Desenvolvimento
 
-Registro de tudo que foi implementado e corrigido nas sessões de **22 e 23 de maio de 2026** (incluindo continuação no mesmo dia 23/05) e na **Fase 4 — 22 de junho de 2026** (pipeline de streaming, containerização e Business Model Canvas).
+Registro de tudo que foi implementado e corrigido nas sessões de **22 e 23 de maio de 2026** (incluindo continuação no mesmo dia 23/05), na **Fase 4 — 22 de junho de 2026** (pipeline de streaming, containerização e Business Model Canvas) e na **Fase 5 — 5 de setembro de 2026** (arquitetura de Data Lake, ingestão/manutenção, IA generativa de apoio à decisão e modelo de negócio orientado a dados).
 
 ---
 
@@ -728,6 +728,74 @@ O app não precisava de um fluxo contínuo infinito — limitar o producer a um 
 - **Causa secundária (esperada):** as notificações do pipeline pertencem ao usuário `agrosmart-stream@demo.local`; logado com a conta Google, o sino não exibe os alertas do stream.
 - **Decisão do usuário:** manter as notificações no usuário demo e somente in-app (sino) — **nenhuma mudança de config**. Para visualizar: logar como `agrosmart-stream@demo.local` / `stream123`.
 - O consumer apresentou um timeout transitório do Kafka (`KafkaJSNumberOfRetriesExceeded` em fetch ocioso) e se auto-recupera (restart automático) — sem impacto no fluxo.
+
+---
+
+## Sessão 5 — 05/09/2026 (Fase 5)
+
+Fase de **Arquitetura de Dados e Inteligência**: projeto de Data Lake, processo de ingestão/manutenção, IA generativa de apoio à decisão (feature real) e atualização do modelo de negócio com uso intensivo de dados. Decisão de escopo: a solução é **vision-first** — **sensores IoT foram descartados** dos artefatos (não existem no app) e citados apenas como expansão futura no modelo de negócio. Os canais de ingestão documentados refletem o que o app faz de verdade: **imagens, arquivos (CSV/JSON, lote + streaming) e API de clima**.
+
+---
+
+### 5.1 IA Generativa para Apoio à Decisão *(feature real)*
+
+#### Objetivo
+Adicionar uma camada de IA generativa **sobre os dados agregados do campo** (não por imagem): o modelo recebe o resumo de todas as análises/alertas e produz um **relatório gerencial** (nível de risco, achados, prioridades, recomendações, previsão).
+
+#### `src/lib/gemini-insights.ts` *(novo)*
+- `generateFieldInsights(ctx)` com prompt de "consultor agronômico"; usa `gemini-2.5-flash` (`temperature: 0.4`, `responseMimeType: application/json`)
+- Monta o contexto a partir de `AnalyticsResponse` + `AlertRecord[]` (resumo, status, patologias, saúde por cultura, alertas ativos, timeline)
+- Tipos `FieldInsightsReport`, `RiskLevel`, `Urgency`; saída sanitizada (enums restritos, listas normalizadas) e recuperação de JSON truncado
+
+#### `src/app/api/insights/route.ts` *(novo)*
+- `POST` autenticado; agrega análises do usuário (ou aceita `analyses` importadas, como o `/api/reports/email`)
+- Rate limit **5/hora** por usuário; `dynamic = 'force-dynamic'`
+- Fallback: `503` quando falta `GEMINI_API_KEY`; `400` sem análises suficientes
+
+#### `src/components/analytics/AiInsightsCard.tsx` *(novo)*
+- Botão "Gerar Relatório com IA" + modal via `createPortal` (padrão do NotificationBell) com selo de risco, achados, prioridades (badge de urgência), recomendações, previsão e rodapé de metadados
+- Suporta dados próprios e importados; ARIA `role="dialog"`, fecha com ESC/clique-fora
+
+#### `src/components/analytics/AnalyticsDashboard.tsx`
+- `<AiInsightsCard />` adicionado à barra de ações (própria e modo importação)
+
+---
+
+### 5.2 Artefatos acadêmicos (docs/fase5)
+
+| Item | Artefato |
+|------|----------|
+| 1 — Data Lake | `docs/fase5/data-lake-arquitetura.md` (+ `.html` p/ PNG) — camadas bruta/confiável/refinada mapeadas aos componentes reais |
+| 2 — Ingestão/Manutenção | `docs/fase5/ingestao-fluxo.md` (+ `.html`) + amostras em `data/lake/` |
+| 3 — IA Generativa | `docs/fase5/ia-generativa-decisao.md` — funcionamento, contexto e exemplo de saída real |
+| 4 — Modelo de Negócio | `docs/fase5/modelo-negocio-dados.md` — proposta de valor, receita, monetização de dados, parcerias |
+
+#### Amostras de dados ingeridos *(novos)*
+- `data/lake/api-clima-exemplo.json` — payload de API de clima (semiestruturado)
+- `data/lake/imagem-metadata-exemplo.json` — metadados de imagem + `rawResponse` do Gemini
+- `data/lake/classificacoes-stream.jsonl` — mensagens do tópico Kafka (JSON Lines)
+- reaproveita `data/sample-plants.csv` como exemplo de lote CSV
+
+#### Diagramas (PNG)
+- Sem `mermaid-cli`/puppeteer no ambiente: diagramas em **Mermaid** no `.md` (renderizam no GitHub) + **HTML standalone** (mermaid via CDN, botão "Baixar PNG" SVG→canvas) — mesmo método da Fase 4
+
+---
+
+### 5.3 Arquivos Desta Sessão
+
+| Arquivo | Ação |
+|---------|------|
+| `src/lib/gemini-insights.ts` | **Criado** — gerador de relatório de decisão por IA |
+| `src/app/api/insights/route.ts` | **Criado** — endpoint de insights (agrega + Gemini) |
+| `src/components/analytics/AiInsightsCard.tsx` | **Criado** — botão + modal do relatório |
+| `src/components/analytics/AnalyticsDashboard.tsx` | Modificado — integra `AiInsightsCard` |
+| `docs/fase5/data-lake-arquitetura.md` / `.html` | **Criado** — arquitetura do Data Lake |
+| `docs/fase5/ingestao-fluxo.md` / `.html` | **Criado** — fluxo de ingestão + manutenção |
+| `docs/fase5/ia-generativa-decisao.md` | **Criado** — IA generativa de decisão |
+| `docs/fase5/modelo-negocio-dados.md` | **Criado** — modelo de negócio orientado a dados |
+| `data/lake/api-clima-exemplo.json` | **Criado** — amostra de API de clima |
+| `data/lake/imagem-metadata-exemplo.json` | **Criado** — amostra de metadados de imagem |
+| `data/lake/classificacoes-stream.jsonl` | **Criado** — amostra de streaming |
 
 ---
 

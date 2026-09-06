@@ -20,6 +20,7 @@ import { PlantHealthChart } from './PlantHealthChart';
 import { AnalyticsFilters } from './AnalyticsFilters';
 import { ImportModal } from './ImportModal';
 import { SendReportButton } from '@/components/SendReportButton';
+import { AiInsightsCard } from './AiInsightsCard';
 import { AlertsSummary } from './AlertsSummary';
 
 export function AnalyticsDashboard() {
@@ -139,15 +140,24 @@ export function AnalyticsDashboard() {
         </div>
       )}
 
-      {/* Import + Report buttons */}
+      {/* Import + Report + IA buttons */}
       <div className="flex items-center justify-end gap-2">
         {isViewingImport && importedRecords ? (
-          <SendReportButton
-            importedAnalyses={importedRecords}
-            importedFileName={importedFileName}
-          />
+          <>
+            <AiInsightsCard
+              importedAnalyses={importedRecords}
+              importedFileName={importedFileName}
+            />
+            <SendReportButton
+              importedAnalyses={importedRecords}
+              importedFileName={importedFileName}
+            />
+          </>
         ) : (
-          <SendReportButton />
+          <>
+            <AiInsightsCard />
+            <SendReportButton />
+          </>
         )}
         <Button variant="outline" size="sm" onClick={() => setImportOpen(true)}>
           <FileUp className="mr-1.5 h-3.5 w-3.5" />
