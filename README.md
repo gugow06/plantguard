@@ -13,7 +13,7 @@
 
 📄 **Documentação final:** [PDF](docs/fase7/PlantGuard-documentacao-livre.pdf) · [HTML](docs/fase7/documentacao-livre.html) · [Arquitetura](docs/fase7/arquitetura-final.md) · [Análise de processo](docs/fase7/processo/insights.md)
 
-🎞️ **Slides:** [apresentação final](https://claude.ai/artifact/FrBxcN9a9xdJu7LFHwBKVr) · 🎬 **Vídeo:** [roteiro](docs/fase7/roteiro-video.md) (link do vídeo após a gravação)
+🎞️ **Slides:** [apresentação final (PDF)](docs/fase7/PlantGuard-slides.pdf) · 🎬 **Vídeo:** [roteiro](docs/fase7/roteiro-video.md)
 
 </div>
 
@@ -140,7 +140,6 @@ docs/               documentação por fase (docs/fase7 = entrega final)
 | Ferramenta | Uso |
 |---|---|
 | Google Gemini 2.5 Flash | No produto: diagnóstico das imagens e relatório de IA do campo |
-| Claude Code (Anthropic) | Assistente de desenvolvimento: código e revisão, testes, pipeline, correções de segurança, análise de processos e documentação |
 
 ## Equipe
 
