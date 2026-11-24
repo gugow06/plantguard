@@ -19,7 +19,7 @@
 | Segurança | NextAuth (JWT), bcrypt, rate limit, Zod | **`dev.db` (SQLite com 2 usuários e 11 análises) está versionado no repo público**; `NEXTAUTH_SECRET` com valor padrão no compose |
 | Monitoramento | Página `/monitor` (offsets, lag, throughput, feed, a cada 3s), Kafka UI | Endpoint de saúde, logs estruturados, status dos serviços |
 | Mineração de processos | Nada | **Event log, descoberta do processo e análise** (entrega de maior peso, 25%) |
-| Documentação | Docs das fases 3–5 (md, docx, html com Mermaid) | Documentação final "livre" + slides + 2 vídeos |
+| Documentação | Docs das fases 3–5 (md, docx, html com Mermaid) | Documentação final "livre" + slides + 1 vídeo de 5 min |
 
 ---
 
@@ -169,10 +169,10 @@ Mesma abordagem do ELO (`documentacao-livre.html` impresso em PDF pelo Chrome he
   9. Uso de IA generativa (Claude Code, Gemini) e links (repo, vídeos, slides)
 - [ ] Publicar a página também como artifact privado, para compartilhar o link.
 
-## 9. Épico G: pitch e vídeos
+## 9. Épico G: pitch e vídeo
 
-- [ ] Slides do pitch (F7-D8): 8 a 10 slides com problema, solução, demo em uma imagem, diferencial, público-alvo, proposta de valor, modelo de negócio, roadmap e equipe.
-- [ ] Vídeo final (5 min) e vídeo pitch (até 5 min), pelo roteiro em [`roteiro-video.md`](roteiro-video.md). **Gravar por último**, com tudo pronto.
+- [x] Slides (F7-D8): 14 slides com problema, solução, arquitetura, demo, decisão, processo, melhorias, confiabilidade, diferencial, público-alvo, proposta de valor, roadmap e equipe: [deck](https://claude.ai/artifact/FrBxcN9a9xdJu7LFHwBKVr).
+- [ ] Vídeo único de 5 minutos (demo, fluxo, análise de processo e pitch), pelo roteiro em [`roteiro-video.md`](roteiro-video.md). **Gravar por último**, com tudo pronto.
 
 ---
 
@@ -187,7 +187,7 @@ Mesma abordagem do ELO (`documentacao-livre.html` impresso em PDF pelo Chrome he
 | 5 | Arquitetura final + coleta de evidências (prints, logs) | 2–4 | 15% + 20% |
 | 6 | Documentação livre + PDF | 5 | todas |
 | 7 | Slides do pitch | 6 | 10% |
-| 8 | Gravação e edição dos vídeos | tudo | 25% + 10% |
+| 8 | Gravação e edição do vídeo | tudo | 25% + 10% |
 
 ## 11. Checklist de evidências (pasta `docs/fase7/evidencias/`)
 
