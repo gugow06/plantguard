@@ -13,7 +13,7 @@
 
 📄 **Documentação final:** [PDF](docs/fase7/PlantGuard-documentacao-livre.pdf) · [HTML](docs/fase7/documentacao-livre.html) · [Arquitetura](docs/fase7/arquitetura-final.md) · [Análise de processo](docs/fase7/processo/insights.md)
 
-🎞️ **Slides:** [apresentação final (PDF)](docs/fase7/PlantGuard-slides.pdf) · 🎬 **Vídeo:** [roteiro](docs/fase7/roteiro-video.md)
+🎞️ **Slides:** [apresentação final (PDF)](docs/fase7/PlantGuard-slides.pdf) · 🎬 **Vídeo:** [roteiro](docs/fase7/roteiro-video.md) · [projeto do vídeo](video/)
 
 </div>
 

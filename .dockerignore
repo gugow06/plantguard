@@ -8,3 +8,6 @@ npm-debug.log*
 *.tsbuildinfo
 docs
 .DS_Store
+video
+analysis
+*.mp4

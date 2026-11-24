@@ -1,0 +1,7 @@
+node_modules/
+build/
+raw/
+stills/
+out/
+*.mp4
+!public/clips/*.mp4
