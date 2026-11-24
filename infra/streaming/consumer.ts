@@ -1,4 +1,7 @@
+import { randomUUID } from 'node:crypto';
 import { createKafka, createPrisma, TOPIC, DEMO_USER_EMAIL, type ClassificationMessage } from './shared';
+import { logProcessEvents, type NewProcessEvent } from '../../src/lib/process-log';
+import { ACTIVITIES } from '../../src/lib/process-mining';
 
 /**
  * CONSUMER — consome o tópico Kafka e persiste no Postgres do app.
@@ -22,10 +25,13 @@ async function getDemoUserId(): Promise<string> {
   return user.id;
 }
 
-async function persist(userId: string, msg: ClassificationMessage) {
+async function persist(userId: string, msg: ClassificationMessage, kafkaTimestamp: string) {
+  const consumedAt = new Date();
+  const caseId = msg.caseId ?? randomUUID();
   const analysis = await prisma.analysis.create({
     data: {
       userId,
+      caseId,
       imageName: msg.imageName,
       imageData: '', // stream não carrega o binário da imagem
       status: msg.status,
@@ -38,6 +44,17 @@ async function persist(userId: string, msg: ClassificationMessage) {
       createdAt: new Date(msg.createdAt),
     },
   });
+  const registeredAt = new Date();
+
+  // Event log: a mensagem traz a linhagem (captura e publicação); o consumer
+  // completa com consumo, registro e alerta.
+  const publishedAt = msg.publishedAt ?? new Date(Number(kafkaTimestamp)).toISOString();
+  const events: NewProcessEvent[] = [
+    { caseId, activity: ACTIVITIES.CAPTURA, timestamp: new Date(msg.capturedAt ?? msg.createdAt), resource: 'camera-campo', channel: 'camera', attributes: { imageName: msg.imageName } },
+    { caseId, activity: ACTIVITIES.PUBLICADA, timestamp: new Date(publishedAt), resource: 'producer', channel: 'camera', attributes: { topic: TOPIC } },
+    { caseId, activity: ACTIVITIES.CONSUMIDA, timestamp: consumedAt, resource: 'consumer', channel: 'camera' },
+    { caseId, activity: ACTIVITIES.REGISTRADA, timestamp: registeredAt, resource: 'postgres', channel: 'camera', attributes: { status: msg.status, confidence: msg.confidence, plantType: msg.plantType } },
+  ];
 
   if (msg.status === 'Doente') {
     const title = `Planta doente detectada${msg.plantType ? `: ${msg.plantType}` : ''}`;
@@ -56,7 +73,15 @@ async function persist(userId: string, msg: ClassificationMessage) {
       },
     });
     console.log(`[consumer] ALERTA criado: ${title} (${msg.confidence}%)`);
+    events.push({ caseId, activity: ACTIVITIES.ALERTA, timestamp: new Date(), resource: 'motor-de-regras', channel: 'camera', attributes: { pathology: msg.pathology, confidence: msg.confidence } });
   }
+
+  await logProcessEvents(prisma, events);
+  console.log(JSON.stringify({
+    ts: new Date().toISOString(), level: 'info', service: 'consumer', event: 'message_persisted', caseId,
+    analysisId: analysis.id, status: msg.status, alert: msg.status === 'Doente',
+    pipelineLatencyMs: registeredAt.getTime() - new Date(publishedAt).getTime(),
+  }));
 
   return analysis.id;
 }
@@ -84,7 +109,7 @@ async function main() {
       if (!message.value) return;
       try {
         const msg = JSON.parse(message.value.toString()) as ClassificationMessage;
-        const id = await persist(userId, msg);
+        const id = await persist(userId, msg, message.timestamp);
         console.log(`[consumer] <- ${msg.imageName} | ${msg.status} | salvo Analysis ${id}`);
       } catch (e) {
         console.error('[consumer] erro ao processar mensagem:', e);

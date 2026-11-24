@@ -1,0 +1,26 @@
+variante,casos,percentual
+Imagem capturada → Publicada no Kafka → Consumida do tópico → Análise registrada,139,34.8
+Imagem capturada → Publicada no Kafka → Consumida do tópico → Análise registrada → Alerta gerado → Alerta visualizado,53,13.2
+Imagem capturada → Publicada no Kafka → Consumida do tópico → Análise registrada → Relatório enviado,45,11.2
+Imagem capturada → Diagnóstico por IA → Análise registrada,45,11.2
+Imagem capturada → Diagnóstico por IA → Análise registrada → Alerta gerado → Alerta visualizado,25,6.2
+Imagem capturada → Diagnóstico por IA → Análise registrada → Relatório enviado,16,4.0
+Imagem capturada → Publicada no Kafka → Consumida do tópico → Análise registrada → Alerta gerado → Alerta visualizado → Relatório enviado,16,4.0
+Imagem capturada → Diagnóstico por IA → Análise registrada → Alerta gerado,11,2.8
+Imagem capturada → Publicada no Kafka → Consumida do tópico → Análise registrada → Alerta gerado,8,2.0
+Imagem capturada → Publicada no Kafka → Consumida do tópico → Análise registrada → Alerta gerado → Relatório enviado,6,1.5
+Imagem capturada → Diagnóstico por IA → Diagnóstico inconclusivo → Imagem capturada → Diagnóstico por IA → Análise registrada,6,1.5
+Imagem capturada → Falha no diagnóstico → Imagem capturada → Diagnóstico por IA → Análise registrada,5,1.2
+Imagem capturada → Diagnóstico por IA → Diagnóstico inconclusivo → Análise registrada,4,1.0
+Imagem capturada → Diagnóstico por IA → Análise registrada → Alerta gerado → Alerta visualizado → Relatório enviado,3,0.8
+Imagem capturada → Diagnóstico por IA → Análise registrada → Alerta gerado → Relatório enviado,3,0.8
+Imagem capturada → Diagnóstico por IA → Diagnóstico inconclusivo → Imagem capturada → Diagnóstico por IA → Análise registrada → Alerta gerado → Alerta visualizado,3,0.8
+Imagem capturada → Falha no diagnóstico → Imagem capturada → Falha no diagnóstico,2,0.5
+Imagem capturada → Falha no diagnóstico,2,0.5
+Imagem capturada → Falha no diagnóstico → Imagem capturada → Diagnóstico por IA → Análise registrada → Alerta gerado → Alerta visualizado,2,0.5
+Imagem capturada → Diagnóstico por IA → Diagnóstico inconclusivo → Imagem capturada → Diagnóstico por IA → Análise registrada → Alerta gerado → Relatório enviado,1,0.2
+Imagem capturada → Falha no diagnóstico → Imagem capturada → Diagnóstico por IA → Diagnóstico inconclusivo → Imagem capturada → Diagnóstico por IA → Análise registrada,1,0.2
+Imagem capturada → Diagnóstico por IA → Diagnóstico inconclusivo → Imagem capturada → Diagnóstico por IA → Análise registrada → Relatório enviado,1,0.2
+Imagem capturada → Falha no diagnóstico → Imagem capturada → Diagnóstico por IA → Análise registrada → Alerta gerado → Alerta visualizado → Relatório enviado,1,0.2
+Imagem capturada → Falha no diagnóstico → Imagem capturada → Diagnóstico por IA → Análise registrada → Relatório enviado,1,0.2
+Imagem capturada → Diagnóstico por IA → Diagnóstico inconclusivo → Imagem capturada → Diagnóstico por IA → Análise registrada → Alerta gerado → Alerta visualizado → Relatório enviado,1,0.2

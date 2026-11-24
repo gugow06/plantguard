@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PlantGuard — Documentação Final (AgroSmart · Fase 7)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --green-900: #0e2a1c;
+    --green-800: #1b4d34;
+    --green-700: #2d6a4f;
+    --green-500: #3da870;
+    --green-200: #cfe8d9;
+    --green-100: #e6f2ea;
+    --cream: #f4f1e8;
+    --paper: #fbfaf6;
+    --ink: #0e1c12;
+    --muted: #5a6350;
+    --line: #e2ddcc;
+    --red: #c1121f;
+    --red-50: #fdeeee;
+    --amber: #d4a017;
+    --amber-50: #fbf3dc;
+    --radius: 14px;
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    margin: 0; background: #d9d4c4; color: var(--ink);
+    font-family: 'DM Sans', system-ui, sans-serif; font-size: 10pt; line-height: 1.5;
+  }
+  .page {
+    width: 210mm; min-height: 297mm; margin: 12px auto; padding: 18mm 18mm 20mm;
+    background: var(--paper); position: relative; overflow: hidden;
+    box-shadow: 0 2px 18px rgba(0,0,0,.12); page-break-after: always; break-after: page;
+  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  @media print { body { background: none; } .page { margin: 0; box-shadow: none; } }
+
+  h1, h2, h3, .display { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.01em; }
+  h2 { font-size: 24pt; line-height: 1.1; margin: 0 0 4mm; color: var(--green-900); }
+  h3 { font-size: 13pt; margin: 5mm 0 2mm; color: var(--green-800); }
+  p { margin: 0 0 3mm; }
+  a { color: var(--green-800); }
+  code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 8.6pt; }
+  code { background: var(--green-100); color: var(--green-900); padding: 1px 5px; border-radius: 5px; }
+  pre {
+    font-family: 'JetBrains Mono', monospace; font-size: 7.8pt; line-height: 1.5;
+    background: #10261a; color: #d9efe1; padding: 4mm 5mm; border-radius: 10px;
+    white-space: pre-wrap; word-break: break-word; margin: 2mm 0 4mm;
+  }
+  pre .k { color: #8fd6aa; } pre .s { color: #f2d48f; } pre .c { color: #7f9a88; }
+
+  /* cabeçalho/rodapé das páginas internas */
+  .running { position: absolute; top: 8mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between;
+    font-size: 7.5pt; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .folio { position: absolute; bottom: 9mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between;
+    font-size: 7.5pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 2.5mm; }
+
+  /* abertura de seção */
+  .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 6mm;
+    border-bottom: 2px solid var(--green-800); padding-bottom: 3mm; margin-bottom: 6mm; }
+  .eyebrow { font-size: 8pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--green-700); margin-bottom: 1.5mm; }
+  .weight { flex: none; text-align: right; }
+  .weight b { display: block; font-family: 'Fraunces', serif; font-size: 22pt; color: var(--green-800); line-height: 1; }
+  .weight span { font-size: 7.5pt; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+  .lead { font-size: 11.5pt; color: #2c3a2f; }
+
+  /* blocos */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3.5mm; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 3.2mm 4mm; }
+  .card h4 { margin: 0 0 1.5mm; font-size: 10.5pt; color: var(--green-900); }
+  .card p { margin: 0; font-size: 9.2pt; color: #3a463d; }
+  .card.green { background: var(--green-800); color: var(--cream); border: none; }
+  .card.green h4, .card.green p { color: var(--cream); }
+  .kpi { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 3.5mm 4mm; }
+  .kpi .v { font-family: 'Fraunces', serif; font-size: 20pt; font-weight: 700; color: var(--green-800); line-height: 1.05; }
+  .kpi .v.red { color: var(--red); } .kpi .v.amber { color: #a87c06; }
+  .kpi .l { font-size: 7.6pt; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-top: 1mm; }
+  .callout { border-left: 4px solid var(--green-700); background: var(--green-100); border-radius: 0 10px 10px 0;
+    padding: 3.5mm 4.5mm; margin: 3mm 0 4mm; font-size: 9.6pt; }
+  .callout.red { border-color: var(--red); background: var(--red-50); }
+  .callout.amber { border-color: var(--amber); background: var(--amber-50); }
+  .pill { display: inline-block; font-size: 7.6pt; font-weight: 600; padding: .6mm 2.4mm; border-radius: 99px;
+    background: var(--green-100); color: var(--green-800); margin: 0 1mm 1mm 0; }
+  .pill.red { background: var(--red-50); color: var(--red); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 8.8pt; margin: 2mm 0 4mm; }
+  th { text-align: left; font-size: 7.6pt; text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
+    border-bottom: 1.5px solid var(--green-800); padding: 2mm 2.5mm; }
+  td { border-bottom: 1px solid var(--line); padding: 2mm 2.5mm; vertical-align: top; }
+  td b { color: var(--green-900); }
+
+  figure { margin: 2mm 0 4mm; }
+  figure img { width: 100%; border-radius: 10px; border: 1px solid var(--line); display: block; background: #fff; }
+  figcaption { font-size: 8pt; color: var(--muted); margin-top: 1.5mm; }
+  figcaption b { color: var(--green-800); }
+  .mermaid { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 4mm; margin: 2mm 0 4mm; text-align: center; }
+  .mermaid svg { max-width: 100%; max-height: 92mm; height: auto; }
+  .mermaid.short svg { max-height: 62mm; }
+  figure img.clip { object-fit: cover; object-position: top; }
+
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; gap: 3mm; margin: 3mm 0 5mm; }
+  .flow .arrow { align-self: center; font-size: 16pt; color: var(--green-700); }
+  .flow .card h4 { font-family: 'Fraunces', serif; font-size: 12pt; }
+  .flow ul { margin: 1.5mm 0 0; padding-left: 4mm; font-size: 8.8pt; }
+
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 2mm 0 4mm; }
+  .steps li { counter-increment: s; position: relative; padding: 0 0 2.6mm 9mm; font-size: 9.4pt; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: .2mm; width: 6mm; height: 6mm; border-radius: 50%;
+    background: var(--green-800); color: var(--cream); font-size: 7.5pt; font-weight: 700; display: grid; place-items: center; }
+
+  /* capa */
+  .cover { background: var(--green-900); color: var(--cream); padding: 0; display: flex; flex-direction: column; }
+  .cover .top { padding: 22mm 20mm 0; flex: 1; position: relative; z-index: 1; }
+  .cover .brand { display: flex; align-items: center; gap: 3.5mm; font-family: 'Fraunces', serif; font-size: 15pt; font-weight: 700; }
+  .cover .logo { width: 11mm; height: 11mm; border-radius: 3mm; background: var(--cream); display: grid; place-items: center; }
+  .cover h1 { font-size: 46pt; line-height: .98; margin: 34mm 0 6mm; font-weight: 800; color: #fff; }
+  .cover h1 em { font-style: italic; color: #9fdcb7; font-weight: 600; }
+  .cover .sub { font-size: 13pt; max-width: 135mm; color: #cfe3d6; }
+  .cover .meta { padding: 0 20mm 18mm; position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr 1fr; gap: 10mm; font-size: 9pt; color: #cfe3d6; }
+  .cover .meta b { color: #fff; }
+  .cover .meta table { font-size: 8.8pt; margin: 0; }
+  .cover .meta td { border-color: rgba(244,241,232,.18); padding: 1.3mm 0; color: #e8efe9; }
+  .cover .tags { margin-top: 8mm; }
+  .cover .tags span { display: inline-block; border: 1px solid rgba(244,241,232,.35); border-radius: 99px; padding: 1mm 3mm; font-size: 8pt; margin: 0 1.5mm 1.5mm 0; color: #e8efe9; }
+  .cover .leaf { position: absolute; right: -40mm; top: 40mm; width: 170mm; opacity: .12; }
+
+  .toc { list-style: none; padding: 0; margin: 4mm 0 0; }
+  .toc li { display: flex; align-items: baseline; gap: 3mm; padding: 2.2mm 0; border-bottom: 1px solid var(--line); }
+  .toc .n { font-family: 'Fraunces', serif; font-size: 18pt; color: var(--green-700); width: 12mm; }
+  .toc .t { flex: 1; font-size: 11pt; font-weight: 600; }
+  .toc .t small { display: block; font-weight: 400; color: var(--muted); font-size: 8.6pt; }
+  .toc .w { font-size: 8pt; font-weight: 700; color: var(--green-800); background: var(--green-100); padding: .8mm 2.5mm; border-radius: 99px; }
+
+  .two-col { columns: 2; column-gap: 7mm; }
+  .small { font-size: 8.6pt; color: var(--muted); }
+  .nowrap { white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<!-- ═════════════════════════════ CAPA ═════════════════════════════ -->
+<section class="page cover">
+  <svg class="leaf" viewBox="0 0 200 200" fill="none" stroke="#f4f1e8" stroke-width="1.2">
+    <path d="M30 170C30 90 80 30 170 30c0 90-60 140-140 140z"/>
+    <path d="M30 170C70 130 110 90 150 50"/>
+    <path d="M70 130c-10-20-8-38 0-52M95 105c-8-22-4-40 6-54M120 80c-4-18 0-30 8-40M70 130c20 6 40 4 58-6M95 105c22 4 40 0 56-10"/>
+  </svg>
+  <div class="top">
+    <div class="brand">
+      <div class="logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b4d34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+      </div>
+      PlantGuard
+    </div>
+    <h1>Do diagnóstico<br/>à <em>decisão</em><br/>no campo.</h1>
+    <p class="sub">Documentação final da plataforma PlantGuard: arquitetura, execução ponta a ponta, pipeline DevSecOps, monitoramento, mineração de processos e visão de produto.</p>
+    <div class="tags">
+      <span>Next.js 16</span><span>Gemini 2.5 Flash</span><span>Apache Kafka</span><span>PostgreSQL</span><span>Docker</span><span>GitHub Actions</span><span>Trivy · CodeQL · Gitleaks</span><span>pm4py</span>
+    </div>
+  </div>
+  <div class="meta">
+    <div>
+      <p><b>FIAP · Engenharia de Software · 4º ano</b><br/>Desafio AgroSmart — Fase 7: entrega final</p>
+      <p>Repositório: <b>github.com/gugow06/plantguard</b><br/>Novembro de 2026</p>
+    </div>
+    <table>
+      <tr><td>Gustavo Cristiano Pessoa de Souza</td><td class="nowrap">RM 551924</td></tr>
+      <tr><td>Ricardo Akira Kato Lopes</td><td>RM 551447</td></tr>
+      <tr><td>Kevin Richard Xavier</td><td>RM 551736</td></tr>
+      <tr><td>Vinicius do Carmo Fonseca Freitas</td><td>RM 97599</td></tr>
+      <tr><td>Gustavo Medeiros Miranda da Silva</td><td>RM 552093</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═════════════════════════════ SUMÁRIO + RESUMO ═════════════════════════════ -->
+<section class="page">
+  <div class="running"><span>PlantGuard · AgroSmart</span><span>Documentação final</span></div>
+  <div class="eyebrow">Em uma página</div>
+  <h2>O que é o PlantGuard</h2>
+  <p class="lead">Uma plataforma que recebe imagens de plantas — do celular do produtor ou de câmeras no campo —, diagnostica doenças com IA, decide automaticamente quando é preciso agir e avisa quem precisa agir. E mede o próprio processo para descobrir onde a resposta demora.</p>
+
+  <div class="flow">
+    <div class="card"><h4>Entrada</h4><ul><li>Foto do produtor (upload)</li><li>Câmeras de campo via Kafka</li><li>Arquivos CSV/JSON</li></ul></div>
+    <div class="arrow">→</div>
+    <div class="card"><h4>Processamento</h4><ul><li>Diagnóstico por Gemini</li><li>Consumer grava no Postgres</li><li>Regras R1–R4 decidem</li></ul></div>
+    <div class="arrow">→</div>
+    <div class="card green"><h4>Saída</h4><ul><li>Alertas (sino + e-mail)</li><li>Dashboard e analytics</li><li>Relatórios e mapa do processo</li></ul></div>
+  </div>
+
+  <div class="grid-4">
+    <div class="kpi"><div class="v">26 ms</div><div class="l">do Kafka ao banco (execução real)</div></div>
+    <div class="kpi"><div class="v">44 → 0</div><div class="l">vulnerabilidades de produção</div></div>
+    <div class="kpi"><div class="v">45</div><div class="l">testes · 96% de cobertura em src/lib</div></div>
+    <div class="kpi"><div class="v red">1,1 h</div><div class="l">gargalo: do alerta até ser visto</div></div>
+  </div>
+
+  <h3>Sumário</h3>
+  <ol class="toc">
+    <li><span class="n">1</span><span class="t">Arquitetura final<small>componentes, integrações, fluxo de dados</small></span><span class="w">15%</span></li>
+    <li><span class="n">2</span><span class="t">Plataforma em execução<small>entrada, processamento, decisão e saída, com exemplos reais</small></span><span class="w">20%</span></li>
+    <li><span class="n">3</span><span class="t">Pipeline DevSecOps<small>build, containers, qualidade e vulnerabilidades</small></span><span class="w">20%</span></li>
+    <li><span class="n">4</span><span class="t">Monitoramento e execução contínua<small>health, monitor, logs</small></span><span class="w">10%</span></li>
+    <li><span class="n">5</span><span class="t">Análise de processo<small>event log, mapa, variantes, gargalos, melhorias</small></span><span class="w">25%</span></li>
+    <li><span class="n">6</span><span class="t">Produto e pitch<small>problema, solução, diferencial, público, valor</small></span><span class="w">10%</span></li>
+    <li><span class="n">7</span><span class="t">Como executar · uso de IA generativa</span><span class="w">—</span></li>
+  </ol>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<!-- ═════════════════════════════ 1. ARQUITETURA ═════════════════════════════ -->
+<section class="page">
+  <div class="running"><span>1 · Arquitetura final</span><span>Peso 15%</span></div>
+  <div class="section-head">
+    <div><div class="eyebrow">Seção 1</div><h2>Arquitetura final</h2></div>
+    <div class="weight"><b>15%</b><span>da nota</span></div>
+  </div>
+  <p>A arquitetura consolida as sete fases: o app Next.js (interface + API), o diagnóstico com Gemini, as regras de decisão, o streaming com Kafka, o banco único em PostgreSQL e, nesta fase, saúde, event log e o pipeline DevSecOps. Tudo sobe com <code>docker compose</code>.</p>
+  <div class="mermaid">
+flowchart LR
+  subgraph IN["ENTRADA"]
+    CAM["Câmeras de campo<br/>(producer)"]
+    UP["Foto do produtor<br/>(upload)"]
+    CSV["CSV / JSON<br/>(lote)"]
+  end
+  subgraph PROC["PROCESSAMENTO"]
+    KAFKA[["Kafka<br/>plant-classifications"]]
+    CONS["Consumer"]
+    API["API Next.js"]
+    GEM["Gemini 2.5 Flash"]
+    DB[("PostgreSQL")]
+    RULES["Regras R1–R4"]
+  end
+  subgraph OUT["SAÍDA"]
+    ALERT["Alertas<br/>sino + e-mail"]
+    DASH["Dashboard<br/>analytics"]
+    PROCPG["Processo<br/>(mineração)"]
+  end
+  subgraph OBS["MONITORAMENTO"]
+    HEALTH["/api/health"]
+    MON["/monitor"]
+  end
+  CAM --> KAFKA --> CONS --> DB
+  UP --> API --> GEM --> API --> DB
+  CSV --> API
+  DB --> RULES --> ALERT
+  DB --> DASH
+  DB --> PROCPG
+  DB -.-> HEALTH
+  KAFKA -.-> HEALTH --> MON
+  </div>
+  <table>
+    <tr><th>Componente</th><th>Tecnologia</th><th>Papel</th></tr>
+    <tr><td><b>Interface + API</b></td><td>Next.js 16, React 19, NextAuth v5</td><td>Upload, dashboard, analytics, histórico, monitor, processo; login por e-mail/senha e Google</td></tr>
+    <tr><td><b>Diagnóstico</b></td><td>Google Gemini 2.5 Flash</td><td>Status, espécie, patologia, confiança e tratamento a partir da foto; relatório de IA do campo</td></tr>
+    <tr><td><b>Motor de regras</b></td><td>TypeScript puro (testado)</td><td>R1 doença · R2 ≥ 50% doentes (crítico) · R3 mesma patologia ≥ 3× · R4 saudável com confiança ≤ 70%</td></tr>
+    <tr><td><b>Streaming</b></td><td>Apache Kafka 3.9 (KRaft), kafkajs</td><td>Producer simula câmeras; consumer grava análise, alerta e event log</td></tr>
+    <tr><td><b>Banco</b></td><td>PostgreSQL 16 + Prisma 7</td><td>Usuários, análises, notificações e <code>ProcessEvent</code> (event log)</td></tr>
+    <tr><td><b>Observabilidade</b></td><td>/api/health, /monitor, Kafka UI, logs JSON</td><td>Saúde de app/banco/Kafka/consumer, lag e throughput a cada 3 s</td></tr>
+    <tr><td><b>Processo</b></td><td>process-mining.ts + pm4py</td><td>DFG, variantes, gargalos e conformidade</td></tr>
+    <tr><td><b>Entrega</b></td><td>Docker, GitHub Actions, GHCR</td><td>Build, segurança, teste ponta a ponta e publicação das imagens</td></tr>
+  </table>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<section class="page">
+  <div class="running"><span>1 · Arquitetura final</span><span>Peso 15%</span></div>
+  <h3 style="margin-top:0">Containers</h3>
+  <div class="mermaid">
+flowchart LR
+  INIT["init<br/>db push + seed"] --> PG[("postgres:16")]
+  APP["app · Next.js<br/>:3000 · healthcheck"] --> PG
+  APP -.-> K
+  PROD["producer"] --> K["kafka 3.9 KRaft"]
+  K --> CONS["consumer"] --> PG
+  KUI["kafka-ui :8080"] --> K
+  APP --> GEM(["Gemini API"])
+  APP --> RES(["Resend"])
+  </div>
+  <h3>Fluxo de dados — canal câmera (streaming)</h3>
+  <div class="mermaid">
+sequenceDiagram
+  participant C as Câmera (producer)
+  participant K as Kafka
+  participant W as Consumer
+  participant DB as PostgreSQL
+  participant U as Produtor (app)
+  C->>K: leitura (caseId, capturedAt, status, confiança)
+  K->>W: entrega (grupo agrosmart-consumer)
+  W->>DB: Analysis + Notification (se Doente) + ProcessEvent
+  U->>DB: polling 3–15 s: dashboard, regras R1–R4, sino
+  U->>DB: abre o alerta → "Alerta visualizado"
+  </div>
+  <h3>Decisões de arquitetura</h3>
+  <div class="grid-2">
+    <div class="card"><h4>Um banco, um schema</h4><p>O consumer grava nas mesmas tabelas do app: dashboard, regras e alertas refletem o stream sem código extra.</p></div>
+    <div class="card"><h4>Kafka desacopla a entrada</h4><p>Câmeras publicam mesmo com o app fora; o consumer retoma do último offset — testado no pipeline derrubando o Kafka.</p></div>
+    <div class="card"><h4>A mensagem carrega a linhagem</h4><p><code>caseId</code>, <code>capturedAt</code> e <code>publishedAt</code> viajam no payload: o producer não precisa do banco e o event log fica completo.</p></div>
+    <div class="card"><h4>Saúde em três níveis</h4><p><code>ok</code>, <code>degraded</code> (Kafka fora: o app segue atendendo) e <code>down</code> (banco fora: HTTP 503).</p></div>
+  </div>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<!-- ═════════════════════════════ 2. EXECUÇÃO ═════════════════════════════ -->
+<section class="page">
+  <div class="running"><span>2 · Plataforma em execução</span><span>Peso 20%</span></div>
+  <div class="section-head">
+    <div><div class="eyebrow">Seção 2</div><h2>Plataforma em execução</h2></div>
+    <div class="weight"><b>20%</b><span>da nota</span></div>
+  </div>
+  <p>Com <code>docker compose up</code>, os sete serviços sobem saudáveis. O producer publica leituras de campo no Kafka; o consumer grava cada leitura, aplica a decisão e cria o alerta; o app mostra tudo em tempo real. Em paralelo, o produtor pode enviar uma foto para o Gemini.</p>
+  <ol class="steps">
+    <li><b>Entrada.</b> O producer lê o <code>data/sample-plants.csv</code> (imagens já classificadas na borda) e publica uma mensagem JSON por leitura no tópico <code>plant-classifications</code>, com variação de confiança e horário atual.</li>
+    <li><b>Processamento.</b> O consumer (grupo <code>agrosmart-consumer</code>) grava a <code>Analysis</code> no Postgres e registra os eventos do caso. No upload, a API valida (Zod, rate limit), chama o Gemini e grava o resultado.</li>
+    <li><b>Decisão automática.</b> Se a planta está doente, o alerta é criado na hora (sino + e-mail). Por espécie, as regras R1–R4 classificam a situação em seguro, aviso ou crítico e sugerem a ação.</li>
+    <li><b>Saída.</b> Dashboard, analytics, alertas, histórico exportável, relatório por e-mail, relatório de IA e o mapa do processo.</li>
+  </ol>
+  <figure><img class="clip" style="height:58mm" src="evidencias/execucao/09-kafka-ui-mensagens.png" alt="Kafka UI"/><figcaption><b>Entrada.</b> Mensagens chegando ao tópico <code>plant-classifications</code> (Kafka UI).</figcaption></figure>
+  <div class="grid-2">
+    <div>
+      <div class="eyebrow">Exemplo de entrada — mensagem no Kafka</div>
+<pre>{ <span class="k">"caseId"</span>: <span class="s">"56204bcf-718f-…"</span>,
+  <span class="k">"capturedAt"</span>: <span class="s">"2026-11-24T19:24:56.811Z"</span>,
+  <span class="k">"imageName"</span>: <span class="s">"alface_03.jpg"</span>,
+  <span class="k">"status"</span>: <span class="s">"Doente"</span>,
+  <span class="k">"plantType"</span>: <span class="s">"Alface"</span>,
+  <span class="k">"pathology"</span>: <span class="s">"Míldio"</span>,
+  <span class="k">"confidence"</span>: 77.8,
+  <span class="k">"recommendations"</span>: <span class="s">"Aplicar fungicida à base
+   de fosetil-alumínio. Aumentar aeração."</span> }</pre>
+    </div>
+    <div>
+      <div class="eyebrow">Processamento — log do consumer</div>
+<pre>{ <span class="k">"service"</span>: <span class="s">"consumer"</span>,
+  <span class="k">"event"</span>: <span class="s">"message_persisted"</span>,
+  <span class="k">"analysisId"</span>: <span class="s">"cmwv33gqb001n…"</span>,
+  <span class="k">"status"</span>: <span class="s">"Doente"</span>,
+  <span class="k">"alert"</span>: true,
+  <span class="k">"pipelineLatencyMs"</span>: 26 }</pre>
+      <div class="eyebrow">Saída — alerta para o produtor</div>
+      <div class="callout red" style="margin-top:1mm"><b>Planta doente detectada: Alface</b><br/>Míldio — 77,8% de confiança</div>
+    </div>
+  </div>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<section class="page">
+  <div class="running"><span>2 · Plataforma em execução</span><span>Peso 20%</span></div>
+  <div class="grid-2">
+    <figure><img src="evidencias/execucao/08-alertas-sino.png" alt="Alertas"/><figcaption><b>Decisão → saída.</b> Alertas criados automaticamente pelo consumer aparecem no sino.</figcaption></figure>
+    <figure><img src="evidencias/execucao/05-historico.png" alt="Histórico"/><figcaption><b>Saída.</b> Histórico com filtros e exportação CSV/JSON.</figcaption></figure>
+  </div>
+  <figure><img class="clip" style="height:128mm" src="evidencias/execucao/04-analytics.png" alt="Analytics"/><figcaption><b>Saída.</b> Analytics com alertas por regra (R1–R4), distribuição por status, espécie e patologia — atualiza sozinho a cada 5 s.</figcaption></figure>
+  <div class="callout"><b>Canal de upload (IA).</b> O produtor envia a foto e o Gemini devolve status, espécie, patologia, confiança e tratamento. O resultado entra no mesmo fluxo de regras e alertas. Testado nesta fase com uma imagem sintética: o Gemini a classificou como <b>Inconclusivo</b> (confiança 0), e o caso foi registrado com captura → diagnóstico → inconclusivo → registro.</div>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<!-- ═════════════════════════════ 3. DEVSECOPS ═════════════════════════════ -->
+<section class="page">
+  <div class="running"><span>3 · Pipeline DevSecOps</span><span>Peso 20%</span></div>
+  <div class="section-head">
+    <div><div class="eyebrow">Seção 3</div><h2>Pipeline DevSecOps</h2></div>
+    <div class="weight"><b>20%</b><span>da nota</span></div>
+  </div>
+  <p>Cada <em>push</em> e <em>pull request</em> dispara o workflow <code>.github/workflows/devsecops.yml</code> no GitHub Actions. Quatro verificações rodam em paralelo; só se todas passarem o pipeline constrói as imagens, varre as imagens, sobe a stack inteira e — na <code>main</code> — publica as imagens no GitHub Container Registry.</p>
+  <div class="mermaid short">
+flowchart LR
+  Q["Qualidade<br/>ESLint · tsc<br/>Vitest + cobertura ≥ 70%"]
+  S["Segredos<br/>Gitleaks<br/>(histórico inteiro)"]
+  D["Dependências e IaC<br/>npm audit · Trivy fs"]
+  C["SAST<br/>CodeQL"]
+  B["Build<br/>imagens Docker<br/>+ Trivy image"]
+  E["Ponta a ponta<br/>compose up · smoke test<br/>Kafka cai e volta"]
+  P["Publica<br/>GHCR (main)"]
+  Q --> B
+  S --> B
+  D --> B
+  C --> B
+  B --> E --> P
+  </div>
+  <table>
+    <tr><th>Requisito</th><th>Como o pipeline atende</th></tr>
+    <tr><td><b>Build</b></td><td><code>next build</code> dentro do Dockerfile multi-stage (deps → builder → runner standalone) e imagem de streaming</td></tr>
+    <tr><td><b>Execução via container</b></td><td>Job <i>Ponta a ponta</i>: <code>docker compose up --wait</code> com os 7 serviços, <code>scripts/smoke-test.sh</code> confirma que uma mensagem atravessa producer → Kafka → consumer → Postgres → app; depois derruba o Kafka, verifica <code>degraded</code> e a recuperação</td></tr>
+    <tr><td><b>Qualidade de código</b></td><td>ESLint (regras do Next e do React Compiler), checagem de tipos, 45 testes unitários com cobertura mínima de 70% (atual: 96%) e resumo publicado no run</td></tr>
+    <tr><td><b>Vulnerabilidades</b></td><td>Gitleaks (segredos no histórico), <code>npm audit</code> (falha em high/critical), Trivy fs (dependências, Dockerfiles, segredos), CodeQL (SAST) e Trivy nas imagens finais; relatórios SARIF na aba <i>Security</i></td></tr>
+  </table>
+  <h3>Containers endurecidos</h3>
+  <div class="grid-3">
+    <div class="card"><h4>Sem root</h4><p>App, streaming e análise rodam como usuário sem privilégio.</p></div>
+    <div class="card"><h4>Sem npm no runtime</h4><p>O npm embutido na imagem base trazia 10 CVEs altas; o runtime só precisa do node.</p></div>
+    <div class="card"><h4>Healthcheck</h4><p>O container do app consulta <code>/api/health</code>; o compose só libera dependentes saudáveis.</p></div>
+  </div>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<section class="page">
+  <div class="running"><span>3 · Pipeline DevSecOps</span><span>Peso 20%</span></div>
+  <h3 style="margin-top:0">Evidência: o pipeline barra e o time corrige</h3>
+  <p>O primeiro scan desta fase encontrou problemas reais. Todos foram corrigidos e documentados em <code>docs/fase7/evidencias/pipeline/</code>.</p>
+  <table>
+    <tr><th>Achado</th><th>Ferramenta</th><th>Antes</th><th>Correção</th><th>Depois</th></tr>
+    <tr><td><b>RCE não autenticado no Next.js 16.1.6</b> e outras 43 vulnerabilidades (5 críticas)</td><td>npm audit, Trivy fs</td><td><span class="pill red">44 (5 críticas)</span></td><td>Next 16.4.6, next-auth beta.32, zod 4.6.7; remoção do nodemailer (não usado); override de <code>effect</code></td><td><span class="pill">0</span></td></tr>
+    <tr><td><b>CVEs do npm embutido</b> na imagem base</td><td>Trivy image</td><td><span class="pill red">10 HIGH</span></td><td>Remoção de npm/npx/corepack do runtime</td><td><span class="pill">0</span></td></tr>
+    <tr><td><b>Containers como root</b> (streaming e análise)</td><td>Trivy (DS002)</td><td><span class="pill red">HIGH</span></td><td><code>USER node</code> / <code>USER analyst</code></td><td><span class="pill">ok</span></td></tr>
+    <tr><td><b>Injeção de HTML</b> nos e-mails (dados vindos de CSV importado)</td><td>revisão de código</td><td><span class="pill red">sem escape</span></td><td>Função <code>esc()</code> em todos os campos do usuário</td><td><span class="pill">ok</span></td></tr>
+    <tr><td><b>Banco SQLite versionado</b> com contas</td><td>revisão</td><td><span class="pill red">dev.db no repo</span></td><td>Removido e ignorado (<code>*.db</code>)</td><td><span class="pill">ok</span></td></tr>
+    <tr><td><b>Segredo com valor padrão</b> no compose</td><td>revisão</td><td><span class="pill red">default</span></td><td><code>NEXTAUTH_SECRET</code> obrigatório</td><td><span class="pill">ok</span></td></tr>
+    <tr><td><b>Segredos no histórico git</b></td><td>Gitleaks</td><td colspan="3">20 commits varridos — nenhum vazamento</td></tr>
+  </table>
+  <figure><img class="clip" style="height:66mm" src="evidencias/pipeline/github-actions-run.png" alt="Execução do pipeline no GitHub Actions"/><figcaption><b>Execução do pipeline</b> no GitHub Actions (run #6): todos os jobs verdes; a publicação no GHCR só roda na <code>main</code>.</figcaption></figure>
+  <div class="callout amber"><b>O pipeline barrou problemas reais antes do verde.</b> (1) Trivy fs: o Dockerfile da análise de processos rodava como root → corrigido. (2) Build em clone limpo: a pasta <code>public/</code> vazia não ia para o git e a imagem não era construída → corrigido. (3) Ponta a ponta: variáveis de placeholder do CI sobrescreviam o <code>.env</code> do compose e o <code>init</code> procurava o banco em <code>localhost</code> — causa encontrada pelas anotações de diagnóstico que o próprio job publica ao falhar → corrigido. O run #6 (commit <code>29c0287</code>) passou em todas as etapas em 8 min 53 s.</div>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<!-- ═════════════════════════════ 4. MONITORAMENTO ═════════════════════════════ -->
+<section class="page">
+  <div class="running"><span>4 · Monitoramento</span><span>Peso 10%</span></div>
+  <div class="section-head">
+    <div><div class="eyebrow">Seção 4</div><h2>Monitoramento e execução contínua</h2></div>
+    <div class="weight"><b>10%</b><span>da nota</span></div>
+  </div>
+  <p>O sistema roda continuamente (producer em modo contínuo, consumer com <code>restart: unless-stopped</code>) e é acompanhado em três camadas.</p>
+  <div class="grid-3">
+    <div class="card"><h4>1 · Saúde — /api/health</h4><p>Postgres (<code>SELECT 1</code>), Kafka (offsets), lag do consumer e idade da última mensagem. Responde <code>ok</code>, <code>degraded</code> ou <code>down</code> (HTTP 503). Usado pelo healthcheck do Docker e pelo pipeline.</p></div>
+    <div class="card"><h4>2 · Painel — /monitor</h4><p>A cada 3 s: saúde por serviço, mensagens no tópico, lag, análises gravadas, throughput, feed ao vivo e alertas.</p></div>
+    <div class="card"><h4>3 · Logs estruturados</h4><p>Producer e consumer escrevem JSON com <code>caseId</code>, evento e latência do pipeline; <code>docker compose logs -f</code> e Kafka UI completam a visão.</p></div>
+  </div>
+  <figure><img class="clip" style="height:150mm" src="evidencias/execucao/06-monitor.png" alt="Monitor"/><figcaption><b>/monitor</b> com o painel de saúde, métricas do Kafka e feed ao vivo.</figcaption></figure>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<section class="page">
+  <div class="running"><span>4 · Monitoramento</span><span>Peso 10%</span></div>
+  <h3 style="margin-top:0">Respostas reais do /api/health</h3>
+  <div class="grid-2">
+    <div>
+      <div class="eyebrow">Tudo no ar</div>
+<pre>{ <span class="k">"status"</span>: <span class="s">"ok"</span>,
+  <span class="k">"services"</span>: {
+    <span class="k">"database"</span>: { <span class="k">"status"</span>: <span class="s">"up"</span> },
+    <span class="k">"kafka"</span>: { <span class="k">"status"</span>: <span class="s">"up"</span> },
+    <span class="k">"consumer"</span>: {
+      <span class="k">"status"</span>: <span class="s">"ok"</span>, <span class="k">"lag"</span>: 0 } },
+  <span class="k">"issues"</span>: [] }</pre>
+    </div>
+    <div>
+      <div class="eyebrow">Kafka derrubado (teste real)</div>
+<pre>{ <span class="k">"status"</span>: <span class="s">"degraded"</span>,
+  <span class="k">"services"</span>: {
+    <span class="k">"database"</span>: { <span class="k">"status"</span>: <span class="s">"up"</span> },
+    <span class="k">"kafka"</span>: { <span class="k">"status"</span>: <span class="s">"down"</span> } },
+  <span class="k">"issues"</span>: [<span class="s">"Broker Kafka indisponível:
+     o streaming está parado."</span>] }</pre>
+    </div>
+  </div>
+  <h3>Como acompanhar o sistema</h3>
+  <table>
+    <tr><th>Pergunta</th><th>Onde olhar</th></tr>
+    <tr><td>Está tudo no ar?</td><td><code>curl localhost:3000/api/health</code> ou o cartão "Saúde dos serviços" no <code>/monitor</code>; <code>docker compose ps</code> mostra <i>healthy</i></td></tr>
+    <tr><td>O stream está fluindo?</td><td>Mensagens no tópico, throughput e lag no <code>/monitor</code>; mensagens no Kafka UI (<code>:8080</code>)</td></tr>
+    <tr><td>O que aconteceu com uma leitura?</td><td><code>docker compose logs consumer | grep &lt;caseId&gt;</code> e o caso no event log (<code>/process</code>)</td></tr>
+    <tr><td>Onde o processo demora?</td><td>Página <code>/process</code> (seção 5)</td></tr>
+  </table>
+  <h3>Execução contínua e recuperação</h3>
+  <ol class="steps">
+    <li>O producer roda em modo contínuo (<code>STREAM_MAX_MESSAGES=0</code>) e o consumer reinicia sozinho (<code>restart: unless-stopped</code>).</li>
+    <li>Com o Kafka parado, o <code>/api/health</code> passa a <code>degraded</code> em 2–3 s e o painel fica amarelo; uploads continuam funcionando.</li>
+    <li>Quando o Kafka volta, o consumer retoma do último offset confirmado e nenhuma mensagem se perde — o pipeline repete esse teste a cada execução.</li>
+  </ol>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<!-- ═════════════════════════════ 5. PROCESSO ═════════════════════════════ -->
+<section class="page">
+  <div class="running"><span>5 · Análise de processo</span><span>Peso 25%</span></div>
+  <div class="section-head">
+    <div><div class="eyebrow">Seção 5</div><h2>Análise de processo</h2></div>
+    <div class="weight"><b>25%</b><span>da nota</span></div>
+  </div>
+  <p>Aplicamos mineração de processos ao próprio PlantGuard. Um <b>caso</b> é uma leitura de planta; cada etapa grava um evento com <b>caso, atividade, horário e recurso</b> na tabela <code>ProcessEvent</code>. O event log é exportado em CSV ou XES (padrão IEEE 1849) e analisado de duas formas independentes: pela página <code>/process</code> (TypeScript) e por um script com <b>pm4py</b>. Os números das duas batem.</p>
+  <h3>Event log (exemplo)</h3>
+  <table class="mono" style="font-size:7.6pt">
+    <tr><th>case_id</th><th>activity</th><th>timestamp</th><th>resource</th><th>channel</th></tr>
+    <tr><td>56204bcf-…</td><td>Imagem capturada</td><td>2026-11-24T19:24:56.811Z</td><td>camera-campo</td><td>camera</td></tr>
+    <tr><td>56204bcf-…</td><td>Publicada no Kafka</td><td>2026-11-24T19:24:56.811Z</td><td>producer</td><td>camera</td></tr>
+    <tr><td>56204bcf-…</td><td>Consumida do tópico</td><td>2026-11-24T19:24:56.818Z</td><td>consumer</td><td>camera</td></tr>
+    <tr><td>56204bcf-…</td><td>Análise registrada</td><td>2026-11-24T19:24:56.837Z</td><td>postgres</td><td>camera</td></tr>
+    <tr><td>56204bcf-…</td><td>Alerta gerado</td><td>2026-11-24T19:24:56.840Z</td><td>motor-de-regras</td><td>camera</td></tr>
+    <tr><td>sim-7-0052</td><td>Imagem capturada</td><td>2026-11-19T15:26:07.980Z</td><td>produtor</td><td>upload</td></tr>
+    <tr><td>sim-7-0052</td><td>Diagnóstico por IA</td><td>2026-11-19T15:26:10.557Z</td><td>gemini</td><td>upload</td></tr>
+    <tr><td>sim-7-0052</td><td>Diagnóstico inconclusivo</td><td>2026-11-19T15:26:10.561Z</td><td>gemini</td><td>upload</td></tr>
+    <tr><td>sim-7-0052</td><td>Imagem capturada</td><td>2026-11-19T15:38:08.885Z</td><td>produtor</td><td>upload</td></tr>
+    <tr><td>sim-7-0052</td><td>Diagnóstico por IA</td><td>2026-11-19T15:38:12.548Z</td><td>gemini</td><td>upload</td></tr>
+    <tr><td>sim-7-0052</td><td>Análise registrada</td><td>2026-11-19T15:38:12.588Z</td><td>postgres</td><td>upload</td></tr>
+    <tr><td>sim-7-0052</td><td>Alerta gerado</td><td>2026-11-19T15:38:13.242Z</td><td>motor-de-regras</td><td>upload</td></tr>
+  </table>
+  <div class="callout"><b>Origem dos dados.</b> Eventos <b>reais</b> são gravados pelo producer/consumer, pelo upload, pelas notificações e pelo relatório. Para ter volume e variação suficientes, geramos também um <b>cenário simulado</b> reproduzível (seed 7, 400 casos em 21 dias), marcado como <code>source = simulado</code>, com falhas da IA, nova foto após diagnóstico inconclusivo, picos de atraso do consumer e alertas fora do expediente. A análise abaixo usa o cenário simulado.</div>
+  <div class="grid-4">
+    <div class="kpi"><div class="v">400</div><div class="l">casos · 1.861 eventos</div></div>
+    <div class="kpi"><div class="v">25</div><div class="l">variantes</div></div>
+    <div class="kpi"><div class="v">0,996</div><div class="l">fitness do modelo (pm4py)</div></div>
+    <div class="kpi"><div class="v">34,8%</div><div class="l">casos no caminho principal</div></div>
+  </div>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<section class="page">
+  <div class="running"><span>5 · Análise de processo</span><span>Peso 25%</span></div>
+  <h3 style="margin-top:0">Representação do processo</h3>
+  <figure><img src="processo/dfg-tempo.png" alt="DFG por tempo"/><figcaption><b>Mapa do processo (DFG) com tempo mediano de espera</b> — pm4py. Em vermelho, as esperas longas.</figcaption></figure>
+  <figure><img src="processo/petri-net.png" alt="Rede de Petri"/><figcaption><b>Modelo descoberto pelo Inductive Miner</b> (rede de Petri): dois canais de entrada (câmera e upload), laços de retrabalho (falha da IA e inconclusivo) e alerta/visualização/relatório como etapas opcionais. Conformidade: fitness 0,996; 95,8% dos casos reproduzidos sem desvio; precisão 0,683.</figcaption></figure>
+  <figure><img class="clip" style="height:80mm" src="evidencias/execucao/07-processo.png" alt="Página processo"/><figcaption><b>Página /process</b> no app: o mesmo mapa ao vivo, com KPIs, variantes, esperas e insights, e download do event log.</figcaption></figure>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<section class="page">
+  <div class="running"><span>5 · Análise de processo</span><span>Peso 25%</span></div>
+  <h3 style="margin-top:0">Variantes</h3>
+  <table>
+    <tr><th>#</th><th>Casos</th><th>Sequência</th></tr>
+    <tr><td>1</td><td>34,8%</td><td>Captura → Publicada no Kafka → Consumida → Análise registrada</td></tr>
+    <tr><td>2</td><td>13,3%</td><td>… → Análise registrada → <b>Alerta gerado → Alerta visualizado</b></td></tr>
+    <tr><td>3</td><td>11,3%</td><td>… (câmera) → Análise registrada → Relatório enviado</td></tr>
+    <tr><td>4</td><td>11,3%</td><td>Captura → Diagnóstico por IA → Análise registrada</td></tr>
+    <tr><td>5</td><td>6,3%</td><td>Captura → Diagnóstico por IA → Análise registrada → Alerta gerado → Alerta visualizado</td></tr>
+  </table>
+  <p class="small">As 5 variantes mais comuns cobrem 76,6% dos casos; as outras 20 são as exceções que interessam (retrabalho, falhas, alertas ignorados).</p>
+
+  <h3>Gargalos, variações e oportunidades</h3>
+  <div class="grid-4" style="margin-bottom:4mm">
+    <div class="kpi"><div class="v red">1,1 h</div><div class="l">mediana alerta → visto</div></div>
+    <div class="kpi"><div class="v red">28 h</div><div class="l">P90 alerta → visto</div></div>
+    <div class="kpi"><div class="v red">21,8%</div><div class="l">alertas nunca vistos</div></div>
+    <div class="kpi"><div class="v amber">6,0%</div><div class="l">casos com retrabalho</div></div>
+  </div>
+  <div class="callout red"><b>Gargalo: humano, não técnico.</b> Da captura ao registro, a máquina leva milissegundos (no cenário: Kafka → consumer ≈ 106 ms e consumer → banco ≈ 20 ms; na execução real medimos 26 ms da publicação ao registro). A maior espera do ciclo de resposta é entre <b>Alerta gerado</b> e <b>Alerta visualizado</b>: mediana de 1,1 h e P90 de 28 h, porque alertas gerados à noite e no fim de semana só são vistos no expediente seguinte (30% dos alertas vistos).</div>
+  <div class="callout amber"><b>Variações.</b> (1) Laço de retrabalho "Diagnóstico inconclusivo → nova captura" (13 casos, ~11 min para o produtor voltar ao talhão). (2) Falha da IA em 3,5% dos casos — parte termina sem diagnóstico. (3) 4% das leituras pegam o consumer atrasado (minutos em vez de milissegundos). (4) Relatório por e-mail chega 2,5 dias depois: serve como histórico, não para reagir.</div>
+  <table>
+    <tr><th>Problema</th><th>Melhoria proposta</th><th>Indicador</th></tr>
+    <tr><td><b>Alerta demora a ser visto</b></td><td>Push/WhatsApp para alerta crítico (R2) com lembrete após 1 h e escalonamento para o técnico da cooperativa</td><td>Mediana/P90 de alerta → visto; % nunca vistos</td></tr>
+    <tr><td><b>Diagnóstico inconclusivo</b></td><td>Guia de captura (luz, distância, foco) antes do envio e quando a confiança &lt; 70% (R4)</td><td>% de casos com o laço de retrabalho</td></tr>
+    <tr><td><b>Falha da IA</b></td><td>Fila com nova tentativa automática (backoff) e cache de diagnósticos</td><td>% com falha; casos sem desfecho</td></tr>
+    <tr><td><b>Atraso do consumer</b></td><td>Alarme quando o lag passa do limite (já exposto em <code>/api/health</code>) e mais partições/consumers</td><td>Lag; espera publicada → consumida</td></tr>
+  </table>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<!-- ═════════════════════════════ 6. PRODUTO ═════════════════════════════ -->
+<section class="page">
+  <div class="running"><span>6 · Produto e pitch</span><span>Peso 10%</span></div>
+  <div class="section-head">
+    <div><div class="eyebrow">Seção 6</div><h2>PlantGuard como produto</h2></div>
+    <div class="weight"><b>10%</b><span>da nota</span></div>
+  </div>
+  <div class="grid-2">
+    <div class="card"><h4>Problema</h4><p>Doenças de plantas destroem parte relevante da produção agrícola todos os anos. O diagnóstico depende de um agrônomo que nem sempre está por perto, e quando a doença é vista a olho nu já se espalhou pelo talhão. O pequeno e o médio produtor são os que mais perdem.</p></div>
+    <div class="card green"><h4>Solução</h4><p>Um agrônomo digital que não dorme: o produtor fotografa, ou as câmeras enviam leituras sozinhas, e em segundos a IA diz qual doença a planta tem e o que fazer. O sistema cruza as análises, aplica regras de decisão e avisa antes que a doença vire prejuízo.</p></div>
+  </div>
+  <h3>Diferencial competitivo</h3>
+  <div class="grid-4">
+    <div class="card"><h4>Decide, não só diagnostica</h4><p>Regras R1–R4 dizem quando intervir.</p></div>
+    <div class="card"><h4>Tempo real</h4><p>Fluxo contínuo do campo via Kafka, não fotos soltas.</p></div>
+    <div class="card"><h4>Processo medido</h4><p>Sabemos onde o produtor demora a agir.</p></div>
+    <div class="card"><h4>Seguro por padrão</h4><p>Pipeline DevSecOps desde o primeiro commit.</p></div>
+  </div>
+  <h3>Público-alvo</h3>
+  <table>
+    <tr><th>Segmento</th><th>Dor</th><th>O que o PlantGuard entrega</th></tr>
+    <tr><td><b>Pequeno e médio produtor</b> (hortaliças, frutas)</td><td>Sem agrônomo dedicado; descobre a doença tarde</td><td>Diagnóstico em segundos no celular e alerta automático</td></tr>
+    <tr><td><b>Cooperativas</b></td><td>Poucos técnicos para centenas de associados</td><td>Visão consolidada, alertas críticos e relatórios</td></tr>
+    <tr><td><b>Agrônomos e consultorias</b></td><td>Muitas propriedades para acompanhar</td><td>Triagem automática e histórico por cultura</td></tr>
+  </table>
+  <h3>Proposta de valor e modelo de negócio</h3>
+  <div class="callout"><b>Menos perda, menos defensivo aplicado sem necessidade e decisão no tempo certo.</b> Modelo freemium para o produtor (análises grátis por mês) e planos por propriedade ou por cooperativa, com alertas em tempo real, relatórios e integração com sensores; API por uso para agtechs.</div>
+  <div class="grid-3">
+    <div class="card"><h4>Receita</h4><p>Assinatura SaaS freemium · API por análise · licença para cooperativas · analytics premium</p></div>
+    <div class="card"><h4>Custos</h4><p>Chamadas ao Gemini · infraestrutura (banco, Kafka) · engenharia · aquisição</p></div>
+    <div class="card"><h4>Próximos passos</h4><p>Sensores de clima para prever risco · alertas por WhatsApp · piloto com uma cooperativa</p></div>
+  </div>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<!-- ═════════════════════════════ 7. EXECUTAR ═════════════════════════════ -->
+<section class="page">
+  <div class="running"><span>7 · Como executar</span><span>Anexos</span></div>
+  <div class="section-head">
+    <div><div class="eyebrow">Seção 7</div><h2>Como executar</h2></div>
+  </div>
+<pre><span class="c"># 1. Configuração (defina NEXTAUTH_SECRET; GEMINI_API_KEY é opcional)</span>
+cp infra/.env.example infra/.env
+
+<span class="c"># 2. Sobe banco, Kafka, app, producer e consumer (espera ficarem saudáveis)</span>
+docker compose -f infra/docker-compose.yml up -d --build --wait
+
+<span class="c"># 3. Confere o fluxo ponta a ponta</span>
+scripts/smoke-test.sh
+
+<span class="c"># 4. Cenário de processo simulado (opcional) e análise com pm4py</span>
+npm run process:simulate
+docker build -t plantguard-process-mining analysis/process-mining
+docker run --rm -v "$PWD":/work plantguard-process-mining \
+  docs/fase7/processo/event-log.csv docs/fase7/processo simulado</pre>
+  <table>
+    <tr><th>Endereço</th><th>O que é</th></tr>
+    <tr><td><code>http://localhost:3000</code></td><td>App — login demo <code>agrosmart-stream@demo.local</code> / <code>stream123</code></td></tr>
+    <tr><td><code>/monitor</code> · <code>/process</code></td><td>Monitor do pipeline e mineração de processos</td></tr>
+    <tr><td><code>/api/health</code></td><td>Saúde da plataforma (JSON)</td></tr>
+    <tr><td><code>http://localhost:8080</code></td><td>Kafka UI</td></tr>
+  </table>
+  <h3>Estrutura do repositório</h3>
+<pre>src/app/            páginas e rotas da API (analyze, health, process, stream/monitor…)
+src/lib/            regras, analytics, saúde, event log, mineração de processos (testados)
+infra/              docker-compose, producer/consumer Kafka, simulador de processo
+analysis/           análise de processos com pm4py (container)
+scripts/            smoke test ponta a ponta
+.github/workflows/  pipeline DevSecOps
+docs/fase7/         plano, arquitetura, evidências, processo, roteiro dos vídeos</pre>
+  <h3>Uso de IA generativa</h3>
+  <table>
+    <tr><th>Ferramenta</th><th>Uso</th></tr>
+    <tr><td><b>Google Gemini 2.5 Flash</b></td><td>No produto: diagnóstico das imagens e relatório de IA do campo</td></tr>
+    <tr><td><b>Claude Code (Anthropic)</b></td><td>Assistente de desenvolvimento: código e revisão, testes, pipeline, correções de segurança, análise de processos, documentação e roteiro dos vídeos</td></tr>
+  </table>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    fontFamily: 'DM Sans, sans-serif',
+    themeVariables: {
+      primaryColor: '#e6f2ea', primaryTextColor: '#0e1c12', primaryBorderColor: '#1b4d34',
+      lineColor: '#2d6a4f', secondaryColor: '#f4f1e8', tertiaryColor: '#fbfaf6',
+      clusterBkg: '#f4f1e8', clusterBorder: '#cfc8b0', fontSize: '13px',
+      actorBkg: '#e6f2ea', actorBorder: '#1b4d34', signalColor: '#2d6a4f', signalTextColor: '#0e1c12',
+    },
+    flowchart: { curve: 'basis', htmlLabels: true },
+  });
+  await mermaid.run({ querySelector: '.mermaid' });
+  document.querySelectorAll('section.page').forEach((el, i) => {
+    const pn = el.querySelector('.pn');
+    if (pn) pn.textContent = String(i + 1);
+  });
+  document.body.dataset.ready = 'true';
+</script>
+</body>
+</html>

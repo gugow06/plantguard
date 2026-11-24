@@ -68,16 +68,12 @@ function NotificationDetailModal({
   }
 
   const isCritical = data && data.confidence >= 70;
-  const [mounted, setMounted] = useState(false);
-
+  // O modal só é aberto por clique do usuário, portanto sempre no cliente.
   useEffect(() => {
-    setMounted(true);
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
   }, [onClose]);
-
-  if (!mounted) return null;
 
   return createPortal(
     <div
@@ -256,35 +252,54 @@ function NotifItem({
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
+interface NotificationsPayload {
+  notifications: Notification[];
+  unreadCount: number;
+}
+
+async function requestNotifications(): Promise<NotificationsPayload | null> {
+  try {
+    const res = await fetch('/api/notifications');
+    if (!res.ok) return null;
+    return (await res.json()) as NotificationsPayload;
+  } catch {
+    return null;
+  }
+}
+
 export function NotificationBell() {
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [selected, setSelected] = useState<Notification | null>(null);
-  const [loading, setLoading] = useState(false);
+  // true até a primeira carga terminar (spinner só quando a lista está vazia)
+  const [loading, setLoading] = useState(true);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  const fetchNotifications = useCallback(async () => {
-    try {
-      setLoading(true);
-      const res = await fetch('/api/notifications');
-      if (!res.ok) return;
-      const data = await res.json() as { notifications: Notification[]; unreadCount: number };
+  const applyNotifications = useCallback((data: NotificationsPayload | null) => {
+    if (data) {
       setNotifications(data.notifications);
       setUnreadCount(data.unreadCount);
-    } catch {
-      // ignore
-    } finally {
-      setLoading(false);
     }
+    setLoading(false);
   }, []);
+
+  const fetchNotifications = useCallback(
+    () => requestNotifications().then(applyNotifications),
+    [applyNotifications],
+  );
 
   // Atualiza em tempo real (a cada 15s), sem recarregar a página
   useEffect(() => {
-    fetchNotifications();
-    const interval = setInterval(fetchNotifications, 15_000);
-    return () => clearInterval(interval);
-  }, [fetchNotifications]);
+    let active = true;
+    const load = () => requestNotifications().then((d) => { if (active) applyNotifications(d); });
+    load();
+    const interval = setInterval(load, 15_000);
+    return () => {
+      active = false;
+      clearInterval(interval);
+    };
+  }, [applyNotifications]);
 
   // Close on outside click
   useEffect(() => {

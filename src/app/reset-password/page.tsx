@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -62,15 +62,13 @@ function ResetPasswordForm() {
   const token = searchParams.get('token');
 
   const [done, setDone] = useState(false);
-  const [serverError, setServerError] = useState('');
+  const [serverError, setServerError] = useState(
+    token ? '' : 'Link inválido. Solicite um novo link de redefinição.',
+  );
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
-
-  useEffect(() => {
-    if (!token) setServerError('Link inválido. Solicite um novo link de redefinição.');
-  }, [token]);
 
   async function onSubmit(data: FormData) {
     if (!token) return;

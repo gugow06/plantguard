@@ -1,0 +1,27 @@
+{
+    "status": "degraded",
+    "checkedAt": "2026-11-24T19:00:09.794Z",
+    "uptimeSeconds": 133,
+    "version": "local",
+    "services": {
+        "database": {
+            "status": "up",
+            "latencyMs": 1
+        },
+        "kafka": {
+            "status": "down",
+            "latencyMs": null
+        },
+        "consumer": {
+            "status": "unknown",
+            "lag": null,
+            "lagThreshold": 50,
+            "totalMessages": null,
+            "lastConsumedAt": "2026-11-24T19:00:01.030Z",
+            "lastConsumedAgeSeconds": 9
+        }
+    },
+    "issues": [
+        "Broker Kafka indispon\u00edvel: o streaming est\u00e1 parado."
+    ]
+}

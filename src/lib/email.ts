@@ -61,6 +61,16 @@ const wrapper = (content: string) => `
 </html>
 `;
 
+/** Escapa texto do usuário antes de interpolar no HTML do e-mail. */
+function esc(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export interface DiseaseAlertData {
   userName: string;
   imageName: string;
@@ -101,9 +111,9 @@ export async function sendDiseaseAlertEmail(to: string, data: DiseaseAlertData) 
           </tr>
           <tr>
             <td style="padding:16px 20px;">
-              <p style="margin:0 0 8px;font-size:13px;color:#6b7280;">Análise em <strong style="color:#0e1c12;">${data.imageName}</strong> · ${date}</p>
-              ${data.plantType ? `<p style="margin:0 0 4px;font-size:15px;font-weight:600;color:#0e1c12;">🌱 ${data.plantType}</p>` : ''}
-              ${data.pathology ? `<p style="margin:0;font-size:13px;font-weight:600;color:${severityColor};">⚠ ${data.pathology}</p>` : ''}
+              <p style="margin:0 0 8px;font-size:13px;color:#6b7280;">Análise em <strong style="color:#0e1c12;">${esc(data.imageName)}</strong> · ${date}</p>
+              ${data.plantType ? `<p style="margin:0 0 4px;font-size:15px;font-weight:600;color:#0e1c12;">🌱 ${esc(data.plantType)}</p>` : ''}
+              ${data.pathology ? `<p style="margin:0;font-size:13px;font-weight:600;color:${severityColor};">⚠ ${esc(data.pathology)}</p>` : ''}
             </td>
           </tr>
         </table>
@@ -135,7 +145,7 @@ export async function sendDiseaseAlertEmail(to: string, data: DiseaseAlertData) 
     <tr>
       <td style="padding:16px 32px 0;">
         <p style="margin:0 0 8px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:#5a6350;">🔬 Diagnóstico</p>
-        <p style="margin:0;font-size:14px;line-height:1.7;color:#374151;">${data.description}</p>
+        <p style="margin:0;font-size:14px;line-height:1.7;color:#374151;">${esc(data.description)}</p>
       </td>
     </tr>
 
@@ -146,7 +156,7 @@ export async function sendDiseaseAlertEmail(to: string, data: DiseaseAlertData) 
           <tr>
             <td style="padding:14px 18px;">
               <p style="margin:0 0 8px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:#166534;">💡 Recomendações</p>
-              <p style="margin:0;font-size:14px;line-height:1.7;color:#15803d;white-space:pre-line;">${data.recommendations}</p>
+              <p style="margin:0;font-size:14px;line-height:1.7;color:#15803d;white-space:pre-line;">${esc(data.recommendations)}</p>
             </td>
           </tr>
         </table>
@@ -207,7 +217,6 @@ export async function sendAnalysisReportEmail(
   const total = analyses.length;
   const healthy = analyses.filter((a) => a.status === 'Saudável').length;
   const sick = analyses.filter((a) => a.status === 'Doente').length;
-  const inconclusive = analyses.filter((a) => a.status === 'Inconclusivo').length;
   const healthRate = total > 0 ? Math.round((healthy / total) * 100) : 0;
 
   const rows = analyses
@@ -222,13 +231,13 @@ export async function sendAnalysisReportEmail(
       return `
         <tr>
           <td style="padding:10px 14px;border-bottom:1px solid #e6ead8;white-space:nowrap;font-size:12px;color:#5a6350;">${date}</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #e6ead8;font-size:13px;color:#0e1c12;">${a.imageName}</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #e6ead8;font-size:13px;color:#0e1c12;">${esc(a.imageName)}</td>
           <td style="padding:10px 14px;border-bottom:1px solid #e6ead8;">
-            <span style="display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;background:${bg};color:${color};">${icon} ${a.status}</span>
+            <span style="display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;background:${bg};color:${color};">${icon} ${esc(a.status)}</span>
           </td>
-          <td style="padding:10px 14px;border-bottom:1px solid #e6ead8;font-size:12px;color:#374151;">${a.plantType ?? '—'}</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #e6ead8;font-size:12px;color:${color};">${a.pathology ?? '—'}</td>
-          <td style="padding:10px 14px;border-bottom:1px solid #e6ead8;font-size:12px;color:#374151;max-width:220px;">${short}</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #e6ead8;font-size:12px;color:#374151;">${esc(a.plantType ?? '—')}</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #e6ead8;font-size:12px;color:${color};">${esc(a.pathology ?? '—')}</td>
+          <td style="padding:10px 14px;border-bottom:1px solid #e6ead8;font-size:12px;color:#374151;max-width:220px;">${esc(short)}</td>
           <td style="padding:10px 14px;border-bottom:1px solid #e6ead8;font-size:12px;font-weight:600;color:#374151;text-align:right;">${a.confidence}%</td>
         </tr>
       `;
@@ -240,7 +249,7 @@ export async function sendAnalysisReportEmail(
       <td style="padding:28px 32px 0;">
         <h2 style="margin:0 0 6px;font-family:Georgia,serif;font-size:22px;font-weight:700;color:#0e1c12;">Relatório de Análises</h2>
         <p style="margin:0;font-size:14px;color:#5a6350;">
-          Olá, <strong>${userName}</strong> · Período: ${period.from} a ${period.to}
+          Olá, <strong>${esc(userName)}</strong> · Período: ${period.from} a ${period.to}
         </p>
       </td>
     </tr>

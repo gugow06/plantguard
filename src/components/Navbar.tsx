@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
-import { Leaf, LayoutDashboard, History, BarChart3, LogOut, Menu, X, User, Settings, Radio } from 'lucide-react';
+import { Leaf, LayoutDashboard, History, BarChart3, LogOut, Menu, X, User, Settings, Radio, Workflow } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -23,6 +23,7 @@ const navLinks = [
   { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3 },
   { href: '/history', label: 'Histórico', icon: History },
   { href: '/monitor', label: 'Monitor', icon: Radio },
+  { href: '/process', label: 'Processo', icon: Workflow },
 ];
 
 export function Navbar() {

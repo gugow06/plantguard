@@ -1,0 +1,3 @@
+# Trivy fs (vuln + misconfig + secret), severidade HIGH/CRITICAL — depois das correções
+# comando: trivy fs --scanners vuln,misconfig,secret --severity HIGH,CRITICAL --exit-code 1 .
+# resultado: exit code 0 — nenhuma vulnerabilidade, má configuração ou segredo HIGH/CRITICAL

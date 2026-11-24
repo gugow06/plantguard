@@ -3,6 +3,8 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { sendAnalysisReportEmail, type ReportAnalysis } from '@/lib/email';
 import { rateLimit } from '@/lib/rate-limit';
+import { logProcessEvents } from '@/lib/process-log';
+import { ACTIVITIES } from '@/lib/process-mining';
 
 interface ImportedAnalysisInput {
   imageName?: unknown;
@@ -67,6 +69,7 @@ export async function POST(request: Request) {
       d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
     let analyses: ReportAnalysis[];
+    let reportCases: { caseId: string | null }[] = [];
     let period: { from: string; to: string };
 
     if (imported && imported.length > 0) {
@@ -97,10 +100,17 @@ export async function POST(request: Request) {
           pathology: true,
           description: true,
           createdAt: true,
+          caseId: true,
         },
       });
+      reportCases = records;
       analyses = records.map((a) => ({
-        ...a,
+        id: a.id,
+        imageName: a.imageName,
+        status: a.status,
+        plantType: a.plantType,
+        pathology: a.pathology,
+        description: a.description,
         confidence: Math.round(a.confidence),
         createdAt: a.createdAt.toISOString(),
       }));
@@ -108,6 +118,14 @@ export async function POST(request: Request) {
     }
 
     await sendAnalysisReportEmail(user.email, user.name ?? 'Usuário', analyses, period);
+
+    const sentAt = new Date();
+    await logProcessEvents(
+      prisma,
+      reportCases
+        .filter((r): r is { caseId: string } => !!r.caseId)
+        .map((r) => ({ caseId: r.caseId, activity: ACTIVITIES.RELATORIO, timestamp: sentAt, resource: 'e-mail', channel: 'upload' as const })),
+    );
 
     return NextResponse.json({
       ok: true,

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { AlertTriangle, ShieldAlert, ChevronDown, ChevronUp, Leaf } from 'lucide-react';
 import { PlantAlertModal } from '@/components/PlantAlertModal';
 import type { AlertRecord } from '@/lib/decision-rules';
@@ -9,29 +9,34 @@ interface AlertsSummaryProps {
   importedAlerts?: AlertRecord[];
 }
 
+async function requestAlerts(): Promise<AlertRecord[] | null> {
+  try {
+    const res = await fetch('/api/alerts?days=30', { cache: 'no-store' });
+    if (!res.ok) return null;
+    return ((await res.json()) as { alerts: AlertRecord[] }).alerts;
+  } catch {
+    return null;
+  }
+}
+
 export function AlertsSummary({ importedAlerts }: AlertsSummaryProps) {
   const [liveAlerts, setLiveAlerts] = useState<AlertRecord[]>([]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [selectedAlert, setSelectedAlert] = useState<AlertRecord | null>(null);
 
-  const fetchAlerts = useCallback(async () => {
-    try {
-      const res = await fetch('/api/alerts?days=30', { cache: 'no-store' });
-      if (!res.ok) return;
-      const data = await res.json() as { alerts: AlertRecord[] };
-      setLiveAlerts(data.alerts);
-    } catch {
-      // ignore
-    }
-  }, []);
-
   // Carrega e atualiza em tempo real (a cada 5s), sem recarregar a página
   useEffect(() => {
     if (importedAlerts) return;
-    fetchAlerts();
-    const id = setInterval(fetchAlerts, 5000);
-    return () => clearInterval(id);
-  }, [importedAlerts, fetchAlerts]);
+    let active = true;
+    const load = () =>
+      requestAlerts().then((alerts) => { if (active && alerts) setLiveAlerts(alerts); });
+    load();
+    const id = setInterval(load, 5000);
+    return () => {
+      active = false;
+      clearInterval(id);
+    };
+  }, [importedAlerts]);
 
   const alerts = importedAlerts ?? liveAlerts;
   const triggered = alerts.filter((a) => a.alert.triggered);

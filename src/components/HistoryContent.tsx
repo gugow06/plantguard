@@ -35,40 +35,36 @@ const STATUS_OPTIONS: { value: string; label: string }[] = [
   { value: 'Inconclusivo', label: 'Inconclusivo' },
 ];
 
+async function requestHistory(page: number, status: string): Promise<HistoryData> {
+  const params = new URLSearchParams({ page: String(page), limit: '10' });
+  if (status) params.set('status', status);
+  const res = await fetch(`/api/history?${params}`, { cache: 'no-store' });
+  if (!res.ok) throw new Error();
+  return (await res.json()) as HistoryData;
+}
+
 export function HistoryContent() {
   const [data, setData] = useState<HistoryData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState('');
 
-  // silent = atualização em background (polling); não mostra spinner nem toast de erro
-  const fetchHistory = useCallback(async (p: number, status: string, silent = false) => {
-    if (!silent) setIsLoading(true);
-    try {
-      const params = new URLSearchParams({ page: String(p), limit: '10' });
-      if (status) params.set('status', status);
-
-      const res = await fetch(`/api/history?${params}`, { cache: 'no-store' });
-      if (!res.ok) throw new Error();
-
-      const result: HistoryData = await res.json();
-      setData(result);
-    } catch {
-      if (!silent) toast.error('Erro ao carregar histórico.');
-    } finally {
-      if (!silent) setIsLoading(false);
-    }
-  }, []);
-
+  // Carrega a página atual e atualiza em tempo real (a cada 5s), sem recarregar.
+  // silent = atualização em background (polling): sem spinner nem toast de erro.
   useEffect(() => {
-    fetchHistory(page, statusFilter);
-  }, [page, statusFilter, fetchHistory]);
-
-  // Atualização em tempo real (a cada 5s), sem recarregar a página
-  useEffect(() => {
-    const id = setInterval(() => fetchHistory(page, statusFilter, true), 5000);
-    return () => clearInterval(id);
-  }, [page, statusFilter, fetchHistory]);
+    let active = true;
+    const load = (silent: boolean) =>
+      requestHistory(page, statusFilter)
+        .then((result) => { if (active) setData(result); })
+        .catch(() => { if (active && !silent) toast.error('Erro ao carregar histórico.'); })
+        .finally(() => { if (active && !silent) setIsLoading(false); });
+    load(false);
+    const id = setInterval(() => load(true), 5000);
+    return () => {
+      active = false;
+      clearInterval(id);
+    };
+  }, [page, statusFilter]);
 
   const fetchAllForExport = useCallback(async () => {
     const params = new URLSearchParams({ page: '1', limit: '1000' });
@@ -82,10 +78,12 @@ export function HistoryContent() {
   }, [statusFilter]);
 
   const handlePageChange = useCallback((newPage: number) => {
+    setIsLoading(true);
     setPage(newPage);
   }, []);
 
   const handleStatusChange = useCallback((status: string) => {
+    setIsLoading(true);
     setStatusFilter(status);
     setPage(1);
   }, []);

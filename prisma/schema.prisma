@@ -94,10 +94,31 @@ model Analysis {
   plantType       String?
   pathology       String?
   rawResponse     String?
+  // Caso do processo (mineração de processos): liga a análise aos ProcessEvent.
+  caseId          String?
   user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
   @@index([userId])
   @@index([createdAt])
+  @@index([caseId])
+}
+
+// Event log para mineração de processos (Fase 7).
+// Um caso = uma leitura de planta (imagem), da captura até o alerta visto/relatório.
+model ProcessEvent {
+  id         String   @id @default(cuid())
+  caseId     String
+  activity   String
+  timestamp  DateTime
+  resource   String
+  channel    String   // "camera" (stream Kafka) | "upload" (app)
+  source     String   @default("real") // "real" | "simulado"
+  attributes String?  // JSON com dados do evento (status, confiança, duração...)
+  createdAt  DateTime @default(now())
+
+  @@index([caseId, timestamp])
+  @@index([activity])
+  @@index([source])
 }

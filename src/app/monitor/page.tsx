@@ -15,7 +15,8 @@ import {
   Legend,
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Activity, ArrowLeft, Database, Leaf, Radio, TriangleAlert } from 'lucide-react';
+import { Activity, ArrowLeft, Database, HeartPulse, Leaf, Radio, TriangleAlert } from 'lucide-react';
+import type { HealthReport } from '@/lib/health';
 
 interface FeedItem {
   id: string;
@@ -50,6 +51,63 @@ interface MonitorData {
   pathologyDistribution: { pathology: string; count: number }[];
   feed: FeedItem[];
   alerts: AlertItem[];
+}
+
+function HealthPanel({ health }: { health: HealthReport | null }) {
+  const overall = health?.status ?? 'down';
+  const tone = (s: string) =>
+    s === 'up' || s === 'ok'
+      ? 'bg-emerald-50 text-emerald-700 ring-emerald-600/20 dark:bg-emerald-950/30 dark:text-emerald-300'
+      : s === 'degraded' || s === 'lagging' || s === 'unknown'
+        ? 'bg-amber-50 text-amber-700 ring-amber-600/20 dark:bg-amber-950/30 dark:text-amber-300'
+        : 'bg-red-50 text-red-700 ring-red-600/20 dark:bg-red-950/30 dark:text-red-300';
+  const label: Record<string, string> = {
+    up: 'no ar', down: 'fora do ar', ok: 'saudável', degraded: 'degradado', lagging: 'atrasado', unknown: 'sem dados',
+  };
+  const c = health?.services.consumer;
+  const rows: { name: string; status: string; detail: string }[] = health
+    ? [
+        { name: 'App (Next.js)', status: 'up', detail: `versão ${health.version} · no ar há ${Math.round(health.uptimeSeconds / 60)} min` },
+        { name: 'Banco (Postgres)', status: health.services.database.status, detail: health.services.database.latencyMs !== null ? `${health.services.database.latencyMs} ms` : 'sem resposta' },
+        { name: 'Broker (Kafka)', status: health.services.kafka.status, detail: health.services.kafka.latencyMs !== null ? `${health.services.kafka.latencyMs} ms` : 'sem resposta' },
+        {
+          name: 'Consumer',
+          status: c?.status ?? 'unknown',
+          detail: `lag ${c?.lag ?? '—'} (limite ${c?.lagThreshold ?? '—'})${c?.lastConsumedAgeSeconds != null ? ` · última mensagem há ${c.lastConsumedAgeSeconds}s` : ''}`,
+        },
+      ]
+    : [];
+  return (
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between gap-2">
+        <CardTitle className="flex items-center gap-2 text-base">
+          <HeartPulse className="size-4 text-primary" /> Saúde dos serviços
+          <span className="text-xs font-normal text-muted-foreground">/api/health</span>
+        </CardTitle>
+        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ring-inset ${tone(overall)}`}>
+          {health ? label[overall] : 'sem resposta'}
+        </span>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          {rows.map((r) => (
+            <div key={r.name} className="rounded-lg border border-border p-3">
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-sm font-medium text-foreground">{r.name}</p>
+                <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ring-inset ${tone(r.status)}`}>{label[r.status] ?? r.status}</span>
+              </div>
+              <p className="mt-1 text-xs text-muted-foreground">{r.detail}</p>
+            </div>
+          ))}
+        </div>
+        {health && health.issues.length > 0 && (
+          <ul className="space-y-1 text-sm text-red-700 dark:text-red-300">
+            {health.issues.map((i) => <li key={i}>• {i}</li>)}
+          </ul>
+        )}
+      </CardContent>
+    </Card>
+  );
 }
 
 const STATUS_COLOR: Record<string, string> = {
@@ -110,10 +168,17 @@ export default function MonitorPage() {
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
   const newestId = useRef<string | null>(null);
   const [flashId, setFlashId] = useState<string | null>(null);
+  const [health, setHealth] = useState<HealthReport | null>(null);
 
   useEffect(() => {
     let active = true;
+    const loadHealth = () =>
+      fetch('/api/health', { cache: 'no-store' })
+        .then((r) => r.json() as Promise<HealthReport>)
+        .then((h) => { if (active) setHealth(h); })
+        .catch(() => { if (active) setHealth(null); });
     const load = async () => {
+      loadHealth();
       try {
         const res = await fetch('/api/stream/monitor', { cache: 'no-store' });
         if (!res.ok) throw new Error('fail');
@@ -189,6 +254,8 @@ export default function MonitorPage() {
       </header>
 
       <main className="mx-auto max-w-7xl space-y-4 px-4 py-5">
+        <HealthPanel health={health} />
+
         {/* Métricas Kafka + throughput */}
         <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           <Metric

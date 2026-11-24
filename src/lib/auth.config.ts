@@ -13,7 +13,8 @@ export const authConfig = {
       const isProtected =
         nextUrl.pathname.startsWith('/dashboard') ||
         nextUrl.pathname.startsWith('/history') ||
-        nextUrl.pathname.startsWith('/settings');
+        nextUrl.pathname.startsWith('/settings') ||
+        nextUrl.pathname.startsWith('/process');
 
       if (isProtected && !isLoggedIn) {
         return Response.redirect(new URL('/login', nextUrl));

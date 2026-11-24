@@ -18,6 +18,11 @@ export const DEMO_USER_EMAIL = process.env.STREAM_USER_EMAIL ?? 'agrosmart-strea
 
 /** Mensagem que trafega no tópico — uma imagem classificada. */
 export interface ClassificationMessage {
+  /** Caso do processo (event log): acompanha a leitura da captura ao alerta. */
+  caseId?: string;
+  /** Quando a câmera capturou a imagem e quando o producer publicou no tópico. */
+  capturedAt?: string;
+  publishedAt?: string;
   imageName: string;
   status: 'Saudável' | 'Doente' | 'Inconclusivo';
   plantType: string | null;

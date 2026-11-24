@@ -1,7 +1,8 @@
-# AgroSmart / PlantGuard — Fase 4
+# AgroSmart / PlantGuard — Fase 7 (solução final)
 # Sobe a solução completa: banco, Kafka (streaming), app Next.js e o pipeline
-# producer/consumer. Rode a partir da raiz do repo:
-#   docker compose -f infra/docker-compose.yml up --build
+# producer/consumer. Antes, copie infra/.env.example para infra/.env e defina
+# NEXTAUTH_SECRET. Rode a partir da raiz do repo:
+#   docker compose -f infra/docker-compose.yml up --build --wait
 
 name: agrosmart
 
@@ -49,7 +50,7 @@ services:
 
   # ---------- Kafka UI (visualização para prints/vídeo) ----------
   kafka-ui:
-    image: provectuslabs/kafka-ui:latest
+    image: provectuslabs/kafka-ui:v0.7.2
     ports:
       - "8080:8080"
     environment:
@@ -71,8 +72,8 @@ services:
       postgres:
         condition: service_healthy
     command: >
-      sh -c "npx prisma db push &&
-             npx tsx infra/streaming/seed-demo-user.ts"
+      sh -c "prisma db push &&
+             tsx infra/streaming/seed-demo-user.ts"
 
   # ---------- App Next.js ----------
   app:
@@ -89,7 +90,8 @@ services:
       # NextAuth v5 em produção (next start) não confia no host por padrão.
       AUTH_TRUST_HOST: "true"
       NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
-      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-troque-este-secret-em-producao}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:?defina NEXTAUTH_SECRET em infra/.env (openssl rand -base64 32)}
+      APP_VERSION: ${APP_VERSION:-local}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
@@ -100,6 +102,14 @@ services:
         condition: service_healthy
       init:
         condition: service_completed_successfully
+    # Saúde do app + banco + Kafka (ver src/app/api/health/route.ts).
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/api/health >/dev/null || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
 
   # ---------- Producer: publica classificações no tópico ----------
   producer:
@@ -113,7 +123,7 @@ services:
     depends_on:
       kafka:
         condition: service_healthy
-    command: ["npx", "tsx", "infra/streaming/producer.ts"]
+    command: ["tsx", "infra/streaming/producer.ts"]
     restart: on-failure
 
   # ---------- Consumer: grava no Postgres e gera alertas ----------
@@ -129,8 +139,8 @@ services:
         condition: service_healthy
       init:
         condition: service_completed_successfully
-    command: ["npx", "tsx", "infra/streaming/consumer.ts"]
-    restart: on-failure
+    command: ["tsx", "infra/streaming/consumer.ts"]
+    restart: unless-stopped
 
 volumes:
   pgdata:

@@ -1,0 +1,1881 @@
+case_id,activity,timestamp,resource,channel,source
+58200233-7704-425a-b62f-32ceb8298b8b,Imagem capturada,2026-11-24T19:17:56.753Z,camera-campo,camera,real
+58200233-7704-425a-b62f-32ceb8298b8b,Publicada no Kafka,2026-11-24T19:17:56.753Z,producer,camera,real
+58200233-7704-425a-b62f-32ceb8298b8b,Consumida do tópico,2026-11-24T19:17:56.761Z,consumer,camera,real
+58200233-7704-425a-b62f-32ceb8298b8b,Análise registrada,2026-11-24T19:17:56.773Z,postgres,camera,real
+67a30a6b-b70b-48c6-9345-1c60676b7cb3,Imagem capturada,2026-11-24T19:18:56.760Z,camera-campo,camera,real
+67a30a6b-b70b-48c6-9345-1c60676b7cb3,Publicada no Kafka,2026-11-24T19:18:56.761Z,producer,camera,real
+67a30a6b-b70b-48c6-9345-1c60676b7cb3,Consumida do tópico,2026-11-24T19:18:56.774Z,consumer,camera,real
+67a30a6b-b70b-48c6-9345-1c60676b7cb3,Análise registrada,2026-11-24T19:18:56.792Z,postgres,camera,real
+67a30a6b-b70b-48c6-9345-1c60676b7cb3,Alerta gerado,2026-11-24T19:18:56.795Z,motor-de-regras,camera,real
+e387bbca-f53a-4b70-9215-48f8fdbc2a68,Imagem capturada,2026-11-24T19:15:56.726Z,camera-campo,camera,real
+e387bbca-f53a-4b70-9215-48f8fdbc2a68,Publicada no Kafka,2026-11-24T19:15:56.726Z,producer,camera,real
+e387bbca-f53a-4b70-9215-48f8fdbc2a68,Consumida do tópico,2026-11-24T19:16:23.355Z,consumer,camera,real
+e387bbca-f53a-4b70-9215-48f8fdbc2a68,Análise registrada,2026-11-24T19:16:23.371Z,postgres,camera,real
+e387bbca-f53a-4b70-9215-48f8fdbc2a68,Alerta gerado,2026-11-24T19:16:23.373Z,motor-de-regras,camera,real
+e5e162cd-7927-499a-9b00-e4415e74cb7b,Imagem capturada,2026-11-24T19:16:56.732Z,camera-campo,camera,real
+e5e162cd-7927-499a-9b00-e4415e74cb7b,Publicada no Kafka,2026-11-24T19:16:56.733Z,producer,camera,real
+e5e162cd-7927-499a-9b00-e4415e74cb7b,Consumida do tópico,2026-11-24T19:16:56.758Z,consumer,camera,real
+e5e162cd-7927-499a-9b00-e4415e74cb7b,Análise registrada,2026-11-24T19:16:56.777Z,postgres,camera,real
+e5e162cd-7927-499a-9b00-e4415e74cb7b,Alerta gerado,2026-11-24T19:16:56.779Z,motor-de-regras,camera,real
+sim-7-0001,Imagem capturada,2026-11-04T21:41:59.277Z,camera-campo,camera,simulado
+sim-7-0001,Publicada no Kafka,2026-11-04T21:41:59.426Z,producer,camera,simulado
+sim-7-0001,Consumida do tópico,2026-11-04T21:41:59.518Z,consumer,camera,simulado
+sim-7-0001,Análise registrada,2026-11-04T21:41:59.532Z,postgres,camera,simulado
+sim-7-0001,Alerta gerado,2026-11-04T21:42:00.019Z,motor-de-regras,camera,simulado
+sim-7-0001,Relatório enviado,2026-11-06T08:55:41.835Z,e-mail,camera,simulado
+sim-7-0002,Imagem capturada,2026-11-13T11:33:46.023Z,produtor,upload,simulado
+sim-7-0002,Diagnóstico por IA,2026-11-13T11:33:48.658Z,gemini,upload,simulado
+sim-7-0002,Análise registrada,2026-11-13T11:33:48.806Z,postgres,upload,simulado
+sim-7-0002,Relatório enviado,2026-11-17T02:45:49.277Z,e-mail,upload,simulado
+sim-7-0003,Imagem capturada,2026-11-06T11:00:37.340Z,camera-campo,camera,simulado
+sim-7-0003,Publicada no Kafka,2026-11-06T11:00:37.495Z,producer,camera,simulado
+sim-7-0003,Consumida do tópico,2026-11-06T11:00:37.522Z,consumer,camera,simulado
+sim-7-0003,Análise registrada,2026-11-06T11:00:37.559Z,postgres,camera,simulado
+sim-7-0004,Imagem capturada,2026-11-17T21:33:28.318Z,camera-campo,camera,simulado
+sim-7-0004,Publicada no Kafka,2026-11-17T21:33:28.551Z,producer,camera,simulado
+sim-7-0004,Consumida do tópico,2026-11-17T21:33:28.573Z,consumer,camera,simulado
+sim-7-0004,Análise registrada,2026-11-17T21:33:28.584Z,postgres,camera,simulado
+sim-7-0004,Alerta gerado,2026-11-17T21:33:28.934Z,motor-de-regras,camera,simulado
+sim-7-0004,Alerta visualizado,2026-11-18T10:52:28.069Z,produtor,camera,simulado
+sim-7-0005,Imagem capturada,2026-11-12T21:18:03.150Z,camera-campo,camera,simulado
+sim-7-0005,Publicada no Kafka,2026-11-12T21:18:03.335Z,producer,camera,simulado
+sim-7-0005,Consumida do tópico,2026-11-12T21:18:03.409Z,consumer,camera,simulado
+sim-7-0005,Análise registrada,2026-11-12T21:18:03.418Z,postgres,camera,simulado
+sim-7-0005,Alerta gerado,2026-11-12T21:18:03.612Z,motor-de-regras,camera,simulado
+sim-7-0006,Imagem capturada,2026-11-16T13:22:40.879Z,camera-campo,camera,simulado
+sim-7-0006,Publicada no Kafka,2026-11-16T13:22:41.063Z,producer,camera,simulado
+sim-7-0006,Consumida do tópico,2026-11-16T13:22:41.168Z,consumer,camera,simulado
+sim-7-0006,Análise registrada,2026-11-16T13:22:41.202Z,postgres,camera,simulado
+sim-7-0007,Imagem capturada,2026-11-05T15:53:20.681Z,produtor,upload,simulado
+sim-7-0007,Diagnóstico por IA,2026-11-05T15:53:25.977Z,gemini,upload,simulado
+sim-7-0007,Análise registrada,2026-11-05T15:53:26.079Z,postgres,upload,simulado
+sim-7-0007,Alerta gerado,2026-11-05T15:53:26.853Z,motor-de-regras,upload,simulado
+sim-7-0008,Imagem capturada,2026-11-03T15:42:32.239Z,produtor,upload,simulado
+sim-7-0008,Diagnóstico por IA,2026-11-03T15:42:35.682Z,gemini,upload,simulado
+sim-7-0008,Análise registrada,2026-11-03T15:42:35.829Z,postgres,upload,simulado
+sim-7-0008,Alerta gerado,2026-11-03T15:42:36.320Z,motor-de-regras,upload,simulado
+sim-7-0008,Alerta visualizado,2026-11-03T15:56:54.739Z,produtor,upload,simulado
+sim-7-0009,Imagem capturada,2026-11-09T12:04:43.886Z,camera-campo,camera,simulado
+sim-7-0009,Publicada no Kafka,2026-11-09T12:04:43.931Z,producer,camera,simulado
+sim-7-0009,Consumida do tópico,2026-11-09T12:04:44.083Z,consumer,camera,simulado
+sim-7-0009,Análise registrada,2026-11-09T12:04:44.110Z,postgres,camera,simulado
+sim-7-0009,Relatório enviado,2026-11-12T08:38:21.972Z,e-mail,camera,simulado
+sim-7-0010,Imagem capturada,2026-11-18T21:55:59.477Z,camera-campo,camera,simulado
+sim-7-0010,Publicada no Kafka,2026-11-18T21:55:59.724Z,producer,camera,simulado
+sim-7-0010,Consumida do tópico,2026-11-18T21:55:59.872Z,consumer,camera,simulado
+sim-7-0010,Análise registrada,2026-11-18T21:55:59.899Z,postgres,camera,simulado
+sim-7-0011,Imagem capturada,2026-11-23T15:35:24.401Z,camera-campo,camera,simulado
+sim-7-0011,Publicada no Kafka,2026-11-23T15:35:24.475Z,producer,camera,simulado
+sim-7-0011,Consumida do tópico,2026-11-23T15:35:24.525Z,consumer,camera,simulado
+sim-7-0011,Análise registrada,2026-11-23T15:35:24.558Z,postgres,camera,simulado
+sim-7-0012,Imagem capturada,2026-11-16T21:52:23.367Z,produtor,upload,simulado
+sim-7-0012,Diagnóstico por IA,2026-11-16T21:52:29.221Z,gemini,upload,simulado
+sim-7-0012,Análise registrada,2026-11-16T21:52:29.279Z,postgres,upload,simulado
+sim-7-0013,Imagem capturada,2026-11-20T11:28:08.245Z,produtor,upload,simulado
+sim-7-0013,Diagnóstico por IA,2026-11-20T11:28:11.202Z,gemini,upload,simulado
+sim-7-0013,Análise registrada,2026-11-20T11:28:11.262Z,postgres,upload,simulado
+sim-7-0014,Imagem capturada,2026-11-06T09:02:30.276Z,camera-campo,camera,simulado
+sim-7-0014,Publicada no Kafka,2026-11-06T09:02:30.321Z,producer,camera,simulado
+sim-7-0014,Consumida do tópico,2026-11-06T09:02:30.481Z,consumer,camera,simulado
+sim-7-0014,Análise registrada,2026-11-06T09:02:30.520Z,postgres,camera,simulado
+sim-7-0014,Relatório enviado,2026-11-07T21:36:09.189Z,e-mail,camera,simulado
+sim-7-0015,Imagem capturada,2026-11-13T18:31:13.245Z,camera-campo,camera,simulado
+sim-7-0015,Publicada no Kafka,2026-11-13T18:31:13.361Z,producer,camera,simulado
+sim-7-0015,Consumida do tópico,2026-11-13T18:31:13.493Z,consumer,camera,simulado
+sim-7-0015,Análise registrada,2026-11-13T18:31:13.526Z,postgres,camera,simulado
+sim-7-0016,Imagem capturada,2026-11-11T16:18:51.389Z,produtor,upload,simulado
+sim-7-0016,Diagnóstico por IA,2026-11-11T16:18:56.194Z,gemini,upload,simulado
+sim-7-0016,Análise registrada,2026-11-11T16:18:56.254Z,postgres,upload,simulado
+sim-7-0017,Imagem capturada,2026-11-19T14:35:16.036Z,produtor,upload,simulado
+sim-7-0017,Diagnóstico por IA,2026-11-19T14:35:20.531Z,gemini,upload,simulado
+sim-7-0017,Análise registrada,2026-11-19T14:35:20.618Z,postgres,upload,simulado
+sim-7-0018,Imagem capturada,2026-11-23T16:09:59.969Z,camera-campo,camera,simulado
+sim-7-0018,Publicada no Kafka,2026-11-23T16:10:00.081Z,producer,camera,simulado
+sim-7-0018,Consumida do tópico,2026-11-23T16:10:00.144Z,consumer,camera,simulado
+sim-7-0018,Análise registrada,2026-11-23T16:10:00.180Z,postgres,camera,simulado
+sim-7-0019,Imagem capturada,2026-11-20T15:26:35.766Z,produtor,upload,simulado
+sim-7-0019,Diagnóstico por IA,2026-11-20T15:26:41.659Z,gemini,upload,simulado
+sim-7-0019,Análise registrada,2026-11-20T15:26:41.767Z,postgres,upload,simulado
+sim-7-0019,Alerta gerado,2026-11-20T15:26:41.981Z,motor-de-regras,upload,simulado
+sim-7-0019,Alerta visualizado,2026-11-20T15:37:37.949Z,produtor,upload,simulado
+sim-7-0020,Imagem capturada,2026-11-09T10:10:36.375Z,camera-campo,camera,simulado
+sim-7-0020,Publicada no Kafka,2026-11-09T10:10:36.569Z,producer,camera,simulado
+sim-7-0020,Consumida do tópico,2026-11-09T10:10:36.636Z,consumer,camera,simulado
+sim-7-0020,Análise registrada,2026-11-09T10:10:36.651Z,postgres,camera,simulado
+sim-7-0020,Alerta gerado,2026-11-09T10:10:36.798Z,motor-de-regras,camera,simulado
+sim-7-0020,Alerta visualizado,2026-11-09T10:48:58.754Z,produtor,camera,simulado
+sim-7-0021,Imagem capturada,2026-11-07T21:43:25.874Z,produtor,upload,simulado
+sim-7-0021,Diagnóstico por IA,2026-11-07T21:43:29.201Z,gemini,upload,simulado
+sim-7-0021,Análise registrada,2026-11-07T21:43:29.323Z,postgres,upload,simulado
+sim-7-0021,Alerta gerado,2026-11-07T21:43:29.859Z,motor-de-regras,upload,simulado
+sim-7-0022,Imagem capturada,2026-11-08T19:48:55.032Z,camera-campo,camera,simulado
+sim-7-0022,Publicada no Kafka,2026-11-08T19:48:55.102Z,producer,camera,simulado
+sim-7-0022,Consumida do tópico,2026-11-08T19:48:55.193Z,consumer,camera,simulado
+sim-7-0022,Análise registrada,2026-11-08T19:48:55.218Z,postgres,camera,simulado
+sim-7-0023,Imagem capturada,2026-11-23T10:59:34.221Z,produtor,upload,simulado
+sim-7-0023,Diagnóstico por IA,2026-11-23T10:59:36.825Z,gemini,upload,simulado
+sim-7-0023,Análise registrada,2026-11-23T10:59:36.964Z,postgres,upload,simulado
+sim-7-0024,Imagem capturada,2026-11-22T12:37:24.611Z,camera-campo,camera,simulado
+sim-7-0024,Publicada no Kafka,2026-11-22T12:37:24.845Z,producer,camera,simulado
+sim-7-0024,Consumida do tópico,2026-11-22T12:37:24.992Z,consumer,camera,simulado
+sim-7-0024,Análise registrada,2026-11-22T12:37:25.008Z,postgres,camera,simulado
+sim-7-0025,Imagem capturada,2026-11-20T09:02:05.237Z,produtor,upload,simulado
+sim-7-0025,Diagnóstico por IA,2026-11-20T09:02:10.783Z,gemini,upload,simulado
+sim-7-0025,Análise registrada,2026-11-20T09:02:10.923Z,postgres,upload,simulado
+sim-7-0025,Relatório enviado,2026-11-23T03:27:58.570Z,e-mail,upload,simulado
+sim-7-0026,Imagem capturada,2026-11-19T18:21:16.404Z,camera-campo,camera,simulado
+sim-7-0026,Publicada no Kafka,2026-11-19T18:21:16.538Z,producer,camera,simulado
+sim-7-0026,Consumida do tópico,2026-11-19T18:21:16.566Z,consumer,camera,simulado
+sim-7-0026,Análise registrada,2026-11-19T18:21:16.574Z,postgres,camera,simulado
+sim-7-0027,Imagem capturada,2026-11-17T12:32:07.422Z,produtor,upload,simulado
+sim-7-0027,Diagnóstico por IA,2026-11-17T12:32:09.576Z,gemini,upload,simulado
+sim-7-0027,Análise registrada,2026-11-17T12:32:09.671Z,postgres,upload,simulado
+sim-7-0027,Relatório enviado,2026-11-20T20:08:22.909Z,e-mail,upload,simulado
+sim-7-0028,Imagem capturada,2026-11-17T19:49:19.633Z,camera-campo,camera,simulado
+sim-7-0028,Publicada no Kafka,2026-11-17T19:49:19.711Z,producer,camera,simulado
+sim-7-0028,Consumida do tópico,2026-11-17T19:49:19.874Z,consumer,camera,simulado
+sim-7-0028,Análise registrada,2026-11-17T19:49:19.889Z,postgres,camera,simulado
+sim-7-0029,Imagem capturada,2026-11-09T10:13:55.412Z,camera-campo,camera,simulado
+sim-7-0029,Publicada no Kafka,2026-11-09T10:13:55.660Z,producer,camera,simulado
+sim-7-0029,Consumida do tópico,2026-11-09T10:13:55.717Z,consumer,camera,simulado
+sim-7-0029,Análise registrada,2026-11-09T10:13:55.741Z,postgres,camera,simulado
+sim-7-0029,Relatório enviado,2026-11-11T23:22:53.016Z,e-mail,camera,simulado
+sim-7-0030,Imagem capturada,2026-11-19T11:06:34.240Z,camera-campo,camera,simulado
+sim-7-0030,Publicada no Kafka,2026-11-19T11:06:34.316Z,producer,camera,simulado
+sim-7-0030,Consumida do tópico,2026-11-19T11:06:34.364Z,consumer,camera,simulado
+sim-7-0030,Análise registrada,2026-11-19T11:06:34.400Z,postgres,camera,simulado
+sim-7-0030,Alerta gerado,2026-11-19T11:06:34.522Z,motor-de-regras,camera,simulado
+sim-7-0030,Alerta visualizado,2026-11-19T11:55:43.603Z,produtor,camera,simulado
+sim-7-0031,Imagem capturada,2026-11-17T11:13:07.758Z,camera-campo,camera,simulado
+sim-7-0031,Publicada no Kafka,2026-11-17T11:13:07.814Z,producer,camera,simulado
+sim-7-0031,Consumida do tópico,2026-11-17T11:13:07.948Z,consumer,camera,simulado
+sim-7-0031,Análise registrada,2026-11-17T11:13:07.983Z,postgres,camera,simulado
+sim-7-0031,Relatório enviado,2026-11-20T04:16:17.243Z,e-mail,camera,simulado
+sim-7-0032,Imagem capturada,2026-11-04T20:57:56.513Z,camera-campo,camera,simulado
+sim-7-0032,Publicada no Kafka,2026-11-04T20:57:56.586Z,producer,camera,simulado
+sim-7-0032,Consumida do tópico,2026-11-04T20:57:56.658Z,consumer,camera,simulado
+sim-7-0032,Análise registrada,2026-11-04T20:57:56.691Z,postgres,camera,simulado
+sim-7-0033,Imagem capturada,2026-11-19T18:12:00.346Z,produtor,upload,simulado
+sim-7-0033,Diagnóstico por IA,2026-11-19T18:12:04.424Z,gemini,upload,simulado
+sim-7-0033,Análise registrada,2026-11-19T18:12:04.491Z,postgres,upload,simulado
+sim-7-0033,Alerta gerado,2026-11-19T18:12:04.873Z,motor-de-regras,upload,simulado
+sim-7-0033,Alerta visualizado,2026-11-19T18:50:12.036Z,produtor,upload,simulado
+sim-7-0034,Imagem capturada,2026-11-17T14:32:41.268Z,camera-campo,camera,simulado
+sim-7-0034,Publicada no Kafka,2026-11-17T14:32:41.358Z,producer,camera,simulado
+sim-7-0034,Consumida do tópico,2026-11-17T14:32:41.459Z,consumer,camera,simulado
+sim-7-0034,Análise registrada,2026-11-17T14:32:41.480Z,postgres,camera,simulado
+sim-7-0034,Alerta gerado,2026-11-17T14:32:41.854Z,motor-de-regras,camera,simulado
+sim-7-0034,Alerta visualizado,2026-11-17T14:36:54.602Z,produtor,camera,simulado
+sim-7-0035,Imagem capturada,2026-11-16T10:00:38.235Z,produtor,upload,simulado
+sim-7-0035,Diagnóstico por IA,2026-11-16T10:00:42.612Z,gemini,upload,simulado
+sim-7-0035,Análise registrada,2026-11-16T10:00:42.726Z,postgres,upload,simulado
+sim-7-0036,Imagem capturada,2026-11-04T18:54:51.802Z,produtor,upload,simulado
+sim-7-0036,Diagnóstico por IA,2026-11-04T18:54:54.261Z,gemini,upload,simulado
+sim-7-0036,Análise registrada,2026-11-04T18:54:54.394Z,postgres,upload,simulado
+sim-7-0037,Imagem capturada,2026-11-22T11:09:52.078Z,camera-campo,camera,simulado
+sim-7-0037,Publicada no Kafka,2026-11-22T11:09:52.154Z,producer,camera,simulado
+sim-7-0037,Consumida do tópico,2026-11-22T11:09:52.285Z,consumer,camera,simulado
+sim-7-0037,Análise registrada,2026-11-22T11:09:52.317Z,postgres,camera,simulado
+sim-7-0037,Relatório enviado,2026-11-23T11:38:13.334Z,e-mail,camera,simulado
+sim-7-0038,Imagem capturada,2026-11-16T13:03:20.021Z,camera-campo,camera,simulado
+sim-7-0038,Publicada no Kafka,2026-11-16T13:03:20.259Z,producer,camera,simulado
+sim-7-0038,Consumida do tópico,2026-11-16T13:03:20.365Z,consumer,camera,simulado
+sim-7-0038,Análise registrada,2026-11-16T13:03:20.394Z,postgres,camera,simulado
+sim-7-0039,Imagem capturada,2026-11-16T10:32:51.498Z,camera-campo,camera,simulado
+sim-7-0039,Publicada no Kafka,2026-11-16T10:32:51.634Z,producer,camera,simulado
+sim-7-0039,Consumida do tópico,2026-11-16T10:32:51.784Z,consumer,camera,simulado
+sim-7-0039,Análise registrada,2026-11-16T10:32:51.815Z,postgres,camera,simulado
+sim-7-0040,Imagem capturada,2026-11-14T18:47:03.644Z,produtor,upload,simulado
+sim-7-0040,Diagnóstico por IA,2026-11-14T18:47:07.044Z,gemini,upload,simulado
+sim-7-0040,Análise registrada,2026-11-14T18:47:07.166Z,postgres,upload,simulado
+sim-7-0040,Alerta gerado,2026-11-14T18:47:07.772Z,motor-de-regras,upload,simulado
+sim-7-0041,Imagem capturada,2026-11-16T10:57:09.715Z,produtor,upload,simulado
+sim-7-0041,Diagnóstico por IA,2026-11-16T10:57:14.264Z,gemini,upload,simulado
+sim-7-0041,Diagnóstico inconclusivo,2026-11-16T10:57:14.266Z,gemini,upload,simulado
+sim-7-0041,Análise registrada,2026-11-16T10:57:14.358Z,postgres,upload,simulado
+sim-7-0042,Imagem capturada,2026-11-06T13:15:13.203Z,camera-campo,camera,simulado
+sim-7-0042,Publicada no Kafka,2026-11-06T13:15:13.378Z,producer,camera,simulado
+sim-7-0042,Consumida do tópico,2026-11-06T13:15:13.411Z,consumer,camera,simulado
+sim-7-0042,Análise registrada,2026-11-06T13:15:13.427Z,postgres,camera,simulado
+sim-7-0042,Alerta gerado,2026-11-06T13:15:14.184Z,motor-de-regras,camera,simulado
+sim-7-0042,Alerta visualizado,2026-11-06T13:48:45.557Z,produtor,camera,simulado
+sim-7-0043,Imagem capturada,2026-11-18T09:03:17.622Z,camera-campo,camera,simulado
+sim-7-0043,Publicada no Kafka,2026-11-18T09:03:17.769Z,producer,camera,simulado
+sim-7-0043,Consumida do tópico,2026-11-18T09:03:17.884Z,consumer,camera,simulado
+sim-7-0043,Análise registrada,2026-11-18T09:03:17.903Z,postgres,camera,simulado
+sim-7-0044,Imagem capturada,2026-11-10T17:36:01.776Z,camera-campo,camera,simulado
+sim-7-0044,Publicada no Kafka,2026-11-10T17:36:01.929Z,producer,camera,simulado
+sim-7-0044,Consumida do tópico,2026-11-10T17:36:02.007Z,consumer,camera,simulado
+sim-7-0044,Análise registrada,2026-11-10T17:36:02.034Z,postgres,camera,simulado
+sim-7-0044,Alerta gerado,2026-11-10T17:36:02.306Z,motor-de-regras,camera,simulado
+sim-7-0044,Alerta visualizado,2026-11-10T18:20:11.245Z,produtor,camera,simulado
+sim-7-0045,Imagem capturada,2026-11-09T10:16:07.500Z,camera-campo,camera,simulado
+sim-7-0045,Publicada no Kafka,2026-11-09T10:16:07.737Z,producer,camera,simulado
+sim-7-0045,Consumida do tópico,2026-11-09T10:16:07.848Z,consumer,camera,simulado
+sim-7-0045,Análise registrada,2026-11-09T10:16:07.879Z,postgres,camera,simulado
+sim-7-0046,Imagem capturada,2026-11-07T11:41:40.016Z,camera-campo,camera,simulado
+sim-7-0046,Publicada no Kafka,2026-11-07T11:41:40.152Z,producer,camera,simulado
+sim-7-0046,Consumida do tópico,2026-11-07T11:41:40.243Z,consumer,camera,simulado
+sim-7-0046,Análise registrada,2026-11-07T11:41:40.261Z,postgres,camera,simulado
+sim-7-0046,Relatório enviado,2026-11-08T12:08:37.365Z,e-mail,camera,simulado
+sim-7-0047,Imagem capturada,2026-11-11T12:54:56.246Z,camera-campo,camera,simulado
+sim-7-0047,Publicada no Kafka,2026-11-11T12:54:56.378Z,producer,camera,simulado
+sim-7-0047,Consumida do tópico,2026-11-11T12:54:56.536Z,consumer,camera,simulado
+sim-7-0047,Análise registrada,2026-11-11T12:54:56.560Z,postgres,camera,simulado
+sim-7-0048,Imagem capturada,2026-11-23T13:20:02.812Z,produtor,upload,simulado
+sim-7-0048,Diagnóstico por IA,2026-11-23T13:20:07.622Z,gemini,upload,simulado
+sim-7-0048,Diagnóstico inconclusivo,2026-11-23T13:20:07.625Z,gemini,upload,simulado
+sim-7-0048,Análise registrada,2026-11-23T13:20:07.694Z,postgres,upload,simulado
+sim-7-0049,Imagem capturada,2026-11-10T18:54:23.603Z,produtor,upload,simulado
+sim-7-0049,Diagnóstico por IA,2026-11-10T18:54:26.856Z,gemini,upload,simulado
+sim-7-0049,Análise registrada,2026-11-10T18:54:26.942Z,postgres,upload,simulado
+sim-7-0050,Imagem capturada,2026-11-09T09:10:56.563Z,produtor,upload,simulado
+sim-7-0050,Diagnóstico por IA,2026-11-09T09:11:03.328Z,gemini,upload,simulado
+sim-7-0050,Análise registrada,2026-11-09T09:11:03.406Z,postgres,upload,simulado
+sim-7-0050,Relatório enviado,2026-11-12T09:57:12.244Z,e-mail,upload,simulado
+sim-7-0051,Imagem capturada,2026-11-19T19:01:59.443Z,produtor,upload,simulado
+sim-7-0051,Diagnóstico por IA,2026-11-19T19:02:05.959Z,gemini,upload,simulado
+sim-7-0051,Diagnóstico inconclusivo,2026-11-19T19:02:05.962Z,gemini,upload,simulado
+sim-7-0051,Análise registrada,2026-11-19T19:02:06.103Z,postgres,upload,simulado
+sim-7-0052,Imagem capturada,2026-11-19T15:26:07.980Z,produtor,upload,simulado
+sim-7-0052,Diagnóstico por IA,2026-11-19T15:26:10.557Z,gemini,upload,simulado
+sim-7-0052,Diagnóstico inconclusivo,2026-11-19T15:26:10.561Z,gemini,upload,simulado
+sim-7-0052,Imagem capturada,2026-11-19T15:38:08.885Z,produtor,upload,simulado
+sim-7-0052,Diagnóstico por IA,2026-11-19T15:38:12.548Z,gemini,upload,simulado
+sim-7-0052,Análise registrada,2026-11-19T15:38:12.588Z,postgres,upload,simulado
+sim-7-0052,Alerta gerado,2026-11-19T15:38:13.242Z,motor-de-regras,upload,simulado
+sim-7-0052,Relatório enviado,2026-11-21T20:50:02.046Z,e-mail,upload,simulado
+sim-7-0053,Imagem capturada,2026-11-19T15:38:27.796Z,produtor,upload,simulado
+sim-7-0053,Diagnóstico por IA,2026-11-19T15:38:32.863Z,gemini,upload,simulado
+sim-7-0053,Análise registrada,2026-11-19T15:38:32.972Z,postgres,upload,simulado
+sim-7-0053,Relatório enviado,2026-11-22T08:41:28.765Z,e-mail,upload,simulado
+sim-7-0054,Imagem capturada,2026-11-14T14:18:18.446Z,camera-campo,camera,simulado
+sim-7-0054,Publicada no Kafka,2026-11-14T14:18:18.614Z,producer,camera,simulado
+sim-7-0054,Consumida do tópico,2026-11-14T14:18:18.645Z,consumer,camera,simulado
+sim-7-0054,Análise registrada,2026-11-14T14:18:18.657Z,postgres,camera,simulado
+sim-7-0054,Alerta gerado,2026-11-14T14:18:19.359Z,motor-de-regras,camera,simulado
+sim-7-0054,Alerta visualizado,2026-11-16T11:54:55.146Z,produtor,camera,simulado
+sim-7-0055,Imagem capturada,2026-11-07T10:54:19.578Z,produtor,upload,simulado
+sim-7-0055,Diagnóstico por IA,2026-11-07T10:54:25.531Z,gemini,upload,simulado
+sim-7-0055,Diagnóstico inconclusivo,2026-11-07T10:54:25.532Z,gemini,upload,simulado
+sim-7-0055,Imagem capturada,2026-11-07T11:13:55.485Z,produtor,upload,simulado
+sim-7-0055,Diagnóstico por IA,2026-11-07T11:13:59.711Z,gemini,upload,simulado
+sim-7-0055,Análise registrada,2026-11-07T11:13:59.763Z,postgres,upload,simulado
+sim-7-0056,Imagem capturada,2026-11-09T14:39:13.112Z,camera-campo,camera,simulado
+sim-7-0056,Publicada no Kafka,2026-11-09T14:39:13.174Z,producer,camera,simulado
+sim-7-0056,Consumida do tópico,2026-11-09T14:39:13.303Z,consumer,camera,simulado
+sim-7-0056,Análise registrada,2026-11-09T14:39:13.341Z,postgres,camera,simulado
+sim-7-0057,Imagem capturada,2026-11-12T13:35:16.247Z,produtor,upload,simulado
+sim-7-0057,Diagnóstico por IA,2026-11-12T13:35:19.049Z,gemini,upload,simulado
+sim-7-0057,Análise registrada,2026-11-12T13:35:19.186Z,postgres,upload,simulado
+sim-7-0057,Alerta gerado,2026-11-12T13:35:19.338Z,motor-de-regras,upload,simulado
+sim-7-0057,Alerta visualizado,2026-11-12T13:38:08.132Z,produtor,upload,simulado
+sim-7-0058,Imagem capturada,2026-11-04T19:00:18.112Z,produtor,upload,simulado
+sim-7-0058,Diagnóstico por IA,2026-11-04T19:00:24.343Z,gemini,upload,simulado
+sim-7-0058,Análise registrada,2026-11-04T19:00:24.429Z,postgres,upload,simulado
+sim-7-0058,Alerta gerado,2026-11-04T19:00:24.566Z,motor-de-regras,upload,simulado
+sim-7-0058,Alerta visualizado,2026-11-04T19:54:46.713Z,produtor,upload,simulado
+sim-7-0059,Imagem capturada,2026-11-17T14:20:20.519Z,produtor,upload,simulado
+sim-7-0059,Diagnóstico por IA,2026-11-17T14:20:24.677Z,gemini,upload,simulado
+sim-7-0059,Análise registrada,2026-11-17T14:20:24.742Z,postgres,upload,simulado
+sim-7-0059,Alerta gerado,2026-11-17T14:20:24.972Z,motor-de-regras,upload,simulado
+sim-7-0060,Imagem capturada,2026-11-13T17:03:59.630Z,camera-campo,camera,simulado
+sim-7-0060,Publicada no Kafka,2026-11-13T17:03:59.691Z,producer,camera,simulado
+sim-7-0060,Consumida do tópico,2026-11-13T17:03:59.749Z,consumer,camera,simulado
+sim-7-0060,Análise registrada,2026-11-13T17:03:59.785Z,postgres,camera,simulado
+sim-7-0060,Alerta gerado,2026-11-13T17:04:00.464Z,motor-de-regras,camera,simulado
+sim-7-0061,Imagem capturada,2026-11-09T13:51:01.528Z,camera-campo,camera,simulado
+sim-7-0061,Publicada no Kafka,2026-11-09T13:51:01.668Z,producer,camera,simulado
+sim-7-0061,Consumida do tópico,2026-11-09T13:51:01.701Z,consumer,camera,simulado
+sim-7-0061,Análise registrada,2026-11-09T13:51:01.718Z,postgres,camera,simulado
+sim-7-0062,Imagem capturada,2026-11-16T21:17:35.063Z,camera-campo,camera,simulado
+sim-7-0062,Publicada no Kafka,2026-11-16T21:17:35.119Z,producer,camera,simulado
+sim-7-0062,Consumida do tópico,2026-11-16T21:17:35.272Z,consumer,camera,simulado
+sim-7-0062,Análise registrada,2026-11-16T21:17:35.302Z,postgres,camera,simulado
+sim-7-0063,Imagem capturada,2026-11-19T20:55:26.429Z,camera-campo,camera,simulado
+sim-7-0063,Publicada no Kafka,2026-11-19T20:55:26.540Z,producer,camera,simulado
+sim-7-0063,Consumida do tópico,2026-11-19T20:55:26.622Z,consumer,camera,simulado
+sim-7-0063,Análise registrada,2026-11-19T20:55:26.629Z,postgres,camera,simulado
+sim-7-0063,Alerta gerado,2026-11-19T20:55:26.746Z,motor-de-regras,camera,simulado
+sim-7-0063,Alerta visualizado,2026-11-19T21:54:38.876Z,produtor,camera,simulado
+sim-7-0064,Imagem capturada,2026-11-22T18:11:53.225Z,camera-campo,camera,simulado
+sim-7-0064,Publicada no Kafka,2026-11-22T18:11:53.471Z,producer,camera,simulado
+sim-7-0064,Consumida do tópico,2026-11-22T18:11:53.527Z,consumer,camera,simulado
+sim-7-0064,Análise registrada,2026-11-22T18:11:53.553Z,postgres,camera,simulado
+sim-7-0065,Imagem capturada,2026-11-20T09:34:27.984Z,produtor,upload,simulado
+sim-7-0065,Diagnóstico por IA,2026-11-20T09:34:32.629Z,gemini,upload,simulado
+sim-7-0065,Análise registrada,2026-11-20T09:34:32.715Z,postgres,upload,simulado
+sim-7-0065,Relatório enviado,2026-11-22T22:19:20.243Z,e-mail,upload,simulado
+sim-7-0066,Imagem capturada,2026-11-06T19:50:32.339Z,camera-campo,camera,simulado
+sim-7-0066,Publicada no Kafka,2026-11-06T19:50:32.410Z,producer,camera,simulado
+sim-7-0066,Consumida do tópico,2026-11-06T19:50:32.571Z,consumer,camera,simulado
+sim-7-0066,Análise registrada,2026-11-06T19:50:32.591Z,postgres,camera,simulado
+sim-7-0067,Imagem capturada,2026-11-10T09:03:22.107Z,produtor,upload,simulado
+sim-7-0067,Falha no diagnóstico,2026-11-10T09:03:40.290Z,gemini,upload,simulado
+sim-7-0067,Imagem capturada,2026-11-10T09:04:39.175Z,produtor,upload,simulado
+sim-7-0067,Diagnóstico por IA,2026-11-10T09:04:43.817Z,gemini,upload,simulado
+sim-7-0067,Análise registrada,2026-11-10T09:04:43.856Z,postgres,upload,simulado
+sim-7-0068,Imagem capturada,2026-11-05T15:22:11.828Z,camera-campo,camera,simulado
+sim-7-0068,Publicada no Kafka,2026-11-05T15:22:11.869Z,producer,camera,simulado
+sim-7-0068,Consumida do tópico,2026-11-05T15:22:12.047Z,consumer,camera,simulado
+sim-7-0068,Análise registrada,2026-11-05T15:22:12.072Z,postgres,camera,simulado
+sim-7-0069,Imagem capturada,2026-11-17T14:31:03.666Z,produtor,upload,simulado
+sim-7-0069,Diagnóstico por IA,2026-11-17T14:31:08.395Z,gemini,upload,simulado
+sim-7-0069,Análise registrada,2026-11-17T14:31:08.435Z,postgres,upload,simulado
+sim-7-0070,Imagem capturada,2026-11-05T11:43:45.923Z,camera-campo,camera,simulado
+sim-7-0070,Publicada no Kafka,2026-11-05T11:43:46.133Z,producer,camera,simulado
+sim-7-0070,Consumida do tópico,2026-11-05T11:58:12.895Z,consumer,camera,simulado
+sim-7-0070,Análise registrada,2026-11-05T11:58:12.912Z,postgres,camera,simulado
+sim-7-0071,Imagem capturada,2026-11-04T09:32:50.217Z,camera-campo,camera,simulado
+sim-7-0071,Publicada no Kafka,2026-11-04T09:32:50.313Z,producer,camera,simulado
+sim-7-0071,Consumida do tópico,2026-11-04T09:32:50.438Z,consumer,camera,simulado
+sim-7-0071,Análise registrada,2026-11-04T09:32:50.463Z,postgres,camera,simulado
+sim-7-0071,Alerta gerado,2026-11-04T09:32:50.756Z,motor-de-regras,camera,simulado
+sim-7-0071,Alerta visualizado,2026-11-05T13:38:42.664Z,produtor,camera,simulado
+sim-7-0072,Imagem capturada,2026-11-12T17:36:00.506Z,produtor,upload,simulado
+sim-7-0072,Diagnóstico por IA,2026-11-12T17:36:04.692Z,gemini,upload,simulado
+sim-7-0072,Análise registrada,2026-11-12T17:36:04.791Z,postgres,upload,simulado
+sim-7-0072,Alerta gerado,2026-11-12T17:36:05.355Z,motor-de-regras,upload,simulado
+sim-7-0073,Imagem capturada,2026-11-10T09:00:52.162Z,camera-campo,camera,simulado
+sim-7-0073,Publicada no Kafka,2026-11-10T09:00:52.388Z,producer,camera,simulado
+sim-7-0073,Consumida do tópico,2026-11-10T09:00:52.448Z,consumer,camera,simulado
+sim-7-0073,Análise registrada,2026-11-10T09:00:52.474Z,postgres,camera,simulado
+sim-7-0073,Alerta gerado,2026-11-10T09:00:52.925Z,motor-de-regras,camera,simulado
+sim-7-0073,Alerta visualizado,2026-11-11T12:45:26.890Z,produtor,camera,simulado
+sim-7-0074,Imagem capturada,2026-11-18T13:49:00.700Z,camera-campo,camera,simulado
+sim-7-0074,Publicada no Kafka,2026-11-18T13:49:00.759Z,producer,camera,simulado
+sim-7-0074,Consumida do tópico,2026-11-18T13:49:00.886Z,consumer,camera,simulado
+sim-7-0074,Análise registrada,2026-11-18T13:49:00.903Z,postgres,camera,simulado
+sim-7-0075,Imagem capturada,2026-11-06T18:29:25.328Z,produtor,upload,simulado
+sim-7-0075,Falha no diagnóstico,2026-11-06T18:29:54.693Z,gemini,upload,simulado
+sim-7-0075,Imagem capturada,2026-11-06T18:30:28.932Z,produtor,upload,simulado
+sim-7-0075,Diagnóstico por IA,2026-11-06T18:30:32.514Z,gemini,upload,simulado
+sim-7-0075,Análise registrada,2026-11-06T18:30:32.568Z,postgres,upload,simulado
+sim-7-0076,Imagem capturada,2026-11-05T11:34:29.838Z,camera-campo,camera,simulado
+sim-7-0076,Publicada no Kafka,2026-11-05T11:34:30.027Z,producer,camera,simulado
+sim-7-0076,Consumida do tópico,2026-11-05T11:34:30.057Z,consumer,camera,simulado
+sim-7-0076,Análise registrada,2026-11-05T11:34:30.089Z,postgres,camera,simulado
+sim-7-0077,Imagem capturada,2026-11-14T10:49:43.065Z,camera-campo,camera,simulado
+sim-7-0077,Publicada no Kafka,2026-11-14T10:49:43.140Z,producer,camera,simulado
+sim-7-0077,Consumida do tópico,2026-11-14T10:49:43.218Z,consumer,camera,simulado
+sim-7-0077,Análise registrada,2026-11-14T10:49:43.257Z,postgres,camera,simulado
+sim-7-0077,Alerta gerado,2026-11-14T10:49:43.684Z,motor-de-regras,camera,simulado
+sim-7-0077,Alerta visualizado,2026-11-16T10:58:42.313Z,produtor,camera,simulado
+sim-7-0078,Imagem capturada,2026-11-05T10:40:37.478Z,produtor,upload,simulado
+sim-7-0078,Diagnóstico por IA,2026-11-05T10:40:45.964Z,gemini,upload,simulado
+sim-7-0078,Análise registrada,2026-11-05T10:40:45.995Z,postgres,upload,simulado
+sim-7-0079,Imagem capturada,2026-11-15T21:47:18.610Z,produtor,upload,simulado
+sim-7-0079,Falha no diagnóstico,2026-11-15T21:47:41.034Z,gemini,upload,simulado
+sim-7-0079,Imagem capturada,2026-11-15T21:49:07.629Z,produtor,upload,simulado
+sim-7-0079,Falha no diagnóstico,2026-11-15T21:49:19.264Z,gemini,upload,simulado
+sim-7-0080,Imagem capturada,2026-11-18T18:26:43.803Z,produtor,upload,simulado
+sim-7-0080,Diagnóstico por IA,2026-11-18T18:26:50.551Z,gemini,upload,simulado
+sim-7-0080,Análise registrada,2026-11-18T18:26:50.632Z,postgres,upload,simulado
+sim-7-0080,Alerta gerado,2026-11-18T18:26:51.150Z,motor-de-regras,upload,simulado
+sim-7-0080,Alerta visualizado,2026-11-18T19:43:02.824Z,produtor,upload,simulado
+sim-7-0081,Imagem capturada,2026-11-22T12:38:17.096Z,produtor,upload,simulado
+sim-7-0081,Diagnóstico por IA,2026-11-22T12:38:21.001Z,gemini,upload,simulado
+sim-7-0081,Análise registrada,2026-11-22T12:38:21.082Z,postgres,upload,simulado
+sim-7-0082,Imagem capturada,2026-11-10T15:42:20.648Z,camera-campo,camera,simulado
+sim-7-0082,Publicada no Kafka,2026-11-10T15:42:20.722Z,producer,camera,simulado
+sim-7-0082,Consumida do tópico,2026-11-10T15:42:20.750Z,consumer,camera,simulado
+sim-7-0082,Análise registrada,2026-11-10T15:42:20.767Z,postgres,camera,simulado
+sim-7-0083,Imagem capturada,2026-11-23T19:02:59.846Z,camera-campo,camera,simulado
+sim-7-0083,Publicada no Kafka,2026-11-23T19:03:00.031Z,producer,camera,simulado
+sim-7-0083,Consumida do tópico,2026-11-23T19:03:00.174Z,consumer,camera,simulado
+sim-7-0083,Análise registrada,2026-11-23T19:03:00.210Z,postgres,camera,simulado
+sim-7-0083,Alerta gerado,2026-11-23T19:03:00.644Z,motor-de-regras,camera,simulado
+sim-7-0083,Alerta visualizado,2026-11-23T21:06:33.415Z,produtor,camera,simulado
+sim-7-0084,Imagem capturada,2026-11-23T15:05:48.441Z,produtor,upload,simulado
+sim-7-0084,Diagnóstico por IA,2026-11-23T15:05:51.650Z,gemini,upload,simulado
+sim-7-0084,Análise registrada,2026-11-23T15:05:51.738Z,postgres,upload,simulado
+sim-7-0085,Imagem capturada,2026-11-09T16:19:22.439Z,camera-campo,camera,simulado
+sim-7-0085,Publicada no Kafka,2026-11-09T16:19:22.594Z,producer,camera,simulado
+sim-7-0085,Consumida do tópico,2026-11-09T16:19:22.631Z,consumer,camera,simulado
+sim-7-0085,Análise registrada,2026-11-09T16:19:22.642Z,postgres,camera,simulado
+sim-7-0086,Imagem capturada,2026-11-08T14:27:09.893Z,produtor,upload,simulado
+sim-7-0086,Diagnóstico por IA,2026-11-08T14:27:12.537Z,gemini,upload,simulado
+sim-7-0086,Análise registrada,2026-11-08T14:27:12.651Z,postgres,upload,simulado
+sim-7-0087,Imagem capturada,2026-11-13T11:22:35.454Z,camera-campo,camera,simulado
+sim-7-0087,Publicada no Kafka,2026-11-13T11:22:35.662Z,producer,camera,simulado
+sim-7-0087,Consumida do tópico,2026-11-13T11:22:35.835Z,consumer,camera,simulado
+sim-7-0087,Análise registrada,2026-11-13T11:22:35.860Z,postgres,camera,simulado
+sim-7-0087,Relatório enviado,2026-11-16T03:00:17.274Z,e-mail,camera,simulado
+sim-7-0088,Imagem capturada,2026-11-22T21:58:46.848Z,produtor,upload,simulado
+sim-7-0088,Diagnóstico por IA,2026-11-22T21:58:49.412Z,gemini,upload,simulado
+sim-7-0088,Análise registrada,2026-11-22T21:58:49.537Z,postgres,upload,simulado
+sim-7-0088,Alerta gerado,2026-11-22T21:58:49.785Z,motor-de-regras,upload,simulado
+sim-7-0088,Alerta visualizado,2026-11-23T12:57:21.368Z,produtor,upload,simulado
+sim-7-0089,Imagem capturada,2026-11-20T13:02:50.962Z,camera-campo,camera,simulado
+sim-7-0089,Publicada no Kafka,2026-11-20T13:02:51.171Z,producer,camera,simulado
+sim-7-0089,Consumida do tópico,2026-11-20T13:02:51.307Z,consumer,camera,simulado
+sim-7-0089,Análise registrada,2026-11-20T13:02:51.320Z,postgres,camera,simulado
+sim-7-0090,Imagem capturada,2026-11-21T12:56:01.693Z,produtor,upload,simulado
+sim-7-0090,Diagnóstico por IA,2026-11-21T12:56:07.773Z,gemini,upload,simulado
+sim-7-0090,Análise registrada,2026-11-21T12:56:07.913Z,postgres,upload,simulado
+sim-7-0090,Alerta gerado,2026-11-21T12:56:08.247Z,motor-de-regras,upload,simulado
+sim-7-0090,Alerta visualizado,2026-11-23T11:07:20.564Z,produtor,upload,simulado
+sim-7-0091,Imagem capturada,2026-11-17T15:49:45.299Z,camera-campo,camera,simulado
+sim-7-0091,Publicada no Kafka,2026-11-17T15:49:45.385Z,producer,camera,simulado
+sim-7-0091,Consumida do tópico,2026-11-17T15:49:45.533Z,consumer,camera,simulado
+sim-7-0091,Análise registrada,2026-11-17T15:49:45.554Z,postgres,camera,simulado
+sim-7-0091,Relatório enviado,2026-11-19T15:56:57.196Z,e-mail,camera,simulado
+sim-7-0092,Imagem capturada,2026-11-17T10:33:28.583Z,camera-campo,camera,simulado
+sim-7-0092,Publicada no Kafka,2026-11-17T10:33:28.826Z,producer,camera,simulado
+sim-7-0092,Consumida do tópico,2026-11-17T10:33:28.938Z,consumer,camera,simulado
+sim-7-0092,Análise registrada,2026-11-17T10:33:28.976Z,postgres,camera,simulado
+sim-7-0093,Imagem capturada,2026-11-19T10:21:04.328Z,produtor,upload,simulado
+sim-7-0093,Falha no diagnóstico,2026-11-19T10:21:32.587Z,gemini,upload,simulado
+sim-7-0093,Imagem capturada,2026-11-19T10:26:45.488Z,produtor,upload,simulado
+sim-7-0093,Diagnóstico por IA,2026-11-19T10:26:50.362Z,gemini,upload,simulado
+sim-7-0093,Diagnóstico inconclusivo,2026-11-19T10:26:50.363Z,gemini,upload,simulado
+sim-7-0093,Imagem capturada,2026-11-19T10:38:58.894Z,produtor,upload,simulado
+sim-7-0093,Diagnóstico por IA,2026-11-19T10:39:01.980Z,gemini,upload,simulado
+sim-7-0093,Análise registrada,2026-11-19T10:39:02.087Z,postgres,upload,simulado
+sim-7-0094,Imagem capturada,2026-11-18T15:58:55.906Z,produtor,upload,simulado
+sim-7-0094,Diagnóstico por IA,2026-11-18T15:59:03.593Z,gemini,upload,simulado
+sim-7-0094,Análise registrada,2026-11-18T15:59:03.637Z,postgres,upload,simulado
+sim-7-0095,Imagem capturada,2026-11-08T13:53:02.493Z,produtor,upload,simulado
+sim-7-0095,Diagnóstico por IA,2026-11-08T13:53:05.525Z,gemini,upload,simulado
+sim-7-0095,Análise registrada,2026-11-08T13:53:05.631Z,postgres,upload,simulado
+sim-7-0096,Imagem capturada,2026-11-12T17:41:18.773Z,produtor,upload,simulado
+sim-7-0096,Diagnóstico por IA,2026-11-12T17:41:20.841Z,gemini,upload,simulado
+sim-7-0096,Análise registrada,2026-11-12T17:41:20.877Z,postgres,upload,simulado
+sim-7-0097,Imagem capturada,2026-11-17T11:21:44.180Z,camera-campo,camera,simulado
+sim-7-0097,Publicada no Kafka,2026-11-17T11:21:44.232Z,producer,camera,simulado
+sim-7-0097,Consumida do tópico,2026-11-17T11:21:44.313Z,consumer,camera,simulado
+sim-7-0097,Análise registrada,2026-11-17T11:21:44.325Z,postgres,camera,simulado
+sim-7-0097,Alerta gerado,2026-11-17T11:21:44.643Z,motor-de-regras,camera,simulado
+sim-7-0097,Alerta visualizado,2026-11-17T12:24:55.884Z,produtor,camera,simulado
+sim-7-0097,Relatório enviado,2026-11-18T21:09:05.485Z,e-mail,camera,simulado
+sim-7-0098,Imagem capturada,2026-11-21T13:21:03.694Z,produtor,upload,simulado
+sim-7-0098,Diagnóstico por IA,2026-11-21T13:21:08.088Z,gemini,upload,simulado
+sim-7-0098,Análise registrada,2026-11-21T13:21:08.195Z,postgres,upload,simulado
+sim-7-0098,Relatório enviado,2026-11-22T19:49:15.382Z,e-mail,upload,simulado
+sim-7-0099,Imagem capturada,2026-11-08T11:42:17.387Z,camera-campo,camera,simulado
+sim-7-0099,Publicada no Kafka,2026-11-08T11:42:17.591Z,producer,camera,simulado
+sim-7-0099,Consumida do tópico,2026-11-08T11:42:17.732Z,consumer,camera,simulado
+sim-7-0099,Análise registrada,2026-11-08T11:42:17.744Z,postgres,camera,simulado
+sim-7-0100,Imagem capturada,2026-11-18T16:15:28.462Z,camera-campo,camera,simulado
+sim-7-0100,Publicada no Kafka,2026-11-18T16:15:28.548Z,producer,camera,simulado
+sim-7-0100,Consumida do tópico,2026-11-18T16:15:28.635Z,consumer,camera,simulado
+sim-7-0100,Análise registrada,2026-11-18T16:15:28.647Z,postgres,camera,simulado
+sim-7-0100,Alerta gerado,2026-11-18T16:15:29.357Z,motor-de-regras,camera,simulado
+sim-7-0100,Alerta visualizado,2026-11-18T16:31:05.372Z,produtor,camera,simulado
+sim-7-0100,Relatório enviado,2026-11-22T14:13:26.871Z,e-mail,camera,simulado
+sim-7-0101,Imagem capturada,2026-11-09T17:10:13.862Z,produtor,upload,simulado
+sim-7-0101,Diagnóstico por IA,2026-11-09T17:10:17.855Z,gemini,upload,simulado
+sim-7-0101,Análise registrada,2026-11-09T17:10:17.943Z,postgres,upload,simulado
+sim-7-0102,Imagem capturada,2026-11-07T16:15:44.929Z,produtor,upload,simulado
+sim-7-0102,Diagnóstico por IA,2026-11-07T16:15:48.362Z,gemini,upload,simulado
+sim-7-0102,Análise registrada,2026-11-07T16:15:48.492Z,postgres,upload,simulado
+sim-7-0103,Imagem capturada,2026-11-18T15:47:44.065Z,produtor,upload,simulado
+sim-7-0103,Diagnóstico por IA,2026-11-18T15:47:48.184Z,gemini,upload,simulado
+sim-7-0103,Análise registrada,2026-11-18T15:47:48.330Z,postgres,upload,simulado
+sim-7-0103,Alerta gerado,2026-11-18T15:47:48.984Z,motor-de-regras,upload,simulado
+sim-7-0103,Alerta visualizado,2026-11-18T16:51:17.879Z,produtor,upload,simulado
+sim-7-0104,Imagem capturada,2026-11-13T18:43:11.952Z,camera-campo,camera,simulado
+sim-7-0104,Publicada no Kafka,2026-11-13T18:43:12.031Z,producer,camera,simulado
+sim-7-0104,Consumida do tópico,2026-11-13T18:43:12.085Z,consumer,camera,simulado
+sim-7-0104,Análise registrada,2026-11-13T18:43:12.111Z,postgres,camera,simulado
+sim-7-0105,Imagem capturada,2026-11-17T15:16:56.440Z,produtor,upload,simulado
+sim-7-0105,Diagnóstico por IA,2026-11-17T15:17:01.127Z,gemini,upload,simulado
+sim-7-0105,Análise registrada,2026-11-17T15:17:01.159Z,postgres,upload,simulado
+sim-7-0105,Relatório enviado,2026-11-20T07:27:56.551Z,e-mail,upload,simulado
+sim-7-0106,Imagem capturada,2026-11-05T15:41:44.356Z,camera-campo,camera,simulado
+sim-7-0106,Publicada no Kafka,2026-11-05T15:41:44.508Z,producer,camera,simulado
+sim-7-0106,Consumida do tópico,2026-11-05T15:41:44.570Z,consumer,camera,simulado
+sim-7-0106,Análise registrada,2026-11-05T15:41:44.582Z,postgres,camera,simulado
+sim-7-0107,Imagem capturada,2026-11-10T09:20:15.911Z,camera-campo,camera,simulado
+sim-7-0107,Publicada no Kafka,2026-11-10T09:20:16.039Z,producer,camera,simulado
+sim-7-0107,Consumida do tópico,2026-11-10T09:20:16.199Z,consumer,camera,simulado
+sim-7-0107,Análise registrada,2026-11-10T09:20:16.237Z,postgres,camera,simulado
+sim-7-0108,Imagem capturada,2026-11-11T19:17:04.386Z,camera-campo,camera,simulado
+sim-7-0108,Publicada no Kafka,2026-11-11T19:17:04.512Z,producer,camera,simulado
+sim-7-0108,Consumida do tópico,2026-11-11T19:17:04.536Z,consumer,camera,simulado
+sim-7-0108,Análise registrada,2026-11-11T19:17:04.566Z,postgres,camera,simulado
+sim-7-0109,Imagem capturada,2026-11-07T09:11:05.504Z,camera-campo,camera,simulado
+sim-7-0109,Publicada no Kafka,2026-11-07T09:11:05.644Z,producer,camera,simulado
+sim-7-0109,Consumida do tópico,2026-11-07T09:11:05.795Z,consumer,camera,simulado
+sim-7-0109,Análise registrada,2026-11-07T09:11:05.820Z,postgres,camera,simulado
+sim-7-0109,Relatório enviado,2026-11-08T13:39:43.595Z,e-mail,camera,simulado
+sim-7-0110,Imagem capturada,2026-11-06T10:37:02.386Z,camera-campo,camera,simulado
+sim-7-0110,Publicada no Kafka,2026-11-06T10:37:02.581Z,producer,camera,simulado
+sim-7-0110,Consumida do tópico,2026-11-06T10:37:02.619Z,consumer,camera,simulado
+sim-7-0110,Análise registrada,2026-11-06T10:37:02.629Z,postgres,camera,simulado
+sim-7-0110,Alerta gerado,2026-11-06T10:37:03.041Z,motor-de-regras,camera,simulado
+sim-7-0110,Alerta visualizado,2026-11-06T10:53:38.045Z,produtor,camera,simulado
+sim-7-0111,Imagem capturada,2026-11-06T14:05:12.282Z,produtor,upload,simulado
+sim-7-0111,Diagnóstico por IA,2026-11-06T14:05:17.088Z,gemini,upload,simulado
+sim-7-0111,Análise registrada,2026-11-06T14:05:17.204Z,postgres,upload,simulado
+sim-7-0112,Imagem capturada,2026-11-03T12:21:14.165Z,camera-campo,camera,simulado
+sim-7-0112,Publicada no Kafka,2026-11-03T12:21:14.309Z,producer,camera,simulado
+sim-7-0112,Consumida do tópico,2026-11-03T12:21:14.443Z,consumer,camera,simulado
+sim-7-0112,Análise registrada,2026-11-03T12:21:14.472Z,postgres,camera,simulado
+sim-7-0112,Alerta gerado,2026-11-03T12:21:14.688Z,motor-de-regras,camera,simulado
+sim-7-0112,Alerta visualizado,2026-11-03T13:04:58.115Z,produtor,camera,simulado
+sim-7-0113,Imagem capturada,2026-11-14T21:08:38.852Z,camera-campo,camera,simulado
+sim-7-0113,Publicada no Kafka,2026-11-14T21:08:38.927Z,producer,camera,simulado
+sim-7-0113,Consumida do tópico,2026-11-14T21:08:38.993Z,consumer,camera,simulado
+sim-7-0113,Análise registrada,2026-11-14T21:08:39.023Z,postgres,camera,simulado
+sim-7-0113,Alerta gerado,2026-11-14T21:08:39.565Z,motor-de-regras,camera,simulado
+sim-7-0113,Alerta visualizado,2026-11-16T11:23:15.525Z,produtor,camera,simulado
+sim-7-0114,Imagem capturada,2026-11-14T11:23:16.414Z,camera-campo,camera,simulado
+sim-7-0114,Publicada no Kafka,2026-11-14T11:23:16.653Z,producer,camera,simulado
+sim-7-0114,Consumida do tópico,2026-11-14T11:23:16.699Z,consumer,camera,simulado
+sim-7-0114,Análise registrada,2026-11-14T11:23:16.729Z,postgres,camera,simulado
+sim-7-0115,Imagem capturada,2026-11-08T16:06:58.722Z,camera-campo,camera,simulado
+sim-7-0115,Publicada no Kafka,2026-11-08T16:06:58.952Z,producer,camera,simulado
+sim-7-0115,Consumida do tópico,2026-11-08T16:06:58.974Z,consumer,camera,simulado
+sim-7-0115,Análise registrada,2026-11-08T16:06:58.994Z,postgres,camera,simulado
+sim-7-0116,Imagem capturada,2026-11-18T10:34:43.537Z,camera-campo,camera,simulado
+sim-7-0116,Publicada no Kafka,2026-11-18T10:34:43.774Z,producer,camera,simulado
+sim-7-0116,Consumida do tópico,2026-11-18T10:39:37.289Z,consumer,camera,simulado
+sim-7-0116,Análise registrada,2026-11-18T10:39:37.312Z,postgres,camera,simulado
+sim-7-0117,Imagem capturada,2026-11-19T15:12:26.999Z,camera-campo,camera,simulado
+sim-7-0117,Publicada no Kafka,2026-11-19T15:12:27.220Z,producer,camera,simulado
+sim-7-0117,Consumida do tópico,2026-11-19T15:12:27.294Z,consumer,camera,simulado
+sim-7-0117,Análise registrada,2026-11-19T15:12:27.308Z,postgres,camera,simulado
+sim-7-0117,Relatório enviado,2026-11-22T21:03:28.120Z,e-mail,camera,simulado
+sim-7-0118,Imagem capturada,2026-11-22T20:46:37.894Z,camera-campo,camera,simulado
+sim-7-0118,Publicada no Kafka,2026-11-22T20:46:38.029Z,producer,camera,simulado
+sim-7-0118,Consumida do tópico,2026-11-22T20:46:38.147Z,consumer,camera,simulado
+sim-7-0118,Análise registrada,2026-11-22T20:46:38.163Z,postgres,camera,simulado
+sim-7-0118,Alerta gerado,2026-11-22T20:46:38.620Z,motor-de-regras,camera,simulado
+sim-7-0119,Imagem capturada,2026-11-04T16:17:51.774Z,produtor,upload,simulado
+sim-7-0119,Diagnóstico por IA,2026-11-04T16:17:54.196Z,gemini,upload,simulado
+sim-7-0119,Análise registrada,2026-11-04T16:17:54.275Z,postgres,upload,simulado
+sim-7-0119,Alerta gerado,2026-11-04T16:17:54.843Z,motor-de-regras,upload,simulado
+sim-7-0120,Imagem capturada,2026-11-18T15:03:21.227Z,camera-campo,camera,simulado
+sim-7-0120,Publicada no Kafka,2026-11-18T15:03:21.467Z,producer,camera,simulado
+sim-7-0120,Consumida do tópico,2026-11-18T15:03:21.628Z,consumer,camera,simulado
+sim-7-0120,Análise registrada,2026-11-18T15:03:21.653Z,postgres,camera,simulado
+sim-7-0120,Alerta gerado,2026-11-18T15:03:22.251Z,motor-de-regras,camera,simulado
+sim-7-0121,Imagem capturada,2026-11-17T19:05:55.555Z,camera-campo,camera,simulado
+sim-7-0121,Publicada no Kafka,2026-11-17T19:05:55.803Z,producer,camera,simulado
+sim-7-0121,Consumida do tópico,2026-11-17T19:05:55.825Z,consumer,camera,simulado
+sim-7-0121,Análise registrada,2026-11-17T19:05:55.831Z,postgres,camera,simulado
+sim-7-0121,Relatório enviado,2026-11-20T22:22:54.895Z,e-mail,camera,simulado
+sim-7-0122,Imagem capturada,2026-11-15T10:53:32.242Z,camera-campo,camera,simulado
+sim-7-0122,Publicada no Kafka,2026-11-15T10:53:32.455Z,producer,camera,simulado
+sim-7-0122,Consumida do tópico,2026-11-15T10:53:32.492Z,consumer,camera,simulado
+sim-7-0122,Análise registrada,2026-11-15T10:53:32.524Z,postgres,camera,simulado
+sim-7-0122,Alerta gerado,2026-11-15T10:53:32.946Z,motor-de-regras,camera,simulado
+sim-7-0122,Alerta visualizado,2026-11-16T11:09:22.956Z,produtor,camera,simulado
+sim-7-0122,Relatório enviado,2026-11-19T17:39:31.420Z,e-mail,camera,simulado
+sim-7-0123,Imagem capturada,2026-11-03T21:01:39.704Z,produtor,upload,simulado
+sim-7-0123,Diagnóstico por IA,2026-11-03T21:01:46.727Z,gemini,upload,simulado
+sim-7-0123,Análise registrada,2026-11-03T21:01:46.791Z,postgres,upload,simulado
+sim-7-0123,Relatório enviado,2026-11-06T10:49:18.072Z,e-mail,upload,simulado
+sim-7-0124,Imagem capturada,2026-11-14T16:47:32.384Z,camera-campo,camera,simulado
+sim-7-0124,Publicada no Kafka,2026-11-14T16:47:32.533Z,producer,camera,simulado
+sim-7-0124,Consumida do tópico,2026-11-14T16:47:32.694Z,consumer,camera,simulado
+sim-7-0124,Análise registrada,2026-11-14T16:47:32.708Z,postgres,camera,simulado
+sim-7-0125,Imagem capturada,2026-11-06T16:52:18.791Z,produtor,upload,simulado
+sim-7-0125,Falha no diagnóstico,2026-11-06T16:52:46.184Z,gemini,upload,simulado
+sim-7-0125,Imagem capturada,2026-11-06T16:53:05.429Z,produtor,upload,simulado
+sim-7-0125,Diagnóstico por IA,2026-11-06T16:53:11.271Z,gemini,upload,simulado
+sim-7-0125,Análise registrada,2026-11-06T16:53:11.317Z,postgres,upload,simulado
+sim-7-0126,Imagem capturada,2026-11-21T14:20:27.030Z,produtor,upload,simulado
+sim-7-0126,Diagnóstico por IA,2026-11-21T14:20:32.661Z,gemini,upload,simulado
+sim-7-0126,Análise registrada,2026-11-21T14:20:32.741Z,postgres,upload,simulado
+sim-7-0127,Imagem capturada,2026-11-15T13:37:32.025Z,camera-campo,camera,simulado
+sim-7-0127,Publicada no Kafka,2026-11-15T13:37:32.252Z,producer,camera,simulado
+sim-7-0127,Consumida do tópico,2026-11-15T13:37:32.309Z,consumer,camera,simulado
+sim-7-0127,Análise registrada,2026-11-15T13:37:32.316Z,postgres,camera,simulado
+sim-7-0128,Imagem capturada,2026-11-04T16:36:42.084Z,camera-campo,camera,simulado
+sim-7-0128,Publicada no Kafka,2026-11-04T16:36:42.167Z,producer,camera,simulado
+sim-7-0128,Consumida do tópico,2026-11-04T16:36:42.306Z,consumer,camera,simulado
+sim-7-0128,Análise registrada,2026-11-04T16:36:42.311Z,postgres,camera,simulado
+sim-7-0128,Alerta gerado,2026-11-04T16:36:43.077Z,motor-de-regras,camera,simulado
+sim-7-0128,Alerta visualizado,2026-11-04T18:41:23.281Z,produtor,camera,simulado
+sim-7-0129,Imagem capturada,2026-11-16T10:10:27.599Z,camera-campo,camera,simulado
+sim-7-0129,Publicada no Kafka,2026-11-16T10:10:27.673Z,producer,camera,simulado
+sim-7-0129,Consumida do tópico,2026-11-16T10:10:27.789Z,consumer,camera,simulado
+sim-7-0129,Análise registrada,2026-11-16T10:10:27.813Z,postgres,camera,simulado
+sim-7-0130,Imagem capturada,2026-11-04T19:48:18.688Z,camera-campo,camera,simulado
+sim-7-0130,Publicada no Kafka,2026-11-04T19:48:18.753Z,producer,camera,simulado
+sim-7-0130,Consumida do tópico,2026-11-04T19:48:18.852Z,consumer,camera,simulado
+sim-7-0130,Análise registrada,2026-11-04T19:48:18.864Z,postgres,camera,simulado
+sim-7-0131,Imagem capturada,2026-11-22T17:23:32.839Z,camera-campo,camera,simulado
+sim-7-0131,Publicada no Kafka,2026-11-22T17:23:33.083Z,producer,camera,simulado
+sim-7-0131,Consumida do tópico,2026-11-22T17:23:33.224Z,consumer,camera,simulado
+sim-7-0131,Análise registrada,2026-11-22T17:23:33.235Z,postgres,camera,simulado
+sim-7-0132,Imagem capturada,2026-11-15T14:44:52.837Z,produtor,upload,simulado
+sim-7-0132,Falha no diagnóstico,2026-11-15T14:45:14.758Z,gemini,upload,simulado
+sim-7-0133,Imagem capturada,2026-11-18T21:52:37.671Z,camera-campo,camera,simulado
+sim-7-0133,Publicada no Kafka,2026-11-18T21:52:37.824Z,producer,camera,simulado
+sim-7-0133,Consumida do tópico,2026-11-18T21:52:37.945Z,consumer,camera,simulado
+sim-7-0133,Análise registrada,2026-11-18T21:52:37.971Z,postgres,camera,simulado
+sim-7-0134,Imagem capturada,2026-11-11T14:29:43.898Z,camera-campo,camera,simulado
+sim-7-0134,Publicada no Kafka,2026-11-11T14:29:44.048Z,producer,camera,simulado
+sim-7-0134,Consumida do tópico,2026-11-11T14:29:44.063Z,consumer,camera,simulado
+sim-7-0134,Análise registrada,2026-11-11T14:29:44.087Z,postgres,camera,simulado
+sim-7-0134,Relatório enviado,2026-11-13T17:09:01.150Z,e-mail,camera,simulado
+sim-7-0135,Imagem capturada,2026-11-16T18:23:12.381Z,camera-campo,camera,simulado
+sim-7-0135,Publicada no Kafka,2026-11-16T18:23:12.564Z,producer,camera,simulado
+sim-7-0135,Consumida do tópico,2026-11-16T18:23:12.620Z,consumer,camera,simulado
+sim-7-0135,Análise registrada,2026-11-16T18:23:12.642Z,postgres,camera,simulado
+sim-7-0136,Imagem capturada,2026-11-08T11:07:36.150Z,camera-campo,camera,simulado
+sim-7-0136,Publicada no Kafka,2026-11-08T11:07:36.325Z,producer,camera,simulado
+sim-7-0136,Consumida do tópico,2026-11-08T11:07:36.479Z,consumer,camera,simulado
+sim-7-0136,Análise registrada,2026-11-08T11:07:36.491Z,postgres,camera,simulado
+sim-7-0137,Imagem capturada,2026-11-06T13:00:15.690Z,produtor,upload,simulado
+sim-7-0137,Diagnóstico por IA,2026-11-06T13:00:24.874Z,gemini,upload,simulado
+sim-7-0137,Diagnóstico inconclusivo,2026-11-06T13:00:24.876Z,gemini,upload,simulado
+sim-7-0137,Imagem capturada,2026-11-06T13:10:13.922Z,produtor,upload,simulado
+sim-7-0137,Diagnóstico por IA,2026-11-06T13:10:16.901Z,gemini,upload,simulado
+sim-7-0137,Análise registrada,2026-11-06T13:10:17.020Z,postgres,upload,simulado
+sim-7-0138,Imagem capturada,2026-11-15T21:29:56.037Z,camera-campo,camera,simulado
+sim-7-0138,Publicada no Kafka,2026-11-15T21:29:56.127Z,producer,camera,simulado
+sim-7-0138,Consumida do tópico,2026-11-15T21:29:56.229Z,consumer,camera,simulado
+sim-7-0138,Análise registrada,2026-11-15T21:29:56.244Z,postgres,camera,simulado
+sim-7-0139,Imagem capturada,2026-11-13T13:35:49.736Z,produtor,upload,simulado
+sim-7-0139,Diagnóstico por IA,2026-11-13T13:35:51.968Z,gemini,upload,simulado
+sim-7-0139,Análise registrada,2026-11-13T13:35:52.080Z,postgres,upload,simulado
+sim-7-0139,Alerta gerado,2026-11-13T13:35:52.631Z,motor-de-regras,upload,simulado
+sim-7-0139,Alerta visualizado,2026-11-13T13:54:44.658Z,produtor,upload,simulado
+sim-7-0140,Imagem capturada,2026-11-11T18:51:03.465Z,camera-campo,camera,simulado
+sim-7-0140,Publicada no Kafka,2026-11-11T18:51:03.674Z,producer,camera,simulado
+sim-7-0140,Consumida do tópico,2026-11-11T18:51:03.834Z,consumer,camera,simulado
+sim-7-0140,Análise registrada,2026-11-11T18:51:03.852Z,postgres,camera,simulado
+sim-7-0140,Relatório enviado,2026-11-13T00:02:53.709Z,e-mail,camera,simulado
+sim-7-0141,Imagem capturada,2026-11-12T11:19:06.371Z,produtor,upload,simulado
+sim-7-0141,Diagnóstico por IA,2026-11-12T11:19:09.678Z,gemini,upload,simulado
+sim-7-0141,Análise registrada,2026-11-12T11:19:09.772Z,postgres,upload,simulado
+sim-7-0142,Imagem capturada,2026-11-13T15:27:39.395Z,camera-campo,camera,simulado
+sim-7-0142,Publicada no Kafka,2026-11-13T15:27:39.586Z,producer,camera,simulado
+sim-7-0142,Consumida do tópico,2026-11-13T15:27:39.731Z,consumer,camera,simulado
+sim-7-0142,Análise registrada,2026-11-13T15:27:39.761Z,postgres,camera,simulado
+sim-7-0143,Imagem capturada,2026-11-23T09:06:34.425Z,camera-campo,camera,simulado
+sim-7-0143,Publicada no Kafka,2026-11-23T09:06:34.497Z,producer,camera,simulado
+sim-7-0143,Consumida do tópico,2026-11-23T09:06:34.579Z,consumer,camera,simulado
+sim-7-0143,Análise registrada,2026-11-23T09:06:34.586Z,postgres,camera,simulado
+sim-7-0143,Alerta gerado,2026-11-23T09:06:34.942Z,motor-de-regras,camera,simulado
+sim-7-0143,Alerta visualizado,2026-11-24T11:15:18.504Z,produtor,camera,simulado
+sim-7-0144,Imagem capturada,2026-11-19T20:46:32.517Z,camera-campo,camera,simulado
+sim-7-0144,Publicada no Kafka,2026-11-19T20:46:32.709Z,producer,camera,simulado
+sim-7-0144,Consumida do tópico,2026-11-19T20:46:32.866Z,consumer,camera,simulado
+sim-7-0144,Análise registrada,2026-11-19T20:46:32.881Z,postgres,camera,simulado
+sim-7-0144,Alerta gerado,2026-11-19T20:46:33.238Z,motor-de-regras,camera,simulado
+sim-7-0144,Alerta visualizado,2026-11-19T21:04:50.917Z,produtor,camera,simulado
+sim-7-0145,Imagem capturada,2026-11-16T13:30:52.294Z,camera-campo,camera,simulado
+sim-7-0145,Publicada no Kafka,2026-11-16T13:30:52.371Z,producer,camera,simulado
+sim-7-0145,Consumida do tópico,2026-11-16T13:30:52.544Z,consumer,camera,simulado
+sim-7-0145,Análise registrada,2026-11-16T13:30:52.572Z,postgres,camera,simulado
+sim-7-0145,Alerta gerado,2026-11-16T13:30:53.149Z,motor-de-regras,camera,simulado
+sim-7-0145,Relatório enviado,2026-11-18T09:02:45.402Z,e-mail,camera,simulado
+sim-7-0146,Imagem capturada,2026-11-14T20:19:32.382Z,produtor,upload,simulado
+sim-7-0146,Diagnóstico por IA,2026-11-14T20:19:34.675Z,gemini,upload,simulado
+sim-7-0146,Diagnóstico inconclusivo,2026-11-14T20:19:34.678Z,gemini,upload,simulado
+sim-7-0146,Imagem capturada,2026-11-14T20:24:56.270Z,produtor,upload,simulado
+sim-7-0146,Diagnóstico por IA,2026-11-14T20:25:03.608Z,gemini,upload,simulado
+sim-7-0146,Análise registrada,2026-11-14T20:25:03.648Z,postgres,upload,simulado
+sim-7-0146,Relatório enviado,2026-11-16T10:42:44.330Z,e-mail,upload,simulado
+sim-7-0147,Imagem capturada,2026-11-21T09:36:09.820Z,camera-campo,camera,simulado
+sim-7-0147,Publicada no Kafka,2026-11-21T09:36:09.936Z,producer,camera,simulado
+sim-7-0147,Consumida do tópico,2026-11-21T09:36:10.074Z,consumer,camera,simulado
+sim-7-0147,Análise registrada,2026-11-21T09:36:10.110Z,postgres,camera,simulado
+sim-7-0147,Alerta gerado,2026-11-21T09:36:10.450Z,motor-de-regras,camera,simulado
+sim-7-0147,Alerta visualizado,2026-11-23T11:48:42.678Z,produtor,camera,simulado
+sim-7-0148,Imagem capturada,2026-11-17T15:47:12.345Z,camera-campo,camera,simulado
+sim-7-0148,Publicada no Kafka,2026-11-17T15:47:12.436Z,producer,camera,simulado
+sim-7-0148,Consumida do tópico,2026-11-17T15:47:12.566Z,consumer,camera,simulado
+sim-7-0148,Análise registrada,2026-11-17T15:47:12.575Z,postgres,camera,simulado
+sim-7-0149,Imagem capturada,2026-11-17T09:28:18.266Z,produtor,upload,simulado
+sim-7-0149,Diagnóstico por IA,2026-11-17T09:28:22.256Z,gemini,upload,simulado
+sim-7-0149,Análise registrada,2026-11-17T09:28:22.292Z,postgres,upload,simulado
+sim-7-0150,Imagem capturada,2026-11-11T16:18:40.647Z,camera-campo,camera,simulado
+sim-7-0150,Publicada no Kafka,2026-11-11T16:18:40.748Z,producer,camera,simulado
+sim-7-0150,Consumida do tópico,2026-11-11T16:18:40.802Z,consumer,camera,simulado
+sim-7-0150,Análise registrada,2026-11-11T16:18:40.809Z,postgres,camera,simulado
+sim-7-0150,Alerta gerado,2026-11-11T16:18:40.982Z,motor-de-regras,camera,simulado
+sim-7-0150,Alerta visualizado,2026-11-11T16:56:41.129Z,produtor,camera,simulado
+sim-7-0150,Relatório enviado,2026-11-12T21:57:14.112Z,e-mail,camera,simulado
+sim-7-0151,Imagem capturada,2026-11-15T12:16:30.345Z,camera-campo,camera,simulado
+sim-7-0151,Publicada no Kafka,2026-11-15T12:16:30.539Z,producer,camera,simulado
+sim-7-0151,Consumida do tópico,2026-11-15T12:16:30.570Z,consumer,camera,simulado
+sim-7-0151,Análise registrada,2026-11-15T12:16:30.577Z,postgres,camera,simulado
+sim-7-0151,Alerta gerado,2026-11-15T12:16:31.016Z,motor-de-regras,camera,simulado
+sim-7-0151,Alerta visualizado,2026-11-16T11:09:56.469Z,produtor,camera,simulado
+sim-7-0152,Imagem capturada,2026-11-20T20:50:59.190Z,camera-campo,camera,simulado
+sim-7-0152,Publicada no Kafka,2026-11-20T20:50:59.371Z,producer,camera,simulado
+sim-7-0152,Consumida do tópico,2026-11-20T20:50:59.437Z,consumer,camera,simulado
+sim-7-0152,Análise registrada,2026-11-20T20:50:59.461Z,postgres,camera,simulado
+sim-7-0153,Imagem capturada,2026-11-15T14:10:48.225Z,camera-campo,camera,simulado
+sim-7-0153,Publicada no Kafka,2026-11-15T14:10:48.353Z,producer,camera,simulado
+sim-7-0153,Consumida do tópico,2026-11-15T14:10:48.408Z,consumer,camera,simulado
+sim-7-0153,Análise registrada,2026-11-15T14:10:48.418Z,postgres,camera,simulado
+sim-7-0154,Imagem capturada,2026-11-04T15:53:00.864Z,camera-campo,camera,simulado
+sim-7-0154,Publicada no Kafka,2026-11-04T15:53:00.981Z,producer,camera,simulado
+sim-7-0154,Consumida do tópico,2026-11-04T15:53:01.121Z,consumer,camera,simulado
+sim-7-0154,Análise registrada,2026-11-04T15:53:01.151Z,postgres,camera,simulado
+sim-7-0155,Imagem capturada,2026-11-06T14:56:01.889Z,camera-campo,camera,simulado
+sim-7-0155,Publicada no Kafka,2026-11-06T14:56:02.011Z,producer,camera,simulado
+sim-7-0155,Consumida do tópico,2026-11-06T14:56:02.152Z,consumer,camera,simulado
+sim-7-0155,Análise registrada,2026-11-06T14:56:02.171Z,postgres,camera,simulado
+sim-7-0156,Imagem capturada,2026-11-07T09:25:36.090Z,produtor,upload,simulado
+sim-7-0156,Diagnóstico por IA,2026-11-07T09:25:42.117Z,gemini,upload,simulado
+sim-7-0156,Análise registrada,2026-11-07T09:25:42.261Z,postgres,upload,simulado
+sim-7-0156,Alerta gerado,2026-11-07T09:25:42.961Z,motor-de-regras,upload,simulado
+sim-7-0156,Alerta visualizado,2026-11-09T15:34:58.779Z,produtor,upload,simulado
+sim-7-0157,Imagem capturada,2026-11-12T10:16:18.441Z,produtor,upload,simulado
+sim-7-0157,Diagnóstico por IA,2026-11-12T10:16:23.293Z,gemini,upload,simulado
+sim-7-0157,Análise registrada,2026-11-12T10:16:23.333Z,postgres,upload,simulado
+sim-7-0158,Imagem capturada,2026-11-19T15:59:01.275Z,camera-campo,camera,simulado
+sim-7-0158,Publicada no Kafka,2026-11-19T15:59:01.479Z,producer,camera,simulado
+sim-7-0158,Consumida do tópico,2026-11-19T15:59:01.652Z,consumer,camera,simulado
+sim-7-0158,Análise registrada,2026-11-19T15:59:01.688Z,postgres,camera,simulado
+sim-7-0158,Relatório enviado,2026-11-23T08:18:15.466Z,e-mail,camera,simulado
+sim-7-0159,Imagem capturada,2026-11-17T19:57:30.888Z,camera-campo,camera,simulado
+sim-7-0159,Publicada no Kafka,2026-11-17T19:57:31.039Z,producer,camera,simulado
+sim-7-0159,Consumida do tópico,2026-11-17T19:57:31.217Z,consumer,camera,simulado
+sim-7-0159,Análise registrada,2026-11-17T19:57:31.234Z,postgres,camera,simulado
+sim-7-0159,Alerta gerado,2026-11-17T19:57:31.589Z,motor-de-regras,camera,simulado
+sim-7-0159,Alerta visualizado,2026-11-17T20:07:34.916Z,produtor,camera,simulado
+sim-7-0159,Relatório enviado,2026-11-19T00:10:44.100Z,e-mail,camera,simulado
+sim-7-0160,Imagem capturada,2026-11-18T14:26:35.682Z,camera-campo,camera,simulado
+sim-7-0160,Publicada no Kafka,2026-11-18T14:26:35.765Z,producer,camera,simulado
+sim-7-0160,Consumida do tópico,2026-11-18T14:26:35.887Z,consumer,camera,simulado
+sim-7-0160,Análise registrada,2026-11-18T14:26:35.895Z,postgres,camera,simulado
+sim-7-0161,Imagem capturada,2026-11-15T20:51:18.880Z,camera-campo,camera,simulado
+sim-7-0161,Publicada no Kafka,2026-11-15T20:51:18.925Z,producer,camera,simulado
+sim-7-0161,Consumida do tópico,2026-11-15T20:51:18.966Z,consumer,camera,simulado
+sim-7-0161,Análise registrada,2026-11-15T20:51:18.993Z,postgres,camera,simulado
+sim-7-0162,Imagem capturada,2026-11-16T17:05:43.526Z,produtor,upload,simulado
+sim-7-0162,Diagnóstico por IA,2026-11-16T17:05:48.030Z,gemini,upload,simulado
+sim-7-0162,Análise registrada,2026-11-16T17:05:48.165Z,postgres,upload,simulado
+sim-7-0163,Imagem capturada,2026-11-14T17:47:21.570Z,camera-campo,camera,simulado
+sim-7-0163,Publicada no Kafka,2026-11-14T17:47:21.637Z,producer,camera,simulado
+sim-7-0163,Consumida do tópico,2026-11-14T17:47:21.734Z,consumer,camera,simulado
+sim-7-0163,Análise registrada,2026-11-14T17:47:21.740Z,postgres,camera,simulado
+sim-7-0164,Imagem capturada,2026-11-12T14:32:38.261Z,camera-campo,camera,simulado
+sim-7-0164,Publicada no Kafka,2026-11-12T14:32:38.424Z,producer,camera,simulado
+sim-7-0164,Consumida do tópico,2026-11-12T14:34:59.410Z,consumer,camera,simulado
+sim-7-0164,Análise registrada,2026-11-12T14:34:59.419Z,postgres,camera,simulado
+sim-7-0164,Relatório enviado,2026-11-16T08:34:11.959Z,e-mail,camera,simulado
+sim-7-0165,Imagem capturada,2026-11-08T11:42:17.509Z,produtor,upload,simulado
+sim-7-0165,Diagnóstico por IA,2026-11-08T11:42:20.381Z,gemini,upload,simulado
+sim-7-0165,Análise registrada,2026-11-08T11:42:20.441Z,postgres,upload,simulado
+sim-7-0166,Imagem capturada,2026-11-09T20:02:55.926Z,camera-campo,camera,simulado
+sim-7-0166,Publicada no Kafka,2026-11-09T20:02:55.978Z,producer,camera,simulado
+sim-7-0166,Consumida do tópico,2026-11-09T20:02:55.999Z,consumer,camera,simulado
+sim-7-0166,Análise registrada,2026-11-09T20:02:56.012Z,postgres,camera,simulado
+sim-7-0167,Imagem capturada,2026-11-13T09:55:24.715Z,camera-campo,camera,simulado
+sim-7-0167,Publicada no Kafka,2026-11-13T09:55:24.861Z,producer,camera,simulado
+sim-7-0167,Consumida do tópico,2026-11-13T09:55:24.986Z,consumer,camera,simulado
+sim-7-0167,Análise registrada,2026-11-13T09:55:24.991Z,postgres,camera,simulado
+sim-7-0168,Imagem capturada,2026-11-09T21:58:05.813Z,camera-campo,camera,simulado
+sim-7-0168,Publicada no Kafka,2026-11-09T21:58:06.008Z,producer,camera,simulado
+sim-7-0168,Consumida do tópico,2026-11-09T21:58:06.165Z,consumer,camera,simulado
+sim-7-0168,Análise registrada,2026-11-09T21:58:06.182Z,postgres,camera,simulado
+sim-7-0169,Imagem capturada,2026-11-03T14:29:06.833Z,camera-campo,camera,simulado
+sim-7-0169,Publicada no Kafka,2026-11-03T14:29:06.957Z,producer,camera,simulado
+sim-7-0169,Consumida do tópico,2026-11-03T14:29:06.994Z,consumer,camera,simulado
+sim-7-0169,Análise registrada,2026-11-03T14:29:07.013Z,postgres,camera,simulado
+sim-7-0169,Alerta gerado,2026-11-03T14:29:07.637Z,motor-de-regras,camera,simulado
+sim-7-0169,Alerta visualizado,2026-11-03T15:07:24.175Z,produtor,camera,simulado
+sim-7-0169,Relatório enviado,2026-11-05T10:37:54.598Z,e-mail,camera,simulado
+sim-7-0170,Imagem capturada,2026-11-20T11:03:15.027Z,camera-campo,camera,simulado
+sim-7-0170,Publicada no Kafka,2026-11-20T11:03:15.246Z,producer,camera,simulado
+sim-7-0170,Consumida do tópico,2026-11-20T11:03:15.420Z,consumer,camera,simulado
+sim-7-0170,Análise registrada,2026-11-20T11:03:15.430Z,postgres,camera,simulado
+sim-7-0170,Alerta gerado,2026-11-20T11:03:15.809Z,motor-de-regras,camera,simulado
+sim-7-0170,Alerta visualizado,2026-11-20T12:18:50.836Z,produtor,camera,simulado
+sim-7-0171,Imagem capturada,2026-11-04T21:50:07.155Z,camera-campo,camera,simulado
+sim-7-0171,Publicada no Kafka,2026-11-04T21:50:07.352Z,producer,camera,simulado
+sim-7-0171,Consumida do tópico,2026-11-04T21:50:07.382Z,consumer,camera,simulado
+sim-7-0171,Análise registrada,2026-11-04T21:50:07.399Z,postgres,camera,simulado
+sim-7-0172,Imagem capturada,2026-11-05T14:30:49.799Z,camera-campo,camera,simulado
+sim-7-0172,Publicada no Kafka,2026-11-05T14:30:49.842Z,producer,camera,simulado
+sim-7-0172,Consumida do tópico,2026-11-05T14:30:49.884Z,consumer,camera,simulado
+sim-7-0172,Análise registrada,2026-11-05T14:30:49.902Z,postgres,camera,simulado
+sim-7-0172,Alerta gerado,2026-11-05T14:30:50.302Z,motor-de-regras,camera,simulado
+sim-7-0172,Alerta visualizado,2026-11-05T14:55:41.836Z,produtor,camera,simulado
+sim-7-0173,Imagem capturada,2026-11-08T18:25:23.623Z,produtor,upload,simulado
+sim-7-0173,Diagnóstico por IA,2026-11-08T18:25:26.333Z,gemini,upload,simulado
+sim-7-0173,Análise registrada,2026-11-08T18:25:26.370Z,postgres,upload,simulado
+sim-7-0173,Relatório enviado,2026-11-09T22:01:57.503Z,e-mail,upload,simulado
+sim-7-0174,Imagem capturada,2026-11-20T09:39:35.870Z,camera-campo,camera,simulado
+sim-7-0174,Publicada no Kafka,2026-11-20T09:39:35.936Z,producer,camera,simulado
+sim-7-0174,Consumida do tópico,2026-11-20T09:39:35.989Z,consumer,camera,simulado
+sim-7-0174,Análise registrada,2026-11-20T09:39:35.994Z,postgres,camera,simulado
+sim-7-0175,Imagem capturada,2026-11-14T18:02:33.975Z,produtor,upload,simulado
+sim-7-0175,Diagnóstico por IA,2026-11-14T18:02:36.228Z,gemini,upload,simulado
+sim-7-0175,Análise registrada,2026-11-14T18:02:36.333Z,postgres,upload,simulado
+sim-7-0176,Imagem capturada,2026-11-10T11:40:59.445Z,produtor,upload,simulado
+sim-7-0176,Diagnóstico por IA,2026-11-10T11:41:04.332Z,gemini,upload,simulado
+sim-7-0176,Análise registrada,2026-11-10T11:41:04.402Z,postgres,upload,simulado
+sim-7-0177,Imagem capturada,2026-11-14T09:45:04.509Z,camera-campo,camera,simulado
+sim-7-0177,Publicada no Kafka,2026-11-14T09:45:04.644Z,producer,camera,simulado
+sim-7-0177,Consumida do tópico,2026-11-14T09:45:04.804Z,consumer,camera,simulado
+sim-7-0177,Análise registrada,2026-11-14T09:45:04.818Z,postgres,camera,simulado
+sim-7-0178,Imagem capturada,2026-11-19T21:18:51.190Z,camera-campo,camera,simulado
+sim-7-0178,Publicada no Kafka,2026-11-19T21:18:51.342Z,producer,camera,simulado
+sim-7-0178,Consumida do tópico,2026-11-19T21:18:51.500Z,consumer,camera,simulado
+sim-7-0178,Análise registrada,2026-11-19T21:18:51.510Z,postgres,camera,simulado
+sim-7-0179,Imagem capturada,2026-11-15T19:14:56.063Z,camera-campo,camera,simulado
+sim-7-0179,Publicada no Kafka,2026-11-15T19:14:56.296Z,producer,camera,simulado
+sim-7-0179,Consumida do tópico,2026-11-15T19:14:56.394Z,consumer,camera,simulado
+sim-7-0179,Análise registrada,2026-11-15T19:14:56.422Z,postgres,camera,simulado
+sim-7-0180,Imagem capturada,2026-11-13T21:49:38.263Z,camera-campo,camera,simulado
+sim-7-0180,Publicada no Kafka,2026-11-13T21:49:38.345Z,producer,camera,simulado
+sim-7-0180,Consumida do tópico,2026-11-13T21:49:38.446Z,consumer,camera,simulado
+sim-7-0180,Análise registrada,2026-11-13T21:49:38.456Z,postgres,camera,simulado
+sim-7-0181,Imagem capturada,2026-11-05T09:55:20.231Z,camera-campo,camera,simulado
+sim-7-0181,Publicada no Kafka,2026-11-05T09:55:20.318Z,producer,camera,simulado
+sim-7-0181,Consumida do tópico,2026-11-05T09:55:20.355Z,consumer,camera,simulado
+sim-7-0181,Análise registrada,2026-11-05T09:55:20.365Z,postgres,camera,simulado
+sim-7-0181,Alerta gerado,2026-11-05T09:55:21.026Z,motor-de-regras,camera,simulado
+sim-7-0181,Alerta visualizado,2026-11-06T10:46:28.855Z,produtor,camera,simulado
+sim-7-0182,Imagem capturada,2026-11-08T14:07:19.902Z,camera-campo,camera,simulado
+sim-7-0182,Publicada no Kafka,2026-11-08T14:07:20.070Z,producer,camera,simulado
+sim-7-0182,Consumida do tópico,2026-11-08T14:07:20.182Z,consumer,camera,simulado
+sim-7-0182,Análise registrada,2026-11-08T14:07:20.222Z,postgres,camera,simulado
+sim-7-0183,Imagem capturada,2026-11-14T19:23:59.492Z,camera-campo,camera,simulado
+sim-7-0183,Publicada no Kafka,2026-11-14T19:23:59.574Z,producer,camera,simulado
+sim-7-0183,Consumida do tópico,2026-11-14T19:23:59.591Z,consumer,camera,simulado
+sim-7-0183,Análise registrada,2026-11-14T19:23:59.610Z,postgres,camera,simulado
+sim-7-0184,Imagem capturada,2026-11-17T14:20:29.076Z,produtor,upload,simulado
+sim-7-0184,Diagnóstico por IA,2026-11-17T14:20:33.943Z,gemini,upload,simulado
+sim-7-0184,Análise registrada,2026-11-17T14:20:34.086Z,postgres,upload,simulado
+sim-7-0184,Relatório enviado,2026-11-20T04:46:40.874Z,e-mail,upload,simulado
+sim-7-0185,Imagem capturada,2026-11-20T12:32:25.741Z,camera-campo,camera,simulado
+sim-7-0185,Publicada no Kafka,2026-11-20T12:32:25.969Z,producer,camera,simulado
+sim-7-0185,Consumida do tópico,2026-11-20T12:32:26.123Z,consumer,camera,simulado
+sim-7-0185,Análise registrada,2026-11-20T12:32:26.138Z,postgres,camera,simulado
+sim-7-0185,Relatório enviado,2026-11-23T17:59:58.417Z,e-mail,camera,simulado
+sim-7-0186,Imagem capturada,2026-11-04T16:47:21.433Z,produtor,upload,simulado
+sim-7-0186,Falha no diagnóstico,2026-11-04T16:47:35.049Z,gemini,upload,simulado
+sim-7-0186,Imagem capturada,2026-11-04T16:49:20.329Z,produtor,upload,simulado
+sim-7-0186,Diagnóstico por IA,2026-11-04T16:49:23.118Z,gemini,upload,simulado
+sim-7-0186,Análise registrada,2026-11-04T16:49:23.191Z,postgres,upload,simulado
+sim-7-0186,Alerta gerado,2026-11-04T16:49:23.524Z,motor-de-regras,upload,simulado
+sim-7-0186,Alerta visualizado,2026-11-04T17:02:00.984Z,produtor,upload,simulado
+sim-7-0186,Relatório enviado,2026-11-06T18:40:57.176Z,e-mail,upload,simulado
+sim-7-0187,Imagem capturada,2026-11-21T17:36:57.339Z,produtor,upload,simulado
+sim-7-0187,Diagnóstico por IA,2026-11-21T17:37:03.403Z,gemini,upload,simulado
+sim-7-0187,Análise registrada,2026-11-21T17:37:03.489Z,postgres,upload,simulado
+sim-7-0188,Imagem capturada,2026-11-14T20:32:13.142Z,camera-campo,camera,simulado
+sim-7-0188,Publicada no Kafka,2026-11-14T20:32:13.374Z,producer,camera,simulado
+sim-7-0188,Consumida do tópico,2026-11-14T20:32:13.508Z,consumer,camera,simulado
+sim-7-0188,Análise registrada,2026-11-14T20:32:13.539Z,postgres,camera,simulado
+sim-7-0189,Imagem capturada,2026-11-12T18:49:05.723Z,camera-campo,camera,simulado
+sim-7-0189,Publicada no Kafka,2026-11-12T18:49:05.827Z,producer,camera,simulado
+sim-7-0189,Consumida do tópico,2026-11-12T18:49:05.976Z,consumer,camera,simulado
+sim-7-0189,Análise registrada,2026-11-12T18:49:05.990Z,postgres,camera,simulado
+sim-7-0189,Alerta gerado,2026-11-12T18:49:06.700Z,motor-de-regras,camera,simulado
+sim-7-0190,Imagem capturada,2026-11-14T15:27:11.306Z,camera-campo,camera,simulado
+sim-7-0190,Publicada no Kafka,2026-11-14T15:27:11.412Z,producer,camera,simulado
+sim-7-0190,Consumida do tópico,2026-11-14T15:27:11.507Z,consumer,camera,simulado
+sim-7-0190,Análise registrada,2026-11-14T15:27:11.534Z,postgres,camera,simulado
+sim-7-0191,Imagem capturada,2026-11-03T12:59:02.936Z,camera-campo,camera,simulado
+sim-7-0191,Publicada no Kafka,2026-11-03T12:59:03.090Z,producer,camera,simulado
+sim-7-0191,Consumida do tópico,2026-11-03T12:59:03.262Z,consumer,camera,simulado
+sim-7-0191,Análise registrada,2026-11-03T12:59:03.288Z,postgres,camera,simulado
+sim-7-0192,Imagem capturada,2026-11-09T12:09:00.587Z,produtor,upload,simulado
+sim-7-0192,Diagnóstico por IA,2026-11-09T12:09:05.695Z,gemini,upload,simulado
+sim-7-0192,Análise registrada,2026-11-09T12:09:05.799Z,postgres,upload,simulado
+sim-7-0193,Imagem capturada,2026-11-15T20:07:38.722Z,produtor,upload,simulado
+sim-7-0193,Diagnóstico por IA,2026-11-15T20:07:44.238Z,gemini,upload,simulado
+sim-7-0193,Análise registrada,2026-11-15T20:07:44.291Z,postgres,upload,simulado
+sim-7-0193,Alerta gerado,2026-11-15T20:07:44.584Z,motor-de-regras,upload,simulado
+sim-7-0193,Alerta visualizado,2026-11-16T11:01:53.497Z,produtor,upload,simulado
+sim-7-0193,Relatório enviado,2026-11-19T16:02:39.730Z,e-mail,upload,simulado
+sim-7-0194,Imagem capturada,2026-11-14T19:55:05.494Z,camera-campo,camera,simulado
+sim-7-0194,Publicada no Kafka,2026-11-14T19:55:05.609Z,producer,camera,simulado
+sim-7-0194,Consumida do tópico,2026-11-14T19:55:05.669Z,consumer,camera,simulado
+sim-7-0194,Análise registrada,2026-11-14T19:55:05.692Z,postgres,camera,simulado
+sim-7-0194,Relatório enviado,2026-11-17T14:32:22.178Z,e-mail,camera,simulado
+sim-7-0195,Imagem capturada,2026-11-10T19:41:47.481Z,camera-campo,camera,simulado
+sim-7-0195,Publicada no Kafka,2026-11-10T19:41:47.566Z,producer,camera,simulado
+sim-7-0195,Consumida do tópico,2026-11-10T19:41:47.633Z,consumer,camera,simulado
+sim-7-0195,Análise registrada,2026-11-10T19:41:47.668Z,postgres,camera,simulado
+sim-7-0195,Relatório enviado,2026-11-12T21:12:52.838Z,e-mail,camera,simulado
+sim-7-0196,Imagem capturada,2026-11-10T10:26:46.018Z,produtor,upload,simulado
+sim-7-0196,Diagnóstico por IA,2026-11-10T10:26:48.832Z,gemini,upload,simulado
+sim-7-0196,Análise registrada,2026-11-10T10:26:48.868Z,postgres,upload,simulado
+sim-7-0196,Alerta gerado,2026-11-10T10:26:49.273Z,motor-de-regras,upload,simulado
+sim-7-0196,Alerta visualizado,2026-11-10T10:54:23.955Z,produtor,upload,simulado
+sim-7-0197,Imagem capturada,2026-11-22T14:38:10.962Z,produtor,upload,simulado
+sim-7-0197,Diagnóstico por IA,2026-11-22T14:38:14.178Z,gemini,upload,simulado
+sim-7-0197,Análise registrada,2026-11-22T14:38:14.216Z,postgres,upload,simulado
+sim-7-0197,Alerta gerado,2026-11-22T14:38:14.982Z,motor-de-regras,upload,simulado
+sim-7-0197,Alerta visualizado,2026-11-23T11:31:19.518Z,produtor,upload,simulado
+sim-7-0198,Imagem capturada,2026-11-18T19:39:40.443Z,produtor,upload,simulado
+sim-7-0198,Diagnóstico por IA,2026-11-18T19:39:43.620Z,gemini,upload,simulado
+sim-7-0198,Análise registrada,2026-11-18T19:39:43.700Z,postgres,upload,simulado
+sim-7-0199,Imagem capturada,2026-11-14T09:27:39.849Z,camera-campo,camera,simulado
+sim-7-0199,Publicada no Kafka,2026-11-14T09:27:40.056Z,producer,camera,simulado
+sim-7-0199,Consumida do tópico,2026-11-14T09:27:40.207Z,consumer,camera,simulado
+sim-7-0199,Análise registrada,2026-11-14T09:27:40.238Z,postgres,camera,simulado
+sim-7-0200,Imagem capturada,2026-11-04T11:29:50.391Z,camera-campo,camera,simulado
+sim-7-0200,Publicada no Kafka,2026-11-04T11:29:50.610Z,producer,camera,simulado
+sim-7-0200,Consumida do tópico,2026-11-04T11:29:50.766Z,consumer,camera,simulado
+sim-7-0200,Análise registrada,2026-11-04T11:29:50.774Z,postgres,camera,simulado
+sim-7-0200,Relatório enviado,2026-11-08T09:29:46.930Z,e-mail,camera,simulado
+sim-7-0201,Imagem capturada,2026-11-21T21:28:42.718Z,produtor,upload,simulado
+sim-7-0201,Diagnóstico por IA,2026-11-21T21:28:48.829Z,gemini,upload,simulado
+sim-7-0201,Análise registrada,2026-11-21T21:28:48.882Z,postgres,upload,simulado
+sim-7-0202,Imagem capturada,2026-11-20T21:18:47.083Z,camera-campo,camera,simulado
+sim-7-0202,Publicada no Kafka,2026-11-20T21:18:47.198Z,producer,camera,simulado
+sim-7-0202,Consumida do tópico,2026-11-20T21:18:47.318Z,consumer,camera,simulado
+sim-7-0202,Análise registrada,2026-11-20T21:18:47.326Z,postgres,camera,simulado
+sim-7-0202,Alerta gerado,2026-11-20T21:18:47.680Z,motor-de-regras,camera,simulado
+sim-7-0202,Relatório enviado,2026-11-22T04:10:29.658Z,e-mail,camera,simulado
+sim-7-0203,Imagem capturada,2026-11-23T20:48:27.660Z,produtor,upload,simulado
+sim-7-0203,Diagnóstico por IA,2026-11-23T20:48:32.584Z,gemini,upload,simulado
+sim-7-0203,Diagnóstico inconclusivo,2026-11-23T20:48:32.588Z,gemini,upload,simulado
+sim-7-0203,Imagem capturada,2026-11-23T20:50:34.022Z,produtor,upload,simulado
+sim-7-0203,Diagnóstico por IA,2026-11-23T20:50:39.432Z,gemini,upload,simulado
+sim-7-0203,Análise registrada,2026-11-23T20:50:39.472Z,postgres,upload,simulado
+sim-7-0204,Imagem capturada,2026-11-23T12:25:09.069Z,camera-campo,camera,simulado
+sim-7-0204,Publicada no Kafka,2026-11-23T12:25:09.309Z,producer,camera,simulado
+sim-7-0204,Consumida do tópico,2026-11-23T12:25:09.328Z,consumer,camera,simulado
+sim-7-0204,Análise registrada,2026-11-23T12:25:09.362Z,postgres,camera,simulado
+sim-7-0204,Alerta gerado,2026-11-23T12:25:09.509Z,motor-de-regras,camera,simulado
+sim-7-0204,Alerta visualizado,2026-11-23T13:49:31.517Z,produtor,camera,simulado
+sim-7-0205,Imagem capturada,2026-11-04T20:03:52.927Z,camera-campo,camera,simulado
+sim-7-0205,Publicada no Kafka,2026-11-04T20:03:52.980Z,producer,camera,simulado
+sim-7-0205,Consumida do tópico,2026-11-04T20:03:53.136Z,consumer,camera,simulado
+sim-7-0205,Análise registrada,2026-11-04T20:03:53.171Z,postgres,camera,simulado
+sim-7-0206,Imagem capturada,2026-11-10T15:03:12.349Z,camera-campo,camera,simulado
+sim-7-0206,Publicada no Kafka,2026-11-10T15:03:12.574Z,producer,camera,simulado
+sim-7-0206,Consumida do tópico,2026-11-10T15:03:12.674Z,consumer,camera,simulado
+sim-7-0206,Análise registrada,2026-11-10T15:03:12.712Z,postgres,camera,simulado
+sim-7-0206,Alerta gerado,2026-11-10T15:03:13.295Z,motor-de-regras,camera,simulado
+sim-7-0206,Alerta visualizado,2026-11-10T22:13:17.432Z,produtor,camera,simulado
+sim-7-0206,Relatório enviado,2026-11-13T23:54:11.042Z,e-mail,camera,simulado
+sim-7-0207,Imagem capturada,2026-11-03T09:32:35.718Z,camera-campo,camera,simulado
+sim-7-0207,Publicada no Kafka,2026-11-03T09:32:35.859Z,producer,camera,simulado
+sim-7-0207,Consumida do tópico,2026-11-03T09:32:35.989Z,consumer,camera,simulado
+sim-7-0207,Análise registrada,2026-11-03T09:32:36.013Z,postgres,camera,simulado
+sim-7-0207,Alerta gerado,2026-11-03T09:32:36.556Z,motor-de-regras,camera,simulado
+sim-7-0207,Alerta visualizado,2026-11-04T12:27:37.297Z,produtor,camera,simulado
+sim-7-0207,Relatório enviado,2026-11-07T12:58:54.217Z,e-mail,camera,simulado
+sim-7-0208,Imagem capturada,2026-11-10T13:13:17.437Z,produtor,upload,simulado
+sim-7-0208,Falha no diagnóstico,2026-11-10T13:13:46.964Z,gemini,upload,simulado
+sim-7-0208,Imagem capturada,2026-11-10T13:15:12.624Z,produtor,upload,simulado
+sim-7-0208,Diagnóstico por IA,2026-11-10T13:15:20.172Z,gemini,upload,simulado
+sim-7-0208,Análise registrada,2026-11-10T13:15:20.233Z,postgres,upload,simulado
+sim-7-0208,Alerta gerado,2026-11-10T13:15:20.389Z,motor-de-regras,upload,simulado
+sim-7-0208,Alerta visualizado,2026-11-10T14:31:06.931Z,produtor,upload,simulado
+sim-7-0209,Imagem capturada,2026-11-04T18:02:59.758Z,camera-campo,camera,simulado
+sim-7-0209,Publicada no Kafka,2026-11-04T18:02:59.948Z,producer,camera,simulado
+sim-7-0209,Consumida do tópico,2026-11-04T18:03:00.014Z,consumer,camera,simulado
+sim-7-0209,Análise registrada,2026-11-04T18:03:00.021Z,postgres,camera,simulado
+sim-7-0209,Relatório enviado,2026-11-07T02:37:33.334Z,e-mail,camera,simulado
+sim-7-0210,Imagem capturada,2026-11-15T20:06:04.709Z,camera-campo,camera,simulado
+sim-7-0210,Publicada no Kafka,2026-11-15T20:06:04.777Z,producer,camera,simulado
+sim-7-0210,Consumida do tópico,2026-11-15T20:06:04.906Z,consumer,camera,simulado
+sim-7-0210,Análise registrada,2026-11-15T20:06:04.933Z,postgres,camera,simulado
+sim-7-0211,Imagem capturada,2026-11-21T11:51:00.243Z,camera-campo,camera,simulado
+sim-7-0211,Publicada no Kafka,2026-11-21T11:51:00.391Z,producer,camera,simulado
+sim-7-0211,Consumida do tópico,2026-11-21T11:51:00.429Z,consumer,camera,simulado
+sim-7-0211,Análise registrada,2026-11-21T11:51:00.453Z,postgres,camera,simulado
+sim-7-0211,Relatório enviado,2026-11-22T12:06:00.592Z,e-mail,camera,simulado
+sim-7-0212,Imagem capturada,2026-11-05T13:20:52.473Z,produtor,upload,simulado
+sim-7-0212,Diagnóstico por IA,2026-11-05T13:20:59.846Z,gemini,upload,simulado
+sim-7-0212,Análise registrada,2026-11-05T13:20:59.945Z,postgres,upload,simulado
+sim-7-0213,Imagem capturada,2026-11-22T19:48:37.104Z,camera-campo,camera,simulado
+sim-7-0213,Publicada no Kafka,2026-11-22T19:48:37.340Z,producer,camera,simulado
+sim-7-0213,Consumida do tópico,2026-11-22T19:48:37.439Z,consumer,camera,simulado
+sim-7-0213,Análise registrada,2026-11-22T19:48:37.457Z,postgres,camera,simulado
+sim-7-0214,Imagem capturada,2026-11-23T14:31:09.060Z,produtor,upload,simulado
+sim-7-0214,Diagnóstico por IA,2026-11-23T14:31:12.214Z,gemini,upload,simulado
+sim-7-0214,Diagnóstico inconclusivo,2026-11-23T14:31:12.216Z,gemini,upload,simulado
+sim-7-0214,Imagem capturada,2026-11-23T14:39:11.188Z,produtor,upload,simulado
+sim-7-0214,Diagnóstico por IA,2026-11-23T14:39:14.108Z,gemini,upload,simulado
+sim-7-0214,Análise registrada,2026-11-23T14:39:14.190Z,postgres,upload,simulado
+sim-7-0215,Imagem capturada,2026-11-16T11:10:17.949Z,camera-campo,camera,simulado
+sim-7-0215,Publicada no Kafka,2026-11-16T11:10:18.055Z,producer,camera,simulado
+sim-7-0215,Consumida do tópico,2026-11-16T11:10:18.168Z,consumer,camera,simulado
+sim-7-0215,Análise registrada,2026-11-16T11:10:18.197Z,postgres,camera,simulado
+sim-7-0215,Relatório enviado,2026-11-19T02:17:55.638Z,e-mail,camera,simulado
+sim-7-0216,Imagem capturada,2026-11-03T09:19:17.704Z,camera-campo,camera,simulado
+sim-7-0216,Publicada no Kafka,2026-11-03T09:19:17.857Z,producer,camera,simulado
+sim-7-0216,Consumida do tópico,2026-11-03T09:19:17.938Z,consumer,camera,simulado
+sim-7-0216,Análise registrada,2026-11-03T09:19:17.953Z,postgres,camera,simulado
+sim-7-0216,Alerta gerado,2026-11-03T09:19:18.355Z,motor-de-regras,camera,simulado
+sim-7-0216,Relatório enviado,2026-11-06T07:57:59.132Z,e-mail,camera,simulado
+sim-7-0217,Imagem capturada,2026-11-04T11:45:48.276Z,produtor,upload,simulado
+sim-7-0217,Falha no diagnóstico,2026-11-04T11:46:15.078Z,gemini,upload,simulado
+sim-7-0217,Imagem capturada,2026-11-04T11:49:06.897Z,produtor,upload,simulado
+sim-7-0217,Diagnóstico por IA,2026-11-04T11:49:11.536Z,gemini,upload,simulado
+sim-7-0217,Análise registrada,2026-11-04T11:49:11.670Z,postgres,upload,simulado
+sim-7-0217,Relatório enviado,2026-11-06T19:39:40.398Z,e-mail,upload,simulado
+sim-7-0218,Imagem capturada,2026-11-15T14:59:47.331Z,camera-campo,camera,simulado
+sim-7-0218,Publicada no Kafka,2026-11-15T14:59:47.509Z,producer,camera,simulado
+sim-7-0218,Consumida do tópico,2026-11-15T14:59:47.686Z,consumer,camera,simulado
+sim-7-0218,Análise registrada,2026-11-15T14:59:47.705Z,postgres,camera,simulado
+sim-7-0219,Imagem capturada,2026-11-08T21:14:47.732Z,camera-campo,camera,simulado
+sim-7-0219,Publicada no Kafka,2026-11-08T21:14:47.968Z,producer,camera,simulado
+sim-7-0219,Consumida do tópico,2026-11-08T21:14:48.103Z,consumer,camera,simulado
+sim-7-0219,Análise registrada,2026-11-08T21:14:48.109Z,postgres,camera,simulado
+sim-7-0219,Alerta gerado,2026-11-08T21:14:48.591Z,motor-de-regras,camera,simulado
+sim-7-0219,Alerta visualizado,2026-11-09T11:34:54.545Z,produtor,camera,simulado
+sim-7-0219,Relatório enviado,2026-11-12T06:29:39.906Z,e-mail,camera,simulado
+sim-7-0220,Imagem capturada,2026-11-19T18:36:32.988Z,camera-campo,camera,simulado
+sim-7-0220,Publicada no Kafka,2026-11-19T18:36:33.224Z,producer,camera,simulado
+sim-7-0220,Consumida do tópico,2026-11-19T18:36:33.348Z,consumer,camera,simulado
+sim-7-0220,Análise registrada,2026-11-19T18:36:33.379Z,postgres,camera,simulado
+sim-7-0220,Relatório enviado,2026-11-20T19:25:02.101Z,e-mail,camera,simulado
+sim-7-0221,Imagem capturada,2026-11-22T09:34:43.623Z,produtor,upload,simulado
+sim-7-0221,Diagnóstico por IA,2026-11-22T09:34:52.023Z,gemini,upload,simulado
+sim-7-0221,Análise registrada,2026-11-22T09:34:52.131Z,postgres,upload,simulado
+sim-7-0221,Alerta gerado,2026-11-22T09:34:52.806Z,motor-de-regras,upload,simulado
+sim-7-0222,Imagem capturada,2026-11-04T09:52:18.033Z,camera-campo,camera,simulado
+sim-7-0222,Publicada no Kafka,2026-11-04T09:52:18.086Z,producer,camera,simulado
+sim-7-0222,Consumida do tópico,2026-11-04T09:52:18.200Z,consumer,camera,simulado
+sim-7-0222,Análise registrada,2026-11-04T09:52:18.208Z,postgres,camera,simulado
+sim-7-0222,Alerta gerado,2026-11-04T09:52:18.343Z,motor-de-regras,camera,simulado
+sim-7-0222,Alerta visualizado,2026-11-05T12:25:51.865Z,produtor,camera,simulado
+sim-7-0223,Imagem capturada,2026-11-08T18:10:11.797Z,camera-campo,camera,simulado
+sim-7-0223,Publicada no Kafka,2026-11-08T18:10:11.932Z,producer,camera,simulado
+sim-7-0223,Consumida do tópico,2026-11-08T18:10:12.023Z,consumer,camera,simulado
+sim-7-0223,Análise registrada,2026-11-08T18:10:12.029Z,postgres,camera,simulado
+sim-7-0223,Alerta gerado,2026-11-08T18:10:12.363Z,motor-de-regras,camera,simulado
+sim-7-0223,Alerta visualizado,2026-11-09T13:05:56.924Z,produtor,camera,simulado
+sim-7-0223,Relatório enviado,2026-11-12T07:10:09.144Z,e-mail,camera,simulado
+sim-7-0224,Imagem capturada,2026-11-14T14:33:05.027Z,produtor,upload,simulado
+sim-7-0224,Diagnóstico por IA,2026-11-14T14:33:08.955Z,gemini,upload,simulado
+sim-7-0224,Análise registrada,2026-11-14T14:33:09.061Z,postgres,upload,simulado
+sim-7-0224,Alerta gerado,2026-11-14T14:33:09.517Z,motor-de-regras,upload,simulado
+sim-7-0224,Relatório enviado,2026-11-15T18:05:15.262Z,e-mail,upload,simulado
+sim-7-0225,Imagem capturada,2026-11-10T15:43:24.869Z,camera-campo,camera,simulado
+sim-7-0225,Publicada no Kafka,2026-11-10T15:43:24.929Z,producer,camera,simulado
+sim-7-0225,Consumida do tópico,2026-11-10T15:43:25.025Z,consumer,camera,simulado
+sim-7-0225,Análise registrada,2026-11-10T15:43:25.052Z,postgres,camera,simulado
+sim-7-0225,Alerta gerado,2026-11-10T15:43:25.565Z,motor-de-regras,camera,simulado
+sim-7-0225,Alerta visualizado,2026-11-10T15:51:05.546Z,produtor,camera,simulado
+sim-7-0226,Imagem capturada,2026-11-17T12:33:27.805Z,produtor,upload,simulado
+sim-7-0226,Diagnóstico por IA,2026-11-17T12:33:33.345Z,gemini,upload,simulado
+sim-7-0226,Diagnóstico inconclusivo,2026-11-17T12:33:33.350Z,gemini,upload,simulado
+sim-7-0226,Imagem capturada,2026-11-17T12:53:47.231Z,produtor,upload,simulado
+sim-7-0226,Diagnóstico por IA,2026-11-17T12:53:50.883Z,gemini,upload,simulado
+sim-7-0226,Análise registrada,2026-11-17T12:53:50.917Z,postgres,upload,simulado
+sim-7-0226,Alerta gerado,2026-11-17T12:53:51.112Z,motor-de-regras,upload,simulado
+sim-7-0226,Alerta visualizado,2026-11-17T13:10:26.503Z,produtor,upload,simulado
+sim-7-0227,Imagem capturada,2026-11-17T15:21:31.891Z,camera-campo,camera,simulado
+sim-7-0227,Publicada no Kafka,2026-11-17T15:21:32.063Z,producer,camera,simulado
+sim-7-0227,Consumida do tópico,2026-11-17T15:28:09.531Z,consumer,camera,simulado
+sim-7-0227,Análise registrada,2026-11-17T15:28:09.554Z,postgres,camera,simulado
+sim-7-0228,Imagem capturada,2026-11-12T09:14:51.877Z,camera-campo,camera,simulado
+sim-7-0228,Publicada no Kafka,2026-11-12T09:14:52.034Z,producer,camera,simulado
+sim-7-0228,Consumida do tópico,2026-11-12T09:14:52.084Z,consumer,camera,simulado
+sim-7-0228,Análise registrada,2026-11-12T09:14:52.110Z,postgres,camera,simulado
+sim-7-0229,Imagem capturada,2026-11-20T17:41:45.734Z,camera-campo,camera,simulado
+sim-7-0229,Publicada no Kafka,2026-11-20T17:41:45.806Z,producer,camera,simulado
+sim-7-0229,Consumida do tópico,2026-11-20T17:41:45.836Z,consumer,camera,simulado
+sim-7-0229,Análise registrada,2026-11-20T17:41:45.863Z,postgres,camera,simulado
+sim-7-0230,Imagem capturada,2026-11-14T14:34:06.986Z,camera-campo,camera,simulado
+sim-7-0230,Publicada no Kafka,2026-11-14T14:34:07.159Z,producer,camera,simulado
+sim-7-0230,Consumida do tópico,2026-11-14T14:34:07.213Z,consumer,camera,simulado
+sim-7-0230,Análise registrada,2026-11-14T14:34:07.238Z,postgres,camera,simulado
+sim-7-0231,Imagem capturada,2026-11-06T15:17:08.911Z,camera-campo,camera,simulado
+sim-7-0231,Publicada no Kafka,2026-11-06T15:17:09.084Z,producer,camera,simulado
+sim-7-0231,Consumida do tópico,2026-11-06T15:17:09.147Z,consumer,camera,simulado
+sim-7-0231,Análise registrada,2026-11-06T15:17:09.182Z,postgres,camera,simulado
+sim-7-0232,Imagem capturada,2026-11-16T20:30:46.156Z,camera-campo,camera,simulado
+sim-7-0232,Publicada no Kafka,2026-11-16T20:30:46.319Z,producer,camera,simulado
+sim-7-0232,Consumida do tópico,2026-11-16T20:30:46.400Z,consumer,camera,simulado
+sim-7-0232,Análise registrada,2026-11-16T20:30:46.433Z,postgres,camera,simulado
+sim-7-0233,Imagem capturada,2026-11-15T13:19:34.149Z,camera-campo,camera,simulado
+sim-7-0233,Publicada no Kafka,2026-11-15T13:19:34.337Z,producer,camera,simulado
+sim-7-0233,Consumida do tópico,2026-11-15T13:32:44.683Z,consumer,camera,simulado
+sim-7-0233,Análise registrada,2026-11-15T13:32:44.693Z,postgres,camera,simulado
+sim-7-0234,Imagem capturada,2026-11-07T18:02:42.580Z,camera-campo,camera,simulado
+sim-7-0234,Publicada no Kafka,2026-11-07T18:02:42.626Z,producer,camera,simulado
+sim-7-0234,Consumida do tópico,2026-11-07T18:02:42.713Z,consumer,camera,simulado
+sim-7-0234,Análise registrada,2026-11-07T18:02:42.726Z,postgres,camera,simulado
+sim-7-0234,Relatório enviado,2026-11-08T18:14:53.604Z,e-mail,camera,simulado
+sim-7-0235,Imagem capturada,2026-11-11T17:21:05.457Z,produtor,upload,simulado
+sim-7-0235,Diagnóstico por IA,2026-11-11T17:21:10.451Z,gemini,upload,simulado
+sim-7-0235,Diagnóstico inconclusivo,2026-11-11T17:21:10.455Z,gemini,upload,simulado
+sim-7-0235,Imagem capturada,2026-11-11T17:39:52.629Z,produtor,upload,simulado
+sim-7-0235,Diagnóstico por IA,2026-11-11T17:39:55.929Z,gemini,upload,simulado
+sim-7-0235,Análise registrada,2026-11-11T17:39:56.067Z,postgres,upload,simulado
+sim-7-0236,Imagem capturada,2026-11-16T14:44:06.999Z,produtor,upload,simulado
+sim-7-0236,Diagnóstico por IA,2026-11-16T14:44:09.624Z,gemini,upload,simulado
+sim-7-0236,Análise registrada,2026-11-16T14:44:09.747Z,postgres,upload,simulado
+sim-7-0237,Imagem capturada,2026-11-12T12:03:29.512Z,produtor,upload,simulado
+sim-7-0237,Diagnóstico por IA,2026-11-12T12:03:36.678Z,gemini,upload,simulado
+sim-7-0237,Análise registrada,2026-11-12T12:03:36.764Z,postgres,upload,simulado
+sim-7-0237,Alerta gerado,2026-11-12T12:03:37.369Z,motor-de-regras,upload,simulado
+sim-7-0238,Imagem capturada,2026-11-19T11:24:00.115Z,camera-campo,camera,simulado
+sim-7-0238,Publicada no Kafka,2026-11-19T11:24:00.348Z,producer,camera,simulado
+sim-7-0238,Consumida do tópico,2026-11-19T11:24:00.417Z,consumer,camera,simulado
+sim-7-0238,Análise registrada,2026-11-19T11:24:00.450Z,postgres,camera,simulado
+sim-7-0238,Alerta gerado,2026-11-19T11:24:01.088Z,motor-de-regras,camera,simulado
+sim-7-0238,Alerta visualizado,2026-11-19T13:54:20.468Z,produtor,camera,simulado
+sim-7-0239,Imagem capturada,2026-11-07T11:41:46.469Z,camera-campo,camera,simulado
+sim-7-0239,Publicada no Kafka,2026-11-07T11:41:46.595Z,producer,camera,simulado
+sim-7-0239,Consumida do tópico,2026-11-07T11:41:46.663Z,consumer,camera,simulado
+sim-7-0239,Análise registrada,2026-11-07T11:41:46.673Z,postgres,camera,simulado
+sim-7-0239,Relatório enviado,2026-11-11T03:31:16.672Z,e-mail,camera,simulado
+sim-7-0240,Imagem capturada,2026-11-22T13:49:27.196Z,camera-campo,camera,simulado
+sim-7-0240,Publicada no Kafka,2026-11-22T13:49:27.310Z,producer,camera,simulado
+sim-7-0240,Consumida do tópico,2026-11-22T13:49:27.364Z,consumer,camera,simulado
+sim-7-0240,Análise registrada,2026-11-22T13:49:27.385Z,postgres,camera,simulado
+sim-7-0241,Imagem capturada,2026-11-06T11:34:58.085Z,camera-campo,camera,simulado
+sim-7-0241,Publicada no Kafka,2026-11-06T11:34:58.146Z,producer,camera,simulado
+sim-7-0241,Consumida do tópico,2026-11-06T11:34:58.251Z,consumer,camera,simulado
+sim-7-0241,Análise registrada,2026-11-06T11:34:58.287Z,postgres,camera,simulado
+sim-7-0242,Imagem capturada,2026-11-06T10:10:25.257Z,camera-campo,camera,simulado
+sim-7-0242,Publicada no Kafka,2026-11-06T10:10:25.455Z,producer,camera,simulado
+sim-7-0242,Consumida do tópico,2026-11-06T10:10:25.514Z,consumer,camera,simulado
+sim-7-0242,Análise registrada,2026-11-06T10:10:25.525Z,postgres,camera,simulado
+sim-7-0243,Imagem capturada,2026-11-15T20:50:35.910Z,camera-campo,camera,simulado
+sim-7-0243,Publicada no Kafka,2026-11-15T20:50:35.994Z,producer,camera,simulado
+sim-7-0243,Consumida do tópico,2026-11-15T20:50:36.054Z,consumer,camera,simulado
+sim-7-0243,Análise registrada,2026-11-15T20:50:36.073Z,postgres,camera,simulado
+sim-7-0243,Alerta gerado,2026-11-15T20:50:36.676Z,motor-de-regras,camera,simulado
+sim-7-0244,Imagem capturada,2026-11-15T18:39:03.387Z,camera-campo,camera,simulado
+sim-7-0244,Publicada no Kafka,2026-11-15T18:39:03.490Z,producer,camera,simulado
+sim-7-0244,Consumida do tópico,2026-11-15T18:39:03.652Z,consumer,camera,simulado
+sim-7-0244,Análise registrada,2026-11-15T18:39:03.661Z,postgres,camera,simulado
+sim-7-0244,Alerta gerado,2026-11-15T18:39:04.384Z,motor-de-regras,camera,simulado
+sim-7-0244,Alerta visualizado,2026-11-16T12:11:32.403Z,produtor,camera,simulado
+sim-7-0244,Relatório enviado,2026-11-19T23:49:11.130Z,e-mail,camera,simulado
+sim-7-0245,Imagem capturada,2026-11-22T13:10:56.484Z,camera-campo,camera,simulado
+sim-7-0245,Publicada no Kafka,2026-11-22T13:10:56.731Z,producer,camera,simulado
+sim-7-0245,Consumida do tópico,2026-11-22T13:10:56.748Z,consumer,camera,simulado
+sim-7-0245,Análise registrada,2026-11-22T13:10:56.761Z,postgres,camera,simulado
+sim-7-0245,Alerta gerado,2026-11-22T13:10:57.526Z,motor-de-regras,camera,simulado
+sim-7-0245,Alerta visualizado,2026-11-23T12:55:46.249Z,produtor,camera,simulado
+sim-7-0246,Imagem capturada,2026-11-09T12:05:03.540Z,produtor,upload,simulado
+sim-7-0246,Diagnóstico por IA,2026-11-09T12:05:07.292Z,gemini,upload,simulado
+sim-7-0246,Análise registrada,2026-11-09T12:05:07.414Z,postgres,upload,simulado
+sim-7-0246,Alerta gerado,2026-11-09T12:05:08.021Z,motor-de-regras,upload,simulado
+sim-7-0246,Alerta visualizado,2026-11-09T13:09:34.455Z,produtor,upload,simulado
+sim-7-0247,Imagem capturada,2026-11-12T20:16:32.159Z,camera-campo,camera,simulado
+sim-7-0247,Publicada no Kafka,2026-11-12T20:16:32.217Z,producer,camera,simulado
+sim-7-0247,Consumida do tópico,2026-11-12T20:16:32.396Z,consumer,camera,simulado
+sim-7-0247,Análise registrada,2026-11-12T20:16:32.432Z,postgres,camera,simulado
+sim-7-0248,Imagem capturada,2026-11-04T21:07:07.573Z,produtor,upload,simulado
+sim-7-0248,Diagnóstico por IA,2026-11-04T21:07:10.532Z,gemini,upload,simulado
+sim-7-0248,Análise registrada,2026-11-04T21:07:10.652Z,postgres,upload,simulado
+sim-7-0248,Alerta gerado,2026-11-04T21:07:11.025Z,motor-de-regras,upload,simulado
+sim-7-0248,Relatório enviado,2026-11-08T00:05:31.617Z,e-mail,upload,simulado
+sim-7-0249,Imagem capturada,2026-11-16T17:25:37.973Z,camera-campo,camera,simulado
+sim-7-0249,Publicada no Kafka,2026-11-16T17:25:38.189Z,producer,camera,simulado
+sim-7-0249,Consumida do tópico,2026-11-16T17:25:38.212Z,consumer,camera,simulado
+sim-7-0249,Análise registrada,2026-11-16T17:25:38.228Z,postgres,camera,simulado
+sim-7-0249,Relatório enviado,2026-11-19T18:39:00.133Z,e-mail,camera,simulado
+sim-7-0250,Imagem capturada,2026-11-10T16:35:51.008Z,produtor,upload,simulado
+sim-7-0250,Diagnóstico por IA,2026-11-10T16:35:56.679Z,gemini,upload,simulado
+sim-7-0250,Análise registrada,2026-11-10T16:35:56.782Z,postgres,upload,simulado
+sim-7-0250,Alerta gerado,2026-11-10T16:35:57.172Z,motor-de-regras,upload,simulado
+sim-7-0250,Alerta visualizado,2026-11-10T18:06:35.707Z,produtor,upload,simulado
+sim-7-0250,Relatório enviado,2026-11-12T22:26:17.893Z,e-mail,upload,simulado
+sim-7-0251,Imagem capturada,2026-11-17T17:57:59.493Z,camera-campo,camera,simulado
+sim-7-0251,Publicada no Kafka,2026-11-17T17:57:59.721Z,producer,camera,simulado
+sim-7-0251,Consumida do tópico,2026-11-17T18:09:23.512Z,consumer,camera,simulado
+sim-7-0251,Análise registrada,2026-11-17T18:09:23.530Z,postgres,camera,simulado
+sim-7-0252,Imagem capturada,2026-11-20T11:30:58.728Z,produtor,upload,simulado
+sim-7-0252,Diagnóstico por IA,2026-11-20T11:31:02.507Z,gemini,upload,simulado
+sim-7-0252,Análise registrada,2026-11-20T11:31:02.579Z,postgres,upload,simulado
+sim-7-0252,Alerta gerado,2026-11-20T11:31:02.854Z,motor-de-regras,upload,simulado
+sim-7-0252,Alerta visualizado,2026-11-20T11:42:38.902Z,produtor,upload,simulado
+sim-7-0253,Imagem capturada,2026-11-03T16:28:27.419Z,camera-campo,camera,simulado
+sim-7-0253,Publicada no Kafka,2026-11-03T16:28:27.560Z,producer,camera,simulado
+sim-7-0253,Consumida do tópico,2026-11-03T16:28:27.706Z,consumer,camera,simulado
+sim-7-0253,Análise registrada,2026-11-03T16:28:27.732Z,postgres,camera,simulado
+sim-7-0253,Alerta gerado,2026-11-03T16:28:28.123Z,motor-de-regras,camera,simulado
+sim-7-0253,Alerta visualizado,2026-11-03T17:02:44.556Z,produtor,camera,simulado
+sim-7-0254,Imagem capturada,2026-11-18T18:03:38.667Z,produtor,upload,simulado
+sim-7-0254,Diagnóstico por IA,2026-11-18T18:03:42.948Z,gemini,upload,simulado
+sim-7-0254,Diagnóstico inconclusivo,2026-11-18T18:03:42.951Z,gemini,upload,simulado
+sim-7-0254,Imagem capturada,2026-11-18T18:06:54.663Z,produtor,upload,simulado
+sim-7-0254,Diagnóstico por IA,2026-11-18T18:06:59.415Z,gemini,upload,simulado
+sim-7-0254,Análise registrada,2026-11-18T18:06:59.499Z,postgres,upload,simulado
+sim-7-0254,Alerta gerado,2026-11-18T18:06:59.948Z,motor-de-regras,upload,simulado
+sim-7-0254,Alerta visualizado,2026-11-18T18:37:08.522Z,produtor,upload,simulado
+sim-7-0254,Relatório enviado,2026-11-20T05:11:35.303Z,e-mail,upload,simulado
+sim-7-0255,Imagem capturada,2026-11-21T19:53:21.033Z,camera-campo,camera,simulado
+sim-7-0255,Publicada no Kafka,2026-11-21T19:53:21.117Z,producer,camera,simulado
+sim-7-0255,Consumida do tópico,2026-11-21T19:53:21.282Z,consumer,camera,simulado
+sim-7-0255,Análise registrada,2026-11-21T19:53:21.318Z,postgres,camera,simulado
+sim-7-0256,Imagem capturada,2026-11-12T09:52:24.019Z,camera-campo,camera,simulado
+sim-7-0256,Publicada no Kafka,2026-11-12T09:52:24.151Z,producer,camera,simulado
+sim-7-0256,Consumida do tópico,2026-11-12T09:52:24.217Z,consumer,camera,simulado
+sim-7-0256,Análise registrada,2026-11-12T09:52:24.231Z,postgres,camera,simulado
+sim-7-0257,Imagem capturada,2026-11-22T09:52:55.228Z,produtor,upload,simulado
+sim-7-0257,Diagnóstico por IA,2026-11-22T09:53:01.289Z,gemini,upload,simulado
+sim-7-0257,Diagnóstico inconclusivo,2026-11-22T09:53:01.291Z,gemini,upload,simulado
+sim-7-0257,Imagem capturada,2026-11-22T10:46:46.106Z,produtor,upload,simulado
+sim-7-0257,Diagnóstico por IA,2026-11-22T10:46:50.132Z,gemini,upload,simulado
+sim-7-0257,Análise registrada,2026-11-22T10:46:50.248Z,postgres,upload,simulado
+sim-7-0258,Imagem capturada,2026-11-11T18:12:44.672Z,camera-campo,camera,simulado
+sim-7-0258,Publicada no Kafka,2026-11-11T18:12:44.887Z,producer,camera,simulado
+sim-7-0258,Consumida do tópico,2026-11-11T18:12:45.052Z,consumer,camera,simulado
+sim-7-0258,Análise registrada,2026-11-11T18:12:45.064Z,postgres,camera,simulado
+sim-7-0258,Alerta gerado,2026-11-11T18:12:45.200Z,motor-de-regras,camera,simulado
+sim-7-0258,Alerta visualizado,2026-11-11T18:58:09.536Z,produtor,camera,simulado
+sim-7-0258,Relatório enviado,2026-11-13T04:21:42.944Z,e-mail,camera,simulado
+sim-7-0259,Imagem capturada,2026-11-16T17:43:05.492Z,camera-campo,camera,simulado
+sim-7-0259,Publicada no Kafka,2026-11-16T17:43:05.556Z,producer,camera,simulado
+sim-7-0259,Consumida do tópico,2026-11-16T17:43:05.592Z,consumer,camera,simulado
+sim-7-0259,Análise registrada,2026-11-16T17:43:05.607Z,postgres,camera,simulado
+sim-7-0259,Alerta gerado,2026-11-16T17:43:06.120Z,motor-de-regras,camera,simulado
+sim-7-0259,Alerta visualizado,2026-11-16T17:51:38.086Z,produtor,camera,simulado
+sim-7-0260,Imagem capturada,2026-11-22T18:45:32.186Z,camera-campo,camera,simulado
+sim-7-0260,Publicada no Kafka,2026-11-22T18:45:32.320Z,producer,camera,simulado
+sim-7-0260,Consumida do tópico,2026-11-22T18:45:32.489Z,consumer,camera,simulado
+sim-7-0260,Análise registrada,2026-11-22T18:45:32.515Z,postgres,camera,simulado
+sim-7-0260,Relatório enviado,2026-11-23T19:05:04.391Z,e-mail,camera,simulado
+sim-7-0261,Imagem capturada,2026-11-14T19:35:41.641Z,camera-campo,camera,simulado
+sim-7-0261,Publicada no Kafka,2026-11-14T19:35:41.723Z,producer,camera,simulado
+sim-7-0261,Consumida do tópico,2026-11-14T19:48:36.618Z,consumer,camera,simulado
+sim-7-0261,Análise registrada,2026-11-14T19:48:36.641Z,postgres,camera,simulado
+sim-7-0262,Imagem capturada,2026-11-14T16:34:07.381Z,camera-campo,camera,simulado
+sim-7-0262,Publicada no Kafka,2026-11-14T16:34:07.503Z,producer,camera,simulado
+sim-7-0262,Consumida do tópico,2026-11-14T16:34:07.584Z,consumer,camera,simulado
+sim-7-0262,Análise registrada,2026-11-14T16:34:07.602Z,postgres,camera,simulado
+sim-7-0263,Imagem capturada,2026-11-10T13:31:58.188Z,camera-campo,camera,simulado
+sim-7-0263,Publicada no Kafka,2026-11-10T13:31:58.247Z,producer,camera,simulado
+sim-7-0263,Consumida do tópico,2026-11-10T13:31:58.408Z,consumer,camera,simulado
+sim-7-0263,Análise registrada,2026-11-10T13:31:58.426Z,postgres,camera,simulado
+sim-7-0264,Imagem capturada,2026-11-10T19:10:58.832Z,camera-campo,camera,simulado
+sim-7-0264,Publicada no Kafka,2026-11-10T19:10:58.873Z,producer,camera,simulado
+sim-7-0264,Consumida do tópico,2026-11-10T19:26:25.759Z,consumer,camera,simulado
+sim-7-0264,Análise registrada,2026-11-10T19:26:25.778Z,postgres,camera,simulado
+sim-7-0265,Imagem capturada,2026-11-16T17:27:15.756Z,camera-campo,camera,simulado
+sim-7-0265,Publicada no Kafka,2026-11-16T17:27:15.993Z,producer,camera,simulado
+sim-7-0265,Consumida do tópico,2026-11-16T17:27:16.085Z,consumer,camera,simulado
+sim-7-0265,Análise registrada,2026-11-16T17:27:16.114Z,postgres,camera,simulado
+sim-7-0265,Alerta gerado,2026-11-16T17:27:16.588Z,motor-de-regras,camera,simulado
+sim-7-0265,Alerta visualizado,2026-11-16T17:39:31.386Z,produtor,camera,simulado
+sim-7-0265,Relatório enviado,2026-11-19T05:05:24.127Z,e-mail,camera,simulado
+sim-7-0266,Imagem capturada,2026-11-15T09:31:19.176Z,camera-campo,camera,simulado
+sim-7-0266,Publicada no Kafka,2026-11-15T09:31:19.234Z,producer,camera,simulado
+sim-7-0266,Consumida do tópico,2026-11-15T09:31:19.318Z,consumer,camera,simulado
+sim-7-0266,Análise registrada,2026-11-15T09:31:19.329Z,postgres,camera,simulado
+sim-7-0266,Alerta gerado,2026-11-15T09:31:19.542Z,motor-de-regras,camera,simulado
+sim-7-0266,Alerta visualizado,2026-11-17T00:10:43.734Z,produtor,camera,simulado
+sim-7-0267,Imagem capturada,2026-11-05T15:13:47.468Z,produtor,upload,simulado
+sim-7-0267,Diagnóstico por IA,2026-11-05T15:13:52.020Z,gemini,upload,simulado
+sim-7-0267,Análise registrada,2026-11-05T15:13:52.130Z,postgres,upload,simulado
+sim-7-0268,Imagem capturada,2026-11-17T16:37:05.203Z,camera-campo,camera,simulado
+sim-7-0268,Publicada no Kafka,2026-11-17T16:37:05.452Z,producer,camera,simulado
+sim-7-0268,Consumida do tópico,2026-11-17T16:37:05.506Z,consumer,camera,simulado
+sim-7-0268,Análise registrada,2026-11-17T16:37:05.541Z,postgres,camera,simulado
+sim-7-0268,Alerta gerado,2026-11-17T16:37:06.116Z,motor-de-regras,camera,simulado
+sim-7-0268,Alerta visualizado,2026-11-17T17:32:46.490Z,produtor,camera,simulado
+sim-7-0268,Relatório enviado,2026-11-21T08:17:26.598Z,e-mail,camera,simulado
+sim-7-0269,Imagem capturada,2026-11-20T17:31:12.137Z,camera-campo,camera,simulado
+sim-7-0269,Publicada no Kafka,2026-11-20T17:31:12.256Z,producer,camera,simulado
+sim-7-0269,Consumida do tópico,2026-11-20T17:31:12.317Z,consumer,camera,simulado
+sim-7-0269,Análise registrada,2026-11-20T17:31:12.347Z,postgres,camera,simulado
+sim-7-0269,Alerta gerado,2026-11-20T17:31:12.946Z,motor-de-regras,camera,simulado
+sim-7-0269,Alerta visualizado,2026-11-20T17:53:29.538Z,produtor,camera,simulado
+sim-7-0270,Imagem capturada,2026-11-18T11:12:19.573Z,camera-campo,camera,simulado
+sim-7-0270,Publicada no Kafka,2026-11-18T11:12:19.811Z,producer,camera,simulado
+sim-7-0270,Consumida do tópico,2026-11-18T11:12:19.845Z,consumer,camera,simulado
+sim-7-0270,Análise registrada,2026-11-18T11:12:19.875Z,postgres,camera,simulado
+sim-7-0271,Imagem capturada,2026-11-19T17:31:13.535Z,camera-campo,camera,simulado
+sim-7-0271,Publicada no Kafka,2026-11-19T17:31:13.663Z,producer,camera,simulado
+sim-7-0271,Consumida do tópico,2026-11-19T17:31:13.690Z,consumer,camera,simulado
+sim-7-0271,Análise registrada,2026-11-19T17:31:13.718Z,postgres,camera,simulado
+sim-7-0271,Relatório enviado,2026-11-21T14:00:08.718Z,e-mail,camera,simulado
+sim-7-0272,Imagem capturada,2026-11-19T20:51:48.705Z,camera-campo,camera,simulado
+sim-7-0272,Publicada no Kafka,2026-11-19T20:51:48.894Z,producer,camera,simulado
+sim-7-0272,Consumida do tópico,2026-11-19T20:51:48.977Z,consumer,camera,simulado
+sim-7-0272,Análise registrada,2026-11-19T20:51:49.002Z,postgres,camera,simulado
+sim-7-0273,Imagem capturada,2026-11-23T20:36:28.202Z,camera-campo,camera,simulado
+sim-7-0273,Publicada no Kafka,2026-11-23T20:36:28.248Z,producer,camera,simulado
+sim-7-0273,Consumida do tópico,2026-11-23T20:36:28.426Z,consumer,camera,simulado
+sim-7-0273,Análise registrada,2026-11-23T20:36:28.437Z,postgres,camera,simulado
+sim-7-0274,Imagem capturada,2026-11-16T18:27:44.428Z,camera-campo,camera,simulado
+sim-7-0274,Publicada no Kafka,2026-11-16T18:27:44.631Z,producer,camera,simulado
+sim-7-0274,Consumida do tópico,2026-11-16T18:27:44.801Z,consumer,camera,simulado
+sim-7-0274,Análise registrada,2026-11-16T18:27:44.837Z,postgres,camera,simulado
+sim-7-0275,Imagem capturada,2026-11-23T17:43:40.967Z,camera-campo,camera,simulado
+sim-7-0275,Publicada no Kafka,2026-11-23T17:43:41.145Z,producer,camera,simulado
+sim-7-0275,Consumida do tópico,2026-11-23T17:43:41.296Z,consumer,camera,simulado
+sim-7-0275,Análise registrada,2026-11-23T17:43:41.330Z,postgres,camera,simulado
+sim-7-0275,Alerta gerado,2026-11-23T17:43:41.756Z,motor-de-regras,camera,simulado
+sim-7-0275,Alerta visualizado,2026-11-23T22:32:26.846Z,produtor,camera,simulado
+sim-7-0276,Imagem capturada,2026-11-18T17:41:44.891Z,produtor,upload,simulado
+sim-7-0276,Diagnóstico por IA,2026-11-18T17:41:53.911Z,gemini,upload,simulado
+sim-7-0276,Análise registrada,2026-11-18T17:41:54.032Z,postgres,upload,simulado
+sim-7-0277,Imagem capturada,2026-11-18T10:16:05.387Z,camera-campo,camera,simulado
+sim-7-0277,Publicada no Kafka,2026-11-18T10:16:05.550Z,producer,camera,simulado
+sim-7-0277,Consumida do tópico,2026-11-18T10:20:26.144Z,consumer,camera,simulado
+sim-7-0277,Análise registrada,2026-11-18T10:20:26.183Z,postgres,camera,simulado
+sim-7-0278,Imagem capturada,2026-11-20T20:53:35.062Z,camera-campo,camera,simulado
+sim-7-0278,Publicada no Kafka,2026-11-20T20:53:35.219Z,producer,camera,simulado
+sim-7-0278,Consumida do tópico,2026-11-20T20:53:35.291Z,consumer,camera,simulado
+sim-7-0278,Análise registrada,2026-11-20T20:53:35.326Z,postgres,camera,simulado
+sim-7-0279,Imagem capturada,2026-11-20T20:42:21.294Z,camera-campo,camera,simulado
+sim-7-0279,Publicada no Kafka,2026-11-20T20:42:21.431Z,producer,camera,simulado
+sim-7-0279,Consumida do tópico,2026-11-20T20:42:21.447Z,consumer,camera,simulado
+sim-7-0279,Análise registrada,2026-11-20T20:42:21.471Z,postgres,camera,simulado
+sim-7-0279,Relatório enviado,2026-11-22T13:55:44.228Z,e-mail,camera,simulado
+sim-7-0280,Imagem capturada,2026-11-20T14:25:27.086Z,camera-campo,camera,simulado
+sim-7-0280,Publicada no Kafka,2026-11-20T14:25:27.247Z,producer,camera,simulado
+sim-7-0280,Consumida do tópico,2026-11-20T14:25:27.420Z,consumer,camera,simulado
+sim-7-0280,Análise registrada,2026-11-20T14:25:27.426Z,postgres,camera,simulado
+sim-7-0281,Imagem capturada,2026-11-03T12:44:54.072Z,camera-campo,camera,simulado
+sim-7-0281,Publicada no Kafka,2026-11-03T12:44:54.159Z,producer,camera,simulado
+sim-7-0281,Consumida do tópico,2026-11-03T12:44:54.202Z,consumer,camera,simulado
+sim-7-0281,Análise registrada,2026-11-03T12:44:54.216Z,postgres,camera,simulado
+sim-7-0282,Imagem capturada,2026-11-05T16:29:52.471Z,produtor,upload,simulado
+sim-7-0282,Diagnóstico por IA,2026-11-05T16:29:59.514Z,gemini,upload,simulado
+sim-7-0282,Análise registrada,2026-11-05T16:29:59.609Z,postgres,upload,simulado
+sim-7-0282,Alerta gerado,2026-11-05T16:30:00.175Z,motor-de-regras,upload,simulado
+sim-7-0282,Alerta visualizado,2026-11-05T16:42:25.458Z,produtor,upload,simulado
+sim-7-0283,Imagem capturada,2026-11-15T20:51:16.606Z,camera-campo,camera,simulado
+sim-7-0283,Publicada no Kafka,2026-11-15T20:51:16.722Z,producer,camera,simulado
+sim-7-0283,Consumida do tópico,2026-11-15T20:51:16.756Z,consumer,camera,simulado
+sim-7-0283,Análise registrada,2026-11-15T20:51:16.783Z,postgres,camera,simulado
+sim-7-0283,Alerta gerado,2026-11-15T20:51:16.971Z,motor-de-regras,camera,simulado
+sim-7-0283,Alerta visualizado,2026-11-16T10:38:05.143Z,produtor,camera,simulado
+sim-7-0284,Imagem capturada,2026-11-23T16:03:01.672Z,camera-campo,camera,simulado
+sim-7-0284,Publicada no Kafka,2026-11-23T16:03:01.746Z,producer,camera,simulado
+sim-7-0284,Consumida do tópico,2026-11-23T16:03:01.839Z,consumer,camera,simulado
+sim-7-0284,Análise registrada,2026-11-23T16:03:01.851Z,postgres,camera,simulado
+sim-7-0285,Imagem capturada,2026-11-16T11:48:28.553Z,camera-campo,camera,simulado
+sim-7-0285,Publicada no Kafka,2026-11-16T11:48:28.785Z,producer,camera,simulado
+sim-7-0285,Consumida do tópico,2026-11-16T11:48:28.938Z,consumer,camera,simulado
+sim-7-0285,Análise registrada,2026-11-16T11:48:28.947Z,postgres,camera,simulado
+sim-7-0286,Imagem capturada,2026-11-21T18:00:53.653Z,camera-campo,camera,simulado
+sim-7-0286,Publicada no Kafka,2026-11-21T18:00:53.812Z,producer,camera,simulado
+sim-7-0286,Consumida do tópico,2026-11-21T18:00:53.983Z,consumer,camera,simulado
+sim-7-0286,Análise registrada,2026-11-21T18:00:54.000Z,postgres,camera,simulado
+sim-7-0286,Alerta gerado,2026-11-21T18:00:54.737Z,motor-de-regras,camera,simulado
+sim-7-0286,Alerta visualizado,2026-11-23T12:49:56.230Z,produtor,camera,simulado
+sim-7-0287,Imagem capturada,2026-11-21T21:36:24.563Z,camera-campo,camera,simulado
+sim-7-0287,Publicada no Kafka,2026-11-21T21:36:24.641Z,producer,camera,simulado
+sim-7-0287,Consumida do tópico,2026-11-21T21:36:24.743Z,consumer,camera,simulado
+sim-7-0287,Análise registrada,2026-11-21T21:36:24.754Z,postgres,camera,simulado
+sim-7-0288,Imagem capturada,2026-11-16T17:53:13.990Z,camera-campo,camera,simulado
+sim-7-0288,Publicada no Kafka,2026-11-16T17:53:14.167Z,producer,camera,simulado
+sim-7-0288,Consumida do tópico,2026-11-16T17:53:14.259Z,consumer,camera,simulado
+sim-7-0288,Análise registrada,2026-11-16T17:53:14.298Z,postgres,camera,simulado
+sim-7-0288,Alerta gerado,2026-11-16T17:53:14.896Z,motor-de-regras,camera,simulado
+sim-7-0288,Alerta visualizado,2026-11-16T18:25:24.131Z,produtor,camera,simulado
+sim-7-0289,Imagem capturada,2026-11-04T11:03:22.567Z,produtor,upload,simulado
+sim-7-0289,Diagnóstico por IA,2026-11-04T11:03:25.935Z,gemini,upload,simulado
+sim-7-0289,Análise registrada,2026-11-04T11:03:26.011Z,postgres,upload,simulado
+sim-7-0290,Imagem capturada,2026-11-11T18:51:29.799Z,camera-campo,camera,simulado
+sim-7-0290,Publicada no Kafka,2026-11-11T18:51:29.869Z,producer,camera,simulado
+sim-7-0290,Consumida do tópico,2026-11-11T18:51:29.901Z,consumer,camera,simulado
+sim-7-0290,Análise registrada,2026-11-11T18:51:29.939Z,postgres,camera,simulado
+sim-7-0291,Imagem capturada,2026-11-16T14:07:41.018Z,camera-campo,camera,simulado
+sim-7-0291,Publicada no Kafka,2026-11-16T14:07:41.099Z,producer,camera,simulado
+sim-7-0291,Consumida do tópico,2026-11-16T14:07:41.198Z,consumer,camera,simulado
+sim-7-0291,Análise registrada,2026-11-16T14:07:41.235Z,postgres,camera,simulado
+sim-7-0291,Alerta gerado,2026-11-16T14:07:41.745Z,motor-de-regras,camera,simulado
+sim-7-0291,Alerta visualizado,2026-11-16T14:34:09.510Z,produtor,camera,simulado
+sim-7-0291,Relatório enviado,2026-11-18T03:18:06.391Z,e-mail,camera,simulado
+sim-7-0292,Imagem capturada,2026-11-05T12:33:29.678Z,camera-campo,camera,simulado
+sim-7-0292,Publicada no Kafka,2026-11-05T12:33:29.788Z,producer,camera,simulado
+sim-7-0292,Consumida do tópico,2026-11-05T12:33:29.862Z,consumer,camera,simulado
+sim-7-0292,Análise registrada,2026-11-05T12:33:29.886Z,postgres,camera,simulado
+sim-7-0293,Imagem capturada,2026-11-18T11:13:18.125Z,camera-campo,camera,simulado
+sim-7-0293,Publicada no Kafka,2026-11-18T11:13:18.244Z,producer,camera,simulado
+sim-7-0293,Consumida do tópico,2026-11-18T11:13:18.370Z,consumer,camera,simulado
+sim-7-0293,Análise registrada,2026-11-18T11:13:18.378Z,postgres,camera,simulado
+sim-7-0293,Alerta gerado,2026-11-18T11:13:18.485Z,motor-de-regras,camera,simulado
+sim-7-0293,Alerta visualizado,2026-11-18T11:45:13.441Z,produtor,camera,simulado
+sim-7-0294,Imagem capturada,2026-11-05T11:17:40.950Z,produtor,upload,simulado
+sim-7-0294,Diagnóstico por IA,2026-11-05T11:17:45.291Z,gemini,upload,simulado
+sim-7-0294,Análise registrada,2026-11-05T11:17:45.364Z,postgres,upload,simulado
+sim-7-0294,Alerta gerado,2026-11-05T11:17:45.719Z,motor-de-regras,upload,simulado
+sim-7-0294,Alerta visualizado,2026-11-05T11:34:18.191Z,produtor,upload,simulado
+sim-7-0295,Imagem capturada,2026-11-03T09:57:38.757Z,camera-campo,camera,simulado
+sim-7-0295,Publicada no Kafka,2026-11-03T09:57:38.891Z,producer,camera,simulado
+sim-7-0295,Consumida do tópico,2026-11-03T09:57:38.953Z,consumer,camera,simulado
+sim-7-0295,Análise registrada,2026-11-03T09:57:38.965Z,postgres,camera,simulado
+sim-7-0295,Alerta gerado,2026-11-03T09:57:39.536Z,motor-de-regras,camera,simulado
+sim-7-0295,Alerta visualizado,2026-11-04T12:13:21.135Z,produtor,camera,simulado
+sim-7-0296,Imagem capturada,2026-11-12T20:07:44.276Z,camera-campo,camera,simulado
+sim-7-0296,Publicada no Kafka,2026-11-12T20:07:44.451Z,producer,camera,simulado
+sim-7-0296,Consumida do tópico,2026-11-12T20:07:44.568Z,consumer,camera,simulado
+sim-7-0296,Análise registrada,2026-11-12T20:07:44.600Z,postgres,camera,simulado
+sim-7-0297,Imagem capturada,2026-11-19T20:13:45.259Z,camera-campo,camera,simulado
+sim-7-0297,Publicada no Kafka,2026-11-19T20:13:45.370Z,producer,camera,simulado
+sim-7-0297,Consumida do tópico,2026-11-19T20:13:45.542Z,consumer,camera,simulado
+sim-7-0297,Análise registrada,2026-11-19T20:13:45.555Z,postgres,camera,simulado
+sim-7-0298,Imagem capturada,2026-11-07T17:25:08.219Z,produtor,upload,simulado
+sim-7-0298,Diagnóstico por IA,2026-11-07T17:25:12.619Z,gemini,upload,simulado
+sim-7-0298,Análise registrada,2026-11-07T17:25:12.649Z,postgres,upload,simulado
+sim-7-0298,Alerta gerado,2026-11-07T17:25:13.312Z,motor-de-regras,upload,simulado
+sim-7-0299,Imagem capturada,2026-11-07T19:41:53.336Z,camera-campo,camera,simulado
+sim-7-0299,Publicada no Kafka,2026-11-07T19:41:53.400Z,producer,camera,simulado
+sim-7-0299,Consumida do tópico,2026-11-07T19:56:54.784Z,consumer,camera,simulado
+sim-7-0299,Análise registrada,2026-11-07T19:56:54.791Z,postgres,camera,simulado
+sim-7-0299,Relatório enviado,2026-11-09T00:38:25.117Z,e-mail,camera,simulado
+sim-7-0300,Imagem capturada,2026-11-09T09:52:18.044Z,camera-campo,camera,simulado
+sim-7-0300,Publicada no Kafka,2026-11-09T09:52:18.095Z,producer,camera,simulado
+sim-7-0300,Consumida do tópico,2026-11-09T09:52:18.237Z,consumer,camera,simulado
+sim-7-0300,Análise registrada,2026-11-09T09:52:18.266Z,postgres,camera,simulado
+sim-7-0300,Relatório enviado,2026-11-12T01:31:52.558Z,e-mail,camera,simulado
+sim-7-0301,Imagem capturada,2026-11-13T18:09:20.838Z,camera-campo,camera,simulado
+sim-7-0301,Publicada no Kafka,2026-11-13T18:09:21.027Z,producer,camera,simulado
+sim-7-0301,Consumida do tópico,2026-11-13T18:09:21.143Z,consumer,camera,simulado
+sim-7-0301,Análise registrada,2026-11-13T18:09:21.155Z,postgres,camera,simulado
+sim-7-0301,Alerta gerado,2026-11-13T18:09:21.476Z,motor-de-regras,camera,simulado
+sim-7-0301,Alerta visualizado,2026-11-13T18:20:46.758Z,produtor,camera,simulado
+sim-7-0302,Imagem capturada,2026-11-10T13:58:34.673Z,camera-campo,camera,simulado
+sim-7-0302,Publicada no Kafka,2026-11-10T13:58:34.844Z,producer,camera,simulado
+sim-7-0302,Consumida do tópico,2026-11-10T13:58:34.901Z,consumer,camera,simulado
+sim-7-0302,Análise registrada,2026-11-10T13:58:34.922Z,postgres,camera,simulado
+sim-7-0303,Imagem capturada,2026-11-04T20:35:25.477Z,produtor,upload,simulado
+sim-7-0303,Falha no diagnóstico,2026-11-04T20:35:38.945Z,gemini,upload,simulado
+sim-7-0303,Imagem capturada,2026-11-04T20:35:57.426Z,produtor,upload,simulado
+sim-7-0303,Diagnóstico por IA,2026-11-04T20:36:01.422Z,gemini,upload,simulado
+sim-7-0303,Análise registrada,2026-11-04T20:36:01.483Z,postgres,upload,simulado
+sim-7-0304,Imagem capturada,2026-11-19T10:28:38.639Z,camera-campo,camera,simulado
+sim-7-0304,Publicada no Kafka,2026-11-19T10:28:38.888Z,producer,camera,simulado
+sim-7-0304,Consumida do tópico,2026-11-19T10:28:39.005Z,consumer,camera,simulado
+sim-7-0304,Análise registrada,2026-11-19T10:28:39.037Z,postgres,camera,simulado
+sim-7-0304,Relatório enviado,2026-11-21T19:17:50.148Z,e-mail,camera,simulado
+sim-7-0305,Imagem capturada,2026-11-19T13:37:16.346Z,camera-campo,camera,simulado
+sim-7-0305,Publicada no Kafka,2026-11-19T13:37:16.467Z,producer,camera,simulado
+sim-7-0305,Consumida do tópico,2026-11-19T13:37:16.498Z,consumer,camera,simulado
+sim-7-0305,Análise registrada,2026-11-19T13:37:16.530Z,postgres,camera,simulado
+sim-7-0305,Relatório enviado,2026-11-20T17:49:01.020Z,e-mail,camera,simulado
+sim-7-0306,Imagem capturada,2026-11-11T13:26:45.599Z,camera-campo,camera,simulado
+sim-7-0306,Publicada no Kafka,2026-11-11T13:26:45.844Z,producer,camera,simulado
+sim-7-0306,Consumida do tópico,2026-11-11T13:26:45.910Z,consumer,camera,simulado
+sim-7-0306,Análise registrada,2026-11-11T13:26:45.940Z,postgres,camera,simulado
+sim-7-0306,Alerta gerado,2026-11-11T13:26:46.294Z,motor-de-regras,camera,simulado
+sim-7-0307,Imagem capturada,2026-11-23T10:28:59.959Z,camera-campo,camera,simulado
+sim-7-0307,Publicada no Kafka,2026-11-23T10:29:00.066Z,producer,camera,simulado
+sim-7-0307,Consumida do tópico,2026-11-23T10:29:00.176Z,consumer,camera,simulado
+sim-7-0307,Análise registrada,2026-11-23T10:29:00.203Z,postgres,camera,simulado
+sim-7-0307,Alerta gerado,2026-11-23T10:29:00.817Z,motor-de-regras,camera,simulado
+sim-7-0307,Alerta visualizado,2026-11-23T11:02:39.241Z,produtor,camera,simulado
+sim-7-0308,Imagem capturada,2026-11-21T21:47:41.392Z,produtor,upload,simulado
+sim-7-0308,Diagnóstico por IA,2026-11-21T21:47:47.233Z,gemini,upload,simulado
+sim-7-0308,Análise registrada,2026-11-21T21:47:47.369Z,postgres,upload,simulado
+sim-7-0309,Imagem capturada,2026-11-05T16:03:49.727Z,camera-campo,camera,simulado
+sim-7-0309,Publicada no Kafka,2026-11-05T16:03:49.797Z,producer,camera,simulado
+sim-7-0309,Consumida do tópico,2026-11-05T16:03:49.949Z,consumer,camera,simulado
+sim-7-0309,Análise registrada,2026-11-05T16:03:49.959Z,postgres,camera,simulado
+sim-7-0309,Alerta gerado,2026-11-05T16:03:50.561Z,motor-de-regras,camera,simulado
+sim-7-0309,Relatório enviado,2026-11-09T10:38:44.800Z,e-mail,camera,simulado
+sim-7-0310,Imagem capturada,2026-11-14T10:58:34.092Z,produtor,upload,simulado
+sim-7-0310,Diagnóstico por IA,2026-11-14T10:58:38.489Z,gemini,upload,simulado
+sim-7-0310,Análise registrada,2026-11-14T10:58:38.602Z,postgres,upload,simulado
+sim-7-0311,Imagem capturada,2026-11-04T20:36:57.843Z,produtor,upload,simulado
+sim-7-0311,Diagnóstico por IA,2026-11-04T20:37:01.264Z,gemini,upload,simulado
+sim-7-0311,Análise registrada,2026-11-04T20:37:01.359Z,postgres,upload,simulado
+sim-7-0312,Imagem capturada,2026-11-22T14:41:26.581Z,camera-campo,camera,simulado
+sim-7-0312,Publicada no Kafka,2026-11-22T14:41:26.659Z,producer,camera,simulado
+sim-7-0312,Consumida do tópico,2026-11-22T14:41:26.701Z,consumer,camera,simulado
+sim-7-0312,Análise registrada,2026-11-22T14:41:26.711Z,postgres,camera,simulado
+sim-7-0313,Imagem capturada,2026-11-06T15:29:43.625Z,camera-campo,camera,simulado
+sim-7-0313,Publicada no Kafka,2026-11-06T15:29:43.820Z,producer,camera,simulado
+sim-7-0313,Consumida do tópico,2026-11-06T15:29:43.942Z,consumer,camera,simulado
+sim-7-0313,Análise registrada,2026-11-06T15:29:43.958Z,postgres,camera,simulado
+sim-7-0314,Imagem capturada,2026-11-06T18:32:29.079Z,camera-campo,camera,simulado
+sim-7-0314,Publicada no Kafka,2026-11-06T18:32:29.155Z,producer,camera,simulado
+sim-7-0314,Consumida do tópico,2026-11-06T18:32:29.255Z,consumer,camera,simulado
+sim-7-0314,Análise registrada,2026-11-06T18:32:29.293Z,postgres,camera,simulado
+sim-7-0315,Imagem capturada,2026-11-05T14:25:27.947Z,produtor,upload,simulado
+sim-7-0315,Diagnóstico por IA,2026-11-05T14:25:35.003Z,gemini,upload,simulado
+sim-7-0315,Análise registrada,2026-11-05T14:25:35.132Z,postgres,upload,simulado
+sim-7-0315,Alerta gerado,2026-11-05T14:25:35.425Z,motor-de-regras,upload,simulado
+sim-7-0315,Alerta visualizado,2026-11-05T17:03:35.757Z,produtor,upload,simulado
+sim-7-0316,Imagem capturada,2026-11-10T18:46:09.251Z,camera-campo,camera,simulado
+sim-7-0316,Publicada no Kafka,2026-11-10T18:46:09.444Z,producer,camera,simulado
+sim-7-0316,Consumida do tópico,2026-11-10T18:46:09.516Z,consumer,camera,simulado
+sim-7-0316,Análise registrada,2026-11-10T18:46:09.536Z,postgres,camera,simulado
+sim-7-0317,Imagem capturada,2026-11-12T19:36:53.012Z,camera-campo,camera,simulado
+sim-7-0317,Publicada no Kafka,2026-11-12T19:36:53.186Z,producer,camera,simulado
+sim-7-0317,Consumida do tópico,2026-11-12T19:36:53.227Z,consumer,camera,simulado
+sim-7-0317,Análise registrada,2026-11-12T19:36:53.259Z,postgres,camera,simulado
+sim-7-0318,Imagem capturada,2026-11-12T15:41:27.010Z,produtor,upload,simulado
+sim-7-0318,Diagnóstico por IA,2026-11-12T15:41:34.210Z,gemini,upload,simulado
+sim-7-0318,Análise registrada,2026-11-12T15:41:34.333Z,postgres,upload,simulado
+sim-7-0318,Relatório enviado,2026-11-14T21:57:14.757Z,e-mail,upload,simulado
+sim-7-0319,Imagem capturada,2026-11-15T19:39:02.300Z,camera-campo,camera,simulado
+sim-7-0319,Publicada no Kafka,2026-11-15T19:39:02.400Z,producer,camera,simulado
+sim-7-0319,Consumida do tópico,2026-11-15T19:44:59.462Z,consumer,camera,simulado
+sim-7-0319,Análise registrada,2026-11-15T19:44:59.487Z,postgres,camera,simulado
+sim-7-0320,Imagem capturada,2026-11-12T16:32:11.387Z,produtor,upload,simulado
+sim-7-0320,Falha no diagnóstico,2026-11-12T16:32:33.110Z,gemini,upload,simulado
+sim-7-0320,Imagem capturada,2026-11-12T16:34:50.542Z,produtor,upload,simulado
+sim-7-0320,Falha no diagnóstico,2026-11-12T16:35:08.902Z,gemini,upload,simulado
+sim-7-0321,Imagem capturada,2026-11-20T10:28:48.666Z,camera-campo,camera,simulado
+sim-7-0321,Publicada no Kafka,2026-11-20T10:28:48.723Z,producer,camera,simulado
+sim-7-0321,Consumida do tópico,2026-11-20T10:28:48.877Z,consumer,camera,simulado
+sim-7-0321,Análise registrada,2026-11-20T10:28:48.905Z,postgres,camera,simulado
+sim-7-0322,Imagem capturada,2026-11-11T14:44:36.031Z,camera-campo,camera,simulado
+sim-7-0322,Publicada no Kafka,2026-11-11T14:44:36.078Z,producer,camera,simulado
+sim-7-0322,Consumida do tópico,2026-11-11T14:44:36.178Z,consumer,camera,simulado
+sim-7-0322,Análise registrada,2026-11-11T14:44:36.191Z,postgres,camera,simulado
+sim-7-0323,Imagem capturada,2026-11-15T18:43:25.911Z,produtor,upload,simulado
+sim-7-0323,Diagnóstico por IA,2026-11-15T18:43:30.334Z,gemini,upload,simulado
+sim-7-0323,Análise registrada,2026-11-15T18:43:30.429Z,postgres,upload,simulado
+sim-7-0324,Imagem capturada,2026-11-22T18:10:03.395Z,camera-campo,camera,simulado
+sim-7-0324,Publicada no Kafka,2026-11-22T18:10:03.624Z,producer,camera,simulado
+sim-7-0324,Consumida do tópico,2026-11-22T18:10:03.764Z,consumer,camera,simulado
+sim-7-0324,Análise registrada,2026-11-22T18:10:03.802Z,postgres,camera,simulado
+sim-7-0325,Imagem capturada,2026-11-13T19:51:18.893Z,camera-campo,camera,simulado
+sim-7-0325,Publicada no Kafka,2026-11-13T19:51:18.962Z,producer,camera,simulado
+sim-7-0325,Consumida do tópico,2026-11-13T19:51:19.095Z,consumer,camera,simulado
+sim-7-0325,Análise registrada,2026-11-13T19:51:19.124Z,postgres,camera,simulado
+sim-7-0325,Alerta gerado,2026-11-13T19:51:19.514Z,motor-de-regras,camera,simulado
+sim-7-0326,Imagem capturada,2026-11-07T18:29:35.274Z,camera-campo,camera,simulado
+sim-7-0326,Publicada no Kafka,2026-11-07T18:29:35.446Z,producer,camera,simulado
+sim-7-0326,Consumida do tópico,2026-11-07T18:50:44.526Z,consumer,camera,simulado
+sim-7-0326,Análise registrada,2026-11-07T18:50:44.547Z,postgres,camera,simulado
+sim-7-0327,Imagem capturada,2026-11-03T16:29:14.514Z,produtor,upload,simulado
+sim-7-0327,Falha no diagnóstico,2026-11-03T16:29:31.981Z,gemini,upload,simulado
+sim-7-0327,Imagem capturada,2026-11-03T16:30:00.393Z,produtor,upload,simulado
+sim-7-0327,Diagnóstico por IA,2026-11-03T16:30:04.035Z,gemini,upload,simulado
+sim-7-0327,Análise registrada,2026-11-03T16:30:04.107Z,postgres,upload,simulado
+sim-7-0327,Alerta gerado,2026-11-03T16:30:04.290Z,motor-de-regras,upload,simulado
+sim-7-0327,Alerta visualizado,2026-11-03T18:34:54.913Z,produtor,upload,simulado
+sim-7-0328,Imagem capturada,2026-11-06T12:48:14.401Z,produtor,upload,simulado
+sim-7-0328,Diagnóstico por IA,2026-11-06T12:48:16.734Z,gemini,upload,simulado
+sim-7-0328,Análise registrada,2026-11-06T12:48:16.863Z,postgres,upload,simulado
+sim-7-0328,Relatório enviado,2026-11-09T08:41:59.046Z,e-mail,upload,simulado
+sim-7-0329,Imagem capturada,2026-11-05T10:55:58.022Z,produtor,upload,simulado
+sim-7-0329,Diagnóstico por IA,2026-11-05T10:56:06.070Z,gemini,upload,simulado
+sim-7-0329,Análise registrada,2026-11-05T10:56:06.129Z,postgres,upload,simulado
+sim-7-0329,Alerta gerado,2026-11-05T10:56:06.479Z,motor-de-regras,upload,simulado
+sim-7-0329,Alerta visualizado,2026-11-05T11:12:47.686Z,produtor,upload,simulado
+sim-7-0329,Relatório enviado,2026-11-07T17:33:10.949Z,e-mail,upload,simulado
+sim-7-0330,Imagem capturada,2026-11-14T20:22:30.451Z,produtor,upload,simulado
+sim-7-0330,Diagnóstico por IA,2026-11-14T20:22:33.938Z,gemini,upload,simulado
+sim-7-0330,Análise registrada,2026-11-14T20:22:33.968Z,postgres,upload,simulado
+sim-7-0331,Imagem capturada,2026-11-09T13:22:56.569Z,camera-campo,camera,simulado
+sim-7-0331,Publicada no Kafka,2026-11-09T13:22:56.696Z,producer,camera,simulado
+sim-7-0331,Consumida do tópico,2026-11-09T13:22:56.734Z,consumer,camera,simulado
+sim-7-0331,Análise registrada,2026-11-09T13:22:56.746Z,postgres,camera,simulado
+sim-7-0331,Alerta gerado,2026-11-09T13:22:56.911Z,motor-de-regras,camera,simulado
+sim-7-0331,Alerta visualizado,2026-11-09T14:28:03.290Z,produtor,camera,simulado
+sim-7-0332,Imagem capturada,2026-11-11T21:34:24.192Z,produtor,upload,simulado
+sim-7-0332,Falha no diagnóstico,2026-11-11T21:34:36.688Z,gemini,upload,simulado
+sim-7-0333,Imagem capturada,2026-11-12T18:14:28.709Z,camera-campo,camera,simulado
+sim-7-0333,Publicada no Kafka,2026-11-12T18:14:28.945Z,producer,camera,simulado
+sim-7-0333,Consumida do tópico,2026-11-12T18:14:28.977Z,consumer,camera,simulado
+sim-7-0333,Análise registrada,2026-11-12T18:14:29.000Z,postgres,camera,simulado
+sim-7-0333,Alerta gerado,2026-11-12T18:14:29.321Z,motor-de-regras,camera,simulado
+sim-7-0333,Alerta visualizado,2026-11-13T02:22:31.935Z,produtor,camera,simulado
+sim-7-0334,Imagem capturada,2026-11-08T13:12:37.102Z,camera-campo,camera,simulado
+sim-7-0334,Publicada no Kafka,2026-11-08T13:12:37.152Z,producer,camera,simulado
+sim-7-0334,Consumida do tópico,2026-11-08T13:12:37.281Z,consumer,camera,simulado
+sim-7-0334,Análise registrada,2026-11-08T13:12:37.289Z,postgres,camera,simulado
+sim-7-0335,Imagem capturada,2026-11-12T10:04:27.034Z,camera-campo,camera,simulado
+sim-7-0335,Publicada no Kafka,2026-11-12T10:04:27.185Z,producer,camera,simulado
+sim-7-0335,Consumida do tópico,2026-11-12T10:04:27.295Z,consumer,camera,simulado
+sim-7-0335,Análise registrada,2026-11-12T10:04:27.319Z,postgres,camera,simulado
+sim-7-0335,Alerta gerado,2026-11-12T10:04:27.945Z,motor-de-regras,camera,simulado
+sim-7-0335,Alerta visualizado,2026-11-12T11:02:25.801Z,produtor,camera,simulado
+sim-7-0336,Imagem capturada,2026-11-17T09:23:21.645Z,camera-campo,camera,simulado
+sim-7-0336,Publicada no Kafka,2026-11-17T09:23:21.722Z,producer,camera,simulado
+sim-7-0336,Consumida do tópico,2026-11-17T09:23:21.890Z,consumer,camera,simulado
+sim-7-0336,Análise registrada,2026-11-17T09:23:21.919Z,postgres,camera,simulado
+sim-7-0337,Imagem capturada,2026-11-09T15:50:03.304Z,camera-campo,camera,simulado
+sim-7-0337,Publicada no Kafka,2026-11-09T15:50:03.379Z,producer,camera,simulado
+sim-7-0337,Consumida do tópico,2026-11-09T15:50:03.501Z,consumer,camera,simulado
+sim-7-0337,Análise registrada,2026-11-09T15:50:03.522Z,postgres,camera,simulado
+sim-7-0337,Relatório enviado,2026-11-13T04:26:19.035Z,e-mail,camera,simulado
+sim-7-0338,Imagem capturada,2026-11-15T12:17:42.091Z,camera-campo,camera,simulado
+sim-7-0338,Publicada no Kafka,2026-11-15T12:17:42.313Z,producer,camera,simulado
+sim-7-0338,Consumida do tópico,2026-11-15T12:17:42.437Z,consumer,camera,simulado
+sim-7-0338,Análise registrada,2026-11-15T12:17:42.445Z,postgres,camera,simulado
+sim-7-0339,Imagem capturada,2026-11-06T15:07:42.603Z,camera-campo,camera,simulado
+sim-7-0339,Publicada no Kafka,2026-11-06T15:07:42.670Z,producer,camera,simulado
+sim-7-0339,Consumida do tópico,2026-11-06T15:07:42.822Z,consumer,camera,simulado
+sim-7-0339,Análise registrada,2026-11-06T15:07:42.861Z,postgres,camera,simulado
+sim-7-0339,Alerta gerado,2026-11-06T15:07:43.626Z,motor-de-regras,camera,simulado
+sim-7-0339,Alerta visualizado,2026-11-06T17:36:18.817Z,produtor,camera,simulado
+sim-7-0340,Imagem capturada,2026-11-09T09:06:50.342Z,camera-campo,camera,simulado
+sim-7-0340,Publicada no Kafka,2026-11-09T09:06:50.553Z,producer,camera,simulado
+sim-7-0340,Consumida do tópico,2026-11-09T09:06:50.573Z,consumer,camera,simulado
+sim-7-0340,Análise registrada,2026-11-09T09:06:50.599Z,postgres,camera,simulado
+sim-7-0341,Imagem capturada,2026-11-18T10:10:38.833Z,camera-campo,camera,simulado
+sim-7-0341,Publicada no Kafka,2026-11-18T10:10:38.938Z,producer,camera,simulado
+sim-7-0341,Consumida do tópico,2026-11-18T10:10:39.102Z,consumer,camera,simulado
+sim-7-0341,Análise registrada,2026-11-18T10:10:39.113Z,postgres,camera,simulado
+sim-7-0341,Alerta gerado,2026-11-18T10:10:39.301Z,motor-de-regras,camera,simulado
+sim-7-0341,Alerta visualizado,2026-11-18T12:10:03.920Z,produtor,camera,simulado
+sim-7-0342,Imagem capturada,2026-11-16T10:48:55.345Z,produtor,upload,simulado
+sim-7-0342,Diagnóstico por IA,2026-11-16T10:48:58.906Z,gemini,upload,simulado
+sim-7-0342,Análise registrada,2026-11-16T10:48:58.993Z,postgres,upload,simulado
+sim-7-0342,Relatório enviado,2026-11-19T12:45:17.608Z,e-mail,upload,simulado
+sim-7-0343,Imagem capturada,2026-11-17T10:13:24.606Z,produtor,upload,simulado
+sim-7-0343,Diagnóstico por IA,2026-11-17T10:13:29.683Z,gemini,upload,simulado
+sim-7-0343,Análise registrada,2026-11-17T10:13:29.733Z,postgres,upload,simulado
+sim-7-0343,Relatório enviado,2026-11-20T23:54:52.671Z,e-mail,upload,simulado
+sim-7-0344,Imagem capturada,2026-11-09T19:15:49.202Z,produtor,upload,simulado
+sim-7-0344,Diagnóstico por IA,2026-11-09T19:15:50.822Z,gemini,upload,simulado
+sim-7-0344,Análise registrada,2026-11-09T19:15:50.890Z,postgres,upload,simulado
+sim-7-0345,Imagem capturada,2026-11-11T09:07:46.184Z,camera-campo,camera,simulado
+sim-7-0345,Publicada no Kafka,2026-11-11T09:07:46.329Z,producer,camera,simulado
+sim-7-0345,Consumida do tópico,2026-11-11T09:07:46.347Z,consumer,camera,simulado
+sim-7-0345,Análise registrada,2026-11-11T09:07:46.365Z,postgres,camera,simulado
+sim-7-0346,Imagem capturada,2026-11-07T16:53:43.070Z,camera-campo,camera,simulado
+sim-7-0346,Publicada no Kafka,2026-11-07T16:53:43.136Z,producer,camera,simulado
+sim-7-0346,Consumida do tópico,2026-11-07T16:53:43.245Z,consumer,camera,simulado
+sim-7-0346,Análise registrada,2026-11-07T16:53:43.277Z,postgres,camera,simulado
+sim-7-0347,Imagem capturada,2026-11-19T16:18:20.159Z,produtor,upload,simulado
+sim-7-0347,Diagnóstico por IA,2026-11-19T16:18:23.223Z,gemini,upload,simulado
+sim-7-0347,Análise registrada,2026-11-19T16:18:23.257Z,postgres,upload,simulado
+sim-7-0347,Relatório enviado,2026-11-21T07:09:57.811Z,e-mail,upload,simulado
+sim-7-0348,Imagem capturada,2026-11-07T12:09:59.760Z,camera-campo,camera,simulado
+sim-7-0348,Publicada no Kafka,2026-11-07T12:09:59.987Z,producer,camera,simulado
+sim-7-0348,Consumida do tópico,2026-11-07T12:10:00.099Z,consumer,camera,simulado
+sim-7-0348,Análise registrada,2026-11-07T12:10:00.138Z,postgres,camera,simulado
+sim-7-0348,Alerta gerado,2026-11-07T12:10:00.667Z,motor-de-regras,camera,simulado
+sim-7-0348,Alerta visualizado,2026-11-09T10:34:50.974Z,produtor,camera,simulado
+sim-7-0349,Imagem capturada,2026-11-12T11:26:28.405Z,camera-campo,camera,simulado
+sim-7-0349,Publicada no Kafka,2026-11-12T11:26:28.449Z,producer,camera,simulado
+sim-7-0349,Consumida do tópico,2026-11-12T11:26:28.573Z,consumer,camera,simulado
+sim-7-0349,Análise registrada,2026-11-12T11:26:28.582Z,postgres,camera,simulado
+sim-7-0349,Alerta gerado,2026-11-12T11:26:28.753Z,motor-de-regras,camera,simulado
+sim-7-0349,Alerta visualizado,2026-11-12T12:34:36.953Z,produtor,camera,simulado
+sim-7-0350,Imagem capturada,2026-11-15T21:35:18.932Z,produtor,upload,simulado
+sim-7-0350,Diagnóstico por IA,2026-11-15T21:35:22.956Z,gemini,upload,simulado
+sim-7-0350,Análise registrada,2026-11-15T21:35:23.064Z,postgres,upload,simulado
+sim-7-0350,Alerta gerado,2026-11-15T21:35:23.727Z,motor-de-regras,upload,simulado
+sim-7-0350,Relatório enviado,2026-11-17T22:15:53.814Z,e-mail,upload,simulado
+sim-7-0351,Imagem capturada,2026-11-09T15:03:26.945Z,camera-campo,camera,simulado
+sim-7-0351,Publicada no Kafka,2026-11-09T15:03:27.001Z,producer,camera,simulado
+sim-7-0351,Consumida do tópico,2026-11-09T15:03:27.029Z,consumer,camera,simulado
+sim-7-0351,Análise registrada,2026-11-09T15:03:27.063Z,postgres,camera,simulado
+sim-7-0351,Relatório enviado,2026-11-13T02:55:14.797Z,e-mail,camera,simulado
+sim-7-0352,Imagem capturada,2026-11-21T19:38:39.806Z,camera-campo,camera,simulado
+sim-7-0352,Publicada no Kafka,2026-11-21T19:38:39.987Z,producer,camera,simulado
+sim-7-0352,Consumida do tópico,2026-11-21T19:38:40.134Z,consumer,camera,simulado
+sim-7-0352,Análise registrada,2026-11-21T19:38:40.152Z,postgres,camera,simulado
+sim-7-0353,Imagem capturada,2026-11-05T21:34:19.899Z,produtor,upload,simulado
+sim-7-0353,Diagnóstico por IA,2026-11-05T21:34:23.438Z,gemini,upload,simulado
+sim-7-0353,Análise registrada,2026-11-05T21:34:23.472Z,postgres,upload,simulado
+sim-7-0353,Alerta gerado,2026-11-05T21:34:23.714Z,motor-de-regras,upload,simulado
+sim-7-0353,Alerta visualizado,2026-11-06T11:12:27.436Z,produtor,upload,simulado
+sim-7-0354,Imagem capturada,2026-11-20T10:24:46.261Z,camera-campo,camera,simulado
+sim-7-0354,Publicada no Kafka,2026-11-20T10:24:46.364Z,producer,camera,simulado
+sim-7-0354,Consumida do tópico,2026-11-20T10:24:46.522Z,consumer,camera,simulado
+sim-7-0354,Análise registrada,2026-11-20T10:24:46.536Z,postgres,camera,simulado
+sim-7-0354,Relatório enviado,2026-11-23T05:15:16.820Z,e-mail,camera,simulado
+sim-7-0355,Imagem capturada,2026-11-22T17:03:40.466Z,camera-campo,camera,simulado
+sim-7-0355,Publicada no Kafka,2026-11-22T17:03:40.577Z,producer,camera,simulado
+sim-7-0355,Consumida do tópico,2026-11-22T17:03:40.596Z,consumer,camera,simulado
+sim-7-0355,Análise registrada,2026-11-22T17:03:40.620Z,postgres,camera,simulado
+sim-7-0356,Imagem capturada,2026-11-15T18:25:36.017Z,produtor,upload,simulado
+sim-7-0356,Diagnóstico por IA,2026-11-15T18:25:39.379Z,gemini,upload,simulado
+sim-7-0356,Análise registrada,2026-11-15T18:25:39.471Z,postgres,upload,simulado
+sim-7-0356,Alerta gerado,2026-11-15T18:25:39.780Z,motor-de-regras,upload,simulado
+sim-7-0356,Alerta visualizado,2026-11-16T11:48:49.496Z,produtor,upload,simulado
+sim-7-0357,Imagem capturada,2026-11-15T15:16:15.196Z,camera-campo,camera,simulado
+sim-7-0357,Publicada no Kafka,2026-11-15T15:16:15.290Z,producer,camera,simulado
+sim-7-0357,Consumida do tópico,2026-11-15T15:16:15.359Z,consumer,camera,simulado
+sim-7-0357,Análise registrada,2026-11-15T15:16:15.386Z,postgres,camera,simulado
+sim-7-0357,Alerta gerado,2026-11-15T15:16:16.130Z,motor-de-regras,camera,simulado
+sim-7-0357,Alerta visualizado,2026-11-16T13:19:49.428Z,produtor,camera,simulado
+sim-7-0358,Imagem capturada,2026-11-17T15:12:57.837Z,produtor,upload,simulado
+sim-7-0358,Diagnóstico por IA,2026-11-17T15:13:02.828Z,gemini,upload,simulado
+sim-7-0358,Análise registrada,2026-11-17T15:13:02.894Z,postgres,upload,simulado
+sim-7-0358,Alerta gerado,2026-11-17T15:13:03.680Z,motor-de-regras,upload,simulado
+sim-7-0358,Alerta visualizado,2026-11-17T15:39:00.070Z,produtor,upload,simulado
+sim-7-0359,Imagem capturada,2026-11-22T17:06:38.006Z,camera-campo,camera,simulado
+sim-7-0359,Publicada no Kafka,2026-11-22T17:06:38.157Z,producer,camera,simulado
+sim-7-0359,Consumida do tópico,2026-11-22T17:06:38.190Z,consumer,camera,simulado
+sim-7-0359,Análise registrada,2026-11-22T17:06:38.221Z,postgres,camera,simulado
+sim-7-0360,Imagem capturada,2026-11-22T20:38:31.006Z,produtor,upload,simulado
+sim-7-0360,Diagnóstico por IA,2026-11-22T20:38:33.416Z,gemini,upload,simulado
+sim-7-0360,Análise registrada,2026-11-22T20:38:33.536Z,postgres,upload,simulado
+sim-7-0360,Alerta gerado,2026-11-22T20:38:33.877Z,motor-de-regras,upload,simulado
+sim-7-0361,Imagem capturada,2026-11-03T09:46:35.727Z,camera-campo,camera,simulado
+sim-7-0361,Publicada no Kafka,2026-11-03T09:46:35.909Z,producer,camera,simulado
+sim-7-0361,Consumida do tópico,2026-11-03T09:46:35.943Z,consumer,camera,simulado
+sim-7-0361,Análise registrada,2026-11-03T09:46:35.962Z,postgres,camera,simulado
+sim-7-0361,Relatório enviado,2026-11-04T18:31:49.458Z,e-mail,camera,simulado
+sim-7-0362,Imagem capturada,2026-11-09T17:39:16.600Z,camera-campo,camera,simulado
+sim-7-0362,Publicada no Kafka,2026-11-09T17:39:16.771Z,producer,camera,simulado
+sim-7-0362,Consumida do tópico,2026-11-09T17:39:16.905Z,consumer,camera,simulado
+sim-7-0362,Análise registrada,2026-11-09T17:39:16.915Z,postgres,camera,simulado
+sim-7-0362,Relatório enviado,2026-11-13T04:33:17.104Z,e-mail,camera,simulado
+sim-7-0363,Imagem capturada,2026-11-06T17:32:00.855Z,camera-campo,camera,simulado
+sim-7-0363,Publicada no Kafka,2026-11-06T17:32:01.101Z,producer,camera,simulado
+sim-7-0363,Consumida do tópico,2026-11-06T17:32:01.242Z,consumer,camera,simulado
+sim-7-0363,Análise registrada,2026-11-06T17:32:01.263Z,postgres,camera,simulado
+sim-7-0363,Relatório enviado,2026-11-09T15:26:02.299Z,e-mail,camera,simulado
+sim-7-0364,Imagem capturada,2026-11-13T20:04:24.581Z,camera-campo,camera,simulado
+sim-7-0364,Publicada no Kafka,2026-11-13T20:04:24.650Z,producer,camera,simulado
+sim-7-0364,Consumida do tópico,2026-11-13T20:04:24.671Z,consumer,camera,simulado
+sim-7-0364,Análise registrada,2026-11-13T20:04:24.689Z,postgres,camera,simulado
+sim-7-0365,Imagem capturada,2026-11-20T15:50:25.920Z,camera-campo,camera,simulado
+sim-7-0365,Publicada no Kafka,2026-11-20T15:50:26.035Z,producer,camera,simulado
+sim-7-0365,Consumida do tópico,2026-11-20T15:50:26.126Z,consumer,camera,simulado
+sim-7-0365,Análise registrada,2026-11-20T15:50:26.136Z,postgres,camera,simulado
+sim-7-0366,Imagem capturada,2026-11-07T09:41:06.112Z,produtor,upload,simulado
+sim-7-0366,Diagnóstico por IA,2026-11-07T09:41:13.583Z,gemini,upload,simulado
+sim-7-0366,Análise registrada,2026-11-07T09:41:13.688Z,postgres,upload,simulado
+sim-7-0366,Alerta gerado,2026-11-07T09:41:13.881Z,motor-de-regras,upload,simulado
+sim-7-0366,Alerta visualizado,2026-11-09T10:20:57.348Z,produtor,upload,simulado
+sim-7-0367,Imagem capturada,2026-11-12T20:00:46.064Z,camera-campo,camera,simulado
+sim-7-0367,Publicada no Kafka,2026-11-12T20:00:46.129Z,producer,camera,simulado
+sim-7-0367,Consumida do tópico,2026-11-12T20:00:46.235Z,consumer,camera,simulado
+sim-7-0367,Análise registrada,2026-11-12T20:00:46.247Z,postgres,camera,simulado
+sim-7-0367,Alerta gerado,2026-11-12T20:00:46.860Z,motor-de-regras,camera,simulado
+sim-7-0367,Alerta visualizado,2026-11-12T22:02:38.971Z,produtor,camera,simulado
+sim-7-0367,Relatório enviado,2026-11-16T01:00:03.491Z,e-mail,camera,simulado
+sim-7-0368,Imagem capturada,2026-11-16T13:29:57.638Z,camera-campo,camera,simulado
+sim-7-0368,Publicada no Kafka,2026-11-16T13:29:57.741Z,producer,camera,simulado
+sim-7-0368,Consumida do tópico,2026-11-16T13:29:57.819Z,consumer,camera,simulado
+sim-7-0368,Análise registrada,2026-11-16T13:29:57.829Z,postgres,camera,simulado
+sim-7-0368,Alerta gerado,2026-11-16T13:29:58.163Z,motor-de-regras,camera,simulado
+sim-7-0368,Alerta visualizado,2026-11-16T13:39:10.986Z,produtor,camera,simulado
+sim-7-0369,Imagem capturada,2026-11-19T10:52:44.328Z,produtor,upload,simulado
+sim-7-0369,Diagnóstico por IA,2026-11-19T10:52:53.119Z,gemini,upload,simulado
+sim-7-0369,Diagnóstico inconclusivo,2026-11-19T10:52:53.124Z,gemini,upload,simulado
+sim-7-0369,Imagem capturada,2026-11-19T11:19:23.410Z,produtor,upload,simulado
+sim-7-0369,Diagnóstico por IA,2026-11-19T11:19:26.901Z,gemini,upload,simulado
+sim-7-0369,Análise registrada,2026-11-19T11:19:26.984Z,postgres,upload,simulado
+sim-7-0369,Alerta gerado,2026-11-19T11:19:27.618Z,motor-de-regras,upload,simulado
+sim-7-0369,Alerta visualizado,2026-11-19T11:51:58.486Z,produtor,upload,simulado
+sim-7-0370,Imagem capturada,2026-11-03T17:35:45.736Z,camera-campo,camera,simulado
+sim-7-0370,Publicada no Kafka,2026-11-03T17:35:45.956Z,producer,camera,simulado
+sim-7-0370,Consumida do tópico,2026-11-03T17:35:46.095Z,consumer,camera,simulado
+sim-7-0370,Análise registrada,2026-11-03T17:35:46.122Z,postgres,camera,simulado
+sim-7-0371,Imagem capturada,2026-11-06T10:46:55.638Z,produtor,upload,simulado
+sim-7-0371,Falha no diagnóstico,2026-11-06T10:47:18.230Z,gemini,upload,simulado
+sim-7-0371,Imagem capturada,2026-11-06T10:49:08.645Z,produtor,upload,simulado
+sim-7-0371,Diagnóstico por IA,2026-11-06T10:49:14.457Z,gemini,upload,simulado
+sim-7-0371,Análise registrada,2026-11-06T10:49:14.524Z,postgres,upload,simulado
+sim-7-0372,Imagem capturada,2026-11-16T10:40:32.497Z,camera-campo,camera,simulado
+sim-7-0372,Publicada no Kafka,2026-11-16T10:40:32.742Z,producer,camera,simulado
+sim-7-0372,Consumida do tópico,2026-11-16T10:40:32.876Z,consumer,camera,simulado
+sim-7-0372,Análise registrada,2026-11-16T10:40:32.911Z,postgres,camera,simulado
+sim-7-0373,Imagem capturada,2026-11-19T17:05:20.012Z,camera-campo,camera,simulado
+sim-7-0373,Publicada no Kafka,2026-11-19T17:05:20.212Z,producer,camera,simulado
+sim-7-0373,Consumida do tópico,2026-11-19T17:05:20.336Z,consumer,camera,simulado
+sim-7-0373,Análise registrada,2026-11-19T17:05:20.362Z,postgres,camera,simulado
+sim-7-0373,Alerta gerado,2026-11-19T17:05:20.653Z,motor-de-regras,camera,simulado
+sim-7-0373,Alerta visualizado,2026-11-19T17:30:13.872Z,produtor,camera,simulado
+sim-7-0374,Imagem capturada,2026-11-10T18:41:30.334Z,produtor,upload,simulado
+sim-7-0374,Diagnóstico por IA,2026-11-10T18:41:37.773Z,gemini,upload,simulado
+sim-7-0374,Análise registrada,2026-11-10T18:41:37.886Z,postgres,upload,simulado
+sim-7-0374,Alerta gerado,2026-11-10T18:41:38.282Z,motor-de-regras,upload,simulado
+sim-7-0374,Alerta visualizado,2026-11-10T18:56:55.628Z,produtor,upload,simulado
+sim-7-0375,Imagem capturada,2026-11-13T11:43:29.093Z,camera-campo,camera,simulado
+sim-7-0375,Publicada no Kafka,2026-11-13T11:43:29.293Z,producer,camera,simulado
+sim-7-0375,Consumida do tópico,2026-11-13T11:43:29.410Z,consumer,camera,simulado
+sim-7-0375,Análise registrada,2026-11-13T11:43:29.438Z,postgres,camera,simulado
+sim-7-0375,Alerta gerado,2026-11-13T11:43:29.616Z,motor-de-regras,camera,simulado
+sim-7-0375,Alerta visualizado,2026-11-13T12:35:12.169Z,produtor,camera,simulado
+sim-7-0376,Imagem capturada,2026-11-07T12:11:53.105Z,camera-campo,camera,simulado
+sim-7-0376,Publicada no Kafka,2026-11-07T12:11:53.161Z,producer,camera,simulado
+sim-7-0376,Consumida do tópico,2026-11-07T12:11:53.186Z,consumer,camera,simulado
+sim-7-0376,Análise registrada,2026-11-07T12:11:53.194Z,postgres,camera,simulado
+sim-7-0376,Relatório enviado,2026-11-09T01:18:55.574Z,e-mail,camera,simulado
+sim-7-0377,Imagem capturada,2026-11-16T12:51:24.779Z,camera-campo,camera,simulado
+sim-7-0377,Publicada no Kafka,2026-11-16T12:51:24.884Z,producer,camera,simulado
+sim-7-0377,Consumida do tópico,2026-11-16T12:59:51.766Z,consumer,camera,simulado
+sim-7-0377,Análise registrada,2026-11-16T12:59:51.799Z,postgres,camera,simulado
+sim-7-0378,Imagem capturada,2026-11-12T13:04:38.374Z,produtor,upload,simulado
+sim-7-0378,Diagnóstico por IA,2026-11-12T13:04:45.389Z,gemini,upload,simulado
+sim-7-0378,Diagnóstico inconclusivo,2026-11-12T13:04:45.390Z,gemini,upload,simulado
+sim-7-0378,Imagem capturada,2026-11-12T13:12:14.407Z,produtor,upload,simulado
+sim-7-0378,Diagnóstico por IA,2026-11-12T13:12:20.371Z,gemini,upload,simulado
+sim-7-0378,Análise registrada,2026-11-12T13:12:20.432Z,postgres,upload,simulado
+sim-7-0378,Alerta gerado,2026-11-12T13:12:21.222Z,motor-de-regras,upload,simulado
+sim-7-0378,Alerta visualizado,2026-11-12T13:19:42.941Z,produtor,upload,simulado
+sim-7-0379,Imagem capturada,2026-11-12T09:32:48.093Z,camera-campo,camera,simulado
+sim-7-0379,Publicada no Kafka,2026-11-12T09:32:48.329Z,producer,camera,simulado
+sim-7-0379,Consumida do tópico,2026-11-12T09:41:15.289Z,consumer,camera,simulado
+sim-7-0379,Análise registrada,2026-11-12T09:41:15.295Z,postgres,camera,simulado
+sim-7-0380,Imagem capturada,2026-11-07T13:56:33.464Z,camera-campo,camera,simulado
+sim-7-0380,Publicada no Kafka,2026-11-07T13:56:33.535Z,producer,camera,simulado
+sim-7-0380,Consumida do tópico,2026-11-07T13:56:33.638Z,consumer,camera,simulado
+sim-7-0380,Análise registrada,2026-11-07T13:56:33.658Z,postgres,camera,simulado
+sim-7-0380,Relatório enviado,2026-11-08T20:12:14.585Z,e-mail,camera,simulado
+sim-7-0381,Imagem capturada,2026-11-18T15:51:30.421Z,camera-campo,camera,simulado
+sim-7-0381,Publicada no Kafka,2026-11-18T15:51:30.665Z,producer,camera,simulado
+sim-7-0381,Consumida do tópico,2026-11-18T15:51:30.737Z,consumer,camera,simulado
+sim-7-0381,Análise registrada,2026-11-18T15:51:30.745Z,postgres,camera,simulado
+sim-7-0382,Imagem capturada,2026-11-12T12:50:45.109Z,camera-campo,camera,simulado
+sim-7-0382,Publicada no Kafka,2026-11-12T12:50:45.168Z,producer,camera,simulado
+sim-7-0382,Consumida do tópico,2026-11-12T12:50:45.313Z,consumer,camera,simulado
+sim-7-0382,Análise registrada,2026-11-12T12:50:45.347Z,postgres,camera,simulado
+sim-7-0382,Relatório enviado,2026-11-14T21:51:48.663Z,e-mail,camera,simulado
+sim-7-0383,Imagem capturada,2026-11-08T18:27:03.536Z,produtor,upload,simulado
+sim-7-0383,Diagnóstico por IA,2026-11-08T18:27:08.631Z,gemini,upload,simulado
+sim-7-0383,Análise registrada,2026-11-08T18:27:08.780Z,postgres,upload,simulado
+sim-7-0384,Imagem capturada,2026-11-14T17:28:05.675Z,camera-campo,camera,simulado
+sim-7-0384,Publicada no Kafka,2026-11-14T17:28:05.890Z,producer,camera,simulado
+sim-7-0384,Consumida do tópico,2026-11-14T17:28:06.036Z,consumer,camera,simulado
+sim-7-0384,Análise registrada,2026-11-14T17:28:06.073Z,postgres,camera,simulado
+sim-7-0385,Imagem capturada,2026-11-17T09:17:14.904Z,camera-campo,camera,simulado
+sim-7-0385,Publicada no Kafka,2026-11-17T09:17:15.091Z,producer,camera,simulado
+sim-7-0385,Consumida do tópico,2026-11-17T09:17:15.256Z,consumer,camera,simulado
+sim-7-0385,Análise registrada,2026-11-17T09:17:15.287Z,postgres,camera,simulado
+sim-7-0386,Imagem capturada,2026-11-03T21:35:48.058Z,camera-campo,camera,simulado
+sim-7-0386,Publicada no Kafka,2026-11-03T21:35:48.251Z,producer,camera,simulado
+sim-7-0386,Consumida do tópico,2026-11-03T21:35:48.269Z,consumer,camera,simulado
+sim-7-0386,Análise registrada,2026-11-03T21:35:48.285Z,postgres,camera,simulado
+sim-7-0386,Relatório enviado,2026-11-06T04:42:55.341Z,e-mail,camera,simulado
+sim-7-0387,Imagem capturada,2026-11-04T10:52:49.206Z,produtor,upload,simulado
+sim-7-0387,Diagnóstico por IA,2026-11-04T10:52:53.358Z,gemini,upload,simulado
+sim-7-0387,Análise registrada,2026-11-04T10:52:53.405Z,postgres,upload,simulado
+sim-7-0388,Imagem capturada,2026-11-13T15:11:27.654Z,produtor,upload,simulado
+sim-7-0388,Diagnóstico por IA,2026-11-13T15:11:35.446Z,gemini,upload,simulado
+sim-7-0388,Análise registrada,2026-11-13T15:11:35.534Z,postgres,upload,simulado
+sim-7-0389,Imagem capturada,2026-11-20T14:20:54.016Z,produtor,upload,simulado
+sim-7-0389,Diagnóstico por IA,2026-11-20T14:20:56.790Z,gemini,upload,simulado
+sim-7-0389,Análise registrada,2026-11-20T14:20:56.847Z,postgres,upload,simulado
+sim-7-0389,Alerta gerado,2026-11-20T14:20:57.333Z,motor-de-regras,upload,simulado
+sim-7-0389,Alerta visualizado,2026-11-20T14:30:50.788Z,produtor,upload,simulado
+sim-7-0390,Imagem capturada,2026-11-17T14:14:52.565Z,camera-campo,camera,simulado
+sim-7-0390,Publicada no Kafka,2026-11-17T14:14:52.805Z,producer,camera,simulado
+sim-7-0390,Consumida do tópico,2026-11-17T14:14:52.856Z,consumer,camera,simulado
+sim-7-0390,Análise registrada,2026-11-17T14:14:52.862Z,postgres,camera,simulado
+sim-7-0390,Alerta gerado,2026-11-17T14:14:53.047Z,motor-de-regras,camera,simulado
+sim-7-0390,Alerta visualizado,2026-11-17T14:23:56.476Z,produtor,camera,simulado
+sim-7-0391,Imagem capturada,2026-11-07T18:52:34.469Z,camera-campo,camera,simulado
+sim-7-0391,Publicada no Kafka,2026-11-07T18:52:34.529Z,producer,camera,simulado
+sim-7-0391,Consumida do tópico,2026-11-07T18:52:34.630Z,consumer,camera,simulado
+sim-7-0391,Análise registrada,2026-11-07T18:52:34.661Z,postgres,camera,simulado
+sim-7-0392,Imagem capturada,2026-11-05T09:23:46.339Z,camera-campo,camera,simulado
+sim-7-0392,Publicada no Kafka,2026-11-05T09:23:46.517Z,producer,camera,simulado
+sim-7-0392,Consumida do tópico,2026-11-05T09:23:46.677Z,consumer,camera,simulado
+sim-7-0392,Análise registrada,2026-11-05T09:23:46.714Z,postgres,camera,simulado
+sim-7-0392,Alerta gerado,2026-11-05T09:23:47.186Z,motor-de-regras,camera,simulado
+sim-7-0392,Relatório enviado,2026-11-06T14:28:20.540Z,e-mail,camera,simulado
+sim-7-0393,Imagem capturada,2026-11-04T14:43:29.092Z,camera-campo,camera,simulado
+sim-7-0393,Publicada no Kafka,2026-11-04T14:43:29.162Z,producer,camera,simulado
+sim-7-0393,Consumida do tópico,2026-11-04T14:43:29.300Z,consumer,camera,simulado
+sim-7-0393,Análise registrada,2026-11-04T14:43:29.309Z,postgres,camera,simulado
+sim-7-0393,Relatório enviado,2026-11-07T03:50:49.144Z,e-mail,camera,simulado
+sim-7-0394,Imagem capturada,2026-11-11T20:25:25.664Z,camera-campo,camera,simulado
+sim-7-0394,Publicada no Kafka,2026-11-11T20:25:25.766Z,producer,camera,simulado
+sim-7-0394,Consumida do tópico,2026-11-11T20:25:25.930Z,consumer,camera,simulado
+sim-7-0394,Análise registrada,2026-11-11T20:25:25.947Z,postgres,camera,simulado
+sim-7-0395,Imagem capturada,2026-11-19T16:17:00.463Z,produtor,upload,simulado
+sim-7-0395,Diagnóstico por IA,2026-11-19T16:17:06.063Z,gemini,upload,simulado
+sim-7-0395,Análise registrada,2026-11-19T16:17:06.106Z,postgres,upload,simulado
+sim-7-0395,Alerta gerado,2026-11-19T16:17:06.415Z,motor-de-regras,upload,simulado
+sim-7-0395,Alerta visualizado,2026-11-19T16:39:29.170Z,produtor,upload,simulado
+sim-7-0396,Imagem capturada,2026-11-20T17:24:43.562Z,camera-campo,camera,simulado
+sim-7-0396,Publicada no Kafka,2026-11-20T17:24:43.708Z,producer,camera,simulado
+sim-7-0396,Consumida do tópico,2026-11-20T17:24:43.881Z,consumer,camera,simulado
+sim-7-0396,Análise registrada,2026-11-20T17:24:43.899Z,postgres,camera,simulado
+sim-7-0396,Relatório enviado,2026-11-22T21:50:04.433Z,e-mail,camera,simulado
+sim-7-0397,Imagem capturada,2026-11-12T16:56:31.473Z,camera-campo,camera,simulado
+sim-7-0397,Publicada no Kafka,2026-11-12T16:56:31.533Z,producer,camera,simulado
+sim-7-0397,Consumida do tópico,2026-11-12T16:56:31.708Z,consumer,camera,simulado
+sim-7-0397,Análise registrada,2026-11-12T16:56:31.729Z,postgres,camera,simulado
+sim-7-0398,Imagem capturada,2026-11-03T17:37:59.731Z,produtor,upload,simulado
+sim-7-0398,Diagnóstico por IA,2026-11-03T17:38:04.156Z,gemini,upload,simulado
+sim-7-0398,Análise registrada,2026-11-03T17:38:04.258Z,postgres,upload,simulado
+sim-7-0398,Alerta gerado,2026-11-03T17:38:04.802Z,motor-de-regras,upload,simulado
+sim-7-0399,Imagem capturada,2026-11-23T12:49:23.529Z,camera-campo,camera,simulado
+sim-7-0399,Publicada no Kafka,2026-11-23T12:49:23.578Z,producer,camera,simulado
+sim-7-0399,Consumida do tópico,2026-11-23T12:49:23.703Z,consumer,camera,simulado
+sim-7-0399,Análise registrada,2026-11-23T12:49:23.728Z,postgres,camera,simulado
+sim-7-0399,Alerta gerado,2026-11-23T12:49:24.519Z,motor-de-regras,camera,simulado
+sim-7-0399,Alerta visualizado,2026-11-23T14:27:32.466Z,produtor,camera,simulado
+sim-7-0400,Imagem capturada,2026-11-22T15:35:41.603Z,produtor,upload,simulado
+sim-7-0400,Diagnóstico por IA,2026-11-22T15:35:46.247Z,gemini,upload,simulado
+sim-7-0400,Diagnóstico inconclusivo,2026-11-22T15:35:46.250Z,gemini,upload,simulado
+sim-7-0400,Análise registrada,2026-11-22T15:35:46.287Z,postgres,upload,simulado

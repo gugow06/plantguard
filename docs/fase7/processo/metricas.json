@@ -1,0 +1,39 @@
+{
+  "origem": "simulado",
+  "eventos": 1861,
+  "casos": 400,
+  "variantes": 25,
+  "canais": {
+    "camera": 267,
+    "upload": 133
+  },
+  "caminho_principal": {
+    "variante": "Imagem capturada → Publicada no Kafka → Consumida do tópico → Análise registrada",
+    "percentual": 34.8
+  },
+  "top5_variantes_percentual": 76.6,
+  "lead_time": {
+    "mediana": "1 min",
+    "p90": "2.6 d"
+  },
+  "conformidade": {
+    "fitness": 0.996,
+    "casos_perfeitos_pct": 95.8,
+    "precisao": 0.683
+  },
+  "alertas": {
+    "gerados": 133,
+    "vistos": 104,
+    "nunca_vistos_pct": 21.8
+  },
+  "retrabalho_pct": 6.0,
+  "laco_inconclusivo_casos": 13,
+  "falha_ia_pct": 3.5,
+  "gargalo": {
+    "de": "Alerta gerado",
+    "para": "Alerta visualizado",
+    "mediana": "1.1 h",
+    "p90": "28.0 h",
+    "casos": 104
+  }
+}
