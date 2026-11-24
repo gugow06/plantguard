@@ -1,0 +1,29 @@
+# CD — roda a plataforma com as imagens publicadas pelo pipeline no GHCR,
+# sem build local. Use junto com o compose principal:
+#
+#   docker compose -f infra/docker-compose.yml -f infra/docker-compose.ghcr.yml pull
+#   docker compose -f infra/docker-compose.yml -f infra/docker-compose.ghcr.yml up -d --no-build
+#
+# Versão: IMAGE_TAG=latest (padrão) ou o SHA do commit publicado (rollback = trocar o SHA).
+# As imagens são linux/amd64: rodam nativas em servidores x86 e por emulação no
+# Docker Desktop de Macs Apple Silicon.
+services:
+  init:
+    image: ghcr.io/gugow06/plantguard-streaming:${IMAGE_TAG:-latest}
+    pull_policy: always
+    platform: linux/amd64
+  app:
+    image: ghcr.io/gugow06/plantguard-app:${IMAGE_TAG:-latest}
+    pull_policy: always
+    platform: linux/amd64
+    environment:
+      # /api/health passa a mostrar qual imagem está no ar.
+      APP_VERSION: ${IMAGE_TAG:-latest}
+  producer:
+    image: ghcr.io/gugow06/plantguard-streaming:${IMAGE_TAG:-latest}
+    pull_policy: always
+    platform: linux/amd64
+  consumer:
+    image: ghcr.io/gugow06/plantguard-streaming:${IMAGE_TAG:-latest}
+    pull_policy: always
+    platform: linux/amd64

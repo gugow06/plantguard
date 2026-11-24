@@ -1,0 +1,9 @@
+{
+  "status": "ok",
+  "version": "480441dddcf090451e888ce79fb6acb48f992c9a",
+  "services": {
+    "database": "up",
+    "kafka": "up",
+    "consumer": "ok"
+  }
+}
