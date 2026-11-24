@@ -5,7 +5,7 @@
 #   sca ──────┤
 #   codeql ───┘
 #
-# Qualidade: ESLint, tsc, Vitest com cobertura e SonarCloud (se SONAR_TOKEN existir).
+# Qualidade: ESLint, tsc e Vitest com cobertura mínima de 70%.
 # Segurança: Gitleaks (segredos), npm audit + Trivy fs (dependências e IaC), CodeQL (SAST), Trivy image.
 name: DevSecOps
 
@@ -34,14 +34,10 @@ env:
 jobs:
   # ───────────────────────── Qualidade de código ─────────────────────────
   quality:
-    name: Qualidade (lint, tipos, testes, Sonar)
+    name: Qualidade (lint, tipos, testes)
     runs-on: ubuntu-latest
-    env:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # o SonarCloud usa o histórico para "new code"
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -67,15 +63,6 @@ jobs:
           name: coverage
           path: coverage/
           retention-days: 14
-      - name: SonarCloud (quality gate)
-        if: ${{ env.SONAR_TOKEN != '' }}
-        uses: SonarSource/sonarqube-scan-action@v5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: https://sonarcloud.io
-      - name: SonarCloud desativado
-        if: ${{ env.SONAR_TOKEN == '' }}
-        run: echo "::notice::SONAR_TOKEN não configurado — análise do SonarCloud pulada (lint, tipos e cobertura seguem valendo)."
 
   # ───────────────────────── Segredos ─────────────────────────
   secrets:

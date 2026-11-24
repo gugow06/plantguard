@@ -28,7 +28,7 @@
 | # | Decisão | Opções | Recomendação |
 | --- | --- | --- | --- |
 | F7-D1 | Onde roda o pipeline | GitHub Actions · GitLab CI · Jenkins local | **GitHub Actions**: o repo já está no GitHub, é gratuito para repo público e o print do "verde" é a evidência |
-| F7-D2 | Ferramenta de qualidade de código | SonarCloud (precisa de conta e `SONAR_TOKEN`) · só ESLint + `tsc` + cobertura | **SonarCloud**: gratuito para repo público, gera o painel de quality gate (bugs, code smells, cobertura, duplicação), que é a melhor evidência para "análise de qualidade". Sem conta, o ESLint + cobertura do Vitest cobrem o requisito de forma mais simples |
+| F7-D2 | Ferramenta de qualidade de código | SonarCloud · só ESLint + `tsc` + cobertura | ✅ **Decidido: ESLint + `tsc` + cobertura do Vitest (mínimo de 70%)**, sem SonarCloud |
 | F7-D3 | Ferramentas de vulnerabilidade | Trivy · Snyk · CodeQL · npm audit · Gitleaks | **Trivy** (imagem Docker + dependências + IaC do compose/Dockerfile), **CodeQL** (SAST de TS) e **Gitleaks** (segredos). Nenhum dos três precisa de conta. Resultados em SARIF na aba *Security* do GitHub |
 | F7-D4 | Stack de monitoramento | Só `/monitor` + `/api/health` · Prometheus + Grafana | **`/api/health` + `/monitor` ampliado + logs JSON**. É leve e já roda no compose. Prometheus/Grafana só se sobrar tempo (vale 10%) |
 | F7-D5 | Ferramenta de mineração de processos | pm4py (Python) · Disco/Celonis (GUI) · análise no próprio app | **pm4py** para gerar o mapa (DFG), as variantes e os tempos com rigor, **mais uma página `/process` no app** com as mesmas métricas para a demonstração ao vivo |
@@ -44,7 +44,7 @@
 | --- | --- | --- | --- |
 | Arquitetura final | 15% | Diagrama, descrição dos componentes, fluxo de dados | `docs/fase7/arquitetura-final.md` (Mermaid) + seção 2 da documentação livre |
 | Execução da plataforma | 20% | Prints/logs, descrição do funcionamento, exemplo de entrada e saída | `docs/fase7/evidencias/execucao/` + seção 3 |
-| Pipeline DevSecOps | 20% | Configurações, descrição do pipeline, evidência da execução | `.github/workflows/`, `sonar-project.properties`, `docs/fase7/evidencias/pipeline/` + seção 4 |
+| Pipeline DevSecOps | 20% | Configurações, descrição do pipeline, evidência da execução | `.github/workflows/`, `docs/fase7/evidencias/pipeline/` + seção 4 |
 | Monitoramento | 10% | Prints/logs, descrição, como acompanhar | `/api/health`, `/monitor`, `docs/fase7/evidencias/monitoramento/` + seção 5 |
 | Processo + demo final | 25% | Event log, diagrama do processo, insights, vídeo de 5 a 8 min | `analysis/process-mining/`, página `/process`, `docs/fase7/event-log-exemplo.csv` + seção 6 + vídeo |
 | Pitch | 10% | Slides + vídeo de até 5 min | Artifact de Slides + `docs/fase7/roteiro-video.md` (parte B) |
@@ -79,7 +79,7 @@ Arquivo `.github/workflows/devsecops.yml`, disparado em `push` e `pull_request` 
 │ lint (ESLint)           │   │ npm audit --high       │
 │ typecheck (tsc)         │   │ Trivy fs (deps + IaC)  │
 │ test + cobertura        │   │ CodeQL (SAST)          │
-│ SonarCloud quality gate │   └───────────┬────────────┘
+│ cobertura mínima 70%    │   └───────────┬────────────┘
 └───────────┬─────────────┘               │
             └──────────────┬──────────────┘
                      ┌─ build ──────────────────────────┐
@@ -101,9 +101,9 @@ Arquivo `.github/workflows/devsecops.yml`, disparado em `push` e `pull_request` 
 ```
 
 - [ ] Relatórios SARIF (Trivy, CodeQL) publicados na aba *Security*; logs do smoke test e relatório de cobertura como *artifacts* do workflow.
-- [ ] Badges no README: pipeline, quality gate do Sonar, cobertura.
+- [ ] Badges no README: pipeline e cobertura.
 - [ ] `dependabot.yml` para npm, Docker e Actions.
-- [ ] Evidências: print do workflow verde, do painel do SonarCloud, da aba Security e de um achado do Trivy **antes e depois** da correção (mostra que o pipeline barra e o time corrige).
+- [ ] Evidências: print do workflow verde, do resumo de cobertura, da aba Security e de um achado do Trivy **antes e depois** da correção (mostra que o pipeline barra e o time corrige).
 
 ## 6. Épico D: monitoramento e execução contínua (10%)
 
@@ -196,7 +196,7 @@ Mesma abordagem do ELO (`documentacao-livre.html` impresso em PDF pelo Chrome he
 - [ ] Dashboard, analytics, alertas e sino de notificação com dados do stream
 - [ ] E-mail de relatório recebido
 - [ ] Workflow verde no GitHub Actions (visão geral + cada job)
-- [ ] Painel do SonarCloud (quality gate)
+- [ ] Resumo de cobertura de testes no workflow
 - [ ] Aba Security (CodeQL/Trivy) + antes/depois de uma vulnerabilidade
 - [ ] `/api/health` em JSON (saudável e degradado, derrubando o Kafka)
 - [ ] `/monitor` e Kafka UI com mensagens fluindo

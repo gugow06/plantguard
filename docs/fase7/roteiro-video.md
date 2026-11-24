@@ -20,7 +20,7 @@ Janelas abertas, nesta ordem:
 1. Terminal com `docker compose ps` e, numa segunda aba, `docker compose logs -f producer consumer`
 2. App em `http://localhost:3000` logado como usuário demo (dashboard, `/monitor`, `/process`)
 3. Kafka UI em `http://localhost:8080`
-4. GitHub Actions do repo (último run verde), SonarCloud e aba Security
+4. GitHub Actions do repo (último run verde, com o resumo de cobertura) e aba Security
 5. PDF da documentação aberto no diagrama de arquitetura e no mapa do processo
 6. Uma foto de folha doente para o upload ao vivo
 
