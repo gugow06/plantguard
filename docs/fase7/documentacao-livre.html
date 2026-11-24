@@ -132,6 +132,16 @@
   .cover .tags span { display: inline-block; border: 1px solid rgba(244,241,232,.35); border-radius: 99px; padding: 1mm 3mm; font-size: 8pt; margin: 0 1.5mm 1.5mm 0; color: #e8efe9; }
   .cover .leaf { position: absolute; right: -40mm; top: 40mm; width: 170mm; opacity: .12; }
 
+  .lane { display: grid; grid-template-columns: 26mm 1fr; gap: 3mm; align-items: center; margin: 0 0 3mm; }
+  .lane .tag { font-size: 7.6pt; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green-800);
+    background: var(--green-100); border-radius: 8px; padding: 2.5mm 2mm; text-align: center; }
+  .lane .steps-row { display: flex; align-items: stretch; gap: 2mm; }
+  .lane .node { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 2.5mm 3mm; font-size: 8.4pt; }
+  .lane .node b { display: block; color: var(--green-900); font-size: 9pt; }
+  .lane .node.dark { background: var(--green-800); border: none; color: var(--cream); }
+  .lane .node.dark b { color: #fff; }
+  .lane .arr { align-self: center; color: var(--green-700); font-size: 13pt; }
+  .gate { text-align: center; font-size: 8pt; color: var(--green-700); font-weight: 600; margin: -1mm 0 2mm 29mm; }
   .toc { list-style: none; padding: 0; margin: 4mm 0 0; }
   .toc li { display: flex; align-items: baseline; gap: 3mm; padding: 2.2mm 0; border-bottom: 1px solid var(--line); }
   .toc .n { font-family: 'Fraunces', serif; font-size: 18pt; color: var(--green-700); width: 12mm; }
@@ -207,7 +217,7 @@
   <ol class="toc">
     <li><span class="n">1</span><span class="t">Arquitetura final<small>componentes, integrações, fluxo de dados</small></span><span class="w">15%</span></li>
     <li><span class="n">2</span><span class="t">Plataforma em execução<small>entrada, processamento, decisão e saída, com exemplos reais</small></span><span class="w">20%</span></li>
-    <li><span class="n">3</span><span class="t">Pipeline DevSecOps<small>build, containers, qualidade e vulnerabilidades</small></span><span class="w">20%</span></li>
+    <li><span class="n">3</span><span class="t">Pipeline DevSecOps e CI/CD<small>build, containers, qualidade, vulnerabilidades e entrega contínua</small></span><span class="w">20%</span></li>
     <li><span class="n">4</span><span class="t">Monitoramento e execução contínua<small>health, monitor, logs</small></span><span class="w">10%</span></li>
     <li><span class="n">5</span><span class="t">Análise de processo<small>event log, mapa, variantes, gargalos, melhorias</small></span><span class="w">25%</span></li>
     <li><span class="n">6</span><span class="t">Produto e pitch<small>problema, solução, diferencial, público, valor</small></span><span class="w">10%</span></li>
@@ -367,7 +377,7 @@ sequenceDiagram
 <section class="page">
   <div class="running"><span>3 · Pipeline DevSecOps</span><span>Peso 20%</span></div>
   <div class="section-head">
-    <div><div class="eyebrow">Seção 3</div><h2>Pipeline DevSecOps</h2></div>
+    <div><div class="eyebrow">Seção 3</div><h2>Pipeline DevSecOps e CI/CD</h2></div>
     <div class="weight"><b>20%</b><span>da nota</span></div>
   </div>
   <p>Cada <em>push</em> e <em>pull request</em> dispara o workflow <code>.github/workflows/devsecops.yml</code> no GitHub Actions. Quatro verificações rodam em paralelo; só se todas passarem o pipeline constrói as imagens, varre as imagens, sobe a stack inteira e — na <code>main</code> — publica as imagens no GitHub Container Registry.</p>
@@ -418,6 +428,74 @@ flowchart LR
   </table>
   <figure><img class="clip" style="height:66mm" src="evidencias/pipeline/github-actions-run.png" alt="Execução do pipeline no GitHub Actions"/><figcaption><b>Execução do pipeline</b> no GitHub Actions (run #6): todos os jobs verdes; a publicação no GHCR só roda na <code>main</code>.</figcaption></figure>
   <div class="callout amber"><b>O pipeline barrou problemas reais antes do verde.</b> (1) Trivy fs: o Dockerfile da análise de processos rodava como root → corrigido. (2) Build em clone limpo: a pasta <code>public/</code> vazia não ia para o git e a imagem não era construída → corrigido. (3) Ponta a ponta: variáveis de placeholder do CI sobrescreviam o <code>.env</code> do compose e o <code>init</code> procurava o banco em <code>localhost</code> — causa encontrada pelas anotações de diagnóstico que o próprio job publica ao falhar → corrigido. O run #6 (commit <code>29c0287</code>) passou em todas as etapas em 8 min 53 s.</div>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<!-- ═════════════════════════════ 3b. CI/CD ═════════════════════════════ -->
+<section class="page">
+  <div class="running"><span>3 · CI/CD</span><span>Peso 20%</span></div>
+  <h3 style="margin-top:0">CI/CD: da mudança no código à entrega</h3>
+  <p>O mesmo workflow cobre a <b>integração contínua</b> (cada mudança é validada antes de entrar na <code>main</code>) e a <b>entrega contínua</b> (cada merge na <code>main</code> gera imagens versionadas e um deploy da aplicação web).</p>
+  <div class="lane">
+    <div class="tag">CI</div>
+    <div class="steps-row">
+      <div class="node"><b>Push</b>branch <code>feat/*</code> ou PR do Dependabot</div><span class="arr">→</span>
+      <div class="node"><b>Checks</b>qualidade · segredos · dependências · CodeQL</div><span class="arr">→</span>
+      <div class="node"><b>Build + Trivy</b>imagens do app e do streaming</div><span class="arr">→</span>
+      <div class="node"><b>Ponta a ponta</b>compose, smoke test, Kafka cai e volta</div>
+    </div>
+  </div>
+  <div class="gate">↓ pull request com todos os checks verdes (+ preview na Vercel) → merge ↓</div>
+  <div class="lane">
+    <div class="tag">CD</div>
+    <div class="steps-row">
+      <div class="node dark"><b>main</b>CI completo de novo</div><span class="arr">→</span>
+      <div class="node"><b>GHCR</b>imagens <code>:sha</code> e <code>:latest</code></div><span class="arr">→</span>
+      <div class="node"><b>Servidor</b><code>compose pull</code> + <code>up</code></div><span class="arr">+</span>
+      <div class="node"><b>Vercel</b>deploy de produção do app web</div>
+    </div>
+  </div>
+  <table>
+    <tr><th>Gatilho</th><th>O que acontece</th><th>Resultado</th></tr>
+    <tr><td><b>Push em <code>feat/*</code></b></td><td>Qualidade, segredos, dependências/IaC, CodeQL → build e Trivy das imagens → stack inteira com smoke test e teste de resiliência</td><td>Feedback em ~9 min; falha bloqueia o restante do pipeline</td></tr>
+    <tr><td><b>Pull request para <code>main</code></b></td><td>O mesmo CI + deploy de <i>preview</i> na Vercel</td><td>Merge só com todos os checks verdes</td></tr>
+    <tr><td><b>Merge na <code>main</code></b></td><td>CI completo + job <i>Publica imagens</i> (GHCR) + deploy de produção na Vercel</td><td>Imagens <code>plantguard-app</code> e <code>plantguard-streaming</code> com tag do commit e <code>latest</code></td></tr>
+    <tr><td><b>Toda semana</b></td><td>Dependabot abre PRs de npm, Docker e Actions</td><td>Atualizações passam pelo mesmo CI antes de entrar</td></tr>
+  </table>
+  <h3>Por que entregar por imagem versionada</h3>
+  <div class="grid-3">
+    <div class="card"><h4>Rastreável</h4><p>Cada imagem tem a tag do commit que a gerou; rodando pelo GHCR, o <code>/api/health</code> mostra a tag em execução.</p></div>
+    <div class="card"><h4>Reproduzível</h4><p>O que roda em produção é exatamente a imagem que passou pelo Trivy e pelo teste ponta a ponta.</p></div>
+    <div class="card"><h4>Reversível</h4><p>Rollback é trocar a tag; banco e Kafka continuam nos mesmos volumes.</p></div>
+  </div>
+  <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
+</section>
+
+<section class="page">
+  <div class="running"><span>3 · CI/CD</span><span>Peso 20%</span></div>
+  <h3 style="margin-top:0">Entrega: rodar a versão publicada</h3>
+<pre><span class="c"># sem build local: baixa as imagens que o pipeline publicou</span>
+docker compose -f infra/docker-compose.yml -f infra/docker-compose.ghcr.yml pull
+docker compose -f infra/docker-compose.yml -f infra/docker-compose.ghcr.yml up -d --no-build
+
+<span class="c"># rollback: aponta para a imagem de um commit anterior</span>
+IMAGE_TAG=&lt;sha-do-commit&gt; docker compose -f infra/docker-compose.yml -f infra/docker-compose.ghcr.yml up -d --no-build</pre>
+  <h3>Evidência: o primeiro ciclo completo de CD</h3>
+  <p>O merge do PR #1 na <code>main</code> (commit <code>480441d</code>) disparou o pipeline completo, incluindo a publicação. Em seguida, a plataforma subiu <b>só com as imagens publicadas</b>, sem build local, e passou no mesmo smoke test.</p>
+  <figure><img class="clip" style="height:84mm" src="evidencias/pipeline/cd-main-run.png" alt="Run da main com publicação"/><figcaption><b>Run #9 na main</b>: todos os jobs verdes, incluindo <i>Publica imagens (GHCR)</i>.</figcaption></figure>
+  <div class="grid-2">
+    <figure><img src="evidencias/pipeline/cd-ghcr-pacote.png" alt="Pacote no GHCR"/><figcaption><b>GHCR</b>: <code>plantguard-app</code> público, tags <code>latest</code> e o SHA do commit.</figcaption></figure>
+    <div>
+      <div class="eyebrow">Stack rodando a imagem publicada</div>
+<pre>{ <span class="k">"status"</span>: <span class="s">"ok"</span>,
+  <span class="k">"version"</span>: <span class="s">"480441dddcf0…"</span>,
+  <span class="k">"services"</span>: {
+    <span class="k">"database"</span>: <span class="s">"up"</span>,
+    <span class="k">"kafka"</span>: <span class="s">"up"</span>,
+    <span class="k">"consumer"</span>: <span class="s">"ok"</span> } }</pre>
+      <p class="small">As imagens são <code>linux/amd64</code>: nativas em servidores x86 e por emulação no Docker Desktop de Macs Apple Silicon.</p>
+    </div>
+  </div>
   <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
 </section>
 

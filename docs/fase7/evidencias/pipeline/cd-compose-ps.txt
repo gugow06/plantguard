@@ -1,0 +1,6 @@
+app	ghcr.io/gugow06/plantguard-app:480441dddcf090451e888ce79fb6acb48f992c9a	Up 6 seconds (healthy)
+consumer	ghcr.io/gugow06/plantguard-streaming:480441dddcf090451e888ce79fb6acb48f992c9a	Up 6 seconds
+kafka	apache/kafka:3.9.0	Up 19 seconds (healthy)
+kafka-ui	provectuslabs/kafka-ui:v0.7.2	Up 8 seconds
+postgres	postgres:16-alpine	Up 19 seconds (healthy)
+producer	ghcr.io/gugow06/plantguard-streaming:480441dddcf090451e888ce79fb6acb48f992c9a	Up 8 seconds

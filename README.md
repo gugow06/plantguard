@@ -94,9 +94,19 @@ npm run docs:pdf       # gera o PDF da documentação a partir do HTML
 | SAST | CodeQL |
 | Build | imagens Docker do app e do streaming + Trivy nas imagens |
 | Ponta a ponta | `docker compose up`, smoke test, Kafka derrubado e recuperado |
-| Publicação | imagens no GitHub Container Registry (só na `main`) |
+| Publicação (CD) | imagens no GitHub Container Registry com tag do commit (só na `main`) |
 
 Resultados SARIF na aba *Security*. Evidências de antes e depois em [docs/fase7/evidencias/pipeline](docs/fase7/evidencias/pipeline).
+
+### Entrega contínua (CD)
+
+Cada merge na `main` publica `ghcr.io/gugow06/plantguard-app` e `ghcr.io/gugow06/plantguard-streaming` com a tag do commit e `latest`, e a Vercel faz o deploy de produção do app web. Para rodar a versão publicada sem build local:
+
+```bash
+docker compose -f infra/docker-compose.yml -f infra/docker-compose.ghcr.yml pull
+docker compose -f infra/docker-compose.yml -f infra/docker-compose.ghcr.yml up -d --no-build
+# rollback: IMAGE_TAG=<sha-do-commit> na frente do mesmo comando
+```
 
 ## Tecnologias
 
