@@ -146,7 +146,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: docker/setup-buildx-action@v3
       - name: Build da imagem do app (Next.js standalone)
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: Dockerfile
@@ -155,7 +155,7 @@ jobs:
           cache-from: type=gha,scope=app
           cache-to: type=gha,scope=app,mode=max
       - name: Build da imagem de streaming (producer/consumer)
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: infra/streaming/Dockerfile
@@ -275,7 +275,7 @@ jobs:
       - name: Nome das imagens em minúsculas
         id: names
         run: echo "owner=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_OUTPUT"
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7
         with:
           context: .
           file: Dockerfile
@@ -284,7 +284,7 @@ jobs:
             ghcr.io/${{ steps.names.outputs.owner }}/plantguard-app:latest
             ghcr.io/${{ steps.names.outputs.owner }}/plantguard-app:${{ github.sha }}
           cache-from: type=gha,scope=app
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7
         with:
           context: .
           file: infra/streaming/Dockerfile
