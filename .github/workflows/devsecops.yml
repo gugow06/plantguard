@@ -40,7 +40,7 @@ jobs:
       NEXTAUTH_SECRET: ci-build-placeholder
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
@@ -95,7 +95,7 @@ jobs:
       security-events: write
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: npm audit (produção, falha em high/critical)
