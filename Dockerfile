@@ -10,12 +10,13 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# Placeholders apenas para o build (URLs válidas evitam erro em new URL()).
-# Os valores reais são injetados em runtime pelo docker-compose.
-ENV DATABASE_URL="postgresql://build:build@localhost:5432/build"
-ENV NEXTAUTH_SECRET="build-time-placeholder"
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN npm run build
+# Placeholders só para o build (URL válida evita erro em new URL()), passados na
+# linha do RUN para não ficarem gravados na imagem. Os valores reais são
+# injetados em runtime pelo docker-compose.
+RUN DATABASE_URL="postgresql://build:build@localhost:5432/build" \
+    NEXTAUTH_SECRET="build-time-placeholder" \
+    npm run build
 
 FROM node:22-alpine AS runner
 WORKDIR /app

@@ -37,8 +37,8 @@ jobs:
     name: Qualidade (lint, tipos, testes)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
@@ -57,7 +57,7 @@ jobs:
           const row=k=>'| '+k+' | '+s[k].pct+'% |';
           console.log(['### Cobertura de testes (src/lib)','| Métrica | % |','|---|---|',
           row('lines'),row('statements'),row('functions'),row('branches')].join('\n'))" >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         if: always()
         with:
           name: coverage
@@ -69,7 +69,7 @@ jobs:
     name: Segredos (Gitleaks)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0 # varre o histórico inteiro, não só o último commit
       - name: Gitleaks
@@ -77,7 +77,7 @@ jobs:
           docker run --rm -v "$PWD":/repo zricethezav/gitleaks:v8.21.2 \
             git /repo --redact --no-banner --exit-code 1 \
             --report-format sarif --report-path /repo/gitleaks.sarif
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         if: always()
         with:
           name: gitleaks-report
@@ -92,8 +92,8 @@ jobs:
       contents: read
       security-events: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: npm audit (produção, falha em high/critical)
@@ -104,7 +104,7 @@ jobs:
           docker run --rm -v "$PWD":/src "aquasec/trivy:${TRIVY_VERSION}" fs \
             --scanners vuln,misconfig,secret --skip-dirs node_modules \
             --format sarif --output /src/trivy-fs.sarif /src
-      - uses: github/codeql-action/upload-sarif@v3
+      - uses: github/codeql-action/upload-sarif@v4
         if: always() && hashFiles('trivy-fs.sarif') != ''
         with:
           sarif_file: trivy-fs.sarif
@@ -123,12 +123,12 @@ jobs:
       contents: read
       security-events: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: github/codeql-action/init@v3
+      - uses: actions/checkout@v5
+      - uses: github/codeql-action/init@v4
         with:
           languages: javascript-typescript
           queries: security-and-quality
-      - uses: github/codeql-action/analyze@v3
+      - uses: github/codeql-action/analyze@v4
         with:
           category: codeql
 
@@ -141,7 +141,7 @@ jobs:
       contents: read
       security-events: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: docker/setup-buildx-action@v3
       - name: Build da imagem do app (Next.js standalone)
         uses: docker/build-push-action@v6
@@ -169,12 +169,12 @@ jobs:
               "aquasec/trivy:${TRIVY_VERSION}" image --scanners vuln \
               --format sarif --output "/out/trivy-${img}.sarif" "${img}:ci"
           done
-      - uses: github/codeql-action/upload-sarif@v3
+      - uses: github/codeql-action/upload-sarif@v4
         if: always() && hashFiles('trivy-plantguard-app.sarif') != ''
         with:
           sarif_file: trivy-plantguard-app.sarif
           category: trivy-image-app
-      - uses: github/codeql-action/upload-sarif@v3
+      - uses: github/codeql-action/upload-sarif@v4
         if: always() && hashFiles('trivy-plantguard-streaming.sarif') != ''
         with:
           sarif_file: trivy-plantguard-streaming.sarif
@@ -197,7 +197,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Prepara infra/.env
         run: |
           cp infra/.env.example infra/.env
@@ -206,15 +206,30 @@ jobs:
           sed -i "s|^STREAM_MAX_MESSAGES=.*|STREAM_MAX_MESSAGES=0|" infra/.env
           echo "APP_VERSION=${GITHUB_SHA::7}" >> infra/.env
       - name: Sobe a stack (postgres, kafka, app, producer, consumer)
-        run: docker compose -f infra/docker-compose.yml up -d --build --wait --wait-timeout 300
+        run: docker compose -f infra/docker-compose.yml up -d --build
       - name: Smoke test (producer -> Kafka -> consumer -> Postgres -> app)
-        run: SMOKE_OUT=health.json TIMEOUT=180 scripts/smoke-test.sh
-      - name: Resiliência — Kafka cai, health degrada, Kafka volta
+        run: SMOKE_OUT=health.json TIMEOUT=300 scripts/smoke-test.sh
+      - name: Resiliência — Kafka cai, health degrada, Kafka volta e o consumo continua
         run: |
+          before="$(curl -fsS http://localhost:3000/api/stream/monitor | jq -r .total)"
           docker compose -f infra/docker-compose.yml stop kafka
-          test "$(curl -s http://localhost:3000/api/health | jq -r .status)" = "degraded"
+          health_status="$(curl -s -m 30 http://localhost:3000/api/health | jq -r .status)"
+          echo "status com o Kafka parado: ${health_status}"
+          test "$health_status" = "degraded"
           docker compose -f infra/docker-compose.yml start kafka
-          TIMEOUT=120 scripts/smoke-test.sh
+          # exige ao menos uma análise nova depois que o Kafka volta
+          MIN_ANALYSES="$before" TIMEOUT=180 scripts/smoke-test.sh
+      - name: Diagnóstico da falha (anotações públicas)
+        if: failure()
+        run: |
+          ps="$(docker compose -f infra/docker-compose.yml ps -a --format '{{.Service}}={{.State}}({{.Status}})' | tr '\n' ' ')"
+          echo "::error title=Containers::${ps}"
+          health="$(curl -s -m 30 http://localhost:3000/api/health | tr -d '\n' | cut -c1-900)"
+          echo "::error title=/api/health::${health:-sem resposta}"
+          for svc in init app producer consumer; do
+            tail="$(docker compose -f infra/docker-compose.yml logs --no-color --tail 15 "$svc" 2>&1 | tr '\n' '|' | tail -c 1500)"
+            echo "::error title=logs ${svc}::${tail}"
+          done
       - name: Coleta de evidências
         if: always()
         run: |
@@ -228,7 +243,7 @@ jobs:
             echo '```'; cat evidencias/compose-ps.txt; echo '```'
             echo '```json'; cat evidencias/health.json; echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         if: always()
         with:
           name: e2e-evidencias
@@ -248,7 +263,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: docker/setup-buildx-action@v3
       - uses: docker/login-action@v3
         with:

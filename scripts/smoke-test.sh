@@ -1,26 +1,32 @@
 #!/usr/bin/env bash
 # Smoke test ponta a ponta da stack do docker compose.
-# 1) /api/health responde e o banco está de pé
-# 2) Kafka de pé e o consumer acompanhando
-# 3) pelo menos uma mensagem atravessou producer -> Kafka -> consumer -> Postgres
-# Uso: BASE_URL=http://localhost:3000 TIMEOUT=180 scripts/smoke-test.sh
+# 1) /api/health responde, banco e Kafka de pé, consumer acompanhando
+# 2) pelo menos uma mensagem atravessou producer -> Kafka -> consumer -> Postgres
+# 3) com MIN_ANALYSES=N, espera até haver mais de N análises (prova consumo novo)
+# Uso: BASE_URL=http://localhost:3000 TIMEOUT=180 [MIN_ANALYSES=N] scripts/smoke-test.sh
 set -euo pipefail
 
 BASE_URL="${BASE_URL:-http://localhost:3000}"
 TIMEOUT="${TIMEOUT:-180}"
+MIN_ANALYSES="${MIN_ANALYSES:-0}"
 deadline=$(( $(date +%s) + TIMEOUT ))
 
 log() { printf '[smoke] %s\n' "$*"; }
 
+analyses_count() {
+  curl -fsS -m 15 "${BASE_URL}/api/stream/monitor" 2>/dev/null | jq -r '.total // 0' 2>/dev/null || echo 0
+}
+
 while true; do
-  body="$(curl -fsS "${BASE_URL}/api/health" || true)"
+  body="$(curl -fsS -m 15 "${BASE_URL}/api/health" 2>/dev/null || true)"
   if [ -n "$body" ]; then
     status="$(printf '%s' "$body" | jq -r '.status')"
     kafka="$(printf '%s' "$body" | jq -r '.services.kafka.status')"
     total="$(printf '%s' "$body" | jq -r '.services.consumer.totalMessages // 0')"
     consumed="$(printf '%s' "$body" | jq -r '.services.consumer.lastConsumedAt // empty')"
-    log "status=${status} kafka=${kafka} mensagens_no_topico=${total} ultima_consumida=${consumed:-nenhuma}"
-    if [ "$status" = "ok" ] && [ "$kafka" = "up" ] && [ -n "$consumed" ]; then
+    analyses="$(analyses_count)"
+    log "status=${status} kafka=${kafka} mensagens_no_topico=${total} analises=${analyses} ultima_consumida=${consumed:-nenhuma}"
+    if [ "$status" = "ok" ] && [ "$kafka" = "up" ] && [ -n "$consumed" ] && [ "$analyses" -gt "$MIN_ANALYSES" ]; then
       break
     fi
   else
@@ -33,11 +39,7 @@ while true; do
   sleep 5
 done
 
-monitor="$(curl -fsS "${BASE_URL}/api/stream/monitor")"
-analyses="$(printf '%s' "$monitor" | jq -r '.total')"
-alerts="$(printf '%s' "$monitor" | jq -r '.alerts | length')"
+alerts="$(curl -fsS -m 15 "${BASE_URL}/api/stream/monitor" | jq -r '.alerts | length')"
 log "análises gravadas pelo consumer: ${analyses} | alertas: ${alerts}"
-[ "$analyses" -ge 1 ] || { log "FALHOU: nenhuma análise gravada"; exit 1; }
-
 log "OK: entrada (producer) -> Kafka -> consumer -> Postgres -> app funcionando"
-printf '%s\n' "$body" | jq . > "${SMOKE_OUT:-/dev/null}" 2>/dev/null || true
+if [ -n "${SMOKE_OUT:-}" ]; then printf '%s\n' "$body" | jq . > "$SMOKE_OUT"; fi
