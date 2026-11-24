@@ -34,7 +34,7 @@
 | F7-D5 | Ferramenta de mineração de processos | pm4py (Python) · Disco/Celonis (GUI) · análise no próprio app | **pm4py** para gerar o mapa (DFG), as variantes e os tempos com rigor, **mais uma página `/process` no app** com as mesmas métricas para a demonstração ao vivo |
 | F7-D6 | Origem do event log | Só eventos reais do pipeline · eventos reais + cenário simulado com variação | **Os dois, rotulados**: eventos reais de cada execução, mais um cenário simulado reproduzível (seed fixa) com falhas, retentativas e atrasos humanos, para o processo ter variações e gargalos que valham a análise. A documentação diz o que é simulado |
 | F7-D7 | O que fazer com o `dev.db` versionado | Remover do índice e ignorar · reescrever o histórico | **Remover do índice + `.gitignore`** agora. Reescrever o histórico só se os 2 usuários forem contas reais (é uma decisão sua) |
-| F7-D8 | Formato dos slides do pitch | Artifact de Slides (exporta .pptx/PDF) · PowerPoint feito à mão | **Artifact de Slides** com a mesma identidade visual da documentação |
+| F7-D8 | Formato dos slides do pitch | Slides em HTML exportados para PDF · PowerPoint feito à mão | **Slides em HTML exportados para PDF** (`PlantGuard-slides.pdf`), com a mesma identidade visual da documentação |
 
 ---
 
@@ -47,7 +47,7 @@
 | Pipeline DevSecOps | 20% | Configurações, descrição do pipeline, evidência da execução | `.github/workflows/`, `docs/fase7/evidencias/pipeline/` + seção 4 |
 | Monitoramento | 10% | Prints/logs, descrição, como acompanhar | `/api/health`, `/monitor`, `docs/fase7/evidencias/monitoramento/` + seção 5 |
 | Processo + demo final | 25% | Event log, diagrama do processo, insights, vídeo de 5 a 8 min | `analysis/process-mining/`, página `/process`, `docs/fase7/event-log-exemplo.csv` + seção 6 + vídeo |
-| Pitch | 10% | Slides + vídeo de até 5 min | Artifact de Slides + `docs/fase7/roteiro-video.md` (parte B) |
+| Pitch | 10% | Slides + vídeo de até 5 min | `docs/fase7/PlantGuard-slides.pdf` + vídeo (`video/`, roteiro em `docs/fase7/roteiro-video.md`) |
 
 ---
 
@@ -166,12 +166,11 @@ Mesma abordagem do ELO (`documentacao-livre.html` impresso em PDF pelo Chrome he
   6. Monitoramento: `/monitor`, `/api/health`, logs e como acompanhar
   7. Mineração de processos: event log, mapa, variantes, gargalos, melhorias
   8. Produto: público-alvo, diferencial, Business Model Canvas (Fase 4), roadmap
-  9. Uso de IA generativa (Claude Code, Gemini) e links (repo, vídeos, slides)
-- [ ] Publicar a página também como artifact privado, para compartilhar o link.
+  9. Uso de IA generativa (Gemini) e links (repo, vídeo, slides)
 
 ## 9. Épico G: pitch e vídeo
 
-- [x] Slides (F7-D8): 14 slides com problema, solução, arquitetura, demo, decisão, processo, melhorias, confiabilidade, diferencial, público-alvo, proposta de valor, roadmap e equipe: [deck](https://claude.ai/artifact/FrBxcN9a9xdJu7LFHwBKVr).
+- [x] Slides (F7-D8): 14 slides com problema, solução, arquitetura, demo, decisão, processo, melhorias, confiabilidade, diferencial, público-alvo, proposta de valor, roadmap e equipe: [PDF](PlantGuard-slides.pdf).
 - [ ] Vídeo único de 5 minutos (demo, fluxo, análise de processo e pitch), pelo roteiro em [`roteiro-video.md`](roteiro-video.md). **Gravar por último**, com tudo pronto.
 
 ---

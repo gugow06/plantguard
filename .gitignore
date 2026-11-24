@@ -55,3 +55,6 @@ next-env.d.ts
 # ambiente Python da análise de processos
 .venv/
 __pycache__/
+
+# vídeo final renderizado (publicar no YouTube, não versionar)
+/PlantGuard-video-pitch.mp4

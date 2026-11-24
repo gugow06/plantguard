@@ -2,7 +2,7 @@
 
 > Projeto **PlantGuard** · desafio acadêmico **AgroSmart (FIAP)**.
 > **Um vídeo de 5 minutos** (alvo 5:00 a 5:15, nunca abaixo de 5:00), cobrindo a demonstração da plataforma, o fluxo, a análise de processo e o pitch do produto.
-> Os slides seguem a mesma ordem: [deck no Claude](https://claude.ai/artifact/FrBxcN9a9xdJu7LFHwBKVr).
+> Os slides seguem a mesma ordem: [PlantGuard-slides.pdf](PlantGuard-slides.pdf).
 > Ritmo de fala: ~120 palavras por minuto (~600 palavras no total).
 
 ---
