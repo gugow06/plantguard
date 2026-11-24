@@ -17,5 +17,9 @@ RUN npx prisma generate
 COPY infra/streaming ./infra/streaming
 COPY data ./data
 
+# Roda sem privilégio de root.
+RUN chown -R node:node /app
+USER node
+
 # Default: consumer. Sobrescrito no compose para seed e producer.
 CMD ["npx", "tsx", "infra/streaming/consumer.ts"]
