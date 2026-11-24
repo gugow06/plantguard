@@ -1,69 +1,52 @@
-# Roteiros dos vídeos — PlantGuard Fase 7 (entrega final AgroSmart)
+# Roteiro do vídeo — PlantGuard Fase 7 (entrega final AgroSmart)
 
 > Projeto **PlantGuard** · desafio acadêmico **AgroSmart (FIAP)**.
-> Dois vídeos: **A) vídeo final** (5 min, demo + fluxo + análise de processo) e **B) vídeo pitch** (até 5 min, produto).
-> **Gravar por último**, com o pipeline verde, o event log gerado e as evidências prontas.
-> Ritmo de fala: ~120 palavras por minuto. Os números entre colchetes `[ ]` saem da análise real; preencha antes de gravar.
+> **Um vídeo de 5 minutos** (alvo 5:00 a 5:15, nunca abaixo de 5:00), cobrindo a demonstração da plataforma, o fluxo, a análise de processo e o pitch do produto.
+> Os slides seguem a mesma ordem: [deck no Claude](https://claude.ai/artifact/FrBxcN9a9xdJu7LFHwBKVr).
+> Ritmo de fala: ~120 palavras por minuto (~600 palavras no total).
 
 ---
 
 ## Preparação (antes de gravar)
 
 ```bash
-cp .env.example .env            # NEXTAUTH_SECRET, GEMINI_API_KEY, RESEND_*
-STREAM_MAX_MESSAGES=0 STREAM_INTERVAL_MS=5000 \
-  docker compose -f infra/docker-compose.yml up -d --build --wait
-npx tsx infra/process-sim/simulate.ts      # cenário de processo (seed fixa)
+# infra/.env: STREAM_MAX_MESSAGES=0 e STREAM_INTERVAL_MS=5000 (producer contínuo)
+docker compose -f infra/docker-compose.yml up -d --build
+scripts/smoke-test.sh                       # confirma o fluxo ponta a ponta
+npm run process:simulate                    # cenário de processo (seed fixa)
 ```
 
 Janelas abertas, nesta ordem:
-1. Terminal com `docker compose ps` e, numa segunda aba, `docker compose logs -f producer consumer`
-2. App em `http://localhost:3000` logado como usuário demo (dashboard, `/monitor`, `/process`)
-3. Kafka UI em `http://localhost:8080`
-4. GitHub Actions do repo (último run verde, com o resumo de cobertura) e aba Security
-5. PDF da documentação aberto no diagrama de arquitetura e no mapa do processo
+1. Slides em modo apresentação
+2. App em `http://localhost:3000`, logado como `agrosmart-stream@demo.local` / `stream123`
+3. Kafka UI em `http://localhost:8080` (tópico `plant-classifications`, aba Messages)
+4. Terminal com `docker compose -f infra/docker-compose.yml logs -f consumer`
+5. GitHub Actions do repositório (último run verde na `main`)
 6. Uma foto de folha doente para o upload ao vivo
 
 ---
 
-## A) Vídeo final — 5 min (alvo 5:00 a 5:15, nunca abaixo de 5:00)
+## Roteiro (5:00)
 
-| Tempo | Bloco | Fala (sugestão) | Na tela |
-| --- | --- | --- | --- |
-| **0:00–0:15** | Abertura | "Somos a equipe do **PlantGuard**. Em sete fases saímos de um diagnóstico por foto para uma plataforma completa. Vamos mostrar tudo funcionando de ponta a ponta e o que a análise do processo nos ensinou." | Logo → dashboard |
-| **0:15–0:55** | Arquitetura (15%) | "Na **entrada**, foto pelo app, arquivo em lote e câmeras de campo, simuladas pelo producer, publicando no **Kafka**. No **processamento**, o Gemini diagnostica, o consumer grava no Postgres e as regras R1 a R4 decidem. Na **saída**, dashboard, alertas, e-mail e monitoramento. Tudo sobe com um `docker compose`." | Diagrama final, destacando entrada → processamento → saída |
-| **0:55–2:05** | Execução (20%) | "Todos os serviços saudáveis. O producer publica a cada 5 segundos, e no Kafka UI vemos a mensagem de entrada: planta, status e confiança. O consumer grava e, se a planta está doente, cria o alerta na hora. No app, o sino acende e o dashboard se atualiza sozinho. Pelo canal manual, envio esta foto e o Gemini devolve diagnóstico e tratamento, que entra no mesmo fluxo." | `compose ps` → Kafka UI → log `ALERTA criado` → sino/dashboard → upload ao vivo |
-| **2:05–2:55** | DevSecOps (20%) | "Cada push dispara o pipeline: lint, tipos, testes com cobertura e análise de qualidade; em paralelo, Gitleaks, CodeQL e Trivy procuram segredos e vulnerabilidades. Depois vêm o build das imagens e um teste que sobe a stack e confirma o caminho do Kafka ao banco. Aqui o Trivy barrou [vulnerabilidade], corrigimos e voltou a ficar verde." | Run verde → qualidade → aba Security → antes/depois |
-| **2:55–3:20** | Monitoramento (10%) | "O `/api/health` diz se banco e Kafka estão de pé, e o Monitor mostra lag, throughput e a saúde de cada serviço a cada 3 segundos. Derrubo o Kafka: fica vermelho. Subo de novo: o consumer retoma sem perder mensagem." | `/api/health` → `/monitor` → stop/start do Kafka |
-| **3:20–4:45** | Análise de processo (25%) | "Cada etapa grava um evento: caso, atividade, horário e recurso. Este é o event log, com [N] casos. Com mineração de processos descobrimos este mapa. O caminho feliz cobre [X]% dos casos. A principal **variação** é a IA inconclusiva, que obriga a fotografar de novo em [Y]% dos casos. O **gargalo** não é a tecnologia: do Kafka ao banco são milissegundos, mas do alerta até o produtor vê-lo passam [T] horas, e [Z]% nunca são vistos. **Melhorias:** alerta crítico por push ou WhatsApp com lembrete, guia de captura quando a confiança fica baixa e retentativa automática da IA." | CSV → mapa (frequência) → mapa (tempo) com gargalo → variantes → página `/process` |
-| **4:45–5:00** | Fechamento | "O PlantGuard recebe o dado do campo, decide, avisa quem precisa agir e mede o próprio processo para melhorar. Obrigado!" | Logo + links |
-
-**Dicas do vídeo final**
-- São ~600 palavras de fala para 5 minutos: ensaie com cronômetro e termine entre 5:00 e 5:15, para não ficar abaixo do mínimo.
-- Grave em blocos e edite. No bloco de execução, acelere o vídeo (2x) nos trechos de espera em vez de cortar a fala.
-- Mostre o *mesmo caso* (um `caseId`) no Kafka UI, no log, no dashboard e no event log: isso prova o ponta a ponta.
+| Tempo | Slide / tela | Fala (sugestão) |
+|---|---|---|
+| **0:00–0:20** | Slide 1 (capa) | "Olá, somos a equipe do **PlantGuard**. Nas sete fases do AgroSmart, saímos de um diagnóstico por foto para uma plataforma completa, que identifica doenças em plantas, decide quando é preciso agir e avisa o produtor em segundos." |
+| **0:20–0:45** | Slide 2 (problema) | "Até 40% da produção agrícola mundial se perde todo ano para pragas e doenças. No campo, o diagnóstico depende de um agrônomo que nem sempre está por perto, e a olho nu a doença só aparece quando já tomou o talhão. Quem mais perde é o pequeno e o médio produtor." |
+| **0:45–1:10** | Slides 3 e 4 (solução e arquitetura) | "O PlantGuard é um agrônomo digital que não dorme. Na entrada, a foto do produtor, arquivos em lote ou câmeras de campo publicando no Kafka. No processamento, o Gemini diagnostica, o consumer grava no Postgres e quatro regras decidem a ação. Na saída, alertas, dashboard e relatórios. Tudo sobe com um docker compose." |
+| **1:10–2:15** | **Demo ao vivo** (Kafka UI → terminal → app) | "Vamos ver funcionando. No Kafka UI, as leituras do campo chegam ao tópico: planta, status e confiança. *(abrir uma mensagem)* O consumer grava cada uma e, quando a planta está doente, cria o alerta na hora. *(log `ALERTA criado`)* No app, o sino acende e o analytics se atualiza sozinho. E pelo celular: envio esta foto *(upload)*, e em segundos o Gemini devolve a doença, a confiança e o tratamento." |
+| **2:15–2:35** | Slide 6 (decisão) | "O diferencial é não parar no diagnóstico. As regras R1 a R4 olham todas as análises da espécie: com metade das plantas doentes, o alerta vira intervenção urgente; com confiança baixa, pedimos uma nova foto." |
+| **2:35–3:35** | Slides 7 e 8 (processo e melhorias) + página `/process` | "Cada etapa grava um evento, e com mineração de processos descobrimos este mapa. A parte técnica leva milissegundos: 26, do Kafka até o banco. **O gargalo é humano**: entre o alerta ser gerado e o produtor vê-lo passa 1,1 hora na mediana e 28 horas no pior caso, e 21,8% dos alertas nunca são vistos, porque o que chega à noite só é visto no dia seguinte. As variações são o retrabalho, quando a IA fica inconclusiva e o produtor precisa fotografar de novo, e as falhas da IA. Daí as melhorias: alerta crítico por WhatsApp com lembrete, guia de captura de foto e nova tentativa automática da IA, cada uma com o indicador que a página Processo já mede." |
+| **3:35–4:05** | Slide 9 (confiabilidade) + GitHub Actions | "Cada mudança passa pelo nosso pipeline: lint, testes, busca de segredos, análise de vulnerabilidades e um teste que sobe a plataforma inteira e derruba o Kafka para ver se ela se recupera. Ele barrou uma falha crítica no Next.js: saímos de 44 vulnerabilidades para zero. Cada merge publica imagens versionadas, e o monitor mostra a saúde de cada serviço ao vivo." |
+| **4:05–4:45** | Slides 10, 11 e 12 (diferencial, público, valor) | "Nosso público é o pequeno e o médio produtor, as cooperativas e os agrônomos de consultoria. A proposta de valor: **menos perda, menos defensivo e decisão na hora certa**. O modelo é freemium para o produtor, com plano por propriedade ou cooperativa e API por análise para agtechs." |
+| **4:45–5:05** | Slides 13 e 14 (roadmap e encerramento) | "Hoje o PlantGuard funciona de ponta a ponta. Os próximos passos são atacar o gargalo do alerta, prever o risco com sensores de clima e fazer um piloto com uma cooperativa. **PlantGuard: proteção inteligente, safra garantida.** Obrigado!" |
 
 ---
 
-## B) Vídeo pitch — 4 min 30 s (limite: 5 min)
+## Dicas
 
-| Tempo | Bloco | Fala (sugestão) | Na tela |
-| --- | --- | --- | --- |
-| **0:00–0:40** | Problema | "Doenças de plantas destroem [dado real: ex. até 40% da produção agrícola mundial por ano, segundo a FAO]. No campo, o diagnóstico depende de um agrônomo que nem sempre está por perto, e quando a doença é percebida a olho nu, muitas vezes ela já se espalhou pelo talhão. O pequeno e o médio produtor são os que mais perdem." | Slide do problema (número em destaque) |
-| **0:40–1:30** | Solução | "O **PlantGuard** é um agrônomo digital que nunca dorme. O produtor tira uma foto, ou as câmeras do campo enviam leituras sozinhas, e em segundos a IA diz se a planta está saudável, qual doença tem e o que fazer. Mas a gente vai além do diagnóstico: o sistema cruza todas as análises, aplica regras de decisão e **avisa antes que a doença vire prejuízo**." | Slide da solução → 20 s de demo (upload + alerta) |
-| **1:30–2:20** | Diferencial | "O que nos diferencia: **um**, decisão e não só diagnóstico, com regras que apontam quando intervir; **dois**, dados em tempo real, porque a plataforma recebe um fluxo contínuo do campo, não fotos soltas; **três**, um processo que se mede, já que a gente sabe onde o produtor demora a agir e melhora isso; **quatro**, segurança e qualidade de produto desde o primeiro commit." | Slide de diferencial (4 ícones) |
-| **2:20–3:00** | Público-alvo | "Nosso público é o pequeno e o médio produtor de hortaliças e frutas, as cooperativas que dão assistência técnica a centenas de associados, e os agrônomos de consultoria que precisam acompanhar muitas propriedades ao mesmo tempo." | Slide de público-alvo (3 personas) |
-| **3:00–3:50** | Proposta de valor e modelo | "A proposta de valor: **menos perda, menos defensivo aplicado sem necessidade e decisão no tempo certo**. O modelo é freemium para o produtor, com algumas análises grátis por mês, e um plano por propriedade ou por cooperativa, com alertas em tempo real, relatórios e integração com sensores." | Slide da proposta de valor + Business Model Canvas |
-| **3:50–4:30** | Fechamento | "Hoje o PlantGuard já funciona de ponta a ponta. Os próximos passos são sensores de clima para prever o risco, alertas por WhatsApp e um piloto com uma cooperativa. **PlantGuard: proteção inteligente, safra garantida.** Obrigado!" | Slide de roadmap → logo + QR code do repo |
-
-**Dicas do pitch**
-- É um vídeo de produto, não técnico: nada de Kafka nem Docker na fala; a demo entra só como prova (20 s).
-- Use um dado real de fonte citável (FAO, Embrapa) no problema e coloque a fonte no slide.
-- Ensaie com cronômetro: o roteiro tem ~4 min 30 s de fala, o que deixa uma folga de 30 s.
-
----
-
-## Checklist final
-- [ ] Números `[ ]` preenchidos com a saída real do pm4py
-- [ ] Vídeos com link público (YouTube não listado) testados numa aba anônima
-- [ ] Links dos vídeos, da documentação e dos slides no README
+- Grave em blocos e edite. A demo ao vivo é o bloco mais arriscado: grave o upload duas vezes e use a melhor.
+- Nos trechos de espera (upload, alerta chegando), acelere o vídeo em vez de cortar a fala.
+- Mostre o **mesmo caso** no Kafka UI, no log do consumer e no sino: isso prova o ponta a ponta.
+- Se passar de 5:15, encurte a fala da arquitetura (o slide fala sozinho) antes de cortar a análise de processo, que tem o maior peso da nota (25%).
+- Confirme a fonte do dado de 40% (FAO) antes de gravar.
+- Teste o link do vídeo (YouTube não listado) numa aba anônima e coloque-o no README.
