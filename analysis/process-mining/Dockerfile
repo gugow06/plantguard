@@ -14,5 +14,7 @@ COPY analyze.py .
 # Roda sem privilégio de root (achado DS002 do Trivy no pipeline).
 RUN useradd --create-home --uid 1000 analyst
 USER analyst
+# Caches graváveis para qualquer UID passado com --user.
+ENV HOME=/tmp XDG_CACHE_HOME=/tmp/.cache MPLCONFIGDIR=/tmp/.matplotlib
 WORKDIR /work
 ENTRYPOINT ["python", "/app/analyze.py"]
