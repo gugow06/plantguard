@@ -117,12 +117,12 @@ export async function POST(request: Request) {
     try {
       geminiResult = await analyzeImage(image, mimeType);
     } catch (aiError) {
-      events.push({ caseId, activity: ACTIVITIES.FALHA_IA, resource: 'gemini', channel: 'upload', attributes: { durationMs: Date.now() - aiStart } });
+      events.push({ caseId, activity: ACTIVITIES.FALHA_IA, timestamp: new Date(), resource: 'gemini', channel: 'upload', attributes: { durationMs: Date.now() - aiStart } });
       throw aiError;
     }
-    events.push({ caseId, activity: ACTIVITIES.DIAGNOSTICO, resource: 'gemini', channel: 'upload', attributes: { durationMs: Date.now() - aiStart, status: geminiResult.status, confidence: geminiResult.confidence } });
+    events.push({ caseId, activity: ACTIVITIES.DIAGNOSTICO, timestamp: new Date(), resource: 'gemini', channel: 'upload', attributes: { durationMs: Date.now() - aiStart, status: geminiResult.status, confidence: geminiResult.confidence } });
     if (geminiResult.status === 'Inconclusivo') {
-      events.push({ caseId, activity: ACTIVITIES.INCONCLUSIVO, resource: 'gemini', channel: 'upload', attributes: { confidence: geminiResult.confidence } });
+      events.push({ caseId, activity: ACTIVITIES.INCONCLUSIVO, timestamp: new Date(), resource: 'gemini', channel: 'upload', attributes: { confidence: geminiResult.confidence } });
     }
 
     const analysis = await prisma.analysis.create({
@@ -140,7 +140,7 @@ export async function POST(request: Request) {
         caseId,
       },
     });
-    events.push({ caseId, activity: ACTIVITIES.REGISTRADA, resource: 'postgres', channel: 'upload', attributes: { status: geminiResult.status } });
+    events.push({ caseId, activity: ACTIVITIES.REGISTRADA, timestamp: new Date(), resource: 'postgres', channel: 'upload', attributes: { status: geminiResult.status } });
     await logProcessEvents(prisma, events);
 
     // Fire-and-forget after response is committed — never blocks or fails the main response
