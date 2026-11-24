@@ -17,6 +17,8 @@ const eslintConfig = defineConfig([
     "coverage/**",
     "src/generated/**",
     "**/.venv/**",
+    // projeto separado (Remotion), com lint e tipos próprios
+    "video/**",
   ]),
 ]);
 
