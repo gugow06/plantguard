@@ -1,204 +1,134 @@
 <div align="center">
 
-# PlantGuard AI
+# PlantGuard
 
-### Diagnóstico inteligente de doenças em plantas com IA
+### Do diagnóstico à decisão no campo
 
+[![DevSecOps](https://github.com/gugow06/plantguard/actions/workflows/devsecops.yml/badge.svg)](https://github.com/gugow06/plantguard/actions/workflows/devsecops.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Prisma](https://img.shields.io/badge/Prisma-7-2D3748?logo=prisma)](https://www.prisma.io/)
-[![Google Gemini](https://img.shields.io/badge/Gemini_2.5_Flash-AI-4285F4?logo=google&logoColor=white)](https://ai.google.dev/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Gemini](https://img.shields.io/badge/Gemini_2.5_Flash-IA-4285F4?logo=google&logoColor=white)](https://ai.google.dev/)
+[![Kafka](https://img.shields.io/badge/Apache_Kafka-3.9-231F20?logo=apachekafka)](https://kafka.apache.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-compose-2496ED?logo=docker&logoColor=white)](infra/docker-compose.yml)
 
-[Demonstração](#-demonstração) · [Funcionalidades](#-funcionalidades) · [Instalação](#-instalação) · [Tecnologias](#%EF%B8%8F-tecnologias) · [Equipe](#-equipe)
+📄 **Documentação final:** [PDF](docs/fase7/PlantGuard-documentacao-livre.pdf) · [HTML](docs/fase7/documentacao-livre.html) · [Arquitetura](docs/fase7/arquitetura-final.md) · [Análise de processo](docs/fase7/processo/insights.md)
 
 </div>
 
 ---
 
-## Sobre o Projeto
+## Sobre
 
-**PlantGuard AI** é uma aplicação web que utiliza inteligência artificial para diagnosticar doenças em plantas e avaliar a qualidade de alimentos a partir de fotos. O usuário envia uma imagem e recebe, em segundos, um diagnóstico detalhado com nível de confiança, descrição da condição, recomendações de tratamento e evidências visuais identificadas.
+O **PlantGuard** recebe imagens de plantas — do celular do produtor ou de câmeras no campo —, diagnostica doenças com IA (**Google Gemini 2.5 Flash**), decide automaticamente quando é preciso agir (regras **R1–R4**) e avisa o produtor. A plataforma também **mede o próprio processo** (mineração de processos) para descobrir onde a resposta demora.
 
-A análise é realizada pelo **Google Gemini 2.5 Flash**, configurado como um agrônomo sênior especialista em fitopatologia, nutrição vegetal e segurança alimentar.
+Projeto **PlantGuard** · desafio acadêmico **AgroSmart (FIAP)** · entrega final (Fase 7).
 
----
+## Como funciona
 
-## Funcionalidades
+```
+ENTRADA                         PROCESSAMENTO                          SAÍDA
+Câmeras de campo ──► Kafka ──► Consumer ──┐
+Foto do produtor ──► API ──► Gemini ──────┼──► PostgreSQL ──► Regras R1–R4 ──► Alertas (sino + e-mail)
+CSV/JSON ──────────► API ─────────────────┘                  └──────────────► Dashboard · Analytics · Processo
+                                                MONITORAMENTO: /api/health · /monitor · Kafka UI · logs JSON
+```
 
-- **Upload de imagens** — arraste e solte ou selecione fotos (JPEG, PNG, WebP — até 10 MB)
-- **Diagnóstico por IA** — análise automática com status (Saudável, Doente ou Inconclusivo), tipo da planta, patologia detectada e nível de confiança (0–100%)
-- **Recomendações de tratamento** — orientações práticas de manejo baseadas no diagnóstico
-- **Evidências visuais** — lista dos sinais identificados na imagem
-- **Histórico de análises** — consulta paginada com filtros por status
-- **Exportação de dados** — exporte o histórico em CSV ou JSON
-- **Autenticação segura** — registro e login com email/senha, sessões JWT e rotas protegidas
-- **Design responsivo** — interface adaptada para desktop, tablet e celular
-- **Rate limiting** — proteção contra uso abusivo nas rotas de registro e análise
+| Regra | Condição | Ação |
+|---|---|---|
+| R1 | alguma análise doente na espécie | alerta de doença |
+| R2 | ≥ 50% das análises da espécie doentes | **intervenção urgente (crítico)** |
+| R3 | mesma patologia em ≥ 3 análises | plano de controle |
+| R4 | saudável com confiança ≤ 70% | diagnóstico incerto: refazer a foto |
 
----
+## Executar
 
-## Demonstração
-
-| Landing Page | Dashboard | Resultado da Análise |
-|:---:|:---:|:---:|
-| Página inicial com apresentação do projeto | Upload de imagens para análise | Diagnóstico detalhado com recomendações |
-
----
-
-## Instalação
-
-### Pré-requisitos
-
-- [Node.js](https://nodejs.org/) 18+
-- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
-- Conta no [Google AI Studio](https://aistudio.google.com/) para obter a chave da API Gemini
-- Banco PostgreSQL (recomendado: [Supabase](https://supabase.com/))
-
-### Passo a passo
+Pré-requisito: Docker.
 
 ```bash
-# 1. Clone o repositório
-git clone https://github.com/seu-usuario/plantguard.git
-cd plantguard
-
-# 2. Instale as dependências
-npm install
-
-# 3. Configure as variáveis de ambiente
-cp .env.example .env
+cp infra/.env.example infra/.env          # defina NEXTAUTH_SECRET (openssl rand -base64 32); GEMINI_API_KEY é opcional
+docker compose -f infra/docker-compose.yml up -d --build --wait
+scripts/smoke-test.sh                     # confere o fluxo producer → Kafka → consumer → Postgres → app
 ```
 
-Preencha o arquivo `.env`:
+| Endereço | O que é |
+|---|---|
+| http://localhost:3000 | App — login demo `agrosmart-stream@demo.local` / `stream123` |
+| http://localhost:3000/monitor | Monitor do pipeline e saúde dos serviços |
+| http://localhost:3000/process | Mineração de processos (mapa, variantes, gargalos) |
+| http://localhost:3000/api/health | Saúde da plataforma (JSON) |
+| http://localhost:8080 | Kafka UI |
 
-```env
-# Database (PostgreSQL via Supabase)
-DATABASE_URL="postgresql://usuario:senha@host:porta/banco"
+Para a demonstração contínua, defina `STREAM_MAX_MESSAGES=0` e `STREAM_INTERVAL_MS=5000` no `infra/.env`.
 
-# NextAuth
-NEXTAUTH_URL="http://localhost:3000"
-NEXTAUTH_SECRET="gere_com_openssl_rand_base64_32"
-
-# Google Gemini AI
-GEMINI_API_KEY="sua_chave_api_gemini"
-```
+### Mineração de processos
 
 ```bash
-# 4. Crie as tabelas no banco
-npx prisma db push
-
-# 5. Inicie o servidor de desenvolvimento
-npm run dev
+npm run process:simulate                                  # cenário simulado reproduzível (seed fixa), só em banco local
+docker build -t plantguard-process-mining analysis/process-mining
+docker run --rm -v "$PWD":/work plantguard-process-mining \
+  docs/fase7/processo/event-log.csv docs/fase7/processo simulado
 ```
 
-Acesse [http://localhost:3000](http://localhost:3000).
+Detalhes em [analysis/process-mining/README.md](analysis/process-mining/README.md).
 
----
+### Desenvolvimento local
+
+```bash
+npm install --legacy-peer-deps
+npm run dev            # app em http://localhost:3000 (usa DATABASE_URL do .env)
+npm test               # testes unitários (Vitest)
+npm run test:coverage  # com cobertura (mínimo 70%)
+npm run lint && npm run typecheck
+npm run docs:pdf       # gera o PDF da documentação a partir do HTML
+```
+
+## Pipeline DevSecOps
+
+[`.github/workflows/devsecops.yml`](.github/workflows/devsecops.yml), a cada push e pull request:
+
+| Etapa | Ferramentas |
+|---|---|
+| Qualidade | ESLint, `tsc`, Vitest com cobertura mínima de 70% |
+| Segredos | Gitleaks no histórico inteiro |
+| Dependências e IaC | `npm audit` (falha em high/critical), Trivy fs |
+| SAST | CodeQL |
+| Build | imagens Docker do app e do streaming + Trivy nas imagens |
+| Ponta a ponta | `docker compose up`, smoke test, Kafka derrubado e recuperado |
+| Publicação | imagens no GitHub Container Registry (só na `main`) |
+
+Resultados SARIF na aba *Security*. Evidências de antes e depois em [docs/fase7/evidencias/pipeline](docs/fase7/evidencias/pipeline).
 
 ## Tecnologias
 
-### Frontend
-
-| Tecnologia | Versão | Descrição |
-|---|---|---|
-| **Next.js** | 16.1.6 | Framework React com App Router e Server Components |
-| **React** | 19.2.3 | Biblioteca para construção de interfaces |
-| **TypeScript** | 5 | Tipagem estática |
-| **Tailwind CSS** | 4 | Framework de estilos utilitários |
-| **shadcn/ui** | — | Componentes acessíveis e customizáveis |
-| **React Hook Form** | 7 | Gerenciamento de formulários |
-| **Zod** | 4 | Validação de schemas |
-| **Lucide React** | — | Ícones |
-
-### Backend
-
-| Tecnologia | Versão | Descrição |
-|---|---|---|
-| **NextAuth.js** | 5 (beta) | Autenticação com Credentials provider e JWT |
-| **Prisma ORM** | 7.4.2 | ORM para PostgreSQL com type-safety |
-| **bcryptjs** | 3 | Hash de senhas (12 rounds) |
-| **Google Gemini** | 2.5 Flash | Modelo de IA para análise de imagens |
-
-### Infraestrutura
-
-| Serviço | Descrição |
+| Camada | Tecnologia |
 |---|---|
-| **Vercel** | Deploy e hosting da aplicação |
-| **Supabase** | Banco de dados PostgreSQL gerenciado |
-| **Google AI Studio** | API do modelo Gemini |
+| Interface e API | Next.js 16, React 19, TypeScript, Tailwind CSS 4, shadcn/ui, Recharts |
+| Autenticação | NextAuth v5 (e-mail/senha e Google), bcrypt, rate limit |
+| IA | Google Gemini 2.5 Flash |
+| Dados | PostgreSQL 16, Prisma 7 |
+| Streaming | Apache Kafka 3.9 (KRaft), kafkajs |
+| E-mail | Resend |
+| Processo | event log próprio + pm4py |
+| Infra e CI | Docker, docker compose, GitHub Actions, Trivy, CodeQL, Gitleaks |
 
----
-
-## Estrutura do Projeto
+## Estrutura
 
 ```
-src/
-├── app/
-│   ├── api/
-│   │   ├── analyze/          # Endpoint de análise de imagem
-│   │   ├── history/          # Endpoint de histórico
-│   │   └── auth/             # Registro e NextAuth handlers
-│   ├── dashboard/            # Página protegida de análise
-│   ├── history/              # Página protegida de histórico
-│   ├── login/                # Página de login/registro
-│   └── page.tsx              # Landing page
-├── components/
-│   ├── ui/                   # Componentes shadcn/ui
-│   ├── AnalysisCard.tsx      # Card de resultado da análise
-│   ├── UploadZone.tsx        # Zona de upload drag-and-drop
-│   ├── HistoryTable.tsx      # Tabela de histórico paginada
-│   └── Navbar.tsx            # Navegação com menu do usuário
-├── hooks/
-│   └── useAnalysis.ts        # Hook de estado e lógica de análise
-├── lib/
-│   ├── auth.ts               # Configuração do NextAuth
-│   ├── gemini.ts             # Integração com Gemini AI
-│   ├── prisma.ts             # Singleton do Prisma Client
-│   ├── rate-limit.ts         # Rate limiter em memória
-│   └── validations/          # Schemas Zod
-└── types/                    # Definições de tipos
+src/app/            páginas e rotas da API (analyze, health, process, stream/monitor…)
+src/lib/            regras, analytics, saúde, event log, mineração de processos (+ testes)
+infra/              docker-compose, producer/consumer Kafka, simulador de processo
+analysis/           análise de processos com pm4py (container)
+scripts/            smoke test e geração do PDF
+.github/workflows/  pipeline DevSecOps
+docs/               documentação por fase (docs/fase7 = entrega final)
 ```
 
----
+## Uso de IA generativa
 
-## Variáveis de Ambiente
-
-| Variável | Descrição | Exemplo |
-|---|---|---|
-| `DATABASE_URL` | Connection string do PostgreSQL | `postgresql://user:pass@host:6543/db` |
-| `NEXTAUTH_URL` | URL base da aplicação | `http://localhost:3000` |
-| `NEXTAUTH_SECRET` | Secret para assinatura JWT | `openssl rand -base64 32` |
-| `GEMINI_API_KEY` | Chave da API Google Gemini | Obtida no Google AI Studio |
-
----
-
-## Scripts Disponíveis
-
-| Comando | Descrição |
+| Ferramenta | Uso |
 |---|---|
-| `npm run dev` | Inicia o servidor de desenvolvimento |
-| `npm run build` | Gera o build de produção (inclui `prisma generate`) |
-| `npm run start` | Inicia o servidor de produção |
-| `npm run lint` | Executa o ESLint |
-| `npx prisma db push` | Sincroniza o schema com o banco de dados |
-| `npx prisma studio` | Abre o Prisma Studio para visualizar dados |
-
----
-
-## Deploy na Vercel
-
-1. Faça push do repositório para o GitHub
-2. Importe o projeto na [Vercel](https://vercel.com/)
-3. Configure as variáveis de ambiente no painel da Vercel:
-   - `DATABASE_URL` (use a connection string do **pooler** do Supabase, porta `6543`)
-   - `NEXTAUTH_URL` (URL do deploy, ex: `https://plantguard.vercel.app`)
-   - `NEXTAUTH_SECRET`
-   - `GEMINI_API_KEY`
-4. Rode `npx prisma db push` localmente com a `DATABASE_URL` de produção para criar as tabelas
-5. Faça o deploy
-
----
+| Google Gemini 2.5 Flash | No produto: diagnóstico das imagens e relatório de IA do campo |
+| Claude Code (Anthropic) | Assistente de desenvolvimento: código e revisão, testes, pipeline, correções de segurança, análise de processos e documentação |
 
 ## Equipe
 
@@ -211,11 +141,3 @@ Projeto desenvolvido por alunos do **4o ano de Engenharia de Software** da **FIA
 | **Kevin Richard Xavier** | RM 551736 |
 | **Vinicius do Carmo Fonseca Freitas** | RM 97599 |
 | **Gustavo Medeiros Miranda da Silva** | RM 552093 |
-
----
-
-<div align="center">
-
-Feito com dedicação para a atividade AgroSmart — FIAP 2026
-
-</div>
