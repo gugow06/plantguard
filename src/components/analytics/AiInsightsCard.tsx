@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import type { RawAnalysisRecord } from '@/lib/compute-analytics';
 import type { FieldInsightsReport, RiskLevel, Urgency } from '@/lib/gemini-insights';
+import { useMounted } from '@/hooks/useMounted';
 
 interface InsightsMeta {
   totalAnalyses: number;
@@ -72,9 +73,7 @@ export function AiInsightsCard({ importedAnalyses, importedFileName, days = 30 }
   const [loading, setLoading] = useState(false);
   const [report, setReport] = useState<FieldInsightsReport | null>(null);
   const [meta, setMeta] = useState<InsightsMeta | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const mounted = useMounted();
 
   const isImportMode = !!importedAnalyses && importedAnalyses.length > 0;
 

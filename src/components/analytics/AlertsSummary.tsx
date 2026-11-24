@@ -9,6 +9,16 @@ interface AlertsSummaryProps {
   importedAlerts?: AlertRecord[];
 }
 
+async function requestAlerts(): Promise<AlertRecord[] | null> {
+  try {
+    const res = await fetch('/api/alerts?days=30', { cache: 'no-store' });
+    if (!res.ok) return null;
+    return ((await res.json()) as { alerts: AlertRecord[] }).alerts;
+  } catch {
+    return null;
+  }
+}
+
 export function AlertsSummary({ importedAlerts }: AlertsSummaryProps) {
   const [liveAlerts, setLiveAlerts] = useState<AlertRecord[]>([]);
   const [isExpanded, setIsExpanded] = useState(true);
@@ -18,21 +28,12 @@ export function AlertsSummary({ importedAlerts }: AlertsSummaryProps) {
   useEffect(() => {
     if (importedAlerts) return;
     let active = true;
-    const fetchAlerts = async () => {
-      try {
-        const res = await fetch('/api/alerts?days=30', { cache: 'no-store' });
-        if (!res.ok) return;
-        const data = (await res.json()) as { alerts: AlertRecord[] };
-        if (active) setLiveAlerts(data.alerts);
-      } catch {
-        // ignore
-      }
-    };
-    const first = setTimeout(fetchAlerts, 0);
-    const id = setInterval(fetchAlerts, 5000);
+    const load = () =>
+      requestAlerts().then((alerts) => { if (active && alerts) setLiveAlerts(alerts); });
+    load();
+    const id = setInterval(load, 5000);
     return () => {
       active = false;
-      clearTimeout(first);
       clearInterval(id);
     };
   }, [importedAlerts]);

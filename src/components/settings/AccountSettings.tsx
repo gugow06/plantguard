@@ -77,6 +77,12 @@ async function resizeToDataUrl(file: File): Promise<string> {
   });
 }
 
+async function loadProfile(): Promise<ProfileData> {
+  const res = await fetch('/api/account/profile');
+  if (!res.ok) throw new Error();
+  return (await res.json()) as ProfileData;
+}
+
 export function AccountSettings() {
   const { update } = useSession();
   const [profile, setProfile] = useState<ProfileData | null>(null);
@@ -84,9 +90,7 @@ export function AccountSettings() {
 
   const refresh = useCallback(async () => {
     try {
-      const res = await fetch('/api/account/profile');
-      if (!res.ok) throw new Error();
-      const data = (await res.json()) as ProfileData;
+      const data = await loadProfile();
       setProfile(data);
     } catch {
       toast.error('Erro ao carregar perfil.');
@@ -95,7 +99,14 @@ export function AccountSettings() {
     }
   }, []);
 
-  useEffect(() => { refresh(); }, [refresh]);
+  useEffect(() => {
+    let active = true;
+    loadProfile()
+      .then((data) => { if (active) setProfile(data); })
+      .catch(() => toast.error('Erro ao carregar perfil.'))
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, []);
 
   if (loading) {
     return (
