@@ -25,9 +25,6 @@ permissions:
 
 env:
   NODE_VERSION: '22'
-  # Placeholder: só para gerar o Prisma Client e buildar (nenhum banco é acessado).
-  DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
-  NEXTAUTH_SECRET: ci-build-placeholder
   NEXT_TELEMETRY_DISABLED: '1'
   TRIVY_VERSION: '0.58.1'
 
@@ -36,6 +33,11 @@ jobs:
   quality:
     name: Qualidade (lint, tipos, testes)
     runs-on: ubuntu-latest
+    # Placeholders só deste job (gerar o Prisma Client; nenhum banco é acessado).
+    # Ficam fora do env global: no job e2e eles sobrescreveriam o infra/.env do compose.
+    env:
+      DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
+      NEXTAUTH_SECRET: ci-build-placeholder
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
