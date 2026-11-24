@@ -143,13 +143,19 @@
   .lane .arr { align-self: center; color: var(--green-700); font-size: 13pt; }
   .gate { text-align: center; font-size: 8pt; color: var(--green-700); font-weight: 600; margin: -1mm 0 2mm 29mm; }
   .toc { list-style: none; padding: 0; margin: 4mm 0 0; }
-  .toc li { display: flex; align-items: baseline; gap: 3mm; padding: 2.2mm 0; border-bottom: 1px solid var(--line); }
+  .toc li { display: flex; align-items: baseline; gap: 3mm; padding: 1.5mm 0; border-bottom: 1px solid var(--line); }
   .toc .n { font-family: 'Fraunces', serif; font-size: 18pt; color: var(--green-700); width: 12mm; }
   .toc .t { flex: 1; font-size: 11pt; font-weight: 600; }
   .toc .t small { display: block; font-weight: 400; color: var(--muted); font-size: 8.6pt; }
   .toc .w { font-size: 8pt; font-weight: 700; color: var(--green-800); background: var(--green-100); padding: .8mm 2.5mm; border-radius: 99px; }
 
   .two-col { columns: 2; column-gap: 7mm; }
+  .links-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 2mm 0 4mm; }
+  .links-bar a { display: flex; flex-direction: column; gap: 0.6mm; text-decoration: none; background: var(--green-800); color: var(--cream);
+    border-radius: 12px; padding: 3.2mm 4.5mm 3.2mm 13mm; position: relative; font-weight: 700; font-size: 10.5pt; }
+  .links-bar a span { position: absolute; left: 4.5mm; top: 50%; transform: translateY(-50%); width: 6mm; height: 6mm; border-radius: 50%;
+    background: #9fdcb7; color: var(--green-900); display: grid; place-items: center; font-size: 8pt; }
+  .links-bar a small { font-weight: 400; font-size: 8.6pt; color: #cfe3d6; font-family: 'JetBrains Mono', monospace; }
   .small { font-size: 8.6pt; color: var(--muted); }
   .nowrap { white-space: nowrap; }
 </style>
@@ -179,7 +185,8 @@
   <div class="meta">
     <div>
       <p><b>FIAP · Engenharia de Software · 4º ano</b><br/>Desafio AgroSmart — Fase 7: entrega final</p>
-      <p>Repositório: <b>github.com/gugow06/plantguard</b><br/>Novembro de 2026</p>
+      <p>Repositório: <a href="https://github.com/gugow06/plantguard" style="color:#fff;font-weight:700">github.com/gugow06/plantguard</a><br/>
+      Vídeo: <a href="https://youtu.be/eTmqF7Tk4qc" style="color:#9fdcb7;font-weight:700">youtu.be/eTmqF7Tk4qc</a><br/>Novembro de 2026</p>
     </div>
     <table>
       <tr><td>Gustavo Cristiano Pessoa de Souza</td><td class="nowrap">RM 551924</td></tr>
@@ -198,6 +205,10 @@
   <h2>O que é o PlantGuard</h2>
   <p class="lead">Uma plataforma que recebe imagens de plantas — do celular do produtor ou de câmeras no campo —, diagnostica doenças com IA, decide automaticamente quando é preciso agir e avisa quem precisa agir. E mede o próprio processo para descobrir onde a resposta demora.</p>
 
+  <div class="links-bar">
+    <a href="https://youtu.be/eTmqF7Tk4qc"><span>▶</span> Vídeo da entrega final<small>youtu.be/eTmqF7Tk4qc</small></a>
+    <a href="https://github.com/gugow06/plantguard"><span>⌥</span> Repositório no GitHub<small>github.com/gugow06/plantguard</small></a>
+  </div>
   <div class="flow">
     <div class="card"><h4>Entrada</h4><ul><li>Foto do produtor (upload)</li><li>Câmeras de campo via Kafka</li><li>Arquivos CSV/JSON</li></ul></div>
     <div class="arrow">→</div>
@@ -693,6 +704,8 @@ docker run --rm -v "$PWD":/work plantguard-process-mining \
     <tr><td><code>/monitor</code> · <code>/process</code></td><td>Monitor do pipeline e mineração de processos</td></tr>
     <tr><td><code>/api/health</code></td><td>Saúde da plataforma (JSON)</td></tr>
     <tr><td><code>http://localhost:8080</code></td><td>Kafka UI</td></tr>
+    <tr><td><a href="https://github.com/gugow06/plantguard">github.com/gugow06/plantguard</a></td><td>Repositório</td></tr>
+    <tr><td><a href="https://youtu.be/eTmqF7Tk4qc">youtu.be/eTmqF7Tk4qc</a></td><td>Vídeo da entrega final</td></tr>
   </table>
   <h3>Estrutura do repositório</h3>
 <pre>src/app/            páginas e rotas da API (analyze, health, process, stream/monitor…)
