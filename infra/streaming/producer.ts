@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import Papa from 'papaparse';
@@ -40,7 +41,10 @@ function jitterConfidence(base: number): number {
 }
 
 function toMessage(row: CsvRow): ClassificationMessage {
+  const now = new Date().toISOString();
   return {
+    caseId: randomUUID(),
+    capturedAt: now,
     imageName: row.imageName,
     status: row.status as ClassificationMessage['status'],
     plantType: row.plantType || null,
@@ -48,7 +52,7 @@ function toMessage(row: CsvRow): ClassificationMessage {
     confidence: jitterConfidence(Number(row.confidence)),
     description: row.description,
     recommendations: row.recommendations,
-    createdAt: new Date().toISOString(),
+    createdAt: now,
   };
 }
 
@@ -82,11 +86,13 @@ async function main() {
   for (let n = 0; MAX_MESSAGES === 0 || n < MAX_MESSAGES; n++) {
     if (n > 0) await new Promise((r) => setTimeout(r, INTERVAL_MS));
     const message = toMessage(rows[n % rows.length]);
+    message.publishedAt = new Date().toISOString();
     await producer.send({
       topic: TOPIC,
       messages: [{ key: message.imageName, value: JSON.stringify(message) }],
     });
     console.log(`[producer] -> (${n + 1}/${MAX_MESSAGES || '∞'}) ${message.imageName} | ${message.status} | ${message.plantType ?? '-'} | ${message.confidence}%`);
+    console.log(JSON.stringify({ ts: message.publishedAt, level: 'info', service: 'producer', event: 'message_published', caseId: message.caseId, topic: TOPIC, status: message.status }));
   }
 
   console.log(`[producer] concluído: ${MAX_MESSAGES} mensagens publicadas.`);

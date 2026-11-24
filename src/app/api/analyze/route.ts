@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
@@ -5,6 +6,8 @@ import { analyzeImage } from '@/lib/gemini';
 import { analyzeSchema } from '@/lib/validations/analyze';
 import { rateLimit } from '@/lib/rate-limit';
 import { sendDiseaseAlertEmail } from '@/lib/email';
+import { logProcessEvents, type NewProcessEvent } from '@/lib/process-log';
+import { ACTIVITIES } from '@/lib/process-mining';
 
 async function createDiseaseNotification(
   userId: string,
@@ -18,6 +21,7 @@ async function createDiseaseNotification(
     recommendations: string;
   },
   createdAt: string,
+  caseId: string,
 ) {
   try {
     const user = await prisma.user.findUnique({
@@ -51,6 +55,9 @@ async function createDiseaseNotification(
         analysisId,
       },
     });
+    await logProcessEvents(prisma, [
+      { caseId, activity: ACTIVITIES.ALERTA, resource: 'motor-de-regras', channel: 'upload', attributes: { pathology: geminiResult.pathology, confidence: geminiResult.confidence } },
+    ]);
 
     if (user?.email) {
       await sendDiseaseAlertEmail(user.email, {
@@ -71,6 +78,10 @@ async function createDiseaseNotification(
 }
 
 export async function POST(request: Request) {
+  // Event log do canal de upload: a captura é o recebimento da imagem.
+  const caseId = randomUUID();
+  const receivedAt = new Date();
+  const events: NewProcessEvent[] = [];
   try {
     const session = await auth();
     if (!session?.user?.id) {
@@ -99,8 +110,20 @@ export async function POST(request: Request) {
     }
 
     const { image, mimeType, imageName } = parsed.data;
+    events.push({ caseId, activity: ACTIVITIES.CAPTURA, timestamp: receivedAt, resource: 'produtor', channel: 'upload', attributes: { imageName } });
 
-    const geminiResult = await analyzeImage(image, mimeType);
+    const aiStart = Date.now();
+    let geminiResult: Awaited<ReturnType<typeof analyzeImage>>;
+    try {
+      geminiResult = await analyzeImage(image, mimeType);
+    } catch (aiError) {
+      events.push({ caseId, activity: ACTIVITIES.FALHA_IA, resource: 'gemini', channel: 'upload', attributes: { durationMs: Date.now() - aiStart } });
+      throw aiError;
+    }
+    events.push({ caseId, activity: ACTIVITIES.DIAGNOSTICO, resource: 'gemini', channel: 'upload', attributes: { durationMs: Date.now() - aiStart, status: geminiResult.status, confidence: geminiResult.confidence } });
+    if (geminiResult.status === 'Inconclusivo') {
+      events.push({ caseId, activity: ACTIVITIES.INCONCLUSIVO, resource: 'gemini', channel: 'upload', attributes: { confidence: geminiResult.confidence } });
+    }
 
     const analysis = await prisma.analysis.create({
       data: {
@@ -114,8 +137,11 @@ export async function POST(request: Request) {
         plantType: geminiResult.plantType,
         pathology: geminiResult.pathology,
         rawResponse: JSON.stringify(geminiResult),
+        caseId,
       },
     });
+    events.push({ caseId, activity: ACTIVITIES.REGISTRADA, resource: 'postgres', channel: 'upload', attributes: { status: geminiResult.status } });
+    await logProcessEvents(prisma, events);
 
     // Fire-and-forget after response is committed — never blocks or fails the main response
     if (geminiResult.status === 'Doente') {
@@ -125,6 +151,7 @@ export async function POST(request: Request) {
         imageName,
         geminiResult,
         analysis.createdAt.toISOString(),
+        caseId,
       );
     }
 
@@ -140,6 +167,8 @@ export async function POST(request: Request) {
       createdAt: analysis.createdAt.toISOString(),
     });
   } catch (error) {
+    // Registra o caminho até a falha (ex.: captura -> falha no diagnóstico).
+    await logProcessEvents(prisma, events);
     if (error instanceof SyntaxError) {
       return NextResponse.json({ error: 'JSON inválido.' }, { status: 400 });
     }

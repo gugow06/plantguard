@@ -24,6 +24,7 @@ export default defineConfig({
         'src/lib/gemini.ts',
         'src/lib/gemini-insights.ts',
         'src/lib/utils.ts',
+        'src/lib/process-alerts.ts',
       ],
       thresholds: { lines: 70, functions: 70, branches: 70, statements: 70 },
     },

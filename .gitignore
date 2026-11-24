@@ -51,3 +51,7 @@ next-env.d.ts
 # bancos locais
 *.db
 *.db-journal
+
+# ambiente Python da análise de processos
+.venv/
+__pycache__/

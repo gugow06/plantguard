@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { markAlertsSeen } from '@/lib/process-alerts';
 
 // GET /api/notifications — list user notifications (most recent 50)
 export async function GET() {
@@ -43,10 +44,15 @@ export async function PATCH() {
       return NextResponse.json({ error: 'Não autorizado.' }, { status: 401 });
     }
 
+    const unread = await prisma.notification.findMany({
+      where: { userId: session.user.id, read: false },
+      select: { analysisId: true },
+    });
     await prisma.notification.updateMany({
       where: { userId: session.user.id, read: false },
       data: { read: true },
     });
+    await markAlertsSeen(unread);
 
     return NextResponse.json({ ok: true });
   } catch (error) {

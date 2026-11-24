@@ -16,6 +16,9 @@ COPY prisma.config.ts tsconfig.json ./
 RUN ./node_modules/.bin/prisma generate
 
 COPY infra/streaming ./infra/streaming
+COPY infra/process-sim ./infra/process-sim
+# Módulos do event log compartilhados com o app (sem dependências do Next).
+COPY src/lib/process-log.ts src/lib/process-mining.ts ./src/lib/
 COPY data ./data
 
 # Remove npm/npx/corepack da imagem base (CVEs nas dependências do próprio npm).
