@@ -99,7 +99,7 @@ function buildRecommendation(rules: TriggeredRule[], topPathology: string | null
   return `Doença detectada. Monitore com frequência e aplique medidas preventivas antes que a infecção se espalhe.`;
 }
 
-function buildPrognosis(severity: AlertSeverity, diseaseRate: number, topPathology: string | null): string {
+function buildPrognosis(severity: AlertSeverity, diseaseRate: number): string {
   if (severity === 'critical') {
     return `Se as condições atuais forem mantidas, a tendência é de aumento da infecção para toda a plantação. Sem intervenção imediata, perdas de colheita podem superar ${Math.round(diseaseRate * 100 + 15)}%.`;
   }
@@ -138,7 +138,7 @@ export function evaluatePlantAlert(
     ? buildRecommendation(triggeredRules, topPathology, diseaseRate)
     : 'Planta saudável. Manter monitoramento periódico.';
 
-  const prognosis = buildPrognosis(severity, diseaseRate, topPathology);
+  const prognosis = buildPrognosis(severity, diseaseRate);
 
   return { triggered, severity, diseaseRate, rules: triggeredRules, recommendation, prognosis };
 }

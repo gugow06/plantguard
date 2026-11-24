@@ -68,16 +68,12 @@ function NotificationDetailModal({
   }
 
   const isCritical = data && data.confidence >= 70;
-  const [mounted, setMounted] = useState(false);
-
+  // O modal só é aberto por clique do usuário, portanto sempre no cliente.
   useEffect(() => {
-    setMounted(true);
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
   }, [onClose]);
-
-  if (!mounted) return null;
 
   return createPortal(
     <div
