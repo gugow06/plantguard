@@ -1,0 +1,25 @@
+{
+    "status": "ok",
+    "checkedAt": "2026-11-24T19:00:07.029Z",
+    "uptimeSeconds": 131,
+    "version": "local",
+    "services": {
+        "database": {
+            "status": "up",
+            "latencyMs": 2
+        },
+        "kafka": {
+            "status": "up",
+            "latencyMs": 10
+        },
+        "consumer": {
+            "status": "ok",
+            "lag": 0,
+            "lagThreshold": 50,
+            "totalMessages": 3,
+            "lastConsumedAt": "2026-11-24T19:00:01.030Z",
+            "lastConsumedAgeSeconds": 6
+        }
+    },
+    "issues": []
+}

@@ -1,0 +1,16 @@
+# Trivy image — imagens finais (app e streaming), HIGH/CRITICAL, --ignore-unfixed --exit-code 1
+# antes: 10 HIGH na imagem do app (dependências do npm embutido na node:22-alpine); depois de remover o npm do runtime: 0
+
+## agrosmart-app:latest
+
+agrosmart-app:latest (alpine 3.24.4)
+====================================
+Total: 0 (HIGH: 0, CRITICAL: 0)
+
+
+## agrosmart-consumer:latest
+
+agrosmart-consumer:latest (alpine 3.24.4)
+=========================================
+Total: 0 (HIGH: 0, CRITICAL: 0)
+
