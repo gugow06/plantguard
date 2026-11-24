@@ -1,0 +1,349 @@
+{
+ "fps": 30,
+ "scenes": [
+  {
+   "id": "abertura",
+   "from": 0,
+   "durationInFrames": 590,
+   "segments": [
+    {
+     "id": "a1",
+     "text": "Olá! Nós somos a equipe do PlantGuard.",
+     "from": 26,
+     "durationInFrames": 88,
+     "audio": "audio/a1.wav"
+    },
+    {
+     "id": "a2",
+     "text": "Nas sete fases do desafio AgroSmart, saímos de um diagnóstico por foto para uma plataforma completa.",
+     "from": 145,
+     "durationInFrames": 193,
+     "audio": "audio/a2.wav"
+    },
+    {
+     "id": "a3",
+     "text": "Ela identifica doenças em plantas, decide quando é preciso agir e avisa o produtor em segundos.",
+     "from": 369,
+     "durationInFrames": 192,
+     "audio": "audio/a3.wav"
+    }
+   ]
+  },
+  {
+   "id": "problema",
+   "from": 590,
+   "durationInFrames": 669,
+   "segments": [
+    {
+     "id": "p1",
+     "text": "Até 40% da produção agrícola mundial se perde todo ano para pragas e doenças.",
+     "from": 26,
+     "durationInFrames": 178,
+     "audio": "audio/p1.wav"
+    },
+    {
+     "id": "p2",
+     "text": "No campo, o diagnóstico depende de um agrônomo que nem sempre está por perto.",
+     "from": 235,
+     "durationInFrames": 139,
+     "audio": "audio/p2.wav"
+    },
+    {
+     "id": "p3",
+     "text": "E, a olho nu, a doença só aparece quando já tomou o talhão.",
+     "from": 405,
+     "durationInFrames": 114,
+     "audio": "audio/p3.wav"
+    },
+    {
+     "id": "p4",
+     "text": "Quem mais perde é o pequeno e o médio produtor.",
+     "from": 550,
+     "durationInFrames": 90,
+     "audio": "audio/p4.wav"
+    }
+   ]
+  },
+  {
+   "id": "solucao",
+   "from": 1259,
+   "durationInFrames": 587,
+   "segments": [
+    {
+     "id": "s1",
+     "text": "O PlantGuard é um agrônomo digital que não dorme.",
+     "from": 26,
+     "durationInFrames": 86,
+     "audio": "audio/s1.wav"
+    },
+    {
+     "id": "s2",
+     "text": "O produtor fotografa a folha, ou câmeras no campo enviam leituras sozinhas.",
+     "from": 143,
+     "durationInFrames": 135,
+     "audio": "audio/s2.wav"
+    },
+    {
+     "id": "s3",
+     "text": "A inteligência artificial identifica a doença, regras de decisão dizem se é preciso intervir, e o alerta chega com o tratamento recomendado.",
+     "from": 309,
+     "durationInFrames": 249,
+     "audio": "audio/s3.wav"
+    }
+   ]
+  },
+  {
+   "id": "arquitetura",
+   "from": 1846,
+   "durationInFrames": 866,
+   "segments": [
+    {
+     "id": "r1",
+     "text": "Na entrada, as leituras do campo chegam pelo Apache Kafka, junto com fotos e arquivos em lote. Se o aplicativo cair, nenhuma leitura se perde.",
+     "from": 26,
+     "durationInFrames": 340,
+     "audio": "audio/r1.wav"
+    },
+    {
+     "id": "r2",
+     "text": "No processamento, o Gemini diagnostica, o consumer grava no Postgres e quatro regras decidem a ação.",
+     "from": 397,
+     "durationInFrames": 227,
+     "audio": "audio/r2.wav"
+    },
+    {
+     "id": "r3",
+     "text": "Na saída, alertas, painéis e relatórios. Tudo sobe com um único docker compose.",
+     "from": 655,
+     "durationInFrames": 182,
+     "audio": "audio/r3.wav"
+    }
+   ]
+  },
+  {
+   "id": "demo",
+   "from": 2712,
+   "durationInFrames": 1381,
+   "segments": [
+    {
+     "id": "d1",
+     "text": "Vamos ver funcionando.",
+     "from": 26,
+     "durationInFrames": 37,
+     "audio": "audio/d1.wav"
+    },
+    {
+     "id": "d2",
+     "text": "No Kafka, as leituras do campo chegam ao tópico, com a planta, o status e a confiança. Cada mensagem leva um identificador de caso, que acompanha a leitura do campo até o alerta.",
+     "from": 94,
+     "durationInFrames": 344,
+     "audio": "audio/d2.wav"
+    },
+    {
+     "id": "d3",
+     "text": "O consumer grava cada leitura e, quando a planta está doente, cria o alerta na hora.",
+     "from": 469,
+     "durationInFrames": 151,
+     "audio": "audio/d3.wav"
+    },
+    {
+     "id": "d4",
+     "text": "No aplicativo, o sino acende e o analytics se atualiza sozinho, sem recarregar a página.",
+     "from": 651,
+     "durationInFrames": 159,
+     "audio": "audio/d4.wav"
+    },
+    {
+     "id": "d5",
+     "text": "E o monitor mostra, a cada três segundos, a saúde de cada serviço e as leituras chegando.",
+     "from": 841,
+     "durationInFrames": 158,
+     "audio": "audio/d5.wav"
+    },
+    {
+     "id": "d6",
+     "text": "O produtor também pode enviar uma foto pelo app, e o Gemini devolve a doença, a confiança e o tratamento.",
+     "from": 1030,
+     "durationInFrames": 180,
+     "audio": "audio/d6.wav"
+    }
+   ]
+  },
+  {
+   "id": "decisao",
+   "from": 4093,
+   "durationInFrames": 694,
+   "segments": [
+    {
+     "id": "e1",
+     "text": "O diferencial é não parar no diagnóstico.",
+     "from": 26,
+     "durationInFrames": 79,
+     "audio": "audio/e1.wav"
+    },
+    {
+     "id": "e2",
+     "text": "Quatro regras olham todas as análises de cada espécie.",
+     "from": 136,
+     "durationInFrames": 104,
+     "audio": "audio/e2.wav"
+    },
+    {
+     "id": "e3",
+     "text": "Com metade das plantas doentes, o alerta vira intervenção urgente. Com confiança baixa, o sistema pede uma nova foto. Assim, o produtor não recebe só o nome da doença: recebe o que fazer, e quando.",
+     "from": 271,
+     "durationInFrames": 394,
+     "audio": "audio/e3.wav"
+    }
+   ]
+  },
+  {
+   "id": "processo",
+   "from": 4787,
+   "durationInFrames": 1188,
+   "segments": [
+    {
+     "id": "m1",
+     "text": "Cada etapa grava um evento: o caso, a atividade, o horário e o recurso.",
+     "from": 26,
+     "durationInFrames": 171,
+     "audio": "audio/m1.wav"
+    },
+    {
+     "id": "m2",
+     "text": "Com mineração de processos, descobrimos o mapa real do fluxo.",
+     "from": 228,
+     "durationInFrames": 115,
+     "audio": "audio/m2.wav"
+    },
+    {
+     "id": "m3",
+     "text": "A parte técnica leva milissegundos: 26, do Kafka até o banco.",
+     "from": 374,
+     "durationInFrames": 140,
+     "audio": "audio/m3.wav"
+    },
+    {
+     "id": "m4",
+     "text": "O gargalo é humano. Entre o alerta ser gerado e o produtor vê-lo, passa uma hora na mediana, e 28 horas nos casos mais lentos.",
+     "from": 545,
+     "durationInFrames": 262,
+     "audio": "audio/m4.wav"
+    },
+    {
+     "id": "m5",
+     "text": "E quase 22% dos alertas nunca são vistos.",
+     "from": 838,
+     "durationInFrames": 108,
+     "audio": "audio/m5.wav"
+    }
+   ]
+  },
+  {
+   "id": "melhorias",
+   "from": 5975,
+   "durationInFrames": 513,
+   "segments": [
+    {
+     "id": "i1",
+     "text": "Por isso, propomos alerta crítico por WhatsApp com lembrete, guia de captura de foto quando a confiança fica baixa, e nova tentativa automática quando a IA falha.",
+     "from": 26,
+     "durationInFrames": 312,
+     "audio": "audio/i1.wav"
+    },
+    {
+     "id": "i2",
+     "text": "Cada melhoria tem um indicador que a página de processo já mede.",
+     "from": 369,
+     "durationInFrames": 115,
+     "audio": "audio/i2.wav"
+    }
+   ]
+  },
+  {
+   "id": "confiavel",
+   "from": 6488,
+   "durationInFrames": 1053,
+   "segments": [
+    {
+     "id": "c1",
+     "text": "Cada mudança passa pelo nosso pipeline DevSecOps: testes, busca de segredos e de vulnerabilidades, e um teste que sobe a plataforma inteira e derruba o Kafka para ver se ela se recupera.",
+     "from": 26,
+     "durationInFrames": 406,
+     "audio": "audio/c1.wav"
+    },
+    {
+     "id": "c2",
+     "text": "Ele barrou uma falha crítica no Next.js: saímos de 44 vulnerabilidades para zero.",
+     "from": 463,
+     "durationInFrames": 181,
+     "audio": "audio/c2.wav"
+    },
+    {
+     "id": "c3",
+     "text": "E cada merge publica imagens versionadas, prontas para o deploy. E, se o banco ou o Kafka caírem, o endpoint de saúde avisa em segundos.",
+     "from": 675,
+     "durationInFrames": 278,
+     "audio": "audio/c3.wav"
+    }
+   ]
+  },
+  {
+   "id": "produto",
+   "from": 7541,
+   "durationInFrames": 829,
+   "segments": [
+    {
+     "id": "v1",
+     "text": "Nosso público é o pequeno e o médio produtor, as cooperativas e os agrônomos de consultoria. Para uma cooperativa, isso significa acompanhar centenas de propriedades com poucos técnicos.",
+     "from": 26,
+     "durationInFrames": 359,
+     "audio": "audio/v1.wav"
+    },
+    {
+     "id": "v2",
+     "text": "A proposta de valor: menos perda, menos defensivo e decisão na hora certa.",
+     "from": 416,
+     "durationInFrames": 146,
+     "audio": "audio/v2.wav"
+    },
+    {
+     "id": "v3",
+     "text": "O modelo é freemium para o produtor, com planos para propriedades e cooperativas, e uma API cobrada por análise.",
+     "from": 593,
+     "durationInFrames": 207,
+     "audio": "audio/v3.wav"
+    }
+   ]
+  },
+  {
+   "id": "fim",
+   "from": 8370,
+   "durationInFrames": 630,
+   "segments": [
+    {
+     "id": "f1",
+     "text": "Hoje, o PlantGuard funciona de ponta a ponta.",
+     "from": 26,
+     "durationInFrames": 96,
+     "audio": "audio/f1.wav"
+    },
+    {
+     "id": "f2",
+     "text": "Os próximos passos são acelerar a resposta ao alerta, prever o risco com sensores de clima e fazer um piloto com uma cooperativa.",
+     "from": 153,
+     "durationInFrames": 286,
+     "audio": "audio/f2.wav"
+    },
+    {
+     "id": "f3",
+     "text": "PlantGuard: proteção inteligente, safra garantida. Obrigado!",
+     "from": 470,
+     "durationInFrames": 112,
+     "audio": "audio/f3.wav"
+    }
+   ]
+  }
+ ],
+ "durationInFrames": 9000
+}

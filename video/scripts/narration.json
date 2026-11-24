@@ -1,0 +1,234 @@
+{
+  "voice": "Luciana",
+  "rate": 152,
+  "gapAfterSegment": 0.5,
+  "scenes": [
+    {
+      "id": "abertura",
+      "segments": [
+        {
+          "id": "a1",
+          "text": "Olá! Nós somos a equipe do PlantGuard.",
+          "tts": "Olá! Nós somos a equipe do Plant Gárd."
+        },
+        {
+          "id": "a2",
+          "text": "Nas sete fases do desafio AgroSmart, saímos de um diagnóstico por foto para uma plataforma completa.",
+          "tts": "Nas sete fases do desafio Agro Smárt, saímos de um diagnóstico por foto para uma plataforma completa."
+        },
+        {
+          "id": "a3",
+          "text": "Ela identifica doenças em plantas, decide quando é preciso agir e avisa o produtor em segundos."
+        }
+      ]
+    },
+    {
+      "id": "problema",
+      "segments": [
+        {
+          "id": "p1",
+          "text": "Até 40% da produção agrícola mundial se perde todo ano para pragas e doenças.",
+          "tts": "Até quarenta por cento da produção agrícola mundial se perde todo ano para pragas e doenças."
+        },
+        {
+          "id": "p2",
+          "text": "No campo, o diagnóstico depende de um agrônomo que nem sempre está por perto."
+        },
+        {
+          "id": "p3",
+          "text": "E, a olho nu, a doença só aparece quando já tomou o talhão."
+        },
+        {
+          "id": "p4",
+          "text": "Quem mais perde é o pequeno e o médio produtor."
+        }
+      ]
+    },
+    {
+      "id": "solucao",
+      "segments": [
+        {
+          "id": "s1",
+          "text": "O PlantGuard é um agrônomo digital que não dorme.",
+          "tts": "O Plant Gárd é um agrônomo digital que não dorme."
+        },
+        {
+          "id": "s2",
+          "text": "O produtor fotografa a folha, ou câmeras no campo enviam leituras sozinhas."
+        },
+        {
+          "id": "s3",
+          "text": "A inteligência artificial identifica a doença, regras de decisão dizem se é preciso intervir, e o alerta chega com o tratamento recomendado."
+        }
+      ]
+    },
+    {
+      "id": "arquitetura",
+      "segments": [
+        {
+          "id": "r1",
+          "text": "Na entrada, as leituras do campo chegam pelo Apache Kafka, junto com fotos e arquivos em lote. Se o aplicativo cair, nenhuma leitura se perde."
+        },
+        {
+          "id": "r2",
+          "text": "No processamento, o Gemini diagnostica, o consumer grava no Postgres e quatro regras decidem a ação.",
+          "tts": "No processamento, o Jêmini diagnostica, o consumer grava no Póstgres, e quatro regras decidem a ação."
+        },
+        {
+          "id": "r3",
+          "text": "Na saída, alertas, painéis e relatórios. Tudo sobe com um único docker compose.",
+          "tts": "Na saída, alertas, painéis e relatórios. Tudo sobe com um único dócker compôuz."
+        }
+      ]
+    },
+    {
+      "id": "demo",
+      "segments": [
+        {
+          "id": "d1",
+          "text": "Vamos ver funcionando."
+        },
+        {
+          "id": "d2",
+          "text": "No Kafka, as leituras do campo chegam ao tópico, com a planta, o status e a confiança. Cada mensagem leva um identificador de caso, que acompanha a leitura do campo até o alerta."
+        },
+        {
+          "id": "d3",
+          "text": "O consumer grava cada leitura e, quando a planta está doente, cria o alerta na hora."
+        },
+        {
+          "id": "d4",
+          "text": "No aplicativo, o sino acende e o analytics se atualiza sozinho, sem recarregar a página.",
+          "tts": "No aplicativo, o sino acende, e o análitics se atualiza sozinho, sem recarregar a página."
+        },
+        {
+          "id": "d5",
+          "text": "E o monitor mostra, a cada três segundos, a saúde de cada serviço e as leituras chegando."
+        },
+        {
+          "id": "d6",
+          "text": "O produtor também pode enviar uma foto pelo app, e o Gemini devolve a doença, a confiança e o tratamento.",
+          "tts": "O produtor também pode enviar uma foto pelo app, e o Jêmini devolve a doença, a confiança e o tratamento."
+        }
+      ],
+      "extraHold": 2
+    },
+    {
+      "id": "decisao",
+      "segments": [
+        {
+          "id": "e1",
+          "text": "O diferencial é não parar no diagnóstico."
+        },
+        {
+          "id": "e2",
+          "text": "Quatro regras olham todas as análises de cada espécie."
+        },
+        {
+          "id": "e3",
+          "text": "Com metade das plantas doentes, o alerta vira intervenção urgente. Com confiança baixa, o sistema pede uma nova foto. Assim, o produtor não recebe só o nome da doença: recebe o que fazer, e quando."
+        }
+      ]
+    },
+    {
+      "id": "processo",
+      "segments": [
+        {
+          "id": "m1",
+          "text": "Cada etapa grava um evento: o caso, a atividade, o horário e o recurso."
+        },
+        {
+          "id": "m2",
+          "text": "Com mineração de processos, descobrimos o mapa real do fluxo."
+        },
+        {
+          "id": "m3",
+          "text": "A parte técnica leva milissegundos: 26, do Kafka até o banco.",
+          "tts": "A parte técnica leva milissegundos: vinte e seis, do Káfka até o banco."
+        },
+        {
+          "id": "m4",
+          "text": "O gargalo é humano. Entre o alerta ser gerado e o produtor vê-lo, passa uma hora na mediana, e 28 horas nos casos mais lentos.",
+          "tts": "O gargalo é humano. Entre o alerta ser gerado e o produtor vê-lo, passa uma hora na mediana, e vinte e oito horas nos casos mais lentos."
+        },
+        {
+          "id": "m5",
+          "text": "E quase 22% dos alertas nunca são vistos.",
+          "tts": "E quase vinte e dois por cento dos alertas nunca são vistos."
+        }
+      ],
+      "extraHold": 3
+    },
+    {
+      "id": "melhorias",
+      "segments": [
+        {
+          "id": "i1",
+          "text": "Por isso, propomos alerta crítico por WhatsApp com lembrete, guia de captura de foto quando a confiança fica baixa, e nova tentativa automática quando a IA falha.",
+          "tts": "Por isso, propomos alerta crítico por uótsap com lembrete, guia de captura de foto quando a confiança fica baixa, e nova tentativa automática quando a I A falha."
+        },
+        {
+          "id": "i2",
+          "text": "Cada melhoria tem um indicador que a página de processo já mede."
+        }
+      ]
+    },
+    {
+      "id": "confiavel",
+      "segments": [
+        {
+          "id": "c1",
+          "text": "Cada mudança passa pelo nosso pipeline DevSecOps: testes, busca de segredos e de vulnerabilidades, e um teste que sobe a plataforma inteira e derruba o Kafka para ver se ela se recupera.",
+          "tts": "Cada mudança passa pelo nosso páipláin Dév Séc Óps: testes, busca de segredos e de vulnerabilidades, e um teste que sobe a plataforma inteira e derruba o Káfka para ver se ela se recupera."
+        },
+        {
+          "id": "c2",
+          "text": "Ele barrou uma falha crítica no Next.js: saímos de 44 vulnerabilidades para zero.",
+          "tts": "Ele barrou uma falha crítica no Néxt jêi ésse: saímos de quarenta e quatro vulnerabilidades para zero."
+        },
+        {
+          "id": "c3",
+          "text": "E cada merge publica imagens versionadas, prontas para o deploy. E, se o banco ou o Kafka caírem, o endpoint de saúde avisa em segundos."
+        }
+      ],
+      "extraHold": 1
+    },
+    {
+      "id": "produto",
+      "segments": [
+        {
+          "id": "v1",
+          "text": "Nosso público é o pequeno e o médio produtor, as cooperativas e os agrônomos de consultoria. Para uma cooperativa, isso significa acompanhar centenas de propriedades com poucos técnicos."
+        },
+        {
+          "id": "v2",
+          "text": "A proposta de valor: menos perda, menos defensivo e decisão na hora certa."
+        },
+        {
+          "id": "v3",
+          "text": "O modelo é freemium para o produtor, com planos para propriedades e cooperativas, e uma API cobrada por análise.",
+          "tts": "O modelo é frímium para o produtor, com planos para propriedades e cooperativas, e uma A P I cobrada por análise."
+        }
+      ]
+    },
+    {
+      "id": "fim",
+      "segments": [
+        {
+          "id": "f1",
+          "text": "Hoje, o PlantGuard funciona de ponta a ponta.",
+          "tts": "Hoje, o Plant Gárd funciona de ponta a ponta."
+        },
+        {
+          "id": "f2",
+          "text": "Os próximos passos são acelerar a resposta ao alerta, prever o risco com sensores de clima e fazer um piloto com uma cooperativa."
+        },
+        {
+          "id": "f3",
+          "text": "PlantGuard: proteção inteligente, safra garantida. Obrigado!",
+          "tts": "Plant Gárd: proteção inteligente, safra garantida. Obrigado!"
+        }
+      ]
+    }
+  ]
+}
