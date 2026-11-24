@@ -1,0 +1,291 @@
+# Pipeline DevSecOps do PlantGuard (AgroSmart — Fase 7)
+#
+#   quality ──┐
+#   secrets ──┼──> build (next build + imagens + Trivy) ──> e2e (compose + smoke) ──> publish (GHCR, só main)
+#   sca ──────┤
+#   codeql ───┘
+#
+# Qualidade: ESLint, tsc, Vitest com cobertura e SonarCloud (se SONAR_TOKEN existir).
+# Segurança: Gitleaks (segredos), npm audit + Trivy fs (dependências e IaC), CodeQL (SAST), Trivy image.
+name: DevSecOps
+
+on:
+  push:
+    branches: [main, 'feat/**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: devsecops-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: '22'
+  # Placeholder: só para gerar o Prisma Client e buildar (nenhum banco é acessado).
+  DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
+  NEXTAUTH_SECRET: ci-build-placeholder
+  NEXT_TELEMETRY_DISABLED: '1'
+  TRIVY_VERSION: '0.58.1'
+
+jobs:
+  # ───────────────────────── Qualidade de código ─────────────────────────
+  quality:
+    name: Qualidade (lint, tipos, testes, Sonar)
+    runs-on: ubuntu-latest
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # o SonarCloud usa o histórico para "new code"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - run: npx prisma generate
+      - name: Lint (ESLint)
+        run: npm run lint
+      - name: Checagem de tipos (tsc)
+        run: npm run typecheck
+      - name: Testes + cobertura (Vitest)
+        run: npm run test:coverage
+      - name: Resumo da cobertura
+        if: always()
+        run: |
+          node -e "const s=require('./coverage/coverage-summary.json').total;
+          const row=k=>'| '+k+' | '+s[k].pct+'% |';
+          console.log(['### Cobertura de testes (src/lib)','| Métrica | % |','|---|---|',
+          row('lines'),row('statements'),row('functions'),row('branches')].join('\n'))" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 14
+      - name: SonarCloud (quality gate)
+        if: ${{ env.SONAR_TOKEN != '' }}
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarcloud.io
+      - name: SonarCloud desativado
+        if: ${{ env.SONAR_TOKEN == '' }}
+        run: echo "::notice::SONAR_TOKEN não configurado — análise do SonarCloud pulada (lint, tipos e cobertura seguem valendo)."
+
+  # ───────────────────────── Segredos ─────────────────────────
+  secrets:
+    name: Segredos (Gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # varre o histórico inteiro, não só o último commit
+      - name: Gitleaks
+        run: |
+          docker run --rm -v "$PWD":/repo zricethezav/gitleaks:v8.21.2 \
+            git /repo --redact --no-banner --exit-code 1 \
+            --report-format sarif --report-path /repo/gitleaks.sarif
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gitleaks-report
+          path: gitleaks.sarif
+          if-no-files-found: ignore
+
+  # ───────────────────────── Dependências e IaC (SCA) ─────────────────────────
+  sca:
+    name: Dependências e IaC (npm audit + Trivy fs)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: npm audit (produção, falha em high/critical)
+        run: npm audit --omit=dev --audit-level=high
+      - name: Trivy fs — SARIF para a aba Security
+        if: always()
+        run: |
+          docker run --rm -v "$PWD":/src "aquasec/trivy:${TRIVY_VERSION}" fs \
+            --scanners vuln,misconfig,secret --skip-dirs node_modules \
+            --format sarif --output /src/trivy-fs.sarif /src
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('trivy-fs.sarif') != ''
+        with:
+          sarif_file: trivy-fs.sarif
+          category: trivy-fs
+      - name: Trivy fs — barra HIGH/CRITICAL
+        run: |
+          docker run --rm -v "$PWD":/src "aquasec/trivy:${TRIVY_VERSION}" fs \
+            --scanners vuln,misconfig,secret --skip-dirs node_modules \
+            --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 --format table /src
+
+  # ───────────────────────── SAST ─────────────────────────
+  codeql:
+    name: SAST (CodeQL)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          queries: security-and-quality
+      - uses: github/codeql-action/analyze@v3
+        with:
+          category: codeql
+
+  # ───────────────────────── Build + imagens ─────────────────────────
+  build:
+    name: Build e imagens (Docker + Trivy image)
+    needs: [quality, secrets, sca, codeql]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build da imagem do app (Next.js standalone)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          load: true
+          tags: plantguard-app:ci
+          cache-from: type=gha,scope=app
+          cache-to: type=gha,scope=app,mode=max
+      - name: Build da imagem de streaming (producer/consumer)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: infra/streaming/Dockerfile
+          load: true
+          tags: plantguard-streaming:ci
+          cache-from: type=gha,scope=streaming
+          cache-to: type=gha,scope=streaming,mode=max
+      - name: Trivy image — SARIF
+        if: always()
+        run: |
+          for img in plantguard-app plantguard-streaming; do
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD":/out \
+              "aquasec/trivy:${TRIVY_VERSION}" image --scanners vuln \
+              --format sarif --output "/out/trivy-${img}.sarif" "${img}:ci"
+          done
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('trivy-plantguard-app.sarif') != ''
+        with:
+          sarif_file: trivy-plantguard-app.sarif
+          category: trivy-image-app
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('trivy-plantguard-streaming.sarif') != ''
+        with:
+          sarif_file: trivy-plantguard-streaming.sarif
+          category: trivy-image-streaming
+      - name: Trivy image — barra HIGH/CRITICAL
+        run: |
+          for img in plantguard-app plantguard-streaming; do
+            echo "::group::${img}"
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+              "aquasec/trivy:${TRIVY_VERSION}" image --scanners vuln \
+              --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 --format table "${img}:ci"
+            echo "::endgroup::"
+          done
+      - name: Tamanho das imagens
+        run: docker images --format '{{.Repository}}:{{.Tag}} {{.Size}}' | grep plantguard
+
+  # ───────────────────────── Execução ponta a ponta ─────────────────────────
+  e2e:
+    name: Smoke test ponta a ponta (docker compose)
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepara infra/.env
+        run: |
+          cp infra/.env.example infra/.env
+          sed -i "s|^NEXTAUTH_SECRET=.*|NEXTAUTH_SECRET=$(openssl rand -base64 32)|" infra/.env
+          sed -i "s|^STREAM_INTERVAL_MS=.*|STREAM_INTERVAL_MS=2000|" infra/.env
+          sed -i "s|^STREAM_MAX_MESSAGES=.*|STREAM_MAX_MESSAGES=0|" infra/.env
+          echo "APP_VERSION=${GITHUB_SHA::7}" >> infra/.env
+      - name: Sobe a stack (postgres, kafka, app, producer, consumer)
+        run: docker compose -f infra/docker-compose.yml up -d --build --wait --wait-timeout 300
+      - name: Smoke test (producer -> Kafka -> consumer -> Postgres -> app)
+        run: SMOKE_OUT=health.json TIMEOUT=180 scripts/smoke-test.sh
+      - name: Resiliência — Kafka cai, health degrada, Kafka volta
+        run: |
+          docker compose -f infra/docker-compose.yml stop kafka
+          test "$(curl -s http://localhost:3000/api/health | jq -r .status)" = "degraded"
+          docker compose -f infra/docker-compose.yml start kafka
+          TIMEOUT=120 scripts/smoke-test.sh
+      - name: Coleta de evidências
+        if: always()
+        run: |
+          mkdir -p evidencias
+          docker compose -f infra/docker-compose.yml ps > evidencias/compose-ps.txt
+          docker compose -f infra/docker-compose.yml logs --no-color > evidencias/compose-logs.txt
+          curl -s http://localhost:3000/api/health | jq . > evidencias/health.json || true
+          curl -s http://localhost:3000/api/stream/monitor | jq '{kafka,total,statusCounts,throughput}' > evidencias/monitor.json || true
+          {
+            echo '### Execução ponta a ponta'
+            echo '```'; cat evidencias/compose-ps.txt; echo '```'
+            echo '```json'; cat evidencias/health.json; echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-evidencias
+          path: evidencias/
+          retention-days: 30
+      - name: Derruba a stack
+        if: always()
+        run: docker compose -f infra/docker-compose.yml down -v
+
+  # ───────────────────────── Publicação ─────────────────────────
+  publish:
+    name: Publica imagens (GHCR)
+    needs: e2e
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Nome das imagens em minúsculas
+        id: names
+        run: echo "owner=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_OUTPUT"
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ steps.names.outputs.owner }}/plantguard-app:latest
+            ghcr.io/${{ steps.names.outputs.owner }}/plantguard-app:${{ github.sha }}
+          cache-from: type=gha,scope=app
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: infra/streaming/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ steps.names.outputs.owner }}/plantguard-streaming:latest
+            ghcr.io/${{ steps.names.outputs.owner }}/plantguard-streaming:${{ github.sha }}
+          cache-from: type=gha,scope=streaming
