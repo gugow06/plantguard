@@ -13,7 +13,7 @@ npm run process:simulate
 
 # 3. Rode a análise (origem: simulado | real | all)
 docker build -t plantguard-process-mining analysis/process-mining
-docker run --rm -v "$PWD":/work plantguard-process-mining \
+docker run --rm --user "$(id -u)" -v "$PWD":/work plantguard-process-mining \
   docs/fase7/processo/event-log.csv docs/fase7/processo simulado
 ```
 
