@@ -72,8 +72,8 @@ services:
       postgres:
         condition: service_healthy
     command: >
-      sh -c "npx prisma db push &&
-             npx tsx infra/streaming/seed-demo-user.ts"
+      sh -c "prisma db push &&
+             tsx infra/streaming/seed-demo-user.ts"
 
   # ---------- App Next.js ----------
   app:
@@ -123,7 +123,7 @@ services:
     depends_on:
       kafka:
         condition: service_healthy
-    command: ["npx", "tsx", "infra/streaming/producer.ts"]
+    command: ["tsx", "infra/streaming/producer.ts"]
     restart: on-failure
 
   # ---------- Consumer: grava no Postgres e gera alertas ----------
@@ -139,7 +139,7 @@ services:
         condition: service_healthy
       init:
         condition: service_completed_successfully
-    command: ["npx", "tsx", "infra/streaming/consumer.ts"]
+    command: ["tsx", "infra/streaming/consumer.ts"]
     restart: unless-stopped
 
 volumes:

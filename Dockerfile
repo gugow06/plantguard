@@ -26,6 +26,10 @@ ENV PORT=3000
 COPY --from=builder --chown=node:node /app/public ./public
 COPY --from=builder --chown=node:node /app/.next/standalone ./
 COPY --from=builder --chown=node:node /app/.next/static ./.next/static
+# O runtime só precisa do node: remove npm/npx/corepack da imagem base, que
+# carregam dependências próprias com CVEs (achado do Trivy na imagem).
+RUN rm -rf /usr/local/lib/node_modules/npm /usr/local/lib/node_modules/corepack \
+           /usr/local/bin/npm /usr/local/bin/npx /usr/local/bin/corepack
 # Roda sem privilégio de root.
 USER node
 EXPOSE 3000
