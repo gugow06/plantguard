@@ -416,8 +416,8 @@ flowchart LR
     <tr><td><b>Segredo com valor padrão</b> no compose</td><td>revisão</td><td><span class="pill red">default</span></td><td><code>NEXTAUTH_SECRET</code> obrigatório</td><td><span class="pill">ok</span></td></tr>
     <tr><td><b>Segredos no histórico git</b></td><td>Gitleaks</td><td colspan="3">20 commits varridos — nenhum vazamento</td></tr>
   </table>
-  <figure><img class="clip" style="max-height:80mm" src="evidencias/pipeline/github-actions-run.png" alt="Execução do pipeline no GitHub Actions"/><figcaption><b>Execução do pipeline</b> no GitHub Actions — todos os jobs verdes.</figcaption></figure>
-  <div class="callout amber">O próprio pipeline já provou que funciona: no primeiro run, a barreira do Trivy fs <b>falhou</b> porque o Dockerfile da análise de processos rodava como root. Corrigido em <code>b038499</code>, o run seguinte passou.</div>
+  <figure><img class="clip" style="height:66mm" src="evidencias/pipeline/github-actions-run.png" alt="Execução do pipeline no GitHub Actions"/><figcaption><b>Execução do pipeline</b> no GitHub Actions (run #6): todos os jobs verdes; a publicação no GHCR só roda na <code>main</code>.</figcaption></figure>
+  <div class="callout amber"><b>O pipeline barrou problemas reais antes do verde.</b> (1) Trivy fs: o Dockerfile da análise de processos rodava como root → corrigido. (2) Build em clone limpo: a pasta <code>public/</code> vazia não ia para o git e a imagem não era construída → corrigido. (3) Ponta a ponta: variáveis de placeholder do CI sobrescreviam o <code>.env</code> do compose e o <code>init</code> procurava o banco em <code>localhost</code> — causa encontrada pelas anotações de diagnóstico que o próprio job publica ao falhar → corrigido. O run #6 (commit <code>29c0287</code>) passou em todas as etapas em 8 min 53 s.</div>
   <div class="folio"><span>PlantGuard — Documentação final</span><span class="pn"></span></div>
 </section>
 
