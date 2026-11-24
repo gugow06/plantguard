@@ -1,0 +1,16 @@
+de,para,casos,mediana_s,p90_s,media_s
+Análise registrada,Relatório enviado,63,220039.8,304042.0,203871.8
+Alerta visualizado,Relatório enviado,21,213952.7,301058.7,210426.7
+Alerta gerado,Relatório enviado,10,165971.2,275520.0,181549.0
+Alerta gerado,Alerta visualizado,104,3800.1,100768.5,33639.3
+Diagnóstico inconclusivo,Imagem capturada,13,718.3,1515.0,916.9
+Falha no diagnóstico,Imagem capturada,12,86.1,168.4,97.4
+Imagem capturada,Falha no diagnóstico,16,21.8,28.8,21.0
+Imagem capturada,Diagnóstico por IA,142,4.4,7.2,4.6
+Análise registrada,Alerta gerado,133,0.4,0.7,0.4
+Imagem capturada,Publicada no Kafka,267,0.1,0.2,0.1
+Publicada no Kafka,Consumida do tópico,267,0.1,0.2,32.6
+Diagnóstico por IA,Análise registrada,125,0.1,0.1,0.1
+Diagnóstico inconclusivo,Análise registrada,4,0.1,0.1,0.1
+Consumida do tópico,Análise registrada,267,0.0,0.0,0.0
+Diagnóstico por IA,Diagnóstico inconclusivo,17,0.0,0.0,0.0
